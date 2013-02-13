@@ -1,0 +1,2526 @@
+<?
+// first create an error function that will be used by init.php
+function error ( $msg ) {
+	echo ( "<p>" . $response . "</p>" );	
+} 
+require_once('init.php');
+require_authentication();
+
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" >
+<meta http-equiv="content-language" content="EN">
+<meta name="Author" content="August Black">
+<meta name="Publisher" content="August Black">
+
+<title>FoodWeb Interaction Database</title>
+
+<link type="text/css" href="css/custom-theme/jquery-ui-1.8.6.custom.css" rel="stylesheet" />	
+<link type="text/css" href="css/kelpstyle.css" rel="stylesheet" />	
+
+<script type="text/javascript" src="js/jquery-1.4.4.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.6.custom.min.js"></script>
+<script type="text/javascript" src="js/json2.js"></script> 
+<script type="text/javascript">
+
+
+// global url
+var url = "http://kelpforest.ucsc.edu/";
+
+// we will keep hold of a global citation var
+// this will be used to update any citation widget 
+// with citation info that has already been used by a user
+var citations =  Array();
+
+// use this to log messages in the top div
+function log( msg ) {
+	$("#logdiv").append( msg + "<br>");
+	$("#logdiv").attr({ scrollTop: $("#logdiv").attr("scrollHeight") });
+}
+
+// callback for when we change the format type on a citation when
+// submitting a new citation  (e.g. when selecting Journal, Book, etc.)
+function onFormatSelectChange( sel) {
+	var val= sel.options[sel.selectedIndex].value;
+	$("#new_citation_dialog_pages_div").remove();
+	$("#new_citation_dialog_publisher_div").remove();
+
+	if (val == "Book") {
+		var pub=  '<div class="divpad" id="new_citation_dialog_publisher_div"><label for="new_citation_dialog_publisher">Publisher: </label>';
+		pub += '<input type="text"  name="new_citation_dialog_publisher" id="new_citation_dialog_publisher" /></div>';
+		$(pub).insertAfter('#new_citation_dialog_format_title_div');
+	}	
+
+	if (val != "Web Site") {
+	  var pages=  '<div class="divpad" id="new_citation_dialog_pages_div"><label for="new_citation_dialog_pages">Pages: </label>';
+  	pages += '<input type="text" class="medium" name="new_citation_dialog_pages" id="new_citation_dialog_pages" /></div>';
+		$(pages).insertAfter('#new_citation_dialog_format_title_div');
+	}
+
+	if (val == "Journal") {
+	  var volume=  '<div class="divpad" id="new_citation_dialog_volume_div"><label for="new_citation_dialog_volume">Volume: </label>';
+  	volume += '<input type="text"  name="new_citation_dialog_volume" id="new_citation_dialog_volume" /></div>';
+		var numb = '<div class="divpad" id="new_citation_dialog_number_div"><label for="new_citation_dialog_number">Number: </label>';
+		numb += '<input type="text" class="medium" name="new_citation_dialog_number" id="new_citation_dialog_number" /></div>';
+		$(volume + numb).insertAfter('#new_citation_dialog_format_title_div');
+	} else { 
+		$("#new_citation_dialog_volume_div").remove();
+		$("#new_citation_dialog_number_div").remove();
+	}
+
+	$("#new_citation_dialog_format_title_label").html( val + " title:");
+}
+
+// callback for deleting an Interaction Observation
+// needs the citation ID, as well as interaction_type (trophic, parasitic, etc.) and 
+// the interaction ID
+function deleteInteractionObservation( cite_id, interaction_type, interaction_id ) {
+	if (!confirm("Delete this "+interaction_type +" interaction observation for id:" +  interaction_id  + "?") ) {
+		return;
+	}
+ var postdata = Object();
+ postdata.functionName = "deleteInteractionObservation";
+ postdata.cite_id= cite_id;
+ postdata.interaction_type = interaction_type;
+ postdata.interaction_id= interaction_id;
+ //alert(JSON.stringify(postdata));
+ $.ajax( { async:true, type:"GET", dataType:"json",
+		 data: postdata, 
+		 url: "query.php", 
+		 success: function(data, t, x) {	
+				if (data == null || data == undefined) {
+				  alert("Error : data is null" );
+				} else if (  data.error != undefined) {
+				  alert("Error deleting citation value: " + data.error );
+					alert(data.sql);
+				} else {
+					 var divname = postdata.interaction_type + "_" + postdata.cite_id + "_" + postdata.interaction_id;		
+					 $("#"+divname).remove();
+				}
+			}
+	});	
+}
+
+// delete any cited variable whether for stage or node
+// cite_id - citation id
+// compare_field - field name to be compared for deletions ("node_id" or "stage_id")
+// compare_id - the ID number of the node_id or stage_id to be deleted
+// table_name - full name of table (node_max_age, stage_residency, etc.)
+// example -> deleteCitedVar( 23, "node_id", 43, "node_max_age"); 
+function deleteCitedVar( cite_id, compare_field, compare_id, table_name) {
+	//if (!confirm("Delete this cited variable for " + table_name  + "?\n" + cite_id +","+ compare_field +","+ compare_id +","+table_name ) ) {
+	if (!confirm("Delete this cited variable for " + table_name  + "?" ) ) {
+		return;
+	}
+ var postdata = Object();
+ postdata.functionName = "deleteCitations";
+ var obj = Object();
+ obj['table'] = table_name;
+ obj['cite_id'] = cite_id;
+ obj[compare_field] = compare_id;
+ postdata.json = Array( obj ) ;
+ $.ajax( { async:true, type:"GET", dataType:"json",
+		 data: postdata, 
+		 url: "query.php", 
+		 success: function(data, t, x) {	
+				if (data == null || data == undefined) {
+				  alert("Error : data is null" );
+				} else if (  data.error != undefined) {
+				  alert("Error deleting citation value: " + data.error );
+				} else {
+					// everything went okay, we want to remove that one
+				  //alert( JSON.stringify( data ));
+					for (var i in data) {
+					  var d = data[i];	
+						log ("Deleted from " + d['table'] + " with citation id:" + d['cite_id']);
+					  var spanid="#" + d['table'] + '_'+ d['cite_id'];
+					  if ( d['node_id'] != undefined) {
+					    spanid += '_' + d['node_id'];
+					  } else {
+					    spanid += '_' + d['stage_id'];
+						}
+					  //alert( spanid + "  --> " + $(spanid).html() );
+					  $(spanid).remove();
+					}
+			  }
+		  }
+		} );
+}
+// make a string that consists of a <span> html entity with the interaction
+// observation data in it.  This is used in the interaction dialogue to show
+// the observations for a particular interaction between node/stage pairs
+function makeObservationSpan( cite, obs, interaction_id, interaction_type ){
+	var authors = "";
+	for (var j=0;j< cite.authors.length;j++) {
+		if (j != 0) authors+=",&nbsp;";
+		authors+=cite.authors[j].last_name;
+	}
+	var divname = interaction_type + "_" + obs.cite_id + "_" + interaction_id;
+	var tmp = '<div class="divpad" id="'+divname+'">[' + authors + " - " + cite.year + "]";
+	tmp += '[<span style="cursor:pointer;cursor:hand;color:magenta;padding:4px;" ';
+	tmp += 'onclick="deleteInteractionObservation(' + cite.id + ',\'';
+	tmp += interaction_type +'\', '+interaction_id+');">X</span>]<br>';
+	for(var prop in obs) {
+		if(obs.hasOwnProperty(prop)) {
+			if ( (prop != 'cite_id' ) && ( prop.slice( prop.length - 14, prop.length) != "interaction_id" ) ) {
+				if (prop == "location_id") {
+					for (var l in display_options.locations) {
+						if ( display_options.locations[l].id == obs.location_id ) {
+							tmp+= "&nbsp;&nbsp;location : " +  display_options.locations[l].name  + '<br>';
+							break;
+						}
+					}
+				} else {
+					tmp+= "&nbsp;&nbsp;" + prop.replace(/_/g, '&nbsp;') + ": " +  obs[prop] + '<br>';
+				}
+			}
+		}
+	}
+	tmp+='</div>';
+	return tmp;	
+}
+
+// make a string that consists of a <span> html entity with the cited variable
+// information in it.  This is used in the node dialogue widget to show variables
+// that have already been cited.  Can be used for stage or node variables.
+function makeCiteSpan(cite_id, var_text, table_name, id, node_or_stage) {
+	var authors="";
+	var cite = getCitationInfo(cite_id);
+	var field = node_or_stage + "_id";
+	if (cite.authors != undefined) {
+		for (var j=0;j< cite.authors.length;j++) {
+			if (j != 0) authors+=",&nbsp;";
+			authors+=cite.authors[j].last_name;
+		}
+		var spanid = table_name + '_' + cite_id + '_' + id;
+		var  tmp = '<span id="' + spanid  +'" class="cited">' +  var_text.replace(/ /g, "&nbsp;")  + '&nbsp;-&nbsp;[' + authors + '&nbsp;-&nbsp;' + cite.year +']';
+		tmp +=  '&nbsp;&nbsp;[<span style="cursor:pointer;cursor:hand;color:magenta;padding:4px;" ';
+		tmp += 'onclick="deleteCitedVar(' + cite.id + ',\'' +field+'\','+id+',\'' +table_name +'\');">X</span>';
+		tmp += ']</span> ';
+		return tmp;
+	} else {
+		return "none";
+	}
+}
+
+// in the citation dialog, there is a div that holds author information.
+// use this function to remove that div	
+function removeAuthorFromCitationDialog( author_id ) {
+	$("#author_"+author_id).remove();
+	var a_ids = $("#new_citation_dialog_authors").data("author_ids");
+	for(var i in a_ids) {
+		if(a_ids[i] == author_id) {
+			a_ids.splice(i, 1);
+			break;
+		}
+	}
+}
+
+// make a span html element that contains author info
+function makeAuthorCiteSpan( author_id, text ) {
+	// first check to see if it is there
+	var a_ids = $("#new_citation_dialog_authors").data("author_ids");
+	for (var i in a_ids) {
+		if (a_ids[i] == author_id)
+			return;
+	}
+	var  tmp = '<span id="author_' + author_id  +'" class="cited">[' + text + ']';
+	tmp +=  '&nbsp;&nbsp;[<span style="cursor:pointer;cursor:hand;color:magenta;padding:4px;" ';
+	tmp += 'onclick="removeAuthorFromCitationDialog(' +  author_id +' );">X</span>';
+	tmp += ']</span> ';
+	$("#new_citation_dialog_authors").append(tmp);
+	//$("#new_citation_dialog_authors").data("author_ids").push(author_id);
+	a_ids.push(author_id);
+}
+
+// used in interaction observations.  It makes an input or select widget for entering
+// information.  The observations dialogue uses label: input pairs instead of an 
+// html <table>.  This could be changed and instead use the same thing as the node
+// dialog
+function makeValueInputDiv( idname, displayname, options, tooltips ) {
+	var tmp ='<div class="divpad"><label for="'+ idname + '">' + displayname.replace(/ /g, "&nbsp;")  + ':  </label>';
+	tmp+=makeValueInputS( idname, options, tooltips);
+	tmp+='</div>';
+	return tmp;
+}
+
+// makes a generic input widget 
+// idname - html DOM id of select or input 
+// options - if null, make <input> widget, else use options array to create a <select> 
+// tooltip - what info to display on mouseover
+function makeValueInputS( idname, options, tooltip ) {
+	var tmp ='';
+	if ( options != null  && options != undefined && options.length > 0 ) {
+		tmp+='<select  name="'+  idname +'" id="'+ idname +'" class="medium" title="'+ tooltip +'" ><option value=""></option>';
+		for (var i=0;i<options.length;i++) {	
+			var opt = options[i];
+			if (typeof ( opt ) == "object") {
+				// this is for display_options.locations and display_options.functional_groups
+				tmp+='<option value="'+ opt.id +'">'+ opt.name +'</option>';
+			} else {
+				tmp+='<option value="'+ opt +'">'+ opt +'</option>';
+			}
+		}
+		tmp+='</select>';
+	} else {
+		tmp+='<input class="medium" type="text" name="'+ idname +'" id="'+ idname +'" title="'+ tooltip +'" />';
+	}
+	return tmp;
+}
+
+// keydown func for range widgets
+function rangeKeydown ( e ) {  
+	var keynum;
+	var keychar;
+	var numcheck;
+
+	if( window.event) { // IE
+		keynum = e.keyCode
+	} else if(e.which) { // Netscape/Firefox/Opera
+		keynum = e.which
+	}
+	keychar = String.fromCharCode(keynum)
+	if( keynum==13 ) {  
+		var labels = Array( "range" );
+		var title = "Set Range" ;
+		var node = $(this).data("node");
+		//var id = $(this).attr('id');
+		buildCitationDialog( labels, title, node, null); 
+	}
+}
+
+// bind keydown event to all range inputs
+function bindRangeInput( varprefix, node  ) {
+	$("#" + varprefix  +"_range_N_lat_deg").data('node', node);
+	$("#" + varprefix  +"_range_N_lat_min").data('node', node);
+	$("#" + varprefix  +"_range_N_lat_sec").data('node', node);
+	$("#" + varprefix  +"_range_S_lat_deg").data('node', node);
+	$("#" + varprefix  +"_range_S_lat_min").data('node', node);
+	$("#" + varprefix  +"_range_S_lat_sec").data('node', node);
+	$("#" + varprefix  +"_range_E_lng_deg").data('node', node);
+	$("#" + varprefix  +"_range_E_lng_min").data('node', node);
+	$("#" + varprefix  +"_range_E_lng_sec").data('node', node);
+	$("#" + varprefix  +"_range_W_lng_deg").data('node', node);
+	$("#" + varprefix  +"_range_W_lng_min").data('node', node);
+	$("#" + varprefix  +"_range_W_lng_sec").data('node', node);
+
+	$("#" + varprefix  +"_range_N_lat_deg").bind('keydown', rangeKeydown);
+	$("#" + varprefix  +"_range_N_lat_min").bind('keydown', rangeKeydown);
+	$("#" + varprefix  +"_range_N_lat_sec").bind('keydown', rangeKeydown);
+	$("#" + varprefix  +"_range_S_lat_deg").bind('keydown', rangeKeydown);
+	$("#" + varprefix  +"_range_S_lat_min").bind('keydown', rangeKeydown);
+	$("#" + varprefix  +"_range_S_lat_sec").bind('keydown', rangeKeydown);
+	$("#" + varprefix  +"_range_E_lng_deg").bind('keydown', rangeKeydown);
+	$("#" + varprefix  +"_range_E_lng_min").bind('keydown', rangeKeydown);
+	$("#" + varprefix  +"_range_E_lng_sec").bind('keydown', rangeKeydown);
+	$("#" + varprefix  +"_range_W_lng_deg").bind('keydown', rangeKeydown);
+	$("#" + varprefix  +"_range_W_lng_min").bind('keydown', rangeKeydown);
+	$("#" + varprefix  +"_range_W_lng_sec").bind('keydown', rangeKeydown);
+}
+
+function isNumber(n) {
+  return (!isNaN(parseFloat(n)) && isFinite(n));
+}
+
+// how the data is stored in DB: http://code.google.com/apis/maps/articles/phpsqlajax.html
+// how to convert between decimal and Deg/Min/Sec:
+// http://www.fcc.gov/mb/audio/bickel/DDDMMSS-decimal.html
+function convertToDecimal(degrees, minutes, seconds, lat_or_lng) {
+	var sign =1;
+	var abs_d=0;
+	var abs_m=0;
+	var abs_s=0;
+
+	if (!isNumber(degrees) || !isNumber(minutes) || !isNumber(seconds) ) {
+		//alert("Degrees/Minutes/Seconds not a number - "  + degrees + " : " + minutes + " : " + seconds);
+		return null;
+	}
+	if(degrees < 0)  { sign = -1; }
+
+	abs_d = Math.abs( Math.round(degrees * 1000000.));
+	//Math.round is used to eliminate the small error caused by rounding in the computer:
+	//e.g. 0.2 is not the same as 0.20000000000284
+	if(lat_or_lng == "lng" && abs_d > (180 * 1000000)) {  
+		alert(' Degrees Longitude must be in the range of -180 to 180. '); 
+		return null;
+	}
+	if( lat_or_lng == "lat" && abs_d > (90 * 1000000)) { 
+		alert(' Degrees Latitude must be in the range of -90. to 90. '); 
+		return null;
+	}
+
+	minutes = Math.abs(Math.round(minutes * 1000000.)/1000000);  //integer
+	abs_m = Math.abs(Math.round(minutes * 1000000));  //integer
+	if(abs_m >= (60 * 1000000))   {  alert(' Minutes must be in the range of 0 to 59. ');  return null; }
+
+	seconds = Math.abs(Math.round(seconds * 1000000.)/1000000);
+	abs_s = Math.abs(Math.round(seconds * 1000000.));         // Note: kept as big integer for now, even if submitted as decimal
+	if(abs_s > (59.99999999 * 1000000)) {  alert(' Seconds must be 0 or greater \n and less than 60. '); return null; }
+
+	var decimal  = Math.round(abs_d + (abs_m/60.) + (abs_s/3600.) ) * sign/1000000;
+	return decimal;
+}
+
+function convertToDegreesMinutesSeconds( decimal, lat_or_lng ) {
+	var sign = 1;
+	if (decimal < 0 ) 
+		sign = -1;
+	var abs = Math.abs( Math.round(decimal * 1000000.));
+	if(lat_or_lng == "lng" && abs > (180 * 1000000)) {  
+		alert(' Degrees Longitude must be in the range of -180 to 180. '); 
+		return null;
+	}
+	if( lat_or_lng == "lat" && abs > (90 * 1000000)) { 
+		alert(' Degrees Latitude must be in the range of -90. to 90. '); 
+		return null;
+	}
+
+	var degrees =  (Math.floor(abs / 1000000) * sign);
+	var minutes = Math.floor(  ((abs/1000000) - Math.floor(abs/1000000)) * 60);
+	var seconds = ( Math.floor(((((abs/1000000) - Math.floor(abs/1000000)) * 60) - 
+				Math.floor(((abs/1000000) - Math.floor(abs/1000000)) * 60)) * 100000) *60/100000 );
+ 	var deg_min_sec = degrees + '&deg; ' + minutes  + '\' ' +  seconds + '&quot;' ;
+	return deg_min_sec;
+}
+
+// bind generic <input> and <select> widgets to keydown function
+// keydown func will open the citation dialog with this widget's
+// name and value. 
+function bindValueInput( varprefix, label, node, stage_name  ) {
+	$("#" +varprefix +"_" + label).data("label", label);
+	$("#" +varprefix +"_" + label).data("node", node);
+	$("#" +varprefix +"_" + label).data("stage_name", stage_name);
+	$("#" +varprefix +"_" + label).bind('keydown', function ( e ) {  
+		if(e.which==13) {  
+			var label = $(this).data("label");
+			var node = $(this).data("node");
+			var stage_name = $(this).data("stage_name");
+			var labels = Array( label );
+			var title = "Set " + label;
+			if (stage_name != null) {
+				title += " for " + node.working_name +" on '" + stage_name +"'";
+				buildCitationDialog( labels, title, node, stage_name); 
+			} else {
+				title += " for " + node.working_name;
+				buildCitationDialog( labels, title, node, null); 
+			}
+		}  
+	});
+}
+
+// keydown function for length_weight and length_fecundity
+// input widgets. (note: could be combined with above generic
+// keydown func)
+function l_keydown(e) {
+	if(e.which==13) {  
+		var label = $(this).data("label");
+		var node = $(this).data("node");
+		var stage_name = $(this).data("stage_name");
+		var labels = Array( label );
+		var title = "Set " + label;
+		if (stage_name != null) {
+			title += " for " + node.working_name +" on '" + stage_name +"'";
+			buildCitationDialog( labels, title, node, stage_name); 
+		} else {
+			title += " for " + node.working_name;
+			buildCitationDialog( labels, title, node, null); 
+		}
+	}  
+}
+function bindLengthRelationInput( varprefix, label, node, stage_name  ) {
+	$("#" +varprefix +"_" + label).data("label", label);
+	$("#" +varprefix +"_" + label).data("node", node);
+	$("#" +varprefix +"_" + label).data("stage_name", stage_name);
+	$("#" +varprefix +"_" + label).bind('keydown', l_keydown); 
+
+	$("#" +varprefix +"_" + label + "_a").data("label", label); 
+	$("#" +varprefix +"_" + label + "_a").data("node", node);
+	$("#" +varprefix +"_" + label + "_a").data("stage_name", stage_name); 
+	$("#" +varprefix +"_" + label + "_a").bind('keydown', l_keydown); 
+
+	$("#" +varprefix +"_" + label + "_b").data("label", label); 
+	$("#" +varprefix +"_" + label + "_b").data("node", node); 
+	$("#" +varprefix +"_" + label + "_b").data("stage_name", stage_name); 
+	$("#" +varprefix +"_" + label + "_b").bind('keydown', l_keydown); 
+
+}
+
+// http://www.fcc.gov/mb/audio/bickel/DDDMMSS-decimal.html
+function makeRangeInput( idprefix, tooltip ) {
+	var tmp='<div style="padding-bottom:5px;padding-top:0px;">'
+	tmp += '<input class="degrees" type="text" id="'+idprefix+'_range_N_lat_deg" title="'+ tooltip +'" />&deg; ';
+	tmp += '<input class="minutes" type="text" id="'+idprefix+'_range_N_lat_min" title="'+ tooltip +'" />\' ';
+	tmp += '<input class="seconds" type="text" id="'+idprefix+'_range_N_lat_sec" title="'+ tooltip +'" />&quot; Lat N</div>';
+
+	tmp += '<div style="padding-bottom:5px;padding-top:0px;">'
+	tmp += '<input class="degrees" type="text" id="'+idprefix+'_range_S_lat_deg" title="'+ tooltip +'" />&deg; ';
+	tmp += '<input class="minutes" type="text" id="'+idprefix+'_range_S_lat_min" title="'+ tooltip +'" />\' ';
+	tmp += '<input class="seconds" type="text" id="'+idprefix+'_range_S_lat_sec" title="'+ tooltip +'" />&quot; Lat S</div>';
+
+	tmp += '<div style="padding-bottom:5px;padding-top:0px;">'
+	tmp += '<input class="degrees" type="text" id="'+idprefix+'_range_E_lng_deg" title="'+ tooltip +'" />&deg; ';
+	tmp += '<input class="minutes" type="text" id="'+idprefix+'_range_E_lng_min" title="'+ tooltip +'" />\' ';
+	tmp += '<input class="seconds" type="text" id="'+idprefix+'_range_E_lng_sec" title="'+ tooltip +'" />&quot; Lng E</div>';
+
+	tmp += '<div style="padding-bottom:5px;padding-top:0px;">'
+	tmp += '<input class="degrees" type="text" id="'+idprefix+'_range_W_lng_deg" title="'+ tooltip +'" />&deg; ';
+	tmp += '<input class="minutes" type="text" id="'+idprefix+'_range_W_lng_min" title="'+ tooltip +'" />\' ';
+	tmp += '<input class="seconds" type="text" id="'+idprefix+'_range_W_lng_sec" title="'+ tooltip +'" />&quot; Lng W</div>';
+
+	return tmp;
+}
+
+// use this to append citated variables to the node dialogue (node or stage part)
+// it will get an array of objects such as
+// [{cite_id:1, node_id:3, table: node_max_age, fields:[max_age], values[23]}, ... ]
+// the fields and values are arrays that can hold more than one field/value pair
+function appendCitedVars( cite_array, varprefix ) {
+	for (var i in cite_array) {
+		var cite = cite_array[i];
+		if (cite.error != undefined) {
+			alert("Error on " + cite.table + ":" + cite.error);
+		} else {
+			// there were no errors
+			// we need to deal with range info separately
+			if (cite.table != "node_range" ) {
+				if (cite.table.slice(0,4) == "node") {
+					// deal with node info
+					var name = cite.fields[0];
+					var val_text = cite.values[0];
+					var tmp2 = makeCiteSpan(cite.cite_id, val_text, "node_" + name, cite.node_id, "node");
+					$("#view_"+ varprefix +"_"+name).append(tmp2);
+				} else if ( cite.table.slice(0,5) == "stage") {
+					var name = cite.fields[0];
+					var val_text = cite.values[0];
+					// some cited vars (such as length_weight) are arrays with more field:values, let's show these
+					// be careful to show only useful information.  length_weight=none means there is no A/B constant. don't show it.
+					if (cite.fields[0].slice(0,7) == "length_" && 
+							 cite.values[0] != "none exists - constant fecundity" && 
+							 cite.values[0] != "none exists - constant weight") {
+						val_text = cite.values[0] + " - A:" + cite.values[1] + " B:" + cite.values[2];
+					}
+					for (var j in display_options.stage_names) {
+						var stage_name = display_options.stage_names[j];
+						if ( node.stages[stage_name] != undefined && node.stages[stage_name].id == cite.stage_id) {
+							var tmp2 = makeCiteSpan(cite.cite_id, val_text, "stage_" +name, cite.stage_id, "stage");
+							$("#view_"+varprefix+"_" +name).append(tmp2);
+						}
+					}
+				}
+			} else {// we range data, let's do ranges below
+				//alert(JSON.stringify(cite));
+				var lat_n=null;
+				var lat_s=null;
+				var lng_e=null;
+				var lng_w=null;
+				for (var j in cite.fields ) {
+					if (cite.fields[j] == "lat_n") 
+						lat_n = cite.values[j];
+					if (cite.fields[j] == "lat_s") 
+						lat_s = cite.values[j];
+					if (cite.fields[j] == "lng_e") 
+						lng_e = cite.values[j];
+					if (cite.fields[j] == "lng_w") 
+						lng_w = cite.values[j];
+				}
+				var hmm="";
+				if ( lat_n!=null && lat_s !=null) {		
+					hmm += "<div>" + convertToDegreesMinutesSeconds(lat_n, "lat") + ' Lat N </div>' +
+						"<div>" + convertToDegreesMinutesSeconds( lat_s, "lat") + ' Lat S</div>';
+				}
+				if ( lng_e!=null && lng_w !=null) {		
+					hmm+=  "<div>" +convertToDegreesMinutesSeconds( lng_e, "lng") + ' Lng E</div>' + 
+						"<div>" + convertToDegreesMinutesSeconds(lng_w, "lng") + ' Lng W</div>' ;
+				}
+				var tmp2 = makeCiteSpan(cite.cite_id, hmm, "node_range", cite.node_id, "node");
+				$("#view_"+ varprefix +"_range").append(tmp2);
+			} 
+		} 
+	}
+}
+
+
+// we set up an array of vars that can be sent to the query.php
+// the addNewCitedVars function of query.php will go through each
+// of these and add them to the DB
+// array looks like this:
+// {"cite_id":"1","node_id":"1","table":"node_max_age","fields":["max_age"],"values":["23"]}
+// cite_id is the citation id
+// node_id (or stage_id) is the id of the node or stage that is being cited
+// table is the table name that is being cited
+// fields is an array of fields that are to be inserted in the table named above
+// values are the values of each respective field
+function buildCitationObj( cite_id, foreign_table, foreign_id, label, varprefix ) {
+	var obj = new Object();
+	obj['cite_id'] = cite_id;
+	if (foreign_table == "node") {
+		obj['node_id'] = foreign_id;
+	} else if ( foreign_table == "stage" ) {
+		obj['stage_id'] = foreign_id;
+	}
+	if (label.slice(0,5) == "range") { 
+		// this is a node range value
+		obj['table'] =  "node_range";
+		//obj['fields'] =  Array("north_south", "lat_long", "value");
+		obj['fields'] =  Array();
+		obj['values'] = Array( );
+			//Array("lat_n", "lat_s", "lng_e", "lng_w");
+		var N_lat_deg =  $("#"+ varprefix +"_" + label + "_N_lat_deg").val();
+		var N_lat_min =  $("#"+ varprefix +"_" + label + "_N_lat_min").val();
+		var N_lat_sec =  $("#"+ varprefix +"_" + label + "_N_lat_sec").val();
+
+		var S_lat_deg =  $("#"+ varprefix +"_" + label + "_S_lat_deg").val();
+		var S_lat_min =  $("#"+ varprefix +"_" + label + "_S_lat_min").val();
+		var S_lat_sec =  $("#"+ varprefix +"_" + label + "_S_lat_sec").val();
+
+		var W_lng_deg =  $("#"+ varprefix +"_" + label + "_W_lng_deg").val();
+		var W_lng_min =  $("#"+ varprefix +"_" + label + "_W_lng_min").val();
+		var W_lng_sec =  $("#"+ varprefix +"_" + label + "_W_lng_sec").val();
+
+		var E_lng_deg =  $("#"+ varprefix +"_" + label + "_E_lng_deg").val();
+		var E_lng_min =  $("#"+ varprefix +"_" + label + "_E_lng_min").val();
+		var E_lng_sec =  $("#"+ varprefix +"_" + label + "_E_lng_sec").val();
+		
+		var lat_n = convertToDecimal( N_lat_deg, N_lat_min, N_lat_sec, "lat"); 
+		var lat_s = convertToDecimal( S_lat_deg, S_lat_min, S_lat_sec, "lat"); 
+		var lng_e = convertToDecimal( E_lng_deg, E_lng_min, E_lng_sec, "lng"); 
+		var lng_w = convertToDecimal( W_lng_deg, W_lng_min, W_lng_sec, "lng"); 
+
+		if (lat_n!=null && lat_s !=null) {
+			obj['fields'].push("lat_n");
+			obj['values'].push(lat_n);
+			obj['fields'].push("lat_s");
+			obj['values'].push(lat_s);
+		}
+		if (lng_e !=null && lng_w != null) {
+			obj['fields'].push("lng_e");
+			obj['values'].push(lng_e);
+			obj['fields'].push("lng_w");
+			obj['values'].push(lng_w);
+		}
+	} else if(label.slice(0,7) == "length_") { 
+		// this is a stage length_weight or length_fecundity value
+		obj['table'] =  foreign_table +'_'+label;
+		obj['fields'] = Array( label, 'a', 'b') ;
+		obj['values'] = Array( $("#"+ varprefix +"_" + label).val(), $("#"+ varprefix +"_" + label + "_a").val(), $("#"+ varprefix +"_" + label + "_b").val());
+	} else {  
+		obj['table'] =  foreign_table +'_'+label;
+		obj['fields'] = Array( label) ;
+		obj['values'] = Array( $("#"+ varprefix +"_" + label).val() );
+	}
+	return obj;
+}
+
+// add a citation <option> element to the citation dialog
+function addCiteToCitationDialogSelect( cite ) {
+	var ret = false;	
+	$('#citation_dialog_select').children().each(function(i, option){ 
+			if (cite.id == $(option).val()) {
+				$(option).attr("selected","selected");	
+				ret =true;
+			} 
+	});
+	if (ret) return;
+	authors="";
+	for (var j=0;j< cite.authors.length;j++) {
+		if (j != 0) authors+=",&nbsp;";
+		authors+=cite.authors[j].last_name;
+	}
+	var label = authors + ' - \'' +  cite.title + '\',' +  cite.year;
+	var tmp = '<option selected value="'+ cite.id +'">' + label +'</option>';	
+	$("#citation_dialog_select").append(tmp);	
+	$("#new_interaction_observation_dialog_select").append(tmp);	
+}
+
+// call the DB to get citation info for a particular id
+// appends the returned data to the global citation array
+function getCitationInfo( cite_id) {
+	// first check to see if we have it globally already
+	for (var i in citations ) {
+		if ( citations[i].id == cite_id) {
+			log("Requesting cite info, already cached: " + cite_id);
+			return citations[i];
+		}
+	}	
+	var postdata = Object() ;
+	postdata.functionName = "getCitationInfo";
+	postdata.cite_id = cite_id;
+	log("Requesting cite info for id: " + cite_id);
+	$.ajax( { async:false, type:"GET", dataType:"json",
+			data: postdata, 
+			url: "query.php", 
+			success: function(data, t, x) {	
+			if (data == null) {
+			  alert("Error : data is null" );
+			} else if (data.error != undefined ) {
+				alert("Error: " + data.error);
+			} else {
+				postdata.response = data;
+				// add to global citations array
+				citations.push(data);
+				addCiteToCitationDialogSelect(data);
+				log("Found cite info for id: " + cite_id);
+			}
+		}
+	});
+	return postdata.response;
+}
+
+
+// build and open a citation dialog window with variables
+function buildCitationDialog( labels, title, node, stage_name){
+
+	var node_or_stage = stage_name == null ? "node" : "stage";	// are we dealing with a node or a stage
+	var dlog_name = makeDlogName(node); 												// the full ID path name prefix for node DOM object
+	var varprefix ='';																					// the full ID path name prefix for DOM object (node or stage var)
+	if (node_or_stage == "node") 
+		varprefix = dlog_name;
+	else
+		varprefix = dlog_name + "_stages_" + stage_name;
+
+	// maybe we should check for empty and suitable vars here
+	for(var i in labels) {
+		if (labels[i] != "range") { // range is our exception
+			var val = $( "#"+varprefix + '_' + labels[i] ).val();
+			if( val == null || val==undefined || val == "") {
+				alert("One or more values is not defined. Please check your input.");
+				return;
+			} 
+		}
+		// check for length_weight and length_fecundity A and B
+		if (labels[i].slice(0,7) == "length_" && 
+				val != "none exists - constant fecundity" && 
+				val != "none exists - constant weight") {
+			//if ( labels[i].slice(0,7) == "length_" && val != "none exists - constant fecundity") { 
+			var a = $( "#"+varprefix + '_' + labels[i] + "_a" ).val();
+			var b = $( "#"+varprefix + '_' + labels[i] + "_b" ).val();
+			if (a == null || a==undefined || a == "" || b == null || b==undefined || b == "") {
+				alert("Need to define 'A' and 'B' constants for the equation. Please check your input.");
+				return;
+			}
+		}
+	}	
+
+	$("#citation_dialog_info_div").html( "" );
+	for(var i in labels) {
+		// check for exceptions like range and length_weight
+		if (labels[i].slice(0,5) == "range") { 
+			var N_lat_deg =  $("#"+ varprefix +"_range_N_lat_deg").val();
+			var N_lat_min =  $("#"+ varprefix +"_range_N_lat_min").val();
+			var N_lat_sec =  $("#"+ varprefix +"_range_N_lat_sec").val();
+
+			var S_lat_deg =  $("#"+ varprefix +"_range_S_lat_deg").val();
+			var S_lat_min =  $("#"+ varprefix +"_range_S_lat_min").val();
+			var S_lat_sec =  $("#"+ varprefix +"_range_S_lat_sec").val();
+
+			var W_lng_deg =  $("#"+ varprefix +"_range_W_lng_deg").val();
+			var W_lng_min =  $("#"+ varprefix +"_range_W_lng_min").val();
+			var W_lng_sec =  $("#"+ varprefix +"_range_W_lng_sec").val();
+
+			var E_lng_deg =  $("#"+ varprefix +"_range_E_lng_deg").val();
+			var E_lng_min =  $("#"+ varprefix +"_range_E_lng_min").val();
+			var E_lng_sec =  $("#"+ varprefix +"_range_E_lng_sec").val();
+
+			var lat_n = convertToDecimal( N_lat_deg, N_lat_min, N_lat_sec, "lat"); 
+			var lat_s = convertToDecimal( S_lat_deg, S_lat_min, S_lat_sec, "lat"); 
+			var lng_e = convertToDecimal( E_lng_deg, E_lng_min, E_lng_sec, "lng"); 
+			var lng_w = convertToDecimal( W_lng_deg, W_lng_min, W_lng_sec, "lng"); 
+
+			tmp ="";
+			if (lat_n!=null && lat_s !=null) {
+				tmp += "<div>"+ labels[i] + " Lat N : " + N_lat_deg + "&deg; " +  N_lat_min + "' " + N_lat_sec + "&quot; (" + lat_n + ") </div>";
+				tmp += "<div>"+ labels[i] + " Lat S : " + S_lat_deg + "&deg; " +  S_lat_min + "' " + S_lat_sec + "&quot; (" + lat_s + ") </div>";
+			}
+			if (lng_e !=null && lng_w != null) {
+				tmp += "<div>"+ labels[i] + " Lng E : " + E_lng_deg + "&deg; " +  E_lng_min + "' " + E_lng_sec + "&quot; (" + lng_e + ") </div>";
+				tmp += "<div>"+ labels[i] + " Lng W : " + W_lng_deg + "&deg; " +  W_lng_min + "' " + W_lng_sec + "&quot; (" + lng_w + ") </div>";
+			}
+		} else {
+			tmp = "<div>"+ labels[i] + ": " + $( "#"+varprefix + '_' + labels[i] ).val() +"</div>";
+		}
+		$("#citation_dialog_info_div").append( tmp );
+	}
+  $( "#citation_dialog" ).data("labels", labels);
+  $( "#citation_dialog" ).data("node", node);
+  $( "#citation_dialog" ).data("stage_name", stage_name);
+  $( "#citation_dialog" ).data("varprefix", varprefix);
+	$( "#citation_dialog" ).data("error", ""); 
+	var func = Object();
+	func[title] = function() { 
+		var cite_id = $("#citation_dialog_select").val();
+		if (cite_id == null ) {
+			alert("You must choose a citation");
+			return;
+		}
+  	var labels = $( "#citation_dialog" ).data("labels");
+  	var node = $( "#citation_dialog" ).data("node");
+  	var stage_name = $( "#citation_dialog" ).data("stage_name");
+  	var varprefix = $( "#citation_dialog" ).data("varprefix");
+		//alert("node is:\n" + JSON.stringify(node));
+		if (stage_name != null && node.stages[stage_name] == undefined) {
+			// THERE IS NO STAGE for this node
+			// we need to create a stage for this node
+			var postdata =Object();
+			postdata.functionName = "addNewStage";
+			postdata.stage_name = stage_name;
+			postdata.node_id = node.id;
+			//alert("creating NEW STAGE\n" + JSON.stringify(postdata));
+			$.ajax( { async:false,type:"GET", dataType:"json", 
+					data: postdata,
+					url: "query.php", 
+					success: function(data, t, x) { 	
+						if (data == null) {
+							alert("Return value is null, this usually means a problem on the server.");	
+						} else if (data.error == undefined ) {
+							log("Created new stage '" +postdata.stage_name + "' for node:" + node.id);
+							node.stages[postdata.stage_name] = data[postdata.stage_name];
+							//alert("Created new stage, node is now\n" + JSON.stringify(node));
+						} else {
+							alert(data.error);
+						}
+					}
+			} );
+		}
+		var f_table='';
+		if (stage_name != null) {
+			f_table = "stage"; 
+			f_id=node.stages[stage_name].id;
+		} else { 
+			f_table = "node";
+			f_id = node.id;
+		}
+		var objects = Array();
+		for ( var l in labels) {
+			var obj=	buildCitationObj( cite_id, f_table, f_id, labels[l], varprefix   )
+			objects.push(obj);
+		}	
+		// set the values on them
+		var postdata = Object();
+		postdata.functionName = "addNewCitedVars";
+		postdata.json = objects ;
+		//alert("About to set variables:\n" + JSON.stringify(postdata));
+		$.ajax( { async:false, type:"GET", dataType:"json",
+			data: postdata, 
+			url: "query.php", 
+			success: function(data, t, x) {	
+				if (data == null) {
+				  alert("Error : data is null" );
+					$( "#citation_dialog" ).data("error", ""); 
+				} else if (  data.error != undefined) {
+				  $( "#citation_dialog" ).data("error", data.error);
+				  alert("Error inserting citation value: " + data.error );
+				} else {
+					// if there are no errors, everything is okay
+					appendCitedVars(data, varprefix);
+			  }
+		  }
+		} );
+		if ( $( "#citation_dialog" ).data("error") == "") { 
+		  $( this ).dialog( "close" );   
+		} else {
+			$( "#citation_dialog" ).data("error", "");
+		}
+	};
+	func['Cancel'] = function() { $( this ).dialog( "close" ); };
+	$( "#citation_dialog" ).dialog("option","buttons", func );
+	$( "#citation_dialog" ).dialog("option","title", title + " for '" + $("#citation_dialog").data("node").working_name + "'" );
+	$( "#citation_dialog" ).dialog( "open" );
+}
+
+// take an existing <select> Dom object, clear it, and generate a new
+// options list based on the options array.  Set the option with "id" to 
+// be the one that shows up as selected in the drop down widget 
+function makeSelect( selectid, options, id ) {
+	$("#" + selectid).empty();
+	for ( var g=0; g < options.length; g++) {
+		var item = options[g];
+		if (item.id == id ) {
+			$("#" + selectid).append('<option selected value="'+ item.id +'">'+ item.name +'</option>');
+		} else {
+			$("#" +selectid).append('<option value="'+ item.id +'">'+ item.name +'</option>');
+		}
+	}
+}
+
+// update a table in the database.  generic function 
+// takes field:value array pairs
+function updateTable( table_name, id, fields, values ) {
+	var postdata = Object();
+	postdata.functionName = "updateTable";
+	postdata.table_name = table_name;
+	postdata.id = id;
+	postdata.fields = fields;
+	postdata.values = values; 
+	$.ajax( { async:false, type:"GET", dataType:"json",
+		data: postdata, 
+		url: "query.php", 
+		success: function(data, t, x) {	
+			if (data.error != undefined )
+			alert(data.error);
+			else {
+				log("updated " + postdata.fields + " on " +postdata.table_name);
+			}
+		}
+	});
+}
+
+// build a string for the already cited variables on a node 
+// (shown on right hand side of the node dialog
+function makeNodeVarInfo( node, v ) {
+	var tmp='';
+	var db_table_name = "node_" + v;
+	for (var m in node[ "node_"+v ]) {
+		var val = node["node_"+v][m];
+		if (v == "range") {
+			var hmm="";
+			if ( val['lat_n']!=null && val['lat_s'] !=null) {		
+				hmm += "<div>" + convertToDegreesMinutesSeconds(val['lat_n'], "lat") + ' Lat N </div>' +
+					"<div>" + convertToDegreesMinutesSeconds( val['lat_s'], "lat") + ' Lat S</div>';
+			}
+			if ( val['lng_e']!=null && val['lng_w'] !=null) {		
+				hmm+=  "<div>" +convertToDegreesMinutesSeconds( val['lng_e'], "lng") + ' Lng E</div>' + 
+				 "<div>" + convertToDegreesMinutesSeconds(val['lng_w'], "lng") + ' Lng W</div>' ;
+			}
+			tmp += makeCiteSpan(val.cite_id, hmm , db_table_name, node.id, "node");
+		} else {
+			tmp += makeCiteSpan(val.cite_id, val[v], db_table_name, node.id, "node");
+		}
+	}
+	return tmp;
+}
+
+// build a string with a <tr> element that has 3 <td>'s in it.
+// left most is the label of the variable (e.g. max age)
+// center is the input widget (text or select drop down)
+// right is for the already cited variables
+function makeNodeVarInfoRow( node, varprefix, v, displayname, options, tooltip ) {
+	var tmp = '<tr><td class="rt">' + displayname.replace(/ /g, '&nbsp;') +': </td>';
+	tmp += '</td><td valign="top">';
+	if (v == "range") {
+		tmp += makeRangeInput( varprefix, tooltip  );
+	} else {
+		tmp += makeValueInputS( varprefix +"_"+v, options, tooltip   );
+	}
+	tmp += '</td><td valign="top" class="view" id="view_'+varprefix +'_' + v +'">';
+	tmp += makeNodeVarInfo(node, v);
+	tmp +='</td></tr>'; 
+	return tmp;
+}
+
+// build a string for the already cited variables on a stage 
+// (shown on right hand side of the node dialog
+function makeStageVarInfo( node, stage_name, v ) {
+	var tmp='';
+	var db_table_name = "stage_" + v;
+	if ( node.stages[stage_name] != undefined && node.stages[stage_name].id != undefined) {
+		for (var m in node.stages[stage_name][ "stage_"+v ]) {
+			var val='';
+			val =  node.stages[stage_name][ "stage_"+v ][m];
+			if ( v.slice(0,7) == "length_" && val[v] != "none exists - constant fecundity"  && val[v] != "none exists - constant weight") {
+				var txt = val[v] + " - A:" + val["a"] + " B:" + val["b"];
+				tmp += makeCiteSpan(val.cite_id, txt, db_table_name, node.stages[stage_name].id, "stage");
+			} else {
+				tmp += makeCiteSpan(val.cite_id, val[v], db_table_name, node.stages[stage_name].id, "stage");
+			}
+		}
+	}
+	return tmp;
+}
+
+// build a string with a <tr> element that has 3 <td>'s in it.
+// left most is the label of the variable (e.g. drymass)
+// center is the input widget (text or select drop down)
+// right is for the already cited variables
+function makeStageVarInfoRow( node,stage_name, tabname, v , displayname, options, tooltip) {
+	var tmp = '<tr><td class="rt">' + displayname.replace(/ /g, '&nbsp;') +': </td>';
+	tmp += '</td><td valign="top">';
+	if( v.slice(0,7) == "length_") {
+		// we have either a length_weight or length_fecundity
+		tmp += makeValueInputS( tabname +"_"+v, options, tooltip   );
+		tmp += '<div style="padding-top:4px;">A: <input type="text" id="'+ tabname + "_" + v + '_a" style="width:30px"/>';
+		tmp += ' &nbsp; B: <input type="text" id="'+ tabname + "_" + v + '_b" style="width:30px"/></div>'; 
+	} else {
+		tmp += makeValueInputS( tabname +"_"+v, options, tooltip   );
+	}
+	tmp += '</td><td valign="top" class="view" id="view_'+tabname +'_' + v +'">';
+	tmp += makeStageVarInfo(node, stage_name, v);
+	tmp +='</td></tr>'; 
+	return tmp;
+}
+
+// make an empty row with 3 <td>'s
+function makeStageVarInfoRowSpace() {
+	var tmp = '<tr><td class="rt">&nbsp;</td>';
+	tmp += '</td><td valign="top"><div class="divpad">&nbsp;</div></td>';
+	tmp += '<td>&nbsp;</td></tr>'; 
+	return tmp;
+}
+
+// make a row with an <hr> element.  Currently not used
+function makeRowLine() {
+	var tmp = '<tr><td>&nbsp;</td></td><td colspan="2"><hr style="color:#d0dcd0;background-color:#d0dcd0;height:1px;border:none;" /></td></tr>'; 
+	return tmp;
+}
+
+// generate a unique dialog name for a node.  This is used as a DOM id for
+// making and finding particular node dialog as well as their internal variable
+// widgets. 
+function makeDlogName(node) {
+	var dlog_name =  node.working_name + node.id + node.itis_id + "dialog";
+	dlog_name = dlog_name.replace(/\s/g, "");; // remove white space
+	return dlog_name;
+}
+
+// build the main dialog widget
+function makeNodeDialog (node) { 
+
+	//alert(JSON.stringify( node ) );
+	var dlog_name = makeDlogName(node);
+	if($("#" + dlog_name).length != 0){
+		// dialog already exists, always build new one
+		//$("#" + dlog_name).remove();
+		$( "#" + dlog_name ).dialog("open");
+		return;
+	}
+
+	var tmp = '<div id="' + dlog_name + '" ';
+	tmp += ' title="Node Info for <big>' + node.working_name + '</big> Itis ID:' + node.itis_id + '">';
+	tmp += '<table><tr><td colspan="2">';
+	tmp += '<b>ID:</b> '+ node.id + '<br>';
+	tmp += '<b>Working Name:</b> '+ node.working_name + '<br>';
+	tmp += '<b>Itis ID:</b> '+ node.itis_id + '<br>';
+	//tmp += '<b>Itis Common Names:</b> '+ node.itis_common_names + '<br>';
+	//tmp += '<b>Itis Scientific Name:</b> '+ node.itis_common_names + '<br>';
+	for (var i in display_options.functional_groups) {
+		var fg = display_options.functional_groups[i];
+		if ( fg.id ==	node.functional_group_id){
+			tmp += '<b>Functional Group:</b> '+ fg.name + '<br>';
+			break;
+		}
+	}
+	tmp += '<b>Native Status:</b> '+ node.native_status + '<br>';
+	tmp += '<b>Is Assemblage:</b> '+ ((node.is_assemblage == 0 ) ? "no":"yes") + '<br>';
+	tmp += '</td></tr></table><br>';
+	tmp += '</div>';
+	$('body').append(tmp);
+	$( "#" + dlog_name ).dialog({ width: 800, closeOnEscape: true, 
+			buttons: { "Close": function() { $(this).dialog("close"); $("#" + dlog_name).remove(); } } });;
+
+	// keep a pointer to the node object itself
+	$( "#" + dlog_name ).data("node", node);
+
+
+	// now, make the node variables that are already attributed to this node.
+	// we append them to the "_right" side table column
+	// all id's will start with "view_" 
+	var tmp = '<table cellpadding="4" cellspacing="0" style="border-spacing: 20px 0px;" id="table_'+ dlog_name +'" class="sidediv"><tr><td></td><td>Add Cited Value</td><td>Previously Cited Values</td></tr>';
+	tmp += makeNodeVarInfoRow(node, dlog_name, "range", "Range", null, "Northern, Southern, Eastern, Western limits of species occurrence (in degrees, minutes, seconds)");
+	tmp += makeNodeVarInfoRow(node, dlog_name, "reproductive_strategy", "Reproductive strategy", display_options.reproductive_strategy, "Broadcast-Gametes or offspring are released without care.  Brooder-Offspring are cared for either inside or outside the body for at least part of their development.  Parental Care-Offspring are cared for after their development" );
+	tmp += makeNodeVarInfoRow(node, dlog_name, "max_age", "Max age", null, "Maximum reported age attained by individual (years)");
+	tmp += '<tr><td></td><td><p><label class="button" for="'+dlog_name+'_set_node_options_but"/><button id="';
+	tmp += dlog_name +'_set_node_options_but">Set Node Values</button></p></td><td></td><tr>';
+	tmp += '</table>';
+	$("#"+dlog_name).append(tmp);	
+	bindValueInput( dlog_name, "max_age", node, null);
+	bindValueInput( dlog_name, "reproductive_strategy", node, null);
+	bindRangeInput( dlog_name, node);
+
+	$( "#"+dlog_name+"_set_node_options_but").button();
+	$( "#"+dlog_name+"_set_node_options_but").click(function() {
+			var xabels = Array( "max_age", "reproductive_strategy");
+			var labels = Array();
+			for (var i in xabels) {
+			 	if ( $("#"+ dlog_name + "_" + xabels[i] ).val() != "" ) {
+			    labels.push(xabels[i]) ;
+				}
+			}
+			if ( ( ( $("#"+ dlog_name + "_range_N_lat_deg" ).val() != "" ) && 
+				( $("#"+ dlog_name + "_range_N_lat_min" ).val() != "" ) && 
+				( $("#"+ dlog_name + "_range_N_lat_sec" ).val() != "" ) &&
+				( $("#"+ dlog_name + "_range_S_lat_deg" ).val() != "" ) &&
+				( $("#"+ dlog_name + "_range_S_lat_min" ).val() != "" ) &&
+				( $("#"+ dlog_name + "_range_S_lat_sec" ).val() != "" ) ) 
+				||
+				( ( $("#"+ dlog_name + "_range_E_lng_deg" ).val() != "" ) && 
+				( $("#"+ dlog_name + "_range_E_lng_min" ).val() != "" ) && 
+				( $("#"+ dlog_name + "_range_E_lng_sec" ).val() != "" ) &&
+				( $("#"+ dlog_name + "_range_W_lng_deg" ).val() != "" ) &&
+				( $("#"+ dlog_name + "_range_W_lng_min" ).val() != "" ) &&
+				( $("#"+ dlog_name + "_range_W_lng_sec" ).val() != "" ) ) ) {
+				labels.push("range");
+			} 
+
+			if (labels.length ==0) { alert("Please enter some values."  ); return;}
+			alert(JSON.stringify(labels));
+			buildCitationDialog( labels, "Set Node Values", node, null);
+	});
+
+	// Now, make stages
+	var stg = dlog_name + "_stages"
+	tmp = '<div id="'+ stg +'_div"><hr><div class="thead">Stages</div></div>\n';
+	$("#"+dlog_name).append(tmp);
+
+	$("#" + stg + "_div").append('<div id="'+ stg +'_tabs">\n<ul id="'+ stg +'_tabs_ul"></ul>\n</div>\n');
+
+	for( var i=0; i < display_options.stage_names.length; i++ ){
+		var stage_name = display_options.stage_names[i];
+		var tabname = stg + '_' + stage_name;
+		$("#"+ stg + "_tabs_ul").append('<li><a href="#'+ tabname +'">'+ stage_name +'</a></li>\n');
+		tmp = '<div id="'+ tabname +'">';
+		tmp += '</div>\n';
+		$("#" + stg  + "_tabs").append( tmp );
+
+		tmp = '<table cellpadding="4" cellspacing="0"  style="border-spacing: 20px 0px;" id="table_'+ tabname +'" class="sidediv">';
+		tmp +='<tr><td></td><td>Add Cited Value</td><td>Previously Cited Values</td></tr>';
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "length", "Individual Body Length", null, "Average body length (mm)");
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "mass", "Individual Body Mass", null, "Average total body weight (g)");
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "drymass", "Individual Body Drymass", null, "Average dry body weight (g)");
+		tmp += makeStageVarInfoRowSpace();
+		
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "length_weight", "Length(L)-Weight(W)", display_options["stage_length_weight"], "L-Length (mm);   W-Weight (g)" );
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "length_fecundity", "Length(L)-Fecundity(F)", display_options["stage_length_fecundity"], "L-Length (mm);  F-Fecundity (# of offspring)");
+		tmp += makeStageVarInfoRowSpace();
+
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "lifestyle", "Lifestyle", display_options["stage_lifestyle"], "Non-living - e.g. detritus, bedrock, etc.   Free-living - e.g. plankton, kelp, sea otter, etc.  Infectious - e.g., parasite, virus, etc." );
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "duration", "Duration", null, "Average duration of stage (days) ('General' stage would be same as Max Age)");
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "fecundity", "Fecundity", null, "offspring produced per female individual");
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "consumer_strategy", "Consumer strategy", display_options["stage_consumer_strategy"], "  Autotroph - Photosynthesizer (e.g. algae).  Grazer - Benthic consumer of autotrophs (e.g., limpet, herbivorous fishes).  Filter feeder - Suspension feeder capturing particles from water column (e.g., barnacle).  Passive sit - Sit & wait predator (e.g., some fishes).  Active cursorial - Actively foraging/ hunting predator (e.g., sea otter).  Detritivore - Consumer of algal detritus (e.g., sea cucumber).  Scavenger - Consumer of dead animal remains (e.g., some crabs)");
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "habitat", "Kelp water column", null, "Rocky substrate - Benthic hard rock.  Soft bottom - Benthic sand, mud, etc.  Kelp Water column - Non-benthic but within or on kelp.  Pelagic - Water column outside of kelp forest" );
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "max_depth", "Max depth", null, "Maximum recorded depth of species' occurrence (meters)");
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "mobility", "Mobility", display_options["stage_mobility"], "Sessile - e.g., barnacle adult.  Mobile - e.g., sea otter, fish.  Drifter - e.g., zooplankton, phytoplankton" );
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "residency", "Residency", display_options["stage_residency"], "Resident - permanent resident within nearshore ecosystem.  Migrant - temporary resident of nearshore ecosystem, spending some time off-shore");
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "residency_time", "Residency time", null, "% of year spent in nearshore ecosystem");
+		tmp += makeStageVarInfoRowSpace();
+
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "biomass_density", "Biomass density", null, "Population biomass per square kilometer (kg/km^2)");
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "prod_biomass_ratio", "Prod/Biomass ratio", null, "biomass produced per unit of initial biomass per year (units: 1/time)");
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "prod_consum_ratio", "Prod/Consumtion ratio", null, "biomass produced per unit of biomass consumed (unit-less)");
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "consum_biomass_ratio", "Consumption biomass ratio", null, "prey biomass eaten per unit of predator biomass per year (units: 1/time)");
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "unassimilated_consum_ratio", "Unassimilated consumption ratio", null,"");
+		tmp += makeStageVarInfoRow(node, stage_name, tabname, "biomass_change", "Biomass change", null, "biomass gained or lost per year (due to fishing, immigration, emigration, etc.) (kg/km^2)" );
+
+		// add the button
+		tmp += '<tr><td></td><td><p><label class="button" for="'+ tabname + '_options_but"/><button id="'+ tabname + '_options_but">';
+		tmp += 'Set ' + stage_name.substr(0, 1).toUpperCase() + stage_name.substr(1) + ' Values</button></p></td><td></td></tr>';
+		tmp += '</table>';
+
+		$("#"+tabname).append(tmp);	
+
+		// bind input widgets
+		bindValueInput( tabname, "length", node, stage_name);
+		bindValueInput( tabname, "mass", node, stage_name);
+		bindValueInput( tabname, "drymass", node, stage_name);
+		bindLengthRelationInput( tabname, "length_weight", node, stage_name);
+		bindLengthRelationInput( tabname, "length_fecundity", node, stage_name);
+		bindValueInput( tabname, "lifestyle", node, stage_name);
+		bindValueInput( tabname, "duration", node, stage_name);
+		bindValueInput( tabname, "fecundity", node, stage_name);
+		bindValueInput( tabname, "consumer_strategy", node, stage_name);
+		bindValueInput( tabname, "habitat", node, stage_name);
+		bindValueInput( tabname, "max_depth", node, stage_name);
+		bindValueInput( tabname, "mobility", node, stage_name);
+		bindValueInput( tabname, "residency", node, stage_name);
+		bindValueInput( tabname, "residency_time", node, stage_name);
+		bindValueInput( tabname, "biomass_density", node, stage_name);
+		bindValueInput( tabname, "prod_biomass_ratio", node, stage_name);
+		bindValueInput( tabname, "consum_biomass_ratio", node, stage_name);
+		bindValueInput( tabname, "unassimilated_consum_ratio", node, stage_name);
+		bindValueInput( tabname, "biomass_change", node, stage_name);
+
+		// create jquery button
+		$("#" +tabname + "_options_but").button();
+		$("#" +tabname + "_options_but").data("tabname", tabname);
+		$("#" +tabname + "_options_but").data("stage_name", stage_name);
+		$("#" +tabname + "_options_but").data("node", node);
+		$("#"+ tabname + "_options_but").click(function() {
+					var xabels = display_options.stage_vars; 
+					var labels = Array();
+					var tabname = $(this).data("tabname");
+					var node = $(this).data("node");
+					var stage_name = $(this).data("stage_name");
+					var stage_id = null;
+					if ( node.stages[stage_name] != undefined) {
+						stage_id = node.stages[stage_name].id;
+					}
+					var buttontitle = 'Set ' + stage_name.substr(0, 1).toUpperCase() + stage_name.substr(1) + ' Values';
+					for (var i =0;i<display_options.stage_vars.length;i++ ) {
+						if ( $("#" + tabname + '_'+ xabels[i] ).val() != "" ) {
+							labels.push(xabels[i]) ;
+					  }
+					}	
+					//alert("building stage cite with stagename: " + stage_name +"\n"   +JSON.stringify(node));
+					buildCitationDialog( labels, buttontitle, node, stage_name);
+					});
+
+
+	}
+
+	$("#" + stg + "_tabs").tabs();
+
+}
+
+
+// This is the main node dialog window generator.  After we search via ITIS
+// common name, science name, id or our working name, this function is called
+function getNodeItemsCB (data) { 
+	if (data == null) {
+		alert("Error retrieving node information, data from server is null");
+		return;
+	}
+	clearUnderNode(false);
+	if (  data.error == undefined ) {
+		// save the returned data to our global 'node'
+		node = data;
+
+		$("#working_name").val( node.working_name );
+
+		if (node.itis_id != null ) { 
+			$("#itis_id").val( node.itis_id );
+		}
+
+		if (data.id==null) { // if node_id is not null lets get the stages
+			if (document.getElementById("add_new_node_but") == undefined) {
+				$("#nodediv").append('<label for="add_new_node_but"/><button id="add_new_node_but">Add New Node</button>');
+				$( "#add_new_node_but").button();
+				$( "#add_new_node_but").click(function() {
+						var tmp = '<div id="dialog_msg" title="Add New Node with ITIS id:' + node.itis_id  +'" >';
+						$("#new_node_dialog_name").html(  $("#itis_science_name").val() + ':' + node.itis_id );
+						$("#new_node_dialog_working_name").val("");
+						$( "#new_node_dialog" ).dialog("option","title", 'Add New Node with ITIS id:' + node.itis_id  );
+						$( "#new_node_dialog" ).dialog( "open" );
+						});
+			}
+		} else {
+			makeNodeDialog(node);
+		}	
+	} else {
+		alert( "An Error occurred:" + data.error );
+		if ( data.sql != undefined)
+			alert( "sql:" + data.sql );
+	} 
+}
+
+// clear the search input DOM objects and any buttons 
+// that may have been created (such as Add New Node)
+function clearUnderNode( full ) {
+	if (full) {
+		$('#itis_common_name').val("" );
+		$('#itis_science_name').val("");
+		$('#itis_id').val("");
+		$('#working_name').val("");
+	}
+	$('#nodediv').children( "#add_new_node_but"  ).remove().end();
+}
+
+function getCommonNamesFromDataAsString(data) { 
+	valstring='';
+	var first = true;
+	if (data.return != undefined  && data.return.commonNames != undefined ){
+		if (data.return.commonNames instanceof Array) {
+			for (var n=0; n < data.return.commonNames.length;n++) {
+				if (first) first=false;
+				else valstring+=", ";
+				valstring +=  data['return']['commonNames'][n]['commonName'];
+			}
+		} else if ( data.return.commonNames instanceof Object) {
+			valstring +=  data.return.commonNames.commonName;
+		}
+		if (valstring =='')
+			return "none";
+		else
+			return valstring;
+	}
+}
+
+/*
+function getCommonNamesFromTSNCB(data) { 
+	$("#nodediv").css("background", divback);
+	$("#itis_common_name").val( getCommonNamesFromDataAsString(data) );
+}
+
+function getItisCommonNames ( itis_id ) {
+	$("#nodediv").css("background", "#cccccc url('css/ui-anim_basic_16x16.gif') right top no-repeat");
+	log("retrieving itis info based on common name with itis id:" + itis_id);
+	$.getJSON( "itis.php?functionName=getCommonNamesFromTSN&tsn=" + itis_id,  getCommonNamesFromTSNCB);
+}
+*/
+
+function getItisCommonNames( itis_id, divid, is_val) {
+	var retstring = undefined;
+	var postdata = Object();
+	postdata.functionName = "getCommonNamesFromTSN";
+	postdata.tsn= itis_id;
+	var div_bg = document.getElementById(divid).style.background;
+	$("#"+divid).css("background", "#ffffff url('css/ui-anim_basic_16x16.gif') right top no-repeat");
+	$.ajax( { async:true, type:"GET", dataType:"json",
+		data: postdata, 
+		url: "itis.php", 
+		success: function(data, t, x) {	
+			if (data == null || data == undefined) {
+			  alert("Error on getItisCommonNames, no response from server." );
+			} else {			
+				retstring = getCommonNamesFromDataAsString(data);
+				if (is_val)
+				  $("#" +divid).val(retstring);
+				else
+				  $("#" +divid).html(retstring);
+				$("#" +divid).css("background", div_bg);
+			}
+		}
+	});
+	return retstring;
+}
+
+/*
+function getScientificNameFromTSNCB(data) { 
+	log("retrieving itis info based on itis id:" + data.tsn);
+	$("#itis_science_name").val( data.return.combinedName );
+	$("#nodediv").css("background", divback);
+}
+
+function getItisScientificName( itis_id ){
+	$("#nodediv").css("background", "#cccccc url('css/ui-anim_basic_16x16.gif') right top no-repeat");
+	log("retrieving itis info based on scientific name with itis id:" + itis_id);
+	$.getJSON( "itis.php?functionName=getScientificNameFromTSN&tsn=" + itis_id, getScientificNameFromTSNCB);
+}
+*/
+
+function getItisScientificName( itis_id, divid, is_val ) {
+	var retstring = undefined;
+	var postdata = Object();
+	postdata.functionName = "getScientificNameFromTSN";
+	postdata.tsn= itis_id;
+	var div_bg = $("#"+divid).css("background");
+	$("#"+divid).css("background", "#ffffff url('css/ui-anim_basic_16x16.gif') right top no-repeat");
+	$.ajax( { async:true, type:"GET", dataType:"json",
+		data: postdata, 
+		url: "itis.php", 
+		success: function(data, t, x) {	
+			if (data == null || data == undefined) {
+			  alert("Error on getItisScientificName, no response from server." );
+			} else {			
+				retstring = data.return.combinedName;
+				if (is_val)
+				 $("#" +divid).val(retstring);
+				else
+				 $("#" +divid).html(retstring);
+				$("#" +divid).css("background", div_bg);
+			}
+		}
+	});
+	return retstring;
+}
+
+function openInteractionsDialog() {
+	$('#interactions_dialog_node1_info').val('');
+	$('#interactions_dialog_node2_info').val('');
+	$('#interactions_dialog_interaction_type_info').val('');
+	$('#interactions_dialog').dialog('open');
+}
+
+
+function openNewNonitisDialog() {
+	$('#new_nonitis_dialog').dialog('open');
+}
+
+
+function openNewInteractionObservationDialog() {
+	if ( $("#interactions_dialog").data("node1") != undefined && 
+			$("#interactions_dialog").data("node2") != undefined ){
+		var interaction_type = $("#interactions_dialog_interaction_type").val();
+		var title = "Add " + interaction_type.substr(0,1).toUpperCase() + interaction_type.substr(1) + " Interaction Observation";
+		$("#new_interaction_observation_dialog_info").html("");
+		var  labels = Array();
+		if ( interaction_type == "trophic") {
+				var tmp = makeValueInputDiv( "location_id", "location id", display_options.locations, "" ); 
+				tmp += makeValueInputDiv( "lethality", "lethatlity", display_options.trophic_interaction_observation_lethality, "Lethal Whole - the entire individual is consumed.  Lethal Partial - only part of the individual is consumed, but the effect is fatal.  Nonlethal partial - only part of the individual is consumed and the effect is not lethal"); 
+				tmp += makeValueInputDiv( "structures_consumed", "structures consumed", display_options.trophic_interaction_observation_structures_consumed, "Whole organism (default).  Flesh - e.g., shell is not consumed.  Frond - e.g. stipe is not consumed"); 
+				tmp += makeValueInputDiv( "percentage_consumed", "percentage consumed", null, "fraction of individual consumed"); 
+				tmp += makeValueInputDiv( "preference", "preference", display_options.trophic_interaction_observation_preference, "None (default).  More preferred - prey is consumed in greater proportion than is reflected by its availability in the environment.  Less preferred - prey is consumed in lower proportion than is reflected by its availability in the environment."); 
+				tmp += makeValueInputDiv( "observation_type", "observation type", display_options.trophic_interaction_observation_observation_type, "Field observation.  Laboratory observation - Observation made in non-field setting.  Chemical - Stable isotope, fatty acid, etc.  Gut contents. Inferred - Based on similar species. Expert opinion. Fishery - Caught by humans. Nest contents. Scat. Forensic."); 
+				labels = Array( "location_id", "lethality", "structures_consumed", "percentage_consumed", "preference", "observation_type");
+				$("#new_interaction_observation_dialog_info").append(tmp);
+		}
+
+		if ( interaction_type == "parasitic") {
+				var tmp = makeValueInputDiv( "location_id", "location id", display_options.locations, "" ); 
+				tmp += makeValueInputDiv( "endo_ecto","endo ecto",  display_options.parasitic_interaction_observation_endo_ecto, "Endoparasite - inside body cavity.  Ecoparasite - on body surface (including oral cavity)"); 
+				tmp += makeValueInputDiv( "lethality", "lethality",  
+						display_options.parasitic_interaction_observation_lethality, "benign - does not directly cause mortality.  lethal - directly causes mortality."); 
+				tmp += makeValueInputDiv( "prevalence", "prevalence/intensity",  
+						display_options.parasitic_interaction_observation_prevalence, "Prevalence - % of hosts infected.  Intensity - #parasites/host"); 
+				tmp += makeValueInputDiv( "parasite_type", "type",  
+						display_options.parasitic_interaction_observation_parasite_type, "Parasite type"); 
+				tmp += makeValueInputDiv( "observation_type", "observation type",  
+						display_options.parasitic_interaction_observation_observation_type, "Field observation.  Laboratory observation - Observation made in non-field setting.  Chemical - Stable isotope, fatty acid, etc.  Gut contents. Inferred - Based on similar species. Expert opinion. Fishery - Caught by humans. Nest contents. Scat. Forensic."); 
+				labels = Array( "location_id", "lethality", "endo_ecto", "observation_type");
+				$("#new_interaction_observation_dialog_info").append(tmp);
+		}
+
+		if ( interaction_type == "competition") {
+				var tmp =makeValueInputDiv( "location_id", "location id",   display_options.locations, "" ); 
+				tmp += makeValueInputDiv( "observation_type", "observation type",    
+						display_options.competition_interaction_observation_observation_type, "Field observation.  Laboratory observation - Observation made in non-field setting.  Chemical - Stable isotope, fatty acid, etc.  Gut contents. Inferred - Based on similar species. Expert opinion. Fishery - Caught by humans. Nest contents. Scat. Forensic.");
+				tmp += makeValueInputDiv( "competition_type", "competition type",   
+						display_options.competition_interaction_observation_competition_type, "Space - indirect competition through removal of available space.  Interference - direct aggression between individuals"); 
+				labels = Array( "location_id", "competition_type", "observation_type");
+				$("#new_interaction_observation_dialog_info").append(tmp);
+		}
+
+		if ( interaction_type == "facilitation") {
+				var tmp =makeValueInputDiv( "location_id","location id",  display_options.locations, "" ); 
+				tmp += makeValueInputDiv( "observation_type", "observation type",   
+						display_options.facilitation_interaction_observation_observation_type, "Field observation.  Laboratory observation - Observation made in non-field setting.  Chemical - Stable isotope, fatty acid, etc.  Gut contents. Inferred - Based on similar species. Expert opinion. Fishery - Caught by humans. Nest contents. Scat. Forensic."); 
+				tmp += makeValueInputDiv( "facilitation_type", "facilitation type",   
+						display_options.facilitation_interaction_observation_facilitaton_type, "Habitat - e.g., kelp providing shelter to juvenile fishes.  Mutualism - both partners profit from interaction.  Commensalism - one partner profits, the other is unaffected"); 
+				labels = Array( "location_id", "facilitation_type", "observation_type");
+				$("#new_interaction_observation_dialog_info").append(tmp);
+		}
+
+	
+		var func = Object();	
+		func[title] = function() { 
+			var interaction_id = $("#interactions_dialog").data("interaction_id");
+			if ( interaction_id == null || interaction_id == undefined) {
+				alert("No interaction id :" + interaction_id);
+				return;
+			}
+			var interaction_type = $("#interactions_dialog_interaction_type").val();
+			var cite_id =  $("#new_interaction_observation_dialog_select").val();
+			if ( cite_id == null  || cite_id == undefined){
+				alert("You need to enter and choose a citation.");
+				return;
+			}
+			for (var i=0; i <labels.length; i++) {
+				var name = labels[i];
+				if ( $("#" + name ).val() == '') {
+					// some fields will be required, others not	
+					if (name != "percentage_consumed") {
+						alert( name + " is empty");
+						return;
+					}
+				}
+			}
+			var postdata = Object();
+			postdata.functionName = "addNewInteractionObservation";
+			postdata.cite_id = cite_id;
+			postdata.interaction_type = interaction_type;
+			postdata.interaction_id = interaction_id;
+			for(var i in labels) {
+				var l = labels[i];
+				postdata[l] = $("#" + l ).val();
+			}		
+			$.ajax( { async:false, type:"GET", dataType:"json",
+					data: postdata, 
+					url: "query.php", 
+					success: function(data, t, x) {	
+						if (data == null) {
+							alert("Error on addNewInteractionObservation, no response from server." );
+					  } else if (data.error == undefined ) {
+							// we have a new  
+							getInteractionInfo();
+							$("#new_interaction_observation_dialog").dialog("close")
+						} else {
+							alert("Error on addNewInteractionObservation:" + data.error);
+							alert( data.sql);
+						}
+					}
+			});
+		
+		};	
+		func['Cancel'] = function() { $( this ).dialog( "close" ); };
+		$('#new_interaction_observation_dialog').dialog('option', 'buttons', func);
+		$("#new_interaction_observation_dialog" ).dialog("option","title", title );
+		$('#new_interaction_observation_dialog').dialog('open');
+	} else {
+		alert("You need two nodes to make an observation.");
+	}
+
+}
+function openNewAuthorDialog() {
+	$('#new_author_dialog_first_name').val('');
+	$('#new_author_dialog_last_name').val('');
+	$('#new_author_dialog').dialog('open');
+}
+
+function openNewCitationDialog() {
+	// clear new_citation_dialog
+	$( "#new_citation_dialog_authors").html("");
+	$( "#new_citation_dialog_authors").data("author_ids", Array() );
+
+	$( "#new_citation_dialog_title").val("");
+	$( "#new_citation_dialog_document").val("");
+	$( "#new_citation_dialog_year").val("");
+	$( "#new_citation_dialog_abstract").val("");
+	$( "#new_citation_dialog_format_title").val("");
+	$( "#new_citation_dialog_volume").val("");
+	$( "#new_citation_dialog_publisher").val("");
+	$( "#new_citation_dialog_number").val("");
+	$( "#new_citation_dialog_pages").val("");
+
+	$( '#new_citation_dialog' ).dialog( 'open' );
+
+}
+
+// callback from the interactions dialog that will get 
+// the interaction info for the left or right hand side nodes
+// called from the two  #interactions_dialog_node*_search autocomplete widgets
+// takes either a node_id or an itis_id, but not both;  one must be null
+// node_it is returned
+function getNodeInfoForInteraction( which, node_id, itis_id ) {
+	var id = undefined;
+	var postdata = Object();
+	postdata.functionName = "getNodeItems";
+	if (node_id != null)
+		postdata.node_id = node_id;
+	if (itis_id != null)
+		postdata.itis_id = itis_id;
+	$.ajax( { async:false, type:"GET", dataType:"json",
+		data: postdata, 
+		url: "query.php", 
+		success: function(datanode, t, x) {	
+		if (datanode.error == undefined ) {
+			// set id to be the node.id ;  we need this for searching 
+			// scientific names with itis_id 
+			id = datanode.id;
+			var divname = "interactions_dialog_node"+which +"_info";
+			var selectname = "interactions_dialog_node"+which +"_info_stage";
+			$( "#interactions_dialog").data( "node"+which, datanode); 
+			var tmp="<p><hr></p>";
+			tmp += "<p>working name: <big><b>" + datanode.working_name +"</b></big><p>";
+			if (datanode.itis_id != -1 ) {
+			 tmp += "<p>Itis common name: <span id=\"node"+which+"commonname\">&nbsp; &nbsp; &nbsp;</span><br>";
+			 tmp += "Itis latin name: <span id=\"node"+which+"latinname\">&nbsp; &nbsp; &nbsp;</span><br>";
+			 tmp+="Itis id: " + datanode.itis_id +"<p>";
+			}
+			for (var i in display_options.stage_names) {
+				var stage_name = display_options.stage_names[i];
+				if ( datanode.stages[stage_name] != undefined ) {
+				  tmp += "<select id='" + selectname + "'></select>";
+					break;
+				}
+			}
+			$("#" +divname).html( tmp );
+			// retrieve the itis information
+			if (datanode.itis_id != -1 ) {
+				getItisCommonNames(datanode.itis_id, "node"+which+"commonname", false );
+				getItisScientificName(datanode.itis_id, "node"+which+"latinname", false );
+			}
+			for (var i in display_options.stage_names) {
+				var stage_name = display_options.stage_names[i];
+				if ( datanode.stages[stage_name] != undefined ) {
+					var tmp2 = '<option value="' + datanode.stages[stage_name].id + '">'+ stage_name +'</option>';
+					$( "#" + selectname ).append( tmp2);
+				}
+			}
+			$( "#" + selectname ).bind("change", getInteractionInfo); 
+		} else {
+		  alert("Error getting info for node interaction dialog");
+		}	
+	}
+	});
+	return id;
+}
+
+
+// getAllInteractionsForNode will request all interactions for a given node_id
+// it returns an array of interactions with the stage_name of this node, the interaction
+// type, the working_name and stage name of the other node with which it interacts
+function getAllInteractionsForNode( which, node_id ) {
+	$("#interactions_dialog_node"+which +"_all_interactions").empty();
+	var postdata = Object();
+	postdata.functionName = "getAllInteractionsForNode";
+	postdata.node_id = node_id;
+	postdata.stage_1_or_2 = which;
+	$.ajax( { async:false, type:"GET", dataType:"json",
+		data: postdata, 
+		url: "query.php", 
+		success: function(data, t, x) {	
+		if (data.error == undefined ) {
+			var tmp='<br><br><div style="color:#333333;"><p>All interactions</p><hr>';
+			for(var i=0;i< data.interactions.length;i++) {
+				if (which==1) {
+				//tmp += JSON.stringify( data.interactions[i])
+				tmp += data.interactions[i].stage_name + "&nbsp;";
+				tmp += data.interactions[i].interaction_type + "->";
+				tmp += data.interactions[i].node_working_name + "/";
+				tmp += data.interactions[i].node_stage_name + "<br>";
+				}else{
+				tmp += data.interactions[i].node_working_name + "/";
+				tmp += data.interactions[i].node_stage_name + "&nbsp;";
+				tmp += data.interactions[i].interaction_type + "->";
+				tmp += data.interactions[i].stage_name + "<br>";
+				}
+			}
+			tmp += "</div>";
+			var divname = "interactions_dialog_node"+which +"_all_interactions";
+			$("#" + divname).html( tmp );
+		} else {
+		  alert("Error getting all interactions for node with id="+node_id);
+		}	
+	}
+	});
+}
+
+
+// this function will be called in the interaction dialog window when either of the 
+// pull down menus for stage changes or a search for a name is completed.
+// calls getInteractionInfo() in query.php which returns the interaction observation
+// info for the stages in node1 (left side) and node 2 (right side)
+function getInteractionInfo() {
+	$( "#add_new_interaction_observation_but").button( "option", "disabled", true );
+  $( "#add_new_interaction_but").button( "option", "disabled", true );
+					
+	if ( $("#interactions_dialog").data("node1") != undefined && 
+			$("#interactions_dialog").data("node2") != undefined ){
+		$("#interactions_dialog_interaction_type_info").html('');
+		var node1 = $("#interactions_dialog").data("node1") ;
+		var node2 = $("#interactions_dialog").data("node2") ;
+		var postdata = Object();
+		postdata.functionName = "getInteractionInfo";
+		postdata.interaction_type = $("#interactions_dialog_interaction_type").val();
+		postdata.stage_1_id = $("#interactions_dialog_node1_info_stage").val();
+		postdata.stage_2_id = $("#interactions_dialog_node2_info_stage").val();
+		//alert(JSON.stringify( postdata) );
+		$.ajax( { async:false, type:"GET", dataType:"json",
+				data: postdata, 
+				url: "query.php", 
+				success: function(data, t, x) {	
+					if (data.error == undefined ) {
+						if (data.id != undefined) {
+							// this means we have an interaction for these two stages and this interaction type
+						  $("#interactions_dialog").data("interaction_id", data.id);	
+							$( "#add_new_interaction_observation_but").button( "option", "disabled", false );
+							$( "#add_new_interaction_but").button( "option", "disabled", false );
+							$( "#add_new_interaction_but").button( "option", "label", "Remove Interaction" );
+							$( "#add_new_interaction_but").unbind("click");
+							$( "#add_new_interaction_but").click( deleteInteraction );
+						} else {
+						  $("#interactions_dialog").data("interaction_id", null);	
+							$( "#add_new_interaction_observation_but").button( "option", "disabled", true );
+							$( "#add_new_interaction_but").button( "option", "disabled", false );
+							$( "#add_new_interaction_but").button( "option", "label", "Add Interaction" );
+							$( "#add_new_interaction_but").unbind("click");
+							$( "#add_new_interaction_but").click( addNewInteraction );
+	
+						}
+						if (data.observations != undefined && data.observations.length>0) {
+							// we have observation info, let's show it in the interactions_dialog_interaction_type_info div
+							var tmp = '';
+							for ( o in data.observations) {
+								var obs = data.observations[o];
+							  var cite = getCitationInfo(obs.cite_id);
+								tmp += makeObservationSpan( cite, obs, data.id, postdata.interaction_type);	
+							}
+							$("#interactions_dialog_interaction_type_info").append(tmp);
+						} 
+					} else {
+						alert("Error getting interaction info: " + data.error);
+						alert(data.sql);
+					}	
+				}
+			});
+	}
+}
+
+// post a new interaction for the two node/stage pairs.
+function addNewInteraction() {
+	var postdata = Object();
+	postdata.functionName = "addNewInteraction";
+	postdata.interaction_type = $("#interactions_dialog_interaction_type").val();
+	postdata.stage_1_id = $("#interactions_dialog_node1_info_stage").val();
+	postdata.stage_2_id = $("#interactions_dialog_node2_info_stage").val();
+	//alert(JSON.stringify( postdata) );
+	$.ajax( { async:false, type:"GET", dataType:"json",
+			data: postdata, 
+			url: "query.php", 
+			success: function(data, t, x) {	
+			if (data.error == undefined && data.id != undefined ) {
+			log("Added "+ postdata.interaction_type +  " interaction with id=" +  data.id );
+			$("#interactions_dialog").data("interaction_id", data.id);	
+			$("#add_new_interaction_observation_but").button("option", "disabled", false);
+			$("#add_new_interaction_but").button("option", "disabled", false);
+			$("#add_new_interaction_but").button("option", "label", "Remove Interaction");
+			$("#add_new_interaction_but").unbind("click");
+			$("#add_new_interaction_but").click( deleteInteraction);
+			} else {
+			alert("Error getting interaction info on add: " + data.error);
+			alert(data.sql);
+			}	
+			}
+			});
+}
+
+// delete an interaction
+function deleteInteraction() {
+	if (!confirm("Delete this interaction?" ) ) {
+		return;
+	}
+	var postdata = Object();
+	postdata.functionName = "deleteInteraction";
+	postdata.interaction_type = $("#interactions_dialog_interaction_type").val();
+	postdata.interaction_id = $("#interactions_dialog").data("interaction_id");	
+	if (postdata.interaction_id == null || postdata.interaction_id == undefined) {
+		alert("interaction id is not defined.");
+		return;
+	}
+	postdata.stage_1_id = $("#interactions_dialog_node1_info_stage").val();
+	postdata.stage_2_id = $("#interactions_dialog_node2_info_stage").val();
+
+	//alert("delete interaction:" + JSON.stringify(postdata));
+	$.ajax( { async:false, type:"GET", dataType:"json",
+			data: postdata, 
+			url: "query.php", 
+			success: function(data, t, x) {	
+				//alert("GOT ANSER FROM SERVER interaction:" + JSON.stringify(data));
+			 if (data.error == undefined  ) {
+			  log("Deleted "+ postdata.interaction_type +  " interaction with id=" +  postdata.interaction_id );
+				$("#interactions_dialog_interaction_type_info").html("");	
+				$("#interactions_dialog").data("interaction_id", null);	
+				$("#add_new_interaction_but").button("option", "disabled", false);
+				$("#add_new_interaction_but").button("option", "label", "Add Interaction");
+				$("#add_new_interaction_but").unbind("click");
+				$("#add_new_interaction_but").click( addNewInteraction);
+				$("#add_new_interaction_observation_but").button("option", "disabled", true);
+			 } else {
+			  alert("Error getting deleted interaction info: " + data.error);
+			  alert(data.sql);
+			 }	
+			}
+	});
+}
+
+// generic autocomplete function generator
+// need this for caching searches.  should save search times
+function makeAutocompleteFunc( url ) {
+	var cache = {},
+			lastXhr;
+	
+	return function( request, response ) {
+		var term = request.term;
+		if ( term in cache ) {
+			response( cache[ term ] );
+			return;
+		}
+		lastXhr = $.getJSON( url, request, function( data, status, xhr ) {
+				cache[ term ] = data;
+				if ( xhr === lastXhr ) {
+				response( data );
+				}
+				});
+	}
+}
+
+// for non-itis nodes, get tax level
+function getTaxonomyLevel( val ) {
+	if (val.taxonomy_level != undefined) {
+		return;
+	} else {
+	// we have an itis node, need to get the taxon level
+		var p  = Object();
+		p.itis_id = val.id;
+		$.ajax( { async:false, type:"GET", dataType:"json",
+				data: p, 
+				url: "itis_taxonomy.php", 
+				success: function(data, t, x) {	
+				if (data.error == undefined ) {
+					val.taxonomy_level= data.taxonomy_level
+				} else {
+				  alert(data.error);
+				}	
+			}
+		});
+	}
+}
+
+function resetNonItisTaxSelect( ) {
+		$("#new_nonitis_tax_level").html("");
+		var tmp ="";
+		for (var i=0; i< display_options.non_itis_taxonomy_level.length;i++) {
+			var level = display_options.non_itis_taxonomy_level[i];
+			tmp+= '<option value="' + level + '">' + level + '</option>';
+		}
+		$( "#new_nonitis_tax_level").append(tmp);
+}
+
+function setNonItisTaxSelect( taxonomy_level ) {
+		$("#new_nonitis_tax_level").html("");
+		var tl = taxonomy_level;
+		var levels = new Array();
+		for (var i=0; i< display_options.non_itis_taxonomy_level.length;i++) {
+			var tmp = display_options.non_itis_taxonomy_level[i];
+			var regex =   new RegExp( tmp, "i");
+			if ( tl.search(regex) != -1 ) {
+					for (var j=i+1;j< display_options.non_itis_taxonomy_level.length;j++) {
+						levels.push( display_options.non_itis_taxonomy_level[j]);
+					}
+					break;
+			}
+		}
+		var tmp='';
+		for (var i in levels ){
+			tmp+= '<option value="' + levels[i] + '">' + levels[i] + '</option>';
+		}
+		$( "#new_nonitis_tax_level").append(tmp);
+}
+
+
+//---------------------------ON LOAD FUNCTIONS ------------------------------///
+// these are called when the page is loaded
+
+$(function(){
+		
+		divback = document.getElementById("nodediv").style.background;
+		$.ajax( { async:false,type:"GET", dataType:"json", 
+			url: "query.php?functionName=getDisplayOptions", 
+			success: function(data, t, x) { 	
+			 //alert(JSON.stringify(data));
+				display_options = data;
+			}
+		} );
+
+		$("#itis_id").bind('keydown', function ( e ) {  if(e.which==13) { 
+				var itis_id = $("#itis_id").val();
+				clearUnderNode(true);
+				$("#itis_id").val( itis_id );
+				log("retrieving node items for node with itis id:" + itis_id);
+				$.getJSON( "query.php?functionName=getNodeItems&itis_id=" + itis_id, getNodeItemsCB);
+				getItisCommonNames( itis_id, "itis_common_name", true );
+				getItisScientificName( itis_id, "itis_science_name", true );
+				}  } );
+
+		$( "#itis_science_name" ).autocomplete({
+			minLength: 3,
+			select: function( event, ui) {
+			  clearUnderNode(true);
+				var itis_id = ui.item.id;
+				$("#itis_id").val( itis_id );
+				log("retrieving node items for node with itis id:" + itis_id);
+				$.getJSON( "query.php?functionName=getNodeItems&itis_id=" + itis_id, getNodeItemsCB);
+				getItisCommonNames(itis_id, "itis_common_name", true);
+			},
+			source: makeAutocompleteFunc( "itis_science_name.php")
+		});
+
+		$( "#itis_common_name" ).autocomplete({
+			minLength: 3,
+			select: function( event, ui) {
+			  clearUnderNode(true);
+				var itis_id = ui.item.id;
+				$("#itis_id").val( itis_id );
+				log("retrieving node items for node with itis id:" + itis_id);
+				$.getJSON( "query.php?functionName=getNodeItems&itis_id=" + itis_id, getNodeItemsCB);
+				getItisScientificName(ui.item.id, "itis_science_name", true);
+			},
+			source: makeAutocompleteFunc( "itis_common_name.php")
+		});
+
+		$( "#working_name" ).autocomplete({
+			minLength: 0,
+			select: function( event, ui) {
+				if (ui.item.id != undefined ) {
+					// id is the node_id not itis_id as we could get a non-itis node 
+					clearUnderNode(true);	
+					var node_id = ui.item.id;
+					log("retrieving node items for node with node id:" + node_id);
+					$.getJSON( "query.php?functionName=getNodeItems&node_id=" + node_id, getNodeItemsCB);
+					$.ajax( { async:false,type:"GET", dataType: "json", url: "query.php?functionName=getItisId&node_id="+node_id, 
+						success: function(data, t, x) { 	
+						 if ( data.itis_id != null) {
+						  getItisCommonNames( data.itis_id, "itis_common_name", true );
+							getItisScientificName( data.itis_id, "itis_science_name", true );
+						 }
+				 	  }
+					});
+				} else {
+					alert("error searching for working name: are you logged in?");	
+				}
+			},
+			source: makeAutocompleteFunc( "working_name.php" )
+		});
+
+		$( "#add_new_interaction_observation_but").button( { disabled: true } );
+		$( "#add_new_interaction_observation_but").click( openNewInteractionObservationDialog );
+		$( "#add_new_interaction_but").button( { disabled: true, label: "Add Interaction" } );
+		$( "#add_new_interaction_but").click( addNewInteraction );
+
+		$( "#interactions_dialog_interaction_type" ).bind("change", getInteractionInfo); 
+
+		$( "#interactions_dialog_node1_search" ).autocomplete({
+			minLength: 1,
+			select: function( event, ui) {
+				var node_id = ui.item.id;
+				getNodeInfoForInteraction(1, node_id, null );
+				getAllInteractionsForNode(1, node_id );
+				getInteractionInfo();
+				$(this).val('');
+				return false;
+			},
+			source: makeAutocompleteFunc( "node_search.php" )
+		});
+
+		$( "#interactions_dialog_node1_search_science_name" ).autocomplete({
+			minLength: 3,
+			select: function( event, ui) {
+				var itis_id = ui.item.id;
+				var node_id  = getNodeInfoForInteraction(1, null, itis_id );
+				if (node_id == undefined) {
+				  $("#interactions_dialog_node1_all_interactions").empty();
+				  var divname = "interactions_dialog_node1_info";
+					var tmp ="<p>" + $( "#interactions_dialog_node1_search_science_name" ).val() + " is not found in the database.";
+					tmp +="<br>Please create the node or modify your search.</p>";
+					$("#" +divname).html( tmp );
+					$(this).val('');
+				} else {
+				 getAllInteractionsForNode(1, node_id );
+				 getInteractionInfo();
+				 $(this).val('');
+				}
+				return false;
+			},
+			source: makeAutocompleteFunc( "itis_science_name.php")
+		});
+
+
+		$( "#interactions_dialog_node2_search" ).autocomplete({
+			minLength: 1,
+			select: function( event, ui) {
+				var node_id = ui.item.id;
+				getNodeInfoForInteraction(2, node_id, null);
+				getAllInteractionsForNode(2, node_id );
+				getInteractionInfo();
+				$(this).val('');
+				return false;
+			},
+			source: makeAutocompleteFunc( "node_search.php" )
+		});
+
+
+		$( "#interactions_dialog_node2_search_science_name" ).autocomplete({
+			minLength: 3,
+			select: function( event, ui) {
+				var itis_id = ui.item.id;
+				var node_id  = getNodeInfoForInteraction(2, null, itis_id );
+				if (node_id == undefined) {
+				  $("#interactions_dialog_node2_all_interactions").empty();
+				  var divname = "interactions_dialog_node2_info";
+					var tmp ="<p>" + $( "#interactions_dialog_node2_search_science_name" ).val() + " is not found in the database.";
+					tmp +="<br>Please create the node or modify your search.</p>";
+					$("#" +divname).html( tmp );
+					$(this).val('');
+				} else {
+				 getAllInteractionsForNode(2, node_id );
+				 getInteractionInfo();
+				 $(this).val('');
+				}
+				return false;
+			},
+			source: makeAutocompleteFunc( "itis_science_name.php")
+		});
+
+		$( "#new_interaction_observation_dialog_citation" ).autocomplete({
+			minLength: 3,
+			select: function( event, ui) {
+			  var cite = getCitationInfo( ui.item.id ); 
+				$('#new_interaction_observation_dialog_select').children().each(function(i, option){ 
+					if (cite.id == $(option).val()) {
+						$(option).attr("selected","selected");	
+					} 
+				});
+				$(this).val('');
+				return false;
+			},
+			source: makeAutocompleteFunc( "citation_name.php" )
+		});
+
+
+		$( "#citation_dialog_name_search" ).autocomplete({
+			minLength: 3,
+			select: function( event, ui) {
+			  var cite = getCitationInfo( ui.item.id ); 
+				$('#citation_dialog_select').children().each(function(i, option){ 
+					if (cite.id == $(option).val()) {
+						$(option).attr("selected","selected");	
+					} 
+				});
+				$(this).val('');
+				return false;
+			},
+			source: makeAutocompleteFunc( "citation_name.php" )
+		});
+
+		$( "#new_citation_dialog_author_search" ).autocomplete({
+			minLength: 3,
+			select: function( event, ui) {
+				var author_id = ui.item.id;
+				makeAuthorCiteSpan(author_id, ui.item.label);
+				$(this).val('');
+				return false;
+			},
+			source: makeAutocompleteFunc( "citation_author_search.php" )
+		});
+
+
+
+		$( "#citation_dialog" ).dialog({
+			autoOpen: false,
+			height: 300,
+			width: 500,
+			modal: true,
+			buttons: {
+				"Set": function() {
+						$( this ).dialog( "close" );
+				},
+				"Close": function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+
+		$( "#new_author_dialog" ).dialog({
+			autoOpen: false,
+			height: 180,
+			width: 340,
+			modal: true,
+			buttons: {
+				"Add New Author": function() {
+						var author = new Object();
+						author.first_name = jQuery.trim( $( "#new_author_dialog_first_name" ).val() );
+						author.last_name = jQuery.trim( $( "#new_author_dialog_last_name" ).val() );
+						var postdata = new Object();
+						postdata.author = author;
+						postdata.functionName = "addNewAuthor";
+						if( author.first_name != ""  && author.last_name != "" ) {
+							$.ajax( { async:false, type:"GET", dataType:"json",
+		 						data: postdata, 
+		 						url: "query.php", 
+		 						success: function(data, t, x) {	
+									if (data.error == undefined ) {
+										log("Added new author with id=" +  data.id + ", name=" + data.last_name +", " +data.first_name);
+										makeAuthorCiteSpan( data.id, data.last_name +", " +data.first_name) ; 
+						   		  $( "#new_author_dialog").dialog( "close" );
+									} else {
+										alert(data.error);
+									}	
+								}
+							});
+						} else {
+							alert("Please enter a first and last name");
+						}
+				},
+				"Close": function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+		$("#new_citation_dialog_authors").data("author_ids", Array());
+
+
+		// add the format types to the select input field for new_citation_dialog_format
+		for(var i=0;i<display_options.citation_format.length;i++) {
+			var tmp = display_options.citation_format[i];
+			$("#new_citation_dialog_format").append("<option value='"+ tmp  +"'>"+ tmp +"</option>");
+		}	
+
+		// create the dialog window for NEW citations
+		$( "#new_citation_dialog" ).dialog({
+			autoOpen: false,
+			title: "Add New Citation",
+			height: 500,
+			width: 600,
+			modal: true,
+			buttons: {
+				"Add New Citation": function() {
+					 var postdata = Object();
+					 postdata.functionName = "addNewCitation";
+					 postdata.author_ids = $("#new_citation_dialog_authors").data("author_ids"); 
+					 if ( postdata.author_ids==undefined || postdata.author_ids.length == 0) {
+							alert("Please enter an Author");
+							return;
+					 }
+					 postdata.title = $("#new_citation_dialog_title").val();
+					 postdata.document = $("#new_citation_dialog_document").val();
+					 postdata.year = $("#new_citation_dialog_year").val();
+					 postdata.abstract = $("#new_citation_dialog_abstract").val();
+					 postdata.format = $("#new_citation_dialog_format").val();
+					 postdata.format_title = $("#new_citation_dialog_format_title").val();
+					 postdata.volume = $("#new_citation_dialog_volume").val();
+					 postdata.publisher = $("#new_citation_dialog_publisher").val();
+					 postdata.number = $("#new_citation_dialog_number").val();
+					 postdata.pages = $("#new_citation_dialog_pages").val();
+					 if (postdata.title == "") { alert("Please enter title information."); return;}
+					 if (postdata.year == "") { alert("Please enter year."); return;}
+					 $.ajax( { async:false, type:"GET", dataType:"json",
+		 					data: postdata, 
+		 					url: "query.php", 
+		 					success: function(data, t, x) {	
+								if (data.error == undefined ) {
+									//alert(JSON.stringify(data));
+									// we should get citation info here just like 
+								  var label =  data.title + '\',' +  data.year;
+									log("Added new citation:" + label); 
+									addCiteToCitationDialogSelect(data);
+					   		  $( "#new_citation_dialog").dialog( "close" );
+								} else {
+									alert(data.error + " - " + data.sql);
+								}	
+							}
+						});
+				},
+				"Close": function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+
+		makeSelect( "new_node_dialog_functional_group_id", display_options.functional_groups, null );
+
+		$( "#new_node_dialog" ).dialog({
+			autoOpen: false,
+			height: 300,
+			width: 500,
+			modal: true,
+			buttons: {
+			"Add Node": function() {
+				var postobj = Object();
+				postobj.functionName ="addNewNode";
+				postobj.itis_id = node.itis_id;  // node is our global object
+				postobj.working_name = $("#new_node_dialog_working_name").val();
+				postobj.functional_group_id = $("#new_node_dialog_functional_group_id").val();
+				postobj.native_status = $("#new_node_dialog_native_status").val();
+				postobj.is_assemblage = 0;
+				if ( $("#new_node_dialog_is_assemblage:checked").val() != null )
+					postobj.is_assemblage = 1;
+				if ($("#new_node_dialog_working_name").val() == "" ) {
+					alert("need to submit a working name");
+					return;
+				}
+				$.ajax( { async:false, type:"GET", dataType:"json", 
+					data: postobj,
+					url: "query.php",
+					success: function (data) {
+						if (data.error == undefined) {
+							 getNodeItemsCB(data);
+							 $( "#new_node_dialog" ).dialog( "close" );
+						} else {
+							alert( data.error );
+							if( data.sql !=undefined) alert( data.sql);
+						}
+						}
+					} );
+			},
+			"Close": function() {
+								$( this ).dialog( "close" );
+							}
+			}
+		});
+
+		$( "#interactions_dialog" ).dialog({
+			autoOpen: false,
+			height: 450,
+			width: 820,
+			modal: true,
+			buttons: {
+				"Close": function() {
+								$( this ).dialog( "close" );
+							}
+			}
+		});
+
+
+		$( "#new_interaction_observation_dialog" ).dialog({
+			autoOpen: false,
+			height: 400,
+			width: 600,
+			modal: true,
+			buttons: {
+				"Close": function() {
+								$( this ).dialog( "close" );
+							}
+			}
+		});
+
+		$( "#new_nonitis_parent_latin_name" ).autocomplete({
+			minLength: 3,
+			select: function( event, ui) {
+			  clearUnderNode(true);
+				var val = ui.item.id;
+				getTaxonomyLevel( val );
+				$("#new_nonitis_parent_info").html( "id: " + val.id + ", is itis:" + val.is_itis + ", taxonomy level: " + val.taxonomy_level );
+				setNonItisTaxSelect( val.taxonomy_level);
+				$("#new_nonitis_dialog").data("val", val);
+			},
+			source: makeAutocompleteFunc( "non_itis_search.php")
+		});
+
+		makeSelect( "new_nonitis_functional_group_id", display_options.functional_groups, null );
+
+		$( "#new_nonitis_dialog" ).dialog({
+			autoOpen: false,
+			height: 400,
+			width: 600,
+			modal: true,
+			buttons: {
+				"Add New NonItis Node": function() {
+					if ( $("#new_nonitis_dialog").data("val") != undefined && $("#new_nonitis_dialog").data("val") != null) {
+							var p = new Object();
+							p.functionName = "addNewNonItisNode";
+							p.parent_id = $("#new_nonitis_dialog").data("val").id;
+							p.parent_id_is_itis = $("#new_nonitis_dialog").data("val").is_itis;
+							p.latin_name = $("#new_nonitis_latin_name").val();	
+							p.working_name = $("#new_nonitis_working_name").val();	
+							p.functional_group_id = $("#new_nonitis_functional_group_id").val();	
+							p.native_status = $("#new_nonitis_native_status").val();
+							p.info = $("#new_nonitis_info").val();
+							p.is_assemblage = 0;
+							if ( $("#new_nonitis_is_assemblage:checked").val() !=null)	
+								p.is_assemblage=1;
+							p.taxonomy_level = $("#new_nonitis_tax_level").val();	
+							if (p.latin_name == "") { alert("no latin name"); return};
+							if (p.working_name =="") { alert("no working name"); return};
+							if (p.taxonomy_level =="") { alert("no taxonomy level"); return};
+							$.ajax( { async:false, type:"GET", dataType:"json",
+								data: p, 
+								url: "query.php", 
+								success: function(data, t, x) {	
+								if (data == null || data == undefined) {
+								  alert("Error : data is null" );
+								} else if (  data.error != undefined) {
+								  alert("Error adding new non-itis node: " + data.error );
+								  alert(data.sql);
+								} else {
+									$("#new_nonitis_parent_info").html("");
+									$("#new_nonitis_parent_latin_name").val("");
+									$("#new_nonitis_latin_name").val("");
+									$("#new_nonitis_working_name").val("");
+									$("#new_nonitis_info").val("");
+									$("#new_nonitis_dialog").data("val", null);
+									resetNonItisTaxSelect();
+								}
+								}
+						  });	
+					}else {
+						alert("A non-itis node must have a parent");
+					}
+			  },
+				Reset: function() {
+							$("#new_nonitis_parent_info").html("");
+							$("#new_nonitis_parent_latin_name").val("");
+							$("#new_nonitis_latin_name").val("");
+							$("#new_nonitis_working_name").val("");
+							$("#new_nonitis_info").val("");
+							$("#new_nonitis_dialog").data("val", null);
+							resetNonItisTaxSelect();
+							},
+				Close: function() {
+								$( this ).dialog( "close" );
+							}
+			}
+		});
+
+
+	});
+
+</script>
+</head>
+<body>
+<?
+include("header.php");
+?>
+
+<!-- ||||||||||||||||| error and message dialog||||||||||||||||||||| -->
+<div id="logdiv" style="width:500px;padding:5px 5px 5px 10px;border:1px solid black;margin-bottom:5px;max-height:30px;overflow:auto;color:#cccccc;">Messages and events will be logged here.</div>
+
+
+<!-- ||||||||||||||||| main node dialog||||||||||||||||||||| 
+-->
+<div id="nodediv" style="width:500px;padding:5px 5px 10px 10px;border:1px solid black;">
+	<div class="thead">Node Search</div>
+  <div id="working_name_div" class="divpad"><label for="working_name">working name:  </label><input type="text" class="search" name="working_name" id="working_name" title="Search for working name in the kelpforest Database."/></div>
+  <div id="itis_common_name_div" class="divpad"><label for="itis_common_name">ITIS common name:  </label><input class="search" type="text" name="itis_common_name" id="itis_common_name" title=" Search based on the ITIS common name. " /></div>
+  <div id="itis_science_name_div" class="divpad"><label for="itis_science_name">ITIS latin name:  </label><input class="search" type="text" name="itis_science_name" id="itis_science_name" title=" Search based on the ITIS scientific (latin) name. " /></div>
+  <div id="itis_id_div" class="divpad"><label for="itis_id">ITIS id:  </label><input class="search" type="text" name="itis_id" id="itis_id" title="search based on the numeric ITIS id" /></div>
+
+</div>
+
+
+
+
+
+<!-- |||||||||||||||||add new cited variables dialog||||||||||||||||||||| 
+	you get here from the main node search page 
+	you can either enter values into a single input widget and hit RETURN
+	Or, you can enter multiple values and click on the button bellow the 
+	stage or node info section.
+
+	this dialogue will allow you to add new cited vars for nodes or stages 
+-->
+
+
+<div id="citation_dialog" title="Add to DB">
+	<p><label for="citation_dialog_name_search">Search Citations:</label>
+	<input type="text" name="name" id="citation_dialog_name_search" />
+	</p>
+	<p>
+	<div style="cursor:pointer;cursor:hand;color:magenta;padding-left:135px;" 
+			onclick="openNewCitationDialog();">Add New Citation</div>
+	</p>
+	<p>
+	<label for="citation_dialog_select">Citation:</label>
+	<select id="citation_dialog_select" style="width:320px;"></select>
+	</p>
+	<label for="citation_dialog_info_div">details:</label>
+	<div id="citation_dialog_info_div" style="display:inline-block;">
+	</div>
+</div>
+
+<!-- |||||||||||||||||add new node dialog||||||||||||||||||||| 
+	you get here from the main node search page 
+	if you search for a node and it is already recorded in our DB,
+	the parameters and values for this node will then show up.  If 
+	it is NOT in our DB, a button will appear that will allow you to 
+	open this "add new node" dialogue.
+	this dialogue will allow you to add nodes 
+-->
+
+<div id="new_node_dialog" title="Add New Node" >
+	<div class="divpad" ><label for="new_node_dialog_name"/><div id="new_node_dialog_name"></div></div>
+	<div class="divpad"><label for="new_node_dialog_working_name">working name:  </label>
+  	<input type="text" name="new_node_dialog_working_name" id="new_node_dialog_working_name" title="The working name should represent an easily recognizable synonym for the node.  Most often, this will be the common name (e.g. Latin name: Enhydra lultris, Working name: Sea otter)"/></div>
+	<div class="divpad" id="new_node_dialog_functional_group_id_div"><label for="new_node_dialog_functional_group_id">functional group:  </label>
+		<select type="text" name="new_node_dialog_functional_group_id" id="new_node_dialog_functional_group_id"></select></div>
+	<div class="divpad" id="new_node_dialog_native_div"><label for="new_node_dialog_native_status">native status:  </label>
+		<select type="text" name="new_node_dialog_native_status" id="new_node_dialog_native_status" title="Native or Non-Native (introduced, invasive, or non-endemic)">
+		<option value="native">native</option><option value="non-native">non-native</option></select></div>
+	<div class="divpad" id="new_node_dialog_is_assemblage_div"><label for="new_node_dialog_is_assemblage">is assemblage:  </label>
+		<input type="checkbox" name="new_node_dialog_is_assemblage" id="new_node_dialog_is_assemblage" title="Does this node entry represents a node that is identified to the species-specific level." /></div>
+</div>
+		
+	
+<!-- |||||||||||||||||add new author dialog||||||||||||||||||||| 
+	you get here from the citation dialogue 
+	this dialogue will allow you to add authors 
+-->
+<div id="new_author_dialog" title="Add New Author">
+	  <div class="divpad"><label for="new_author_dialog_first_name">First Name: </label>
+  	<input type="text" class="medium"  name="new_author_dialog_first_name" id="new_author_dialog_first_name" />
+		</div>
+	  <div class="divpad"><label for="new_author_dialog_last_name">Last Name: </label>
+  	<input type="text" class="medium" name="new_author_dialog_last_name" id="new_author_dialog_last_name" />
+		</div>
+</div>
+	
+	
+<!-- |||||||||||||||||add new nonitis node dialog||||||||||||||||||||| 
+	you get here from the main menu on top
+	this dialogue will allow you to add new nodes that are not already 
+	entered in the government sponsored ITIS database.
+-->
+<div id="new_nonitis_dialog" title="Add New NonItis Node">
+		<div><p>Each node (i.e. species) that is not already in the ITIS database receives a Non-ITIS id with which is identified in our local database.  Each Non-ITIS id must point to a valid ITIS id at some higher (parent) taxonomic level.  If your new node's parent is already in ITIS, this will be a simple three-step process: (1) Use the "Parent Search" field to search the ITIS database for the scientific name of the most specific taxonomic name you can identify your new node to. Then (2) manually enter the taxonomic level and the Latin name of your new node.  Then (3) specify (i) a representative "working name" for the nod, (ii) select its functional group, and (iii) check "is assemblage" if the entry does not represent a node that is identified to the species-specific level.</p>
+<p>The working name should represent an easily recognizable synonym for the node.  Most often, this will be the common name (e.g. Latin name: Enhydra lultris, Working name: Sea otter).</p>
+<p>Note: If you have multiple taxonomic levels that are not already in ITIS, you will need to repeat the above steps several times, starting with the level of the parent that is already in ITIS. From there, work your way down by using the "Parent Search" field to search for the either an ITIS node or Non-ITIS node that represents the next parent.</p>
+</div>	<br><br> 
+
+		<div class="divpad" style="padding-left:140px" id="new_nonitis_parent_tree">
+		</div>
+
+
+	  <div class="divpad">
+		<label for="new_nonitis_parent_latin_name">Parent Search: </label>
+  	<input type="text"   name="new_nonitis_parent_latin_name" id="new_nonitis_parent_latin_name" title="Search for a parent node in both ITIS and local databases."></input>
+		</div>
+
+	  <div class="divpad" style="padding-left:140px" id="new_nonitis_parent_info">
+		</div>
+
+
+	  <div class="divpad">
+		<label for="new_nonitis_latin_name">Latin Name: </label>
+  	<input type="text"  name="new_nonitis_latin_name" id="new_nonitis_latin_name" title="You must enter a latin name for this non-itis node." ></input>
+		</div>
+
+	  <div class="divpad">
+		<label for="new_nonitis_working_name">Working Name: </label>
+  	<input type="text"  name="new_nonitis_working_name" id="new_nonitis_working_name" title="You must enter a working name for this non-itis node."/>
+		</div>
+
+	  <div class="divpad">
+		<label for="new_nonitis_tax_level">Taxonomic Level: </label>
+		<!-- these select options won't change so don't bother making them dynamic with javascript -->
+  	<select class="medium"  name="new_nonitis_tax_level" id="new_nonitis_tax_level">
+		<option value="phylum">phylum</option>
+		<option value="class">class</option>
+		<option value="order">order</option>
+		<option value="family">family</option>
+		<option value="genus">genus</option>
+		<option value="species">species</option>
+		</select>
+		</div>
+
+		<div class="divpad">
+		<label for="new_nonitis_functional_group_id">Functional Group: </label>
+		<select type="text" class="medium" name="new_nonitis_functional_group_id" id="new_nonitis_functional_group_id" >
+		</select>
+		</div>
+
+		<div class="divpad">
+		<label for="new_nonitis_native_status">Native Status: </label>
+		<select type="text" class="medium" name="new_nonitis_native_status" id="new_nonitis_native_status" title="Native or Non-Native (introduced, invasive, or non-endemic)">
+		<option value="native">native</option><option value="non-native">non-native</option>
+		</select>
+		</div>
+
+		<div class="divpad">
+		<label for="new_nonitis_is_assemblage">is assemblage:  </label>
+		<input type="checkbox" name="new_nonitis_is_assemblage" id="new_nonitis_is_assemblage" title="Does this entry represent a node that is identified to the species-specific level."></input>
+		</div>
+
+		<div class="divpad">
+		<label for="new_nonitis_info">Extra info: </label>
+		<textarea name="new_nonitis_info" id="new_nonitis_info" title="Put any extra relevant info about this non-itis node here."></textarea>
+		</div>
+
+
+</div>
+	
+
+<!-- ||||||||||||Interactions Observation dialog||||||||||||||||||||| 
+	you get here from the interaction menu, you search for an
+	interaction type on the left and right.  If there is an interaction
+	set for these two, you can then add interaction observations 
+-->
+
+<div id="new_interaction_observation_dialog" title="Add New Observation">
+	<div> <label for="new_interaction_observation_dialog_citation">Search Citation :</label>
+	<input type="text" id="new_interaction_observation_dialog_citation"></input></div>
+	<p>
+	<div style="cursor:pointer;cursor:hand;color:magenta;padding-left:135px;" 
+			onclick="openNewCitationDialog();">Add New Citation</div>
+	</p>
+
+	<p>
+	<label for="new_interaction_observation_dialog_select">Citation:</label>
+	<select id="new_interaction_observation_dialog_select" style="width:320px;"></select>
+	</p>
+	<br>
+	<div id="new_interaction_observation_dialog_info"></div>
+</div>
+
+
+<!-- |||||||||||||||||||||Interactions dialog||||||||||||||||||||| 
+	you get here from the main menu on top
+	this dialogue will allow you to search for interactions between
+	nodes (species, genus, family, etc) at varying stages of their lives.
+-->
+<div id="interactions_dialog" title="Node Interactions">
+	<table cellpadding="10"><tr>
+		<td valign="top" align="left" style="min-width:230px;">
+		Node&nbsp;1&nbsp;Search:
+		</td>
+		<td  width="*" style="min-width:300px;">
+		Interaction Type
+		</td>
+		<td valign="top" align="left" style="min-width:230px;">
+		Node&nbsp;2&nbsp;Search:
+		</td>
+		</tr>
+		<tr>
+		<td valign="top" >
+		<p>working name: &nbsp;<input type="text" class="medium"  name="interactions_dialog_node1_search" id="interactions_dialog_node1_search" /></p>
+		<p>ITIS latin name:  <input type="text" class="medium"  name="interactions_dialog_node1_search_science_name" id="interactions_dialog_node1_search_science_name" /></p>
+		<div class="divpad" id="interactions_dialog_node1_info"></div>
+		<div class="divpad" id="interactions_dialog_node1_all_interactions"></div>
+		</td>
+		<td valign="top" align="left">
+		<!-- these select options won't change so don't bother making them dynamic with javascript -->
+		<select id="interactions_dialog_interaction_type">
+			<option name="trophic" value="trophic">trophic (1 eats 2)</option>
+			<option name="competition" value="competition">competition (1 outcompetes 2)</option>
+			<option name="facilitation" value="facilitation">facilitation (1 facilitates 2)</option>
+			<option name="parasitic" value="parasitic">parasitic (1 is parasite of 2)</option>
+		</select>
+		<p>
+		<div id="interactions_dialog_interaction_type_info"></div>
+		</p>
+		<p>
+		<button id="add_new_interaction_observation_but">Add Observation</button>
+		<button id="add_new_interaction_but">Add Interaction </button>
+		</p>
+		</td>
+		<td valign="top" align="left">
+	  <p>working name: &nbsp;<input type="text" class="medium"  name="interactions_dialog_node2_search" id="interactions_dialog_node2_search" /></p>
+		<p>ITIS latin name:  <input type="text" class="medium"  name="interactions_dialog_node2_search_science_name" id="interactions_dialog_node2_search_science_name" /></p>
+		<div class="divpad" id="interactions_dialog_node2_info"></div>
+		<div class="divpad" id="interactions_dialog_node2_all_interactions"></div>
+		</td>
+  </tr></table>
+</div>
+
+
+<!-- |||||||||||||||||||||Citations dialog||||||||||||||||||||| 
+	you get here from the main menu on top
+	this dialogue will allow you to add new citations
+-->
+<div id="new_citation_dialog">
+	  <div class="divpad"><label for="new_citation_dialog_author_search">Author Search: </label>
+  	<input type="text"  name="new_citation_dialog_author_search" id="new_citation_dialog_author_search" />
+		</div>
+		
+		<div class="divpad">
+  		<div id="add_new_author" onclick="openNewAuthorDialog();"  
+			style="cursor:pointer;cursor:hand;color:magenta;padding-left:135px;" >Add New Author</div>
+		</div>
+
+	  <div class="divpad"><label for="new_citation_dialog_authors">Authors: </label>
+  	<div id="new_citation_dialog_authors" style="min-height:30px;display:inline-block;"></div>
+		</div>
+
+	  <div class="divpad"><label for="new_citation_dialog_title">Title: </label>
+  	<input type="text"  name="new_citation_dialog_title" id="new_citation_dialog_title" />
+		</div>
+
+	  <div class="divpad"><label for="new_citation_dialog_document">Document(url or DOI): </label>
+  	<input type="text"  name="new_citation_dialog_document" id="new_citation_dialog_document" />
+		</div>
+
+	  <div class="divpad"><label for="new_citation_dialog_year">Year: </label>
+  	<input type="text"  name="new_citation_dialog_year" id="new_citation_dialog_year" />
+		</div>
+
+	  <div class="divpad"><label for="new_citation_dialog_format">Published format: </label>
+  	<select class="medium" name="new_citation_dialog_format" id="new_citation_dialog_format" onchange="onFormatSelectChange(this);" >
+		</select>
+		</div>
+
+	  <div class="divpad" id="new_citation_dialog_format_title_div"><label for="new_citation_dialog_format_title" id="new_citation_dialog_format_title_label">Journal title: </label>
+  	<input type="text"  name="new_citation_dialog_format_title" id="new_citation_dialog_format_title" />
+		</div>
+
+	  <div class="divpad" id="new_citation_dialog_volume_div"><label for="new_citation_dialog_volume">Volume: </label>
+  	<input type="text"  name="new_citation_dialog_volume" id="new_citation_dialog_volume" />
+		</div>
+
+	  <div class="divpad" id="new_citation_dialog_number_div"><label for="new_citation_dialog_number">Number: </label>
+  	<input type="text" class="medium" name="new_citation_dialog_number" id="new_citation_dialog_number" />
+		</div>
+
+	  <div class="divpad" id="new_citation_dialog_pages_div"><label for="new_citation_dialog_pages">Pages: </label>
+  	<input type="text" class="medium" name="new_citation_dialog_pages" id="new_citation_dialog_pages" />
+		</div>
+
+	  <div class="divpad"><label for="new_citation_dialog_abstract">Abstract: </label>
+  	<textarea  rows="5"  name="new_citation_dialog_abstract" id="new_citation_dialog_abstract" />
+		</div>
+
+</div>
+
+
+</body>
+</html>
+
+

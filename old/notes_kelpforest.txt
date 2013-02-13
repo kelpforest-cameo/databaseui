@@ -1,0 +1,17 @@
+
+dates. for interaction observations.
+	need to record range of years for obs.  (eg. 1997-1999)
+			and, then record the months of the year that observations were made.	
+
+good to see if something has been entered....make a list of nodes in the data base so user can lselect the nodes.
+
+range
+	northern boundary  (drop down list)
+	southern boundary (drop down list)
+
+
+working name search bug
+
+
+
+

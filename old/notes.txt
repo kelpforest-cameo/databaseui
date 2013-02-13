@@ -1,0 +1,48 @@
+Notes from telephone conversation with Kelpforest dudes
+Date  Jan 19, 2011
+
+------------
+
+move working name to top
+
+done !  - check search type for common name, some things like "sea urchin" are not showing up when you type in one of the terms...could be a problem with the search_starts_with
+
+done !  - on delete method, make an "are you sure"
+
+functional groups ,  add them in non-editable mode to the right hand side of the node section.
+
+
+!!!done -- Citations
+---------
+
+author: required
+Title: required
+year: required
+Document(url): optional
+
+abstracts: optional, moved to the bottom, bigger field
+How_published: 
+Make dropdown for: Journal/Book/Book Section/Report/Thesis/Web Site/Other:
+	move to
+	Volume: integer
+	Number: integer
+	Pages:  varchar
+
+--------------
+
+stages:  make units visible
+
+biomass should be "biomass density" 
+
+-------------
+
+interactions
+
+done!! once you type in something to search, show the interactions with the other side below.
+note: I have added "all interactions", not just the ones with the other side.
+
+done !! --  change "cancel" to "close"
+
+
+
+

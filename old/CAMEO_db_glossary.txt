@@ -1,0 +1,264 @@
+
+still need to:
+	!!! done Add tool tips
+	!!! done make length_weight and length_fecundity widgets
+	what about Ecotrophic efficiency? 
+	ranges are not in degrees,minutes, seconds
+	unit conversions
+
+REQUESTED CHANGES TO INTERFACE:
+
+!!! done  Reorder NODE interface as follows:
+Working name
+ITIS common name
+ITIS latin name
+ITIS id
+Non-ITIS id (* do we need this? *)
+NativeStatus (* please add *)
+Range
+Reproductive Status
+Max age
+
+
+
+
+!!!done Change in ADD NEW CITATION interface:
+!!!done Document(url) - (* rename to "Document (url or DOI)" *)
+
+
+
+
+!!! done
+Reorder STAGE interface as follows:
+Individual Body Length (* please add "Individual Body" *)
+Individual Body Mass (* please add "Individual" *)
+Individual Body Drymass (* please add "Individual Body" *)
+(* space *)
+Length(L)-Weight(W) Relationship
+	None exists - constant weight
+	Power Law - W=a*L^b
+	Exponential - W=a*exp^(b*L)
+	Linear - W=a+b*L
+Length(L)-Fecundity(F) Relationship
+	None exists - constant fecundity
+	Power Law - F=a*L^b
+	Exponential - F=a*exp^(b*L)
+	Linear - F=a+b*L
+(*space*)
+Lifestyle
+Duration (* rename current "duration" field to "residency".  New "duration" field should be numeric.  see definition below *)
+Fecundity
+Consumer strategy
+Habitat (* rename "Kelp water column"  *)
+Max Depth (* please add *)
+Mobility
+Residency - (* currently named "duration" *)
+Residency time (* please add * - fractional value - see definition below *)
+(*space*)
+Biomass density
+Prod/Biomass ratio
+Prod/Consumption ratio
+Consumption biomass ratio
+Unassimilated consumption ratio
+Biomass change (* please change from "Biomass accumulation" *)
+
+
+
+
+
+
+
+
+INTERACTION interface 
+(* Not sure how we decided to best include much of this, but the "modifiers" still need to be added *)  
+(*NOTE: I've included a few mouse-over glossary definitions as well.  They are preceded by an "-" *)
+Trophic Q1	
+	Lethal Whole - the entire individual is consumed
+  Lethal Partial - only part of the individual is consumed, but the effect is fatal
+  Nonlethal partial - only part of the individual is consumed and the effect is not lethal
+Trophic Q2	
+	Whole organism (default)
+	Flesh - e.g., shell is not consumed
+	Frond - e.g. stipe is not consumed
+Trophic Q 3
+	% consumed - fraction of individual consumed
+Trophic Q4
+	None (default)
+	More preferred - prey is consumed in greater proportion than is reflected by its availability in the environment
+	Less preferred - prey is consumed in lower proportion than is reflected by its availability in the environment
+
+Parasitic Q1	
+	Endoparasite - inside body cavity
+	Ecoparasite - on body surface (including oral cavity)
+Parasitic Q2	
+	Benign - does not directly cause mortality
+	Lethal - directly causes mortality
+Parasitic Q3	
+	Prevalence - % of hosts infected
+	Intensity - #parasites/host
+Parasitic Q4
+	pathogen	
+	castrator	
+  parasitoid
+	trophically transmitted larva
+
+Competitive Q1
+	Space - indirect competition through removal of available space
+	Interference - direct aggression between individuals
+Facilitative Q1	
+	Habitat - e.g., kelp providing shelter to juvenile fishes
+	Mutualism - both partners profit from interaction
+	Commensalism - one partner profits, the other is unaffected
+
+Observation type Trophic
+	Field observation
+	Laboratory observation - Observation made in non-field setting
+	Chemical - Stable isotope, fatty acid, etc.
+	Gut contents
+  Inferred - Based on similar species
+	Expert opinion
+	Fishery - Caught by humans
+	Nest contents
+	Scat
+	Forensic
+
+Observation Location
+	Western Pacific
+	Aleutians
+	Alaska Peninsula
+	Northern Alaska
+	Gulf of Alaska
+	SE Alaska
+	BC
+	WA
+	OR
+	No.CA (N of SFBay)
+	CeCA (Pt.Conception-SFBay)
+	SoCA mainland
+	Channel Islands East (islands: _____)
+	Channel Islands West (islands: ______)
+	Baja
+	Other
+
+!!! done
+"Add New Non-ITIS node" INTERFACE:
+Please replace text as follows:
+>>
+Each node (i.e. species) that is not already in the ITIS database receives a Non-ITIS id with which is identified in our local database.  Each Non-ITIS id must point to a valid ITIS id at some higher (parent) taxonomic level.  If your new node's parent is already in ITIS, this will be a simple three-step process: (1) Use the "Parent Search" field to search the ITIS database for the scientific name of the most specific taxonomic name you can identify your new node to. Then (2) manually enter the taxonomic level and the Latin name of your new node.  Then (3) specify (i) a representative "working name" for the nod, (ii) select its functional group, and (iii) check "is assemblage" if the entry does not represent a node that is identified to the species-specific level.
+
+The working name should represent an easily recognizable synonym for the node.  Most often, this will be the common name (e.g. Latin name: Enhydra lultris, Working name: Sea otter).
+
+Note: If you have multiple taxonomic levels that are not already in ITIS, you will need to repeat the above steps several times, starting with the level of the parent that is already in ITIS. From there, work your way down by using the "Parent Search" field to search for the either an ITIS node or Non-ITIS node that represents the next parent.
+<<
+
+Additional notes (* please add text field at bottom of interface*) - Further information on node (e.g. if a single node is suspected of being a cryptic species complex).
+
+
+FUNCTIONAL GROUPS - after Graham 2004, Graham et al. 2008
+piscivorous fishes (sharks, rays)
+mammals (pinnipend, otters)
+birds
+octopi
+predatory seastars
+carnivorous molluscs
+decapods (lobster, crabs, shrimp)
+carnivorous fishes
+detritivorous cucumbers
+detritivorous annelids
+abalones
+sea urchins
+herbivorous molluscs
+herbivorous crustaceans (e.g. isopods)
+herbivorous fishes
+planktivorous fishes
+brittle stars
+sessile invertebrates
+kelp
+brown macroalgae other
+red macroalgae
+crustose corallines
+other macroalgae
+zooplankton
+phytoplankton
+phytodetritus
+heterotrophic detritus
+non-living substrate
+
+
+GLOSSARY - definitions provided after the "-" should pop-up with mouse-over
+Max age- Maximum reported age attained by individual (years)
+Reproductive Strategy
+	Broadcast-Gametes or offspring are released without care
+	Brooder-Offspring are cared for either inside or outside the body for at least part of their development
+	Parental Care-Offspring are cared for after their development
+Range - Northern and Southern limits of species occurrence (in degrees, minutes, seconds)
+NativeStatus
+	Native
+	Non-Native - introduced, invasive, or non-endemic
+
+Individual Body Length - Average body length (mm)
+Individual Body Mass - Average total body weight (g)
+Individual Body Drymass - Average dry body weight (g)
+(* space *)
+Length(L)-Weight(W) Relationship --  L-Length (mm); 	W-Weight (g)	
+Length(L)-Fecundity(F) Relationship --	L-Length (mm); 	F-Fecundity (# of offspring)
+(*space*)
+Lifestyle
+	Non-living - e.g. detritus, bedrock, etc.
+	Free-living - e.g. plankton, kelp, sea otter, etc.
+	Infectious - e.g., parasite, virus, etc.
+Duration - Average duration of stage (days) ("General" stage would be same as Max Age)
+Fecundity - offspring produced per female individual
+Consumer strategy
+	Autotroph - Photosynthesizer (e.g. algae)
+	Grazer - Benthic consumer of autotrophs (e.g., limpet, herbivorous fishes)
+	Filter feeder - Suspension feeder capturing particles from water column (e.g., barnacle)
+	Passive sit - Sit & wait predator (e.g., some fishes)
+	Active cursorial - Actively foraging/ hunting predator (e.g., sea otter)
+	Detritivore - Consumer of algal detritus (e.g., sea cucumber)
+	Scavenger - Consumer of dead animal remains (e.g., some crabs)
+Habitat
+	Rocky substrate - Benthic hard rock 
+	Soft bottom - Benthic sand, mud, etc.
+	Kelp Water column - Non-benthic but within or on kelp
+	Pelagic - Water column outside of kelp forest
+Max Depth - Maximum recorded depth of species' occurrence (meters)
+Mobility
+	Sessile - e.g., barnacle adult
+	Mobile - e.g., sea otter, fish
+	Drifter - e.g., zooplankton, phytoplankton
+Residency
+	Resident - permanent resident within nearshore ecosystem
+	Migrant - temporary resident of nearshore ecosystem, spending some time off-shore
+Residency time - % of year spent in nearshore ecosystem
+(*space*)
+Biomass density - Population biomass per square kilometer (kg/km^2)
+Prod/Biomass ratio - P/B   -  biomass produced per unit of initial biomass per year (units: 1/time)
+Prod/Consumption ratio - 	P/Q   - biomass produced per unit of biomass consumed (unit-less)
+Consumption biomass ratio  - Q/B - prey biomass eaten per unit of predator biomass per year (units: 1/time)
+Unassimilated consumption ratio - 
+Ecotrophic efficiency -  EE
+Biomass change - biomass gained or lost per year (due to fishing, immigration, emigration, etc.) (kg/km^2)
+
+
+UNIT CONVERSIONS (* not sure what the best way to provide these is *)
+
+length
+1 m = 1000 mm = 100 cm = 0.001 km
+1 mm = 0.1 cm = 0.001 m
+1 in	=	25.4 mm	=	0.0254 m
+1 ft	=	304.8 mm	=	0.3048 m
+1 yard	=	914.4 mm	=	0.9144 m
+1 mile	=	1.6093 km	=	1609.3 m
+
+weight
+1 oz	=	28.35 g
+1 lb	=	0.4536 kg	=	453.6 g
+1 imp ton	=	1016 kg
+1 metric ton = 1000 kg
+1 kg = 1000 g
+
+
+
+
+ 
