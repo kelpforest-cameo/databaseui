@@ -52,7 +52,6 @@ function MapEntry() {
 		resizable: false,
 		buttons: {
 			"Select": function() {
-				that.dialogResult = 'fuck you';
 				$(that.element).dialog('close');
 				if (that.dlgCallback != null && that.dlgCallback != undefined && typeof(that.dlgCallback) == 'function') {
 					that.dlgCallback(that.dialogResult);
