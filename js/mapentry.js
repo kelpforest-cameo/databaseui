@@ -1,11 +1,13 @@
 var MODE_RANGE=0,MODE_LOCATION=1;
 function MapEntry() {  
 
+	var that = this;
 	this.id= "map_interface";
 	this.initialized = false;
 	this.element = document.createElement("div");
 	this.element.setAttribute('id', this.id);
 	this.element.setAttribute('title', "Map Entry");
+	this.pacContainerInit = false;
 	$(this.element).css("padding","2px");
 	$(this.element).css("overflow","hidden");
 	$(this.element).hide();
@@ -20,10 +22,14 @@ function MapEntry() {
 	this.mapClicked = false;
 	this.nodeClicked = false;
 	this.featureEvent = true;
+	this.dialogResult = null;
+	this.dlgCallback = null;
+	this.coordinates = null;
+	this.mode = MODE_LOCATION;
 	OpenLayers.Feature.Vector.style['default']['strokeWidth'] = '2';
 
 
-	this.html = "<div id=\"map_container\" style=\"background-color: black; width: 875px; height: 500px\">" +
+	var html = "<div id=\"map_container\" style=\"background-color: black; width: 875px; height: 500px\">" +
 		"<div id=\"map_wrap\" style=\"margin: 10px; width:640px; height:480px;float:left;border: 1px solid black;\"><div id=\"map_canvas\" style=\"width: 100%; height: 100%\"></div></div>" +
 		"<div id=\"sidebar\" style=\"width: 200px; height: 480px; background-color: white; float:left; margin-top: 10px; margin-bottom: 10px\">" +
 			"<div id=\"tree\" style=\"width: 100%; height: 87%; overflow: auto\"></div>" +
@@ -33,10 +39,9 @@ function MapEntry() {
 			"</div>" +
 		"</div>" +
 	"</div>";
-	$(this.element).append(this.html);
+	$(this.element).append(html);
 	$(this.element).appendTo('body');
 
-	var that = this;
 	$( this.element ).dialog({
 		autoOpen: false,
 		title: "Map Entry",
@@ -45,14 +50,15 @@ function MapEntry() {
 		shadow: false,
 		modal: false,
 		resizable: false,
-		//--------------------------------------------------
-		// close: function() { $( this ).remove(); },
-		//-------------------------------------------------- 
 		buttons: {
-			//--------------------------------------------------
-			// "Select": function() { $( this ).remove();	},
-			//-------------------------------------------------- 
-			"Cancel": function() { $(that.element).dialog('close'); },
+			"Select": function() {
+				that.dialogResult = 'fuck you';
+				$(that.element).dialog('close');
+				if (that.dlgCallback != null && that.dlgCallback != undefined && typeof(that.dlgCallback) == 'function') {
+					that.dlgCallback(that.dialogResult);
+				}
+			},
+			"Cancel": function() { $(that.element).dialog('close'); }
 		},
 		open: function(e,u) {
 			if (!that.initialized) {
@@ -60,13 +66,62 @@ function MapEntry() {
 				that.initializeMap();
 				that.initializeUI();
 			}
+			var t = $(that.element).dialog('option','title');
+			switch (that.mode) 
+			{
+			case MODE_LOCATION:
+				t += ' - Select Location';
+				break;
+			case MODE_RANGE:
+				t += ' - Select Range';
+				break;
+			}
+			that.setTitle(t);
+			that.setStatus(t);
+			//--------------------------------------------------
+			// $("<div>"+t+"</div>").css('float','left').css('border','1px solid black').css('height',ht).prependTo('.ui-dialog-buttonpane');
+			//-------------------------------------------------- 
 		}
 	});
 }
 
-MapEntry.prototype.open = function () {
+MapEntry.prototype.setTitle = function(t)
+{
+	$(this.element).dialog('option','title',t);
+}
 
-	var that = this;
+MapEntry.prototype.setStatus = function(t)
+{
+	if ($("#statusbox").length) {
+		$("#statusbox").html(t);
+	} else {
+		var ht = $('.ui-dialog-buttonset').innerHeight();
+		var outer = $("<div>").css({
+			'display': 'table',
+			'height': ht,
+			'#position': 'relative',
+			'overflow': 'hidden',
+			'float': 'left'
+		});
+		var middle = $("<div>").css({
+			'#position': 'absolute',
+			'#top': '50%',
+			'display': 'table-cell',
+			'vertical-align': 'middle'
+		});
+		$("<div>"+t+"</div>").css({
+			'#position': 'relative',
+			'#top': '-50%'
+		}).attr('id','statusbox').appendTo(middle);
+		$(middle).appendTo(outer);
+		$(outer).prependTo('.ui-dialog-buttonpane');
+	}
+}
+
+MapEntry.prototype.open = function (mode, done) {
+
+	this.dlgCallback = done;
+	this.mode = mode;
 	if ( $(this.element).dialog( "isOpen" ) === true ) {
 		return;
 	}
@@ -350,13 +405,22 @@ MapEntry.prototype.initializeUI = function()
 	$("#llform").submit(function(e) {
 		var lt = parseFloat($("#lat").val());
 		var ln = parseFloat($("#lon").val());
-		if ((lt >= -90 && lt <= 90) && (ln >= -180 && ln <= 180))
-			that.map.setCenter(new OpenLayers.LonLat(ln,lt).transform("EPSG:4326","EPSG:3857"),7);
+		if ((lt >= -90 && lt <= 90) && (ln >= -180 && ln <= 180)) {
+			that.coordinates = new OpenLayers.LonLat(ln,lt);
+			that.map.setCenter(that.coordinates.clone().transform("EPSG:4326","EPSG:3857"),7);
+		}
 		e.preventDefault();
 	});
 	$("#mapsearch").geocomplete().bind("geocode:result",function(e,result) {
 		var loc = result.geometry.location;
-		that.map.setCenter(new OpenLayers.LonLat(loc.lng(),loc.lat()).transform("EPSG:4326","EPSG:3857"),7);
+		that.coordinates = new OpenLayers.LonLat(loc.lng(),loc.lat());
+		that.map.setCenter(that.coordinates.clone().transform("EPSG:4326","EPSG:3857"),7);
+	}).keypress(function() {
+		if (!that.pacContainerInit) {
+			$('.pac-container').css('z-index','10000');
+			$('.pac-container').css('min-width','300px');
+			that.pacContainerInit = true;
+		}
 	});
 }
 
@@ -371,8 +435,9 @@ MapEntry.prototype.nodeSelect = function(data)
 			var zoom = this.map.getZoom();
 			zoom = (zoom >= info.zoom_min && zoom <= info.zoom_max) ? zoom : info.zoom_min;
 			if (zoom == -1) zoom = 3;
-			var g = OpenLayers.Geometry.fromWKT(info.centroid).transform("EPSG:4326","EPSG:3857");
-			this.map.setCenter(new OpenLayers.LonLat(g.x,g.y),zoom);
+			var g = OpenLayers.Geometry.fromWKT(info.centroid);
+			this.coordinates = new OpenLayers.LonLat(g.x,g.y);
+			this.map.setCenter(this.coordinates.clone().transform("EPSG:4326","EPSG:3857"),zoom);
 		}	catch (e) {}
 	}
 	else this.mapClicked = false;
@@ -381,11 +446,12 @@ MapEntry.prototype.nodeSelect = function(data)
 MapEntry.prototype.layerSelect = function(feature)
 {
 	this.mapClicked = true;
-		var lyr = feature.feature;
-		if ($("#node_"+lyr.attributes.region_id).length) {
-			$("#tree").jstree('select_node','#node_'+lyr.attributes.region_id,true,false);
-		} else {
-			var srch_id = (lyr.attributes.visible == 1) ? lyr.attributes.region_id : lyr.attributes.parent_region;
-			$("#tree").jstree('search',srch_id);	
-		}
+	var lyr = feature.feature;
+	this.coordinates = new OpenLayers.LonLat(lyr.attributes.centroid.x,lyr.attributes.centroid.y);
+	if ($("#node_"+lyr.attributes.region_id).length) {
+		$("#tree").jstree('select_node','#node_'+lyr.attributes.region_id,true,false);
+	} else {
+		var srch_id = (lyr.attributes.visible == 1) ? lyr.attributes.region_id : lyr.attributes.parent_region;
+		$("#tree").jstree('search',srch_id);	
+	}
 }

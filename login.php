@@ -34,12 +34,14 @@ $_SESSION['challenge'] = $challenge;
 <meta name="Publisher" content="August Black">
 
 <title>FoodWeb Interaction Database</title>
+<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
 <link type="text/css" href="css/custom-theme/jquery-ui-1.8.6.custom.css" rel="stylesheet" />	
 <link type="text/css" href="css/kelpstyle.css" rel="stylesheet" />	
 <script type="text/javascript" src="js/md5.js"></script>
-
 <script type="text/javascript">
-
+$(function() {
+	$("input[name='username']").focus();
+});
 function login(e) {
 	e = e || window.event;
 	e.preventDefault();
