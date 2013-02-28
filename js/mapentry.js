@@ -20,12 +20,12 @@ function MapEntry() {
 	this.loaded_nodes = [];
 	this.select_node = null;
 	this.mapClicked = false;
-	this.nodeClicked = false;
 	this.featureEvent = true;
 	this.dialogResult = null;
 	this.dlgCallback = null;
 	this.coordinates = null;
 	this.mode = MODE_LOCATION;
+	this.location_id = -1;
 	OpenLayers.Feature.Vector.style['default']['strokeWidth'] = '2';
 
 
@@ -69,9 +69,13 @@ function MapEntry() {
 			switch (that.mode) 
 			{
 			case MODE_LOCATION:
+				that.drawControls.select.toggleKey = null;
+				that.drawControls.select.multipleKey = null;
 				t += ' - Select Location';
 				break;
 			case MODE_RANGE:
+				that.drawControls.select.toggleKey = "ctrlKey";
+				that.drawControls.select.multipleKey = "shiftKey";
 				t += ' - Select Range';
 				break;
 			}
@@ -117,6 +121,10 @@ MapEntry.prototype.setStatus = function(t)
 	}
 }
 
+MapEntry.prototype.getLocation = function() {
+	return this.location_id;
+}
+
 MapEntry.prototype.open = function (mode, done) {
 
 	this.dlgCallback = done;
@@ -124,7 +132,6 @@ MapEntry.prototype.open = function (mode, done) {
 	if ( $(this.element).dialog( "isOpen" ) === true ) {
 		return;
 	}
-	
 	$(this.element).dialog('open');
 }
 
@@ -309,17 +316,7 @@ MapEntry.prototype.initializeMap = function()
 			{
 				clickout: false, toggle: false,
 				multiple: false, hover: false,
-				toggleKey: "ctrlKey", // ctrl key removes from selection
-				multipleKey: "shiftKey", // shift key adds to selection
 				box: false
-			}
-		),
-		selecthover: new OpenLayers.Control.SelectFeature(
-			this.vectors,
-			{
-				multiple: false, hover: true,
-				toggleKey: "ctrlKey", // ctrl key removes from selection
-				multipleKey: "shiftKey" // shift key adds to selection
 			}
 		)
 	};
@@ -425,7 +422,7 @@ MapEntry.prototype.initializeUI = function()
 
 MapEntry.prototype.nodeSelect = function(data)
 {
-	this.nodeClicked = true;
+	this.location_id = $(data.rslt.obj).attr('id').replace('node_','');
 	if (!this.mapClicked)
 	{
 		this.select_node = $(data.rslt.obj).attr('id').replace('node_','');

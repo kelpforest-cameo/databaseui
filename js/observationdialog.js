@@ -213,6 +213,7 @@ function InteractionObservationDialog() {
 	this.cite_select.display_name = "Citation :";
 	this.cite_select.tooltip = "Select a citation here. There can only be one citation for a value.";
 	this.cite_select.setSelect( new Array());
+	this.loc_id = -1;
 
 	this.comment = new Comment();
 	this.datum = new Datum();
@@ -379,6 +380,12 @@ InteractionObservationDialog.prototype.open = function ( ixdialog) {
 	this.cite_select.createDivRow( this.element );
 	this.cite_select.element.style.marginBottom = "20px";
 
+	this.location_but = new Input(this,'location','button');
+	this.location_but.display_name = 'Location : ';
+	this.location_but.toolip = 'Select observation location from map';
+	this.location_but.setButton('Select location',createMethodReference(this,'selectLocation'));
+	this.location_but.createDivRow(this.element);
+
 	this.interaction_type = $(this.ixdialog.interaction_type_select).val();
 	this.createInputs( );
 
@@ -413,14 +420,20 @@ InteractionObservationDialog.prototype.open = function ( ixdialog) {
 
 }
 
+InteractionObservationDialog.prototype.selectLocation = function()
+{
+	mapentry.open(MODE_LOCATION,createMethodReference(this,'mapClosed'));
+}
+
+InteractionObservationDialog.prototype.mapClosed = function()
+{
+	this.loc_id = mapentry.getLocation();
+}
+
 InteractionObservationDialog.prototype.createInputs = function (  ) {
 	this.cvars = new Object();
 	if (this.interaction_type == undefined) return;
 	// everything has a location
-	this.cvars.location = new Input(this, "location_id", "select");
-	this.cvars.location.display_name  = "Location :";
-	this.cvars.location.tooltip = "Add separate observations for an interaction observed in multiple regions."; 
-	this.cvars.location.setSelect( display_options.locations);
 
 	if ( this.interaction_type == "trophic") {
 
