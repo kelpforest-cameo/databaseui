@@ -1,3 +1,5 @@
+//TODO: generic spatial info in database (i.e.location may be one of these categories, a lat/lon point, or an arbitrary polygon
+// 			this refers to the location_data table that links observations/nodes to the location categories
 var MODE_RANGE=0,MODE_LOCATION=1;
 function MapEntry() {  
 
@@ -122,7 +124,11 @@ MapEntry.prototype.setStatus = function(t)
 }
 
 MapEntry.prototype.getLocation = function() {
-	return this.location_id;
+	var that = this;
+	return { 
+		id: that.location_id,
+		name: $("#node_"+that.location_id).text().trim()
+	};
 }
 
 MapEntry.prototype.open = function (mode, done) {
@@ -295,6 +301,9 @@ MapEntry.prototype.initializeMap = function()
 			}
 		},
 		'featureunselected': function(feature) {
+			if (that.vectors.selectedFeatures.length == 0) {
+				that.location_id = -1;
+			}
 		}
 	});
 
@@ -314,7 +323,7 @@ MapEntry.prototype.initializeMap = function()
 		select: new OpenLayers.Control.SelectFeature(
 			this.vectors,
 			{
-				clickout: false, toggle: false,
+				clickout: true, toggle: false,
 				multiple: false, hover: false,
 				box: false
 			}
@@ -325,7 +334,6 @@ MapEntry.prototype.initializeMap = function()
 		this.map.addControl(this.drawControls[key]);
 	}
 	this.map.setCenter(new OpenLayers.LonLat(-122.030796, 36.974117).transform("EPSG:4326","EPSG:3857"),3);
-	this.drawControls.select.clickout = true;
 	this.drawControls.select.activate();
 }
 
