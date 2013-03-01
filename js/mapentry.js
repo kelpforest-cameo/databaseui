@@ -147,9 +147,9 @@ MapEntry.prototype.updateMap = function()
 	var b = this.map.getExtent();
 	b.transform("EPSG:3857","EPSG:4326");
 	removedList = this.pruneFeatures(b);
-	$.get("map.php",
+	$.get("query.php",
 		{
-			'op': 'visible_regions', 
+			'functionName': 'visible_regions', 
 			'bbox': b.toBBOX(), 
 			'zoom': this.map.getZoom(),
 			'table': this.table,
@@ -347,10 +347,10 @@ MapEntry.prototype.initializeUI = function()
 		"plugins" : [ "json_data","ui","themes","hotkeys","search" ],
 		"json_data" : {
 			"ajax" : {
-				"url" : "map.php",
+				"url" : "query.php",
 				"data" : function(n) {
 					return {
-						"op": "get_children",
+						'functionName': "get_children",
 						"id" : n.attr ? n.attr("id").replace("node_","") : 1,
 						'table': that.table
 					};
@@ -367,10 +367,10 @@ MapEntry.prototype.initializeUI = function()
 		},
 		"search" : {
 			"ajax" : {
-				"url": "map.php",
+				"url": "query.php",
 				"data": function(str) {
 					return {
-						"op": "search",
+						'functionName': "search",
 						"srch": str,
 						'table': that.table
 					}
