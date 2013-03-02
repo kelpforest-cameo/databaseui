@@ -67,7 +67,10 @@ function MapEntry() {
 				that.initializeMap();
 				that.initializeUI();
 			}
-			var t = $(that.element).dialog('option','title');
+			//--------------------------------------------------
+			// $(this.label_row).hide();		var t = $(that.element).dialog('option','title');
+			//-------------------------------------------------- 
+			var t = "Map Entry";
 			switch (that.mode) 
 			{
 			case MODE_LOCATION:
@@ -430,9 +433,9 @@ MapEntry.prototype.initializeUI = function()
 
 MapEntry.prototype.nodeSelect = function(data)
 {
-	this.location_id = $(data.rslt.obj).attr('id').replace('node_','');
 	if (!this.mapClicked)
 	{
+		this.location_id = $(data.rslt.obj).attr('id').replace('node_','');
 		this.select_node = $(data.rslt.obj).attr('id').replace('node_','');
 		try { 
 			var info = $(data.rslt.obj).data('node_info');
@@ -451,6 +454,7 @@ MapEntry.prototype.layerSelect = function(feature)
 {
 	this.mapClicked = true;
 	var lyr = feature.feature;
+	this.location_id = lyr.attributes.region_id;
 	this.coordinates = new OpenLayers.LonLat(lyr.attributes.centroid.x,lyr.attributes.centroid.y);
 	if ($("#node_"+lyr.attributes.region_id).length) {
 		$("#tree").jstree('select_node','#node_'+lyr.attributes.region_id,true,false);

@@ -386,10 +386,11 @@ InteractionObservationDialog.prototype.open = function ( ixdialog) {
 	this.location_but.setButton('Select location',createMethodReference(this,'selectLocation'));
 	this.location_but.createDivRow(this.element);
 
-	var lrow = $("<div>").attr('class','divpad');
+	var lrow = $('<div id="label_row" style="display: none">').attr('class','divpad');
 	$(lrow).append("<label for=\"loc_label\">&nbsp;</label>\n<div id=\"loc_label\">&nbsp;</div>");
 	$(lrow).appendTo(this.element);
 	this.location_label = $("#loc_label");
+	this.label_row = $("#label_row");
 
 	this.interaction_type = $(this.ixdialog.interaction_type_select).val();
 	this.createInputs( );
@@ -435,6 +436,11 @@ InteractionObservationDialog.prototype.mapClosed = function()
 	var ni = mapentry.getLocation();
 	s = ni.name != "" ? "["+ni.name+"]" : "";
 	$(this.location_label).text(s);
+	if (s != "") {
+		$(this.label_row).show();
+	} else {
+		$(this.label_row).hide();
+	}
 }
 
 InteractionObservationDialog.prototype.createInputs = function (  ) {
