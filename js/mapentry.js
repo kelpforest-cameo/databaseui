@@ -1,5 +1,3 @@
-//TODO: generic spatial info in database (i.e.location may be one of these categories, a lat/lon point, or an arbitrary polygon
-// 			this refers to the location_data table that links observations/nodes to the location categories
 var MODE_RANGE=0,MODE_LOCATION=1;
 function MapEntry() {  
 
@@ -32,7 +30,7 @@ function MapEntry() {
 
 
 	var html = "<div id=\"map_container\" style=\"background-color: black; width: 875px; height: 500px\">" +
-		"<div id=\"map_wrap\" style=\"margin: 10px; width:640px; height:480px;float:left;border: 1px solid black;\"><div id=\"map_canvas\" style=\"width: 100%; height: 100%\"></div></div>" +
+		"<div id=\"map_wrap\" style=\"margin: 10px; width:640px; height:480px;float:left;border: 1px solid black;\"></div>" +
 		"<div id=\"sidebar\" style=\"width: 200px; height: 480px; background-color: white; float:left; margin-top: 10px; margin-bottom: 10px\">" +
 			"<div id=\"tree\" style=\"width: 100%; height: 87%; overflow: auto\"></div>" +
 			"<div id=\"nav\" style=\"height: 100%; margin-top: 5px\">" +
@@ -61,15 +59,12 @@ function MapEntry() {
 			},
 			"Cancel": function() { $(that.element).dialog('close'); }
 		},
+		close: function(e,u) {
+			$("#map_canvas").remove();
+		},
 		open: function(e,u) {
-			if (!that.initialized) {
-				that.initialized = true;
-				that.initializeMap();
-				that.initializeUI();
-			}
-			//--------------------------------------------------
-			// $(this.label_row).hide();		var t = $(that.element).dialog('option','title');
-			//-------------------------------------------------- 
+			that.initializeUI();
+			that.initializeMap();
 			var t = "Map Entry";
 			switch (that.mode) 
 			{
@@ -134,9 +129,10 @@ MapEntry.prototype.getLocation = function() {
 	};
 }
 
-MapEntry.prototype.open = function (mode, done) {
+MapEntry.prototype.open = function (mode, selected, done) {
 
 	this.dlgCallback = done;
+	this.selected_id = selected;
 	this.mode = mode;
 	if ( $(this.element).dialog( "isOpen" ) === true ) {
 		return;
@@ -235,6 +231,10 @@ MapEntry.prototype.getLayer = function(id)
 MapEntry.prototype.initializeMap = function() 
 {
 	var that = this;
+	$("<div id='map_canvas'>")
+		.css('width','100%')
+		.css('height','100%')
+		.appendTo("#map_wrap");
 	this.map = new OpenLayers.Map('map_canvas');
 	wkt = new OpenLayers.Format.WKT();
 	var wmsLayer = new OpenLayers.Layer.WMS(

@@ -202,6 +202,7 @@ function InteractionObservationDialog() {
 	this.element = document.createElement("div");
 	this.element.setAttribute('id', this.id);
 	this.element.style.paddingTop = "15px";
+	this.location_id = -1;
 
 	this.search = new Input(this, "search");
 	this.search.display_name = "Search Citations :";
@@ -428,12 +429,13 @@ InteractionObservationDialog.prototype.open = function ( ixdialog) {
 
 InteractionObservationDialog.prototype.selectLocation = function()
 {
-	mapentry.open(MODE_LOCATION,createMethodReference(this,'mapClosed'));
+	mapentry.open(MODE_LOCATION,this.location_id,createMethodReference(this,'mapClosed'));
 }
 
 InteractionObservationDialog.prototype.mapClosed = function()
 {
 	var ni = mapentry.getLocation();
+	this.location_id = ni.id;
 	s = ni.name != "" ? "["+ni.name+"]" : "";
 	$(this.location_label).text(s);
 	if (s != "") {
