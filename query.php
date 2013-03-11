@@ -1303,7 +1303,8 @@ if(!is_authenticated()  ) {
 				AND node.active = 1
 				AND children.visible = 1
 				AND children.active = 1
-				GROUP BY node.id";
+				GROUP BY node.id
+				ORDER BY node.lft ASC";
 
 			$result = array();
 			$res = $db->query($sql,array($id));
