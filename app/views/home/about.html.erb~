@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Food Web builder</title>
+<%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    	<div class="span12"style= "margin-right:-90px">
+			<h1> <b> Welcome to the Food Web Builder web application </b> </h1>
+	</div>
+  </head>
+  <body>
+	<p>
+	Scientists, we are in the process of diversifying a web-based tool that gives you the power to build a food web information database complete with visualizations and documented observations. Currently, the tool is only designed to use with one food web. With the help of our team, this constraint will be broken so that you can use it to develop food webs of any region you desire. The will be a much more friendly environment in which you can both work and play. Our intuitive layout will allow you to easily navigate food webs by region while accessing detailed biological information about each region's unique ecosystem. You will experience great dexterity when utilizing the added ease-of-use features of our updated data entry tool. Lastly, prepare to be dazzled by our interactive visualizations! Overall, the tool will be a much more robust, efficient, and engaging platform.
+	</p>
+
+  </body>
+</html>
