@@ -171,7 +171,7 @@ Datum.prototype.openDialog = function() {
 		modal: true,
 		close: function() { $( this ).remove(); },
 		buttons: { 
-			"Set Datum" : createMethodReference(this, "setDatum"),
+			"Set Date Info" : createMethodReference(this, "setDatum"),
 			"Clear" : createMethodReference(this, "clear"),
 			"Close": function() {$( this ).remove(); }
 		} 
