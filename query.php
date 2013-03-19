@@ -320,6 +320,21 @@ function getAllInteractionsForNode ( $node_id , $stage_1_or_2) {
 	}
 	return $response;
 }
+
+function addLocationData($location_data)
+{
+	global $db;
+	$coords = '';
+	if ($location_data['coordinates'] != null) {
+		$coords = "POINT({$location_data[coordinates][lon]} {$location_data[coordinates][lat]})";
+	}
+	$r = $db->query("INSERT INTO location_data (location_id, sdata) VALUES (?,GeomFromText(?))",array($location_data['location_id'],$coords));
+	if (!DB::isError($r)) {
+		return $db->getOne("SELECT LAST_INSERT_ID() FROM location_data");
+	} else {
+		return -1;
+	}
+}
 // ------------- Get params ------------------------------------------------------------//
 
 $functionName="";
@@ -775,10 +790,14 @@ if(!is_authenticated()  ) {
 			$interaction_id= $_REQUEST['interaction_id'];
 			$table =  $type . "_interaction_observation";
 			$idname = $type . "_interaction_id";
+
 	
 			if (!canModify($user, $table, $idname, $interaction_id) ) {
-			error("No permissions to modify this entry, $table:$idname:$interaction_id");
+				error("No permissions to modify this entry, $table:$idname:$interaction_id");
 			}
+
+			$db->query("DELETE FROM location_data WHERE id = ?",array($_REQUEST['location_id']));
+
 			$sql = "DELETE from $table WHERE cite_id=" .  $db->quote($_REQUEST['cite_id']);
 			$sql .= " AND location_id=" . $db->quote( $_REQUEST['location_id'] ) ;
 			$sql .= " AND observation_type=" . $db->quote( $_REQUEST['observation_type'] ) ;
@@ -1042,7 +1061,11 @@ if(!is_authenticated()  ) {
 			if (!canWrite($user) ) { error("No permissions to add New Interaction Observation."); }
 			if ( !isset( $_REQUEST['cite_id']) ) { error("Need a citation id"); }
 			if ( !isset( $_REQUEST['interaction_type'] ) ) {  error("Need an interaction type"); }
-			if ( !isset( $_REQUEST['location_id'] ) ) {  error("Need a location_id"); }
+			if ( !isset( $_REQUEST['location_data'] ) ) {  error("Need a location_id"); }
+			//--------------------------------------------------
+			// if ( !isset( $_REQUEST['location_id'] ) ) {  error("Need a location_id"); }
+			//-------------------------------------------------- 
+			$location_id = addLocationData($_REQUEST['location_data']);
 
 			$type = $_REQUEST['interaction_type'];
 			$table =  $type . "_interaction_observation";
@@ -1055,7 +1078,10 @@ if(!is_authenticated()  ) {
 				$sql .= " VALUES ( ". $db->quote( $_REQUEST['cite_id'] ) . ",";
 				$sql .=  $db->quote( $user['id']) . ",";
 				$sql .=  $db->quote( $_REQUEST['interaction_id'] ) . ",";
-				$sql .=  $db->quote( $_REQUEST['location_id'] ) . ",";
+				//--------------------------------------------------
+				// $sql .=  $db->quote( $_REQUEST['location_id'] ) . ",";
+				//-------------------------------------------------- 
+				$sql .=  $db->quote( $location_id ) . ",";
 				$sql .=  $db->quote( $_REQUEST['lethality'] ) . ",";
 				$sql .=  $db->quote( $_REQUEST['structures_consumed'] ) . ",";
 				if ( empty($_REQUEST['percentage_consumed']) )
@@ -1080,7 +1106,10 @@ if(!is_authenticated()  ) {
 				$sql .= " VALUES ( ". $db->quote( $_REQUEST['cite_id'] ) . ",";
 				$sql .=  $db->quote( $user['id']) . ",";
 				$sql .=  $db->quote( $_REQUEST['interaction_id'] ) . ",";
-				$sql .=  $db->quote( $_REQUEST['location_id'] ) . ",";
+				//--------------------------------------------------
+				// $sql .=  $db->quote( $_REQUEST['location_id'] ) . ",";
+				//-------------------------------------------------- 
+				$sql .=  $db->quote( $location_id ) . ",";
 				$sql .=  $db->quote( $_REQUEST['facilitation_type'] ) . ",";
 				$sql .=  $db->quote( $_REQUEST['observation_type'] ) . ",";
 			break;
@@ -1090,7 +1119,10 @@ if(!is_authenticated()  ) {
 				$sql .= " VALUES ( ". $db->quote( $_REQUEST['cite_id'] ) . ",";
 				$sql .=  $db->quote( $user['id']) . ",";
 				$sql .=  $db->quote( $_REQUEST['interaction_id'] ) . ",";
-				$sql .=  $db->quote( $_REQUEST['location_id'] ) . ",";
+				//--------------------------------------------------
+				// $sql .=  $db->quote( $_REQUEST['location_id'] ) . ",";
+				//-------------------------------------------------- 
+				$sql .=  $db->quote( $location_id ) . ",";
 				$sql .=  $db->quote( $_REQUEST['competition_type'] ) . ",";
 				$sql .=  $db->quote( $_REQUEST['observation_type'] ) . ",";
 				break;
@@ -1100,7 +1132,10 @@ if(!is_authenticated()  ) {
 				$sql .= " VALUES ( ". $db->quote( $_REQUEST['cite_id'] ) . ",";
 				$sql .=  $db->quote( $user['id']) . ",";
 				$sql .=  $db->quote( $_REQUEST['interaction_id'] ) . ",";
-				$sql .=  $db->quote( $_REQUEST['location_id'] ) . ",";
+				//--------------------------------------------------
+				// $sql .=  $db->quote( $_REQUEST['location_id'] ) . ",";
+				//-------------------------------------------------- 
+				$sql .=  $db->quote( $location_id ) . ",";
 				$sql .=  $db->quote( $_REQUEST['endo_ecto'] ) . ",";
 				$sql .=  $db->quote( $_REQUEST['lethality'] ) . ",";
 				$sql .=  $db->quote( $_REQUEST['prevalence'] ) . ",";
@@ -1260,6 +1295,17 @@ if(!is_authenticated()  ) {
 		//--------------------------------------------------
 		// Map interface server functions
 		//-------------------------------------------------- 
+		case 'contains_point':
+			$lat = $_REQUEST['lat'];
+			$lon = $_REQUEST['lon'];
+			$sql = "SELECT id, AsText(region) AS region FROM locations WHERE MBRIntersects(region,GeomFromText(?)) ORDER BY z_index DESC, zoom_max DESC";
+			$r = $db->getAll($sql,array("POINT($lon $lat)"),DB_FETCHMODE_ASSOC);
+			if (!DB::isError($r)) {
+				print json_encode($r);
+			} else {
+				error($r->getMessage());
+			}
+			break;
 		case 'select_region':
 			$id = $_REQUEST['id'];
 			$sql = "SELECT AsText(region) AS region, AsText(centroid) AS centroid FROM locations WHERE id = ?";

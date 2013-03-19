@@ -12,20 +12,22 @@ function MapEntry() {
 	$(this.element).css("overflow","hidden");
 	$(this.element).hide();
 
+	this.manual_nav = false;
 	this.table='locations';
-	this.zoomTarget = -1;
 	this.map = null;
 	this.drawControls = null;
 	this.vectors = null;
-	this.loaded_nodes = [];
 	this.select_node = null;
 	this.mapClicked = false;
 	this.featureEvent = true;
-	this.dialogResult = null;
 	this.dlgCallback = null;
 	this.coordinates = null;
+	this.entered_latlon = null;
 	this.mode = MODE_LOCATION;
 	this.location_id = -1;
+	this.selected_id = -1;
+	this.comment = new Comment();
+	this.date = new Datum();
 	OpenLayers.Feature.Vector.style['default']['strokeWidth'] = '2';
 
 
@@ -35,7 +37,7 @@ function MapEntry() {
 			"<div id=\"tree\" style=\"width: 100%; height: 87%; overflow: auto\"></div>" +
 			"<div id=\"nav\" style=\"height: 100%; margin-top: 5px\">" +
 				"<form id=\"llform\"><input style=\"background-color: white; border: 1px solid black; width: auto;\" type=\"text\" id=\"lat\" size=8 value=\"lat\" title=\"lat\">&nbsp;<input style=\"background-color: white; border: 1px solid black; width: auto;\" type=\"text\" id=\"lon\" size=\"8\" value=\"lon\" title=\"lon\">&nbsp;<input style=\"background-color: white; border: 1px solid black; width: auto;\" type=submit value=\"go\"></form>" +
-				"<form id=\"searchform\" method=\"get\"><input style=\"background-color: white; border: 1px solid black; width: auto;\" type=\"text\" id=\"mapsearch\" size=22 value=\"search map\" title=\"search map\">&nbsp;<input style=\"background-color: white; border: 1px solid black; width: auto;\" type=submit value=\"go\"></form>" +
+				"<input style=\"background-color: white; border: 1px solid black; width: auto;\" type=\"text\" id=\"mapsearch\" size=22 value=\"search map\" title=\"search map\">" +
 			"</div>" +
 		"</div>" +
 	"</div>";
@@ -48,23 +50,31 @@ function MapEntry() {
 		height: 'auto',
 		width: 'auto',
 		shadow: false,
-		modal: false,
+		modal: true,
 		resizable: false,
 		buttons: {
 			"Select": function() {
 				$(that.element).dialog('close');
 				if (that.dlgCallback != null && that.dlgCallback != undefined && typeof(that.dlgCallback) == 'function') {
-					that.dlgCallback(that.dialogResult);
+					that.dlgCallback(that.getLocation());
 				}
 			},
 			"Cancel": function() { $(that.element).dialog('close'); }
 		},
 		close: function(e,u) {
-			$("#map_canvas").remove();
+			//--------------------------------------------------
+			// $("#map_canvas").remove();
+			//-------------------------------------------------- 
 		},
 		open: function(e,u) {
-			that.initializeUI();
-			that.initializeMap();
+			if (!that.initialized) {
+				that.initialized = true;
+				that.initializeUI();
+				that.initializeMap();
+			} else if (that.selected_id == -1) {
+				that.select_node = null;
+				that.reset();
+			}
 			var t = "Map Entry";
 			switch (that.mode) 
 			{
@@ -81,9 +91,18 @@ function MapEntry() {
 			}
 			that.setTitle(t);
 			that.setStatus(t);
-			//--------------------------------------------------
-			// $("<div>"+t+"</div>").css('float','left').css('border','1px solid black').css('height',ht).prependTo('.ui-dialog-buttonpane');
-			//-------------------------------------------------- 
+			if ($("#buttondiv").length == 0)
+			{
+				e = $("<div>")
+					.append(that.comment.button)
+					.append("&nbsp;")
+					.append(that.date.button)
+					.attr('id','buttondiv')
+					.css('float','right')
+					.css('margin-right','5px')
+					.css('margin-top','4px');
+				$("#map_interface ~ .ui-dialog-buttonpane").append(e);
+			}
 		}
 	});
 }
@@ -98,7 +117,7 @@ MapEntry.prototype.setStatus = function(t)
 	if ($("#statusbox").length) {
 		$("#statusbox").html(t);
 	} else {
-		var ht = $('.ui-dialog-buttonset').innerHeight();
+		var ht = $("#map_interface").parent().find('.ui-dialog-buttonset').innerHeight();
 		var outer = $("<div>").css({
 			'display': 'table',
 			'height': ht,
@@ -117,20 +136,29 @@ MapEntry.prototype.setStatus = function(t)
 			'#top': '-50%'
 		}).attr('id','statusbox').appendTo(middle);
 		$(middle).appendTo(outer);
-		$(outer).prependTo('.ui-dialog-buttonpane');
+		$(outer).prependTo('#map_interface ~ .ui-dialog-buttonpane');
 	}
 }
 
 MapEntry.prototype.getLocation = function() {
 	var that = this;
-	return { 
+	var obj = 
+	{ 
 		id: that.location_id,
-		name: $("#node_"+that.location_id).text().trim()
+		path: that.location_id != -1 ? $("#tree").jstree('get_path',$("#node_"+that.location_id),false) : [],
+		name: $("#node_"+that.location_id).text().trim(),
+		date: that.date.getDatum(),
+		comment: that.comment.getComment()
 	};
+	obj.coords = this.entered_latlon != null ? 
+	{
+		lat: that.entered_latlon.lat,
+		lon: that.entered_latlon.lon
+	} : null;
+	return obj;
 }
 
 MapEntry.prototype.open = function (mode, selected, done) {
-
 	this.dlgCallback = done;
 	this.selected_id = selected;
 	this.mode = mode;
@@ -173,6 +201,7 @@ MapEntry.prototype.updateMap = function()
 				that.drawControls.select.unselectAll();
 				that.drawControls.select.select(toSelect);
 			}
+			that.drawFinished();
 		},
 		"json"
 	);
@@ -410,18 +439,23 @@ MapEntry.prototype.initializeUI = function()
 			$(this).val($(this).attr('title'));
 	});
 	$("#llform").submit(function(e) {
+		that.manual_nav = true;
 		var lt = parseFloat($("#lat").val());
 		var ln = parseFloat($("#lon").val());
 		if ((lt >= -90 && lt <= 90) && (ln >= -180 && ln <= 180)) {
 			that.coordinates = new OpenLayers.LonLat(ln,lt);
-			that.map.setCenter(that.coordinates.clone().transform("EPSG:4326","EPSG:3857"),7);
+			that.entered_latlon = new OpenLayers.LonLat(ln,lt);
+			that.map.setCenter(that.coordinates.clone().transform("EPSG:4326","EPSG:3857"),8);
 		}
 		e.preventDefault();
 	});
 	$("#mapsearch").geocomplete().bind("geocode:result",function(e,result) {
+		that.manual_nav = true;
 		var loc = result.geometry.location;
 		that.coordinates = new OpenLayers.LonLat(loc.lng(),loc.lat());
-		that.map.setCenter(that.coordinates.clone().transform("EPSG:4326","EPSG:3857"),7);
+		that.entered_latlon = new OpenLayers.LonLat(loc.lng(),loc.lat());
+		that.map.setCenter(that.coordinates.clone().transform("EPSG:4326","EPSG:3857"),8);
+		e.preventDefault();
 	}).keypress(function() {
 		if (!that.pacContainerInit) {
 			$('.pac-container').css('z-index','10000');
@@ -429,6 +463,33 @@ MapEntry.prototype.initializeUI = function()
 			that.pacContainerInit = true;
 		}
 	});
+}
+
+MapEntry.prototype.reset = function()
+{
+	this.drawControls.select.unselectAll();
+	$("#tree").jstree('deselect_all');
+	$("#tree").jstree('refresh');
+	this.map.setCenter(new OpenLayers.LonLat(-122.030796, 36.974117).transform("EPSG:4326","EPSG:3857"),3);
+}
+
+MapEntry.prototype.drawFinished = function()
+{
+	var that = this;
+	if (this.manual_nav) {
+		this.manual_nav = false;
+		var c = this.coordinates.clone().transform("EPSG:4326","EPSG:3857");
+		var p = new OpenLayers.Geometry.Point(c.lon,c.lat);
+		for (i in this.vectors.features) {
+			if (this.vectors.features[i].geometry.intersects(p)) {
+				this.drawControls.select.unselectAll();
+				this.drawControls.select.select(this.vectors.features[i]);
+				break;
+			}
+		}
+	} else {
+		this.entered_latlon = null;
+	}
 }
 
 MapEntry.prototype.nodeSelect = function(data)

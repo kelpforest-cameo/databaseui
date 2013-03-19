@@ -1,4 +1,5 @@
-
+//TODO: make sure adding/deleting observations deals appropriately with orphaned location data
+//
 function ObservationSpan ( parent_div, observation ) {
 	this.element = document.createElement("div");
 	this.element.className = "cited";
@@ -174,7 +175,7 @@ ObservationSpan.prototype.deleteInteractionObservation = function( ) {
 	obj.observation_type = this.observation.observation_type;
 	obj.interaction_id = this.getInteractionId();
 	obj.interaction_type = this.getInteractionType();
-	$.ajax( { async:true, type:"GET", dataType:"json",
+	$.ajax( { async:true, type:"POST", dataType:"json",
 		data: obj,
 		url: "query.php",
 		error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },
@@ -202,7 +203,7 @@ function InteractionObservationDialog() {
 	this.element = document.createElement("div");
 	this.element.setAttribute('id', this.id);
 	this.element.style.paddingTop = "15px";
-	this.location_id = -1;
+	this.location_result = null;
 
 	this.search = new Input(this, "search");
 	this.search.display_name = "Search Citations :";
@@ -320,6 +321,7 @@ InteractionObservationDialog.prototype.onClick= function ( e ) {
 	postdata.cite_id = cite_id;
 	postdata.interaction_type = this.interaction_type;
 	postdata.interaction_id = this.ixdialog.interaction_id;
+	postdata.location_data = this.location_result;
 	var comment = this.comment.getComment();
 	if (comment!= "") {
 		postdata.comment = comment;
@@ -333,7 +335,7 @@ InteractionObservationDialog.prototype.onClick= function ( e ) {
 		var l = this.cvars[i].field_name;
 		postdata[l] = this.cvars[i].element.value;
 	}		
-	$.ajax( { async:false, type:"GET", dataType:"json",
+	$.ajax( { async:false, type:"POST", dataType:"json",
 		data: postdata, 
 		url: "query.php", 
 		error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },
@@ -362,6 +364,7 @@ InteractionObservationDialog.prototype.close = function ( ) {
 InteractionObservationDialog.prototype.open = function ( ixdialog) {
 	this.ixdialog = ixdialog;
 	this.search.clear();
+	this.location_result = null;
 
 	if ( $(this.element).dialog( "isOpen" ) === true ) {
 		return;
@@ -429,14 +432,16 @@ InteractionObservationDialog.prototype.open = function ( ixdialog) {
 
 InteractionObservationDialog.prototype.selectLocation = function()
 {
-	mapentry.open(MODE_LOCATION,this.location_id,createMethodReference(this,'mapClosed'));
+	mapentry.open(MODE_LOCATION,this.location_result != null ? this.location_result.location_id : -1,createMethodReference(this,'mapClosed'));
 }
 
-InteractionObservationDialog.prototype.mapClosed = function()
+InteractionObservationDialog.prototype.mapClosed = function(result)
 {
-	var ni = mapentry.getLocation();
-	this.location_id = ni.id;
-	s = ni.name != "" ? "["+ni.name+"]" : "";
+	this.location_result = {
+		location_id: result.id,
+		coordinates: result.coords
+	};
+	var s = result.path.length > 0 ? '['+result.path.join(' | ')+']' : (result.name != '' ? '['+result.name+']' : "");
 	$(this.location_label).text(s);
 	if (s != "") {
 		$(this.label_row).show();
