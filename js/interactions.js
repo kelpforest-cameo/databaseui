@@ -239,7 +239,7 @@ IXInput.prototype.addNewStage = function ( ) {
 	}
 	p.stage_name = p.stage_name.slice(0, p.stage_name.length -2)
 	p.functionName = "addNewStage"; 
-	$.ajax( { async:true, type:"GET", dataType:"json", 
+	$.ajax( { async:true, type:"POST", dataType:"json", 
 		data: p,
 		url: "query.php",
 		error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },
@@ -577,7 +577,7 @@ InteractionsEditor.prototype.addNewInteraction = function() {
 	postdata.interaction_type = $(this.interaction_type_select).val();
 	postdata.stage_1_id = this.ixinput1.getSelectedStageId();
 	postdata.stage_2_id = this.ixinput2.getSelectedStageId();
-	$.ajax( { async:false, type:"GET", dataType:"json",
+	$.ajax( { async:false, type:"POST", dataType:"json",
 		data: postdata, 
 		url: "query.php", 
 		error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },
@@ -611,7 +611,7 @@ InteractionsEditor.prototype.deleteInteraction = function() {
 	postdata.interaction_id = this.interaction_id;	
 	postdata.stage_1_id = this.ixinput1.getSelectedStageId();
 	postdata.stage_2_id = this.ixinput2.getSelectedStageId();
-	$.ajax( { async:false, type:"GET", dataType:"json",
+	$.ajax( { async:false, type:"POST", dataType:"json",
 			data: postdata, 
 			url: "query.php", 
 			error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },

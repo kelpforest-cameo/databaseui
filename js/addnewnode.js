@@ -166,7 +166,7 @@ AddNode.prototype.addNewNode = function() {
 	if (this.inputs.is_assemblage.element.checked == true)
 		postobj.is_assemblage=1;
 
-	$.ajax( { async:false, type:"GET", dataType:"json", 
+	$.ajax( { async:false, type:"POST", dataType:"json", 
 		data: postobj,
 		url: "query.php",
 		error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },

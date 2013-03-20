@@ -792,7 +792,7 @@ CiteInput.prototype.addNewCitedVar = function ( cite_id ) {
 		if (datum!= undefined) {
 			p.datum = JSON.stringify( datum );
 		}
-		$.ajax( { async:true, type:"GET", dataType:"json", 
+		$.ajax( { async:true, type:"POST", dataType:"json", 
 			data: p,
 			url: "query.php",
 			error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },
@@ -912,7 +912,7 @@ CiteSpan.prototype.deleteCitedVar = function( ) {
 		obj.table = "node_" + this.citeinput.field_name;
 	}
 	obj.cite_id = this.val_obj.cite_id;
-	$.ajax( { async:true, type:"GET", dataType:"json",
+	$.ajax( { async:true, type:"POST", dataType:"json",
 		data: obj,
 		url: "query.php",
 		error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },

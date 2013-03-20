@@ -57,7 +57,7 @@ function updateTable( table_name, id, fields, values ) {
 	postdata.id = id;
 	postdata.fields = fields;
 	postdata.values = values; 
-	$.ajax( { async:false, type:"GET", dataType:"json",
+	$.ajax( { async:false, type:"POST", dataType:"json",
 		data: postdata, 
 		url: "query.php", 
 		success: function(data, t, x) {	

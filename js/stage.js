@@ -238,7 +238,7 @@ StageTabs.prototype.addNewStage = function () {
 	p.node_id = this.parent.node.id;
 	p.stage_name = $( this.add_new_stage_dialog_select ).val();
 	p.functionName = "addNewStage"; 
-	$.ajax( { async:true, type:"GET", dataType:"json", 
+	$.ajax( { async:true, type:"POST", dataType:"json", 
 			data: p,
 			url: "query.php",
 			error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },
@@ -347,7 +347,7 @@ StageTabs.prototype.removeTab = function (e) {
 	var p = new Object();
 	p.stage_id = tab.stage.id;
 	p.functionName = "deleteStage";
-	$.ajax( { async:true, type:"GET", dataType:"json", 
+	$.ajax( { async:true, type:"POST", dataType:"json", 
 		data: p,
 		url: "query.php",
 		error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },
