@@ -754,23 +754,8 @@ if(!is_authenticated()  ) {
 				} else {
 					$response['response'] = "Deleted interaction";
 					// now delete all Interaction Observations
-					$sql = "DELETE from trophic_interaction_observation WHERE trophic_interaction_id=" . $db->quote( $interaction_id );
-					$result = $db->query($sql);
-					if(DB::isError($result)) { $response['error'] .= $result->getMessage(); $response['sql'] .= $sql;}
-					$sql = "DELETE from parasitic_interaction_observation WHERE parasitic_interaction_id=" . $db->quote( $interaction_id );
-					$result = $db->query($sql);
-					if(DB::isError($result)) { $response['error'] .= $result->getMessage(); $response['sql'] .= $sql;}
-					$sql = "DELETE from competition_interaction_observation WHERE competition_interaction_id=" . $db->quote( $interaction_id );
-					$result = $db->query($sql);
-					if(DB::isError($result)) { $response['error'] .= $result->getMessage(); $response['sql'] .= $sql;}
-					$sql = "DELETE from facilitation_interaction_observation WHERE facilitation_interaction_id=" . $db->quote( $interaction_id );
-					$result = $db->query($sql);
-					if(DB::isError($result)) { $response['error'] .= $result->getMessage(); $response['sql'] .= $sql;}
-					$result = $db->query($sql);
-					if(DB::isError($result)) { 
-						$response['error'] = $result->getMessage(); 
-						$response['sql'] = $sql;
-					}
+					$sql = "DELETE FROM {$type}_interaction_observation WHERE {$type}_interaction_id = ?";
+					$result = $db->query($sql,array($interaction_id));
 				}
 			} else {
 				$response['error'] = "No stage_1_id stage_2_id interaction_type or interaction_id";
