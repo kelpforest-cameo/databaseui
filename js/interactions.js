@@ -344,6 +344,7 @@ IXInput.prototype.ln_autocompleteCB = function (e, ui) {
 /// -----------------
 
 function InteractionsEditor() {
+	var that = this;
 	this.id = "interactions_dialog";
 	this.element = document.createElement("div");
 	this.element.title = "Interactions Editor";
@@ -351,7 +352,27 @@ function InteractionsEditor() {
 
 	this.interaction_type_select = document.createElement("select")
 	this.interaction_type_select.style.marginBottom = "20px";
+	//--------------------------------------------------
+	// $(this.interaction_type_select);
+	// $(this.interaction_type_select).attr('name','ix_type');
+	// this.sel_bar = document.createElement('div');
+	// $(this.sel_bar).css('width','100%').css('text-align','left').css('margin-bottom',"20px");
+	// $(this.sel_bar).append("Interaction type:&nbsp;").append(this.interaction_type_select);
+	//-------------------------------------------------- 
 
+	//--------------------------------------------------
+	// $.get("query.php",
+	// 	{ functionName: "listInteractionTypes"},
+	// 	function(data) {
+	// 		$.each(data,function(k,v) {
+	// 			$(that.interaction_type_select)
+	// 				.append($("<option>", {v: k})
+	// 				.text(v));
+	// 		});
+	// 	},
+	// 	"json"
+	// );
+	//-------------------------------------------------- 
 	var tmp = '<option name="trophic" value="trophic">trophic (1 eats 2)</option>';
 	tmp += '<option name="competition" value="competition">competition (1 outcompetes 2)</option>';
 	tmp += '<option name="facilitation" value="facilitation">facilitation (1 facilitates 2)</option>';
@@ -393,6 +414,9 @@ function InteractionsEditor() {
 	tr.appendChild(td2);
 
 	td_c.appendChild(this.interaction_type_select);
+	//--------------------------------------------------
+	// td_c.appendChild(this.sel_bar);
+	//-------------------------------------------------- 
 	td_c.appendChild(this.interaction_info);
 	td_c.appendChild(this.add_observation_but);
 	td_c.appendChild(this.add_interaction_but);

@@ -358,6 +358,19 @@ if(!is_authenticated()  ) {
 	} 
 
 	switch ($functionName) {
+		case "listInteractionTypes":
+			$r = $db->query("SELECT id, name FROM interaction_types");
+			if (!DB::isError($r)) {
+				$result = array();
+				while ($row = $r->fetchRow(DB_FETCHMODE_ARRAY)) {
+					$result[$row[0]] = $row[1];
+				}
+				echo json_encode($result);
+			} else {
+				error($r->getMessage());
+			}
+			break;
+
 		case "listAllLocations":
 			$result = getLocations();
 			echo  json_encode($result);
