@@ -77,3 +77,11 @@ html, body {
         padding-right: 20px;
     }
 }
+
+#map label {
+  width: auto;
+  display: inline;
+}
+#map img {
+  max-width: none;
+}

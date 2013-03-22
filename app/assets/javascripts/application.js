@@ -13,7 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require ./gmaps4rails/gmaps4rails.googlemaps.js.coffee
 //= require_tree.
+
 
 (document).ready(function(){
   $('.carousel').carousel({interval: 2000});
