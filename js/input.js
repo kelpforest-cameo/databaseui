@@ -20,7 +20,7 @@ Comment.prototype.addComment = function() {
 	$(this.dialog).remove();
 	this.dialog = undefined;
 
-	if ( $(this.textarea).val().trim() != "") {
+	if ( $.trim($(this.textarea).val()) != "") {
 		this.button.style.background="#990000";
 	} else {
 		this.button.style.background= this.bgcol;
@@ -47,7 +47,7 @@ Comment.prototype.clear = function() {
 	this.button.style.background= this.bgcol;
 }
 Comment.prototype.getComment = function() {
-	if (this.textarea != undefined && $(this.textarea).val().trim() != ""){
+	if (this.textarea != undefined && $.trim($(this.textarea).val()) != ""){
 		return this.textarea.value;
 	}
 	return;
@@ -785,7 +785,7 @@ CiteInput.prototype.addNewCitedVar = function ( cite_id ) {
 		p.fields = this.getFields();
 		p.values = this.getValues();
 		var comment = this.comment.getComment();
-		if ( comment != undefined && comment.trim() != "" ) {
+		if ( comment != undefined && $.trim(comment) != "" ) {
 			p.comment = comment;
 		}
 		var datum = this.datum.getDatum();

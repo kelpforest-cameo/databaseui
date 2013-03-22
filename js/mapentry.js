@@ -146,7 +146,7 @@ MapEntry.prototype.getLocation = function() {
 	{ 
 		id: that.location_id,
 		path: that.location_id != -1 ? $("#tree").jstree('get_path',$("#node_"+that.location_id),false) : [],
-		name: $("#node_"+that.location_id).text().trim(),
+		name: $.trim($("#node_"+that.location_id).text()),
 		date: that.date.getDatum(),
 		comment: that.comment.getComment()
 	};
