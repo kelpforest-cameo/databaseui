@@ -8,6 +8,7 @@ FoodWebBuilder::Application.routes.draw do
   resources :users
   match 'about' => 'home#about'
   match 'help' => 'home#help'
+  match 'visualization' => 'home#visuals'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

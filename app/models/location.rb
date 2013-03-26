@@ -1,8 +1,8 @@
 class Location < ActiveRecord::Base
-  attr_accessible :name, :state, :latitude, :longitude, :gmaps, :population
   acts_as_gmappable
+  attr_accessible :name, :state, :latitude, :longitude, :population
 
   def gmaps4rails_address
-  	"#{self.name}, #{self.state}"
+    "#{name}, #{state}"
   end
 end
