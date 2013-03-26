@@ -432,7 +432,7 @@ InteractionObservationDialog.prototype.open = function ( ixdialog) {
 
 InteractionObservationDialog.prototype.selectLocation = function()
 {
-	mapentry.open(MODE_LOCATION,this.location_result != null ? this.location_result.location_id : -1,createMethodReference(this,'mapClosed'));
+	mapentry.open(MapEntry.MODE_LOCATION,this.location_result != null ? this.location_result.location_id : -1,createMethodReference(this,'mapClosed'));
 }
 
 InteractionObservationDialog.prototype.mapClosed = function(result)

@@ -1,4 +1,3 @@
-var MODE_RANGE=0,MODE_LOCATION=1;
 function MapEntry() {  
 
 	var that = this;
@@ -23,9 +22,10 @@ function MapEntry() {
 	this.dlgCallback = null;
 	this.coordinates = null;
 	this.entered_latlon = null;
-	this.mode = MODE_LOCATION;
+	this.mode = MapEntry.MODE_LOCATION;
 	this.location_id = -1;
 	this.selected_id = -1;
+	this.selected_nodes = [];
 	this.comment = new Comment();
 	this.date = new Datum();
 	OpenLayers.Feature.Vector.style['default']['strokeWidth'] = '2';
@@ -56,7 +56,7 @@ function MapEntry() {
 			"Select": function() {
 				$(that.element).dialog('close');
 				if (that.dlgCallback != null && that.dlgCallback != undefined && typeof(that.dlgCallback) == 'function') {
-					that.dlgCallback(that.getLocation());
+					that.dlgCallback(that.getResult());
 				}
 			},
 			"Cancel": function() { $(that.element).dialog('close'); }
@@ -78,15 +78,19 @@ function MapEntry() {
 			var t = "Map Entry";
 			switch (that.mode) 
 			{
-			case MODE_LOCATION:
-				that.drawControls.select.toggleKey = null;
-				that.drawControls.select.multipleKey = null;
+			case MapEntry.MODE_LOCATION:
+				that.select.toggleKey = null;
+				that.select.multipleKey = null;
 				t += ' - Select Location';
+				that.removeBoxSelect();
+				that.setBoxSelect(false);
 				break;
-			case MODE_RANGE:
-				that.drawControls.select.toggleKey = "ctrlKey";
-				that.drawControls.select.multipleKey = "shiftKey";
-				t += ' - Select Range';
+			case MapEntry.MODE_RANGE:
+				that.select.toggleKey = "ctrlKey";
+				that.select.multipleKey = "shiftKey";
+				t += ' - Select Range: <strong>Shift+click to select multiple regions</strong>';
+				that.setBoxSelect(false);
+				that.addBoxSelect();
 				break;
 			}
 			that.setTitle(t);
@@ -106,6 +110,9 @@ function MapEntry() {
 		}
 	});
 }
+
+MapEntry.MODE_RANGE = 0;
+MapEntry.MODE_LOCATION = 1;
 
 MapEntry.prototype.setTitle = function(t)
 {
@@ -140,22 +147,37 @@ MapEntry.prototype.setStatus = function(t)
 	}
 }
 
-MapEntry.prototype.getLocation = function() {
+MapEntry.prototype.getResult = function() {
 	var that = this;
-	var obj = 
-	{ 
-		id: that.location_id,
-		path: that.location_id != -1 ? $("#tree").jstree('get_path',$("#node_"+that.location_id),false) : [],
-		name: $.trim($("#node_"+that.location_id).text()),
-		date: that.date.getDatum(),
-		comment: that.comment.getComment()
-	};
-	obj.coords = this.entered_latlon != null ? 
+	if (this.mode == MapEntry.MODE_LOCATION)
 	{
-		lat: that.entered_latlon.lat,
-		lon: that.entered_latlon.lon
-	} : null;
-	return obj;
+		var obj = 
+		{ 
+			id: that.location_id,
+			path: that.location_id != -1 ? $("#tree").jstree('get_path',$("#node_"+that.location_id),false) : [],
+			name: $.trim($("#node_"+that.location_id).text()),
+			date: that.date.getDatum(),
+			comment: that.comment.getComment()
+		};
+		obj.coords = this.entered_latlon != null ? 
+		{
+			lat: that.entered_latlon.lat,
+			lon: that.entered_latlon.lon
+		} : null;
+		return obj;
+	}
+	else if (this.mode == MapEntry.MODE_RANGE)
+	{
+		var obj = {};
+		obj.range = [];
+		$.each(this.vectors.selectedFeatures,function(f,l) {
+			obj.range.push(l.attributes.region_id);
+		});
+		return obj;
+	}
+	else {
+		return null;
+	}
 }
 
 MapEntry.prototype.open = function (mode, selected, done) {
@@ -184,23 +206,18 @@ MapEntry.prototype.updateMap = function()
 		},
 		function(data) {
 			var toSelect = null;
-			for (i in data) {
+			for (var i in data) {
 				var feature = that.createFeature(data[i]);
 				that.vectors.addFeatures([feature]);
-				if (that.select_node != null && feature.attributes.region_id == that.select_node) {
-					toSelect = feature;
-					that.select_node = null;
+			}
+			//TODO: when zoom level changes, unselect features from previous zoom level
+			$.each(that.selected_nodes,function(i,n) {
+				var lyr = that.getLayer(n);
+				if (lyr != null && that.vectors.selectedFeatures.indexOf(lyr) == -1) {
+					that.featureEvent = false;
+					that.select.select(lyr);
 				}
-			}
-			if (that.select_node != null) {
-				toSelect = that.getLayer(that.select_node);
-				that.select_node = null;
-			}
-			if (toSelect) {
-				that.featureEvent = false;
-				that.drawControls.select.unselectAll();
-				that.drawControls.select.select(toSelect);
-			}
+			});
 			that.drawFinished();
 		},
 		"json"
@@ -233,7 +250,7 @@ MapEntry.prototype.pruneFeatures = function(bounds)
 {
 	var zoom = this.map.getZoom();
 	var exclude = [], remove = [];
-	for (i in this.vectors.features)
+	for (var i in this.vectors.features)
 	{
 		var f = this.vectors.features[i];
 		if (!bounds.intersectsBounds(f.attributes.bounding_box) || (zoom < f.attributes.zoom_range.min || zoom > f.attributes.zoom_range.max)) {
@@ -248,7 +265,7 @@ MapEntry.prototype.pruneFeatures = function(bounds)
 
 MapEntry.prototype.getLayer = function(id)
 {
-	for (i in this.vectors.features)
+	for (var i in this.vectors.features)
 	{
 		if (this.vectors.features[i].attributes.region_id == id) 
 			return this.vectors.features[i];
@@ -256,6 +273,52 @@ MapEntry.prototype.getLayer = function(id)
 	return null;
 }
 
+MapEntry.prototype.addBoxSelect = function()
+{
+	var that = this;
+	var tree = $("#tree");
+	if ($("#box-select").length == 0) 
+	{
+		tree.css('height','82%');
+		$("<div>")
+			.attr('id','box-select')
+			.append($("<label>")
+				.attr('for','selectBox')
+				.text('Select using box:')
+				.css('text-align','left')
+				.css('width','83px')
+			)
+			.append($("<input>")
+				.attr('type','checkbox')
+				.attr('id','selectBox')
+				.css('width','25px')
+				.prop('checked',that.select.box)
+			)
+			.prependTo('#nav');
+		$("#selectBox").change(function() {
+			var f = $("#selectBox").prop('checked');
+			that.setBoxSelect(f);
+		});
+	} else {
+		$("#selectBox").prop('checked',this.select.box);
+	}
+}
+
+MapEntry.prototype.removeBoxSelect = function()
+{
+	if ($("#box-select").length > 0) {
+		$("#box-select").remove();
+		$("#tree").css('height','87%');
+	}
+}
+
+
+MapEntry.prototype.setBoxSelect = function(val)
+{
+	this.select.box = val;
+	this.select.deactivate();
+	this.select.activate();
+}
 
 MapEntry.prototype.initializeMap = function() 
 {
@@ -271,7 +334,6 @@ MapEntry.prototype.initializeMap = function()
 		"http://vmap0.tiles.osgeo.org/wms/vmap0",
 		{layers: 'basic'}
 	); 
-	//TODO: more map layers from Google? (street, hybrid, etc.)
 	var satLayer = new OpenLayers.Layer.Google("Google Satellite",{
 			'type': google.maps.MapTypeId.SATELLITE, 
 			'numZoomLevels': 22,
@@ -324,15 +386,23 @@ MapEntry.prototype.initializeMap = function()
 			renderers: renderer
 		}
 	);
+	//TODO: when changing zoom and returning, clickout no longer deselects selected layers
 	this.vectors.events.on({
 		'featureselected': function(feature) {
 			if (that.featureEvent) {
+				if (that.selected_nodes.indexOf(feature.feature.attributes.region_id) == -1) {
+					that.selected_nodes.push(feature.feature.attributes.region_id);
+				}
 				that.layerSelect(feature);
 			} else {
 				that.featureEvent = true;
 			}
 		},
 		'featureunselected': function(feature) {
+			if (that.selected_nodes.indexOf(feature.feature.attributes.region_id) != -1) {
+				var i = that.selected_nodes.indexOf(feature.feature.attributes.region_id);
+				that.selected_nodes.splice(i,1);
+			}
 			if (that.vectors.selectedFeatures.length == 0) {
 				that.location_id = -1;
 			}
@@ -351,22 +421,18 @@ MapEntry.prototype.initializeMap = function()
 	this.map.addLayers([satLayer, this.vectors]);
 	this.map.addControl(new OpenLayers.Control.LayerSwitcher());
 
-	this.drawControls = {
-		select: new OpenLayers.Control.SelectFeature(
+	this.select =  new OpenLayers.Control.SelectFeature(
 			this.vectors,
 			{
 				clickout: true, toggle: false,
 				multiple: false, hover: false,
-				box: false
+				box: true
 			}
-		)
-	};
+		);
 
-	for(var key in this.drawControls) {
-		this.map.addControl(this.drawControls[key]);
-	}
+	this.map.addControl(this.select);
 	this.map.setCenter(new OpenLayers.LonLat(-122.030796, 36.974117).transform("EPSG:4326","EPSG:3857"),3);
-	this.drawControls.select.activate();
+	this.select.activate();
 }
 
 
@@ -467,7 +533,7 @@ MapEntry.prototype.initializeUI = function()
 
 MapEntry.prototype.reset = function()
 {
-	this.drawControls.select.unselectAll();
+	this.select.unselectAll();
 	$("#tree").jstree('deselect_all');
 	$("#tree").jstree('refresh');
 	this.map.setCenter(new OpenLayers.LonLat(-122.030796, 36.974117).transform("EPSG:4326","EPSG:3857"),3);
@@ -480,10 +546,10 @@ MapEntry.prototype.drawFinished = function()
 		this.manual_nav = false;
 		var c = this.coordinates.clone().transform("EPSG:4326","EPSG:3857");
 		var p = new OpenLayers.Geometry.Point(c.lon,c.lat);
-		for (i in this.vectors.features) {
+		for (var i in this.vectors.features) {
 			if (this.vectors.features[i].geometry.intersects(p)) {
-				this.drawControls.select.unselectAll();
-				this.drawControls.select.select(this.vectors.features[i]);
+				this.select.unselectAll();
+				this.select.select(this.vectors.features[i]);
 				break;
 			}
 		}
