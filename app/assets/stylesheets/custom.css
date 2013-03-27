@@ -10,20 +10,6 @@
     background-repeat: repeat-x;
     /* IE8-9 gradient filter */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#222222', GradientType=0);
-
-  background-color: #2c2c2c; /* fallback color, place your own */
-
-  /* Gradients for modern browsers, replace as you see fit */
-  background-image: -moz-linear-gradient(top, #2B88D9, #1E4DD9);
-  background-image: -ms-linear-gradient(top, #2B88D9, #1E4DD9);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2B88D9), to(#1E4DD9));
-  background-image: -webkit-linear-gradient(top, #2B88D9, #1E4DD9);
-  background-image: -o-linear-gradient(top, #2B88D9, #1E4DD9);
-  background-image: linear-gradient(top, #2B88D9, #1E4DD9);
-  background-repeat: repeat-x;
-
-  /* IE8-9 gradient filter
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#222222', GradientType=0); */
 }
 
 .navbar .nav > li > a:focus, .navbar .nav > li > a:hover {
@@ -61,9 +47,12 @@ body {
     color: #262223;
 }
 
-
 html, body {
     height: 100%;
+}
+
+li > ol {
+    list-style: lower-roman;
 }
 
 #wrap {
@@ -93,5 +82,12 @@ html, body {
     }
 }
 
+.tab-pane > .well {
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
 
-
+.tab-pane > .well h3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}

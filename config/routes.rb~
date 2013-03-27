@@ -1,17 +1,15 @@
 FoodWebBuilder::Application.routes.draw do
 
   authenticated :user do
-  	root :to => 'dashboard#index'
+  	root :to => 'home#dataentry' # should end up point here 'dashboard#index'
   end
   root :to =>"home#index"
   devise_for :users
   resources :users
   match 'about' => 'home#about'
   match 'help' => 'home#help'
-<<<<<<< HEAD
   match 'visualization' => 'home#visuals'
-=======
->>>>>>> master
+  match 'dataentry' => 'dashboard#dataentry'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
