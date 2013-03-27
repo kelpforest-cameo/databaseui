@@ -11,9 +11,12 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 //= require ./gmaps4rails/gmaps4rails.googlemaps.js.coffee
 =======
 >>>>>>> master
+>>>>>>> 85a5b21b2ed6bf6301f009149ec42a5c9d3d19cc
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap

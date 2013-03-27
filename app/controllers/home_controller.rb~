@@ -1,4 +1,16 @@
 class HomeController < ApplicationController
   def index
+<<<<<<< HEAD
+    @json = Location.all.to_gmaps4rails
+=======
+<<<<<<< HEAD
+	  @json = Location.all.to_gmaps4rails
+>>>>>>> 85a5b21b2ed6bf6301f009149ec42a5c9d3d19cc
+  end
+
+=======
+  end
+>>>>>>> master
+  def about
   end
 end
