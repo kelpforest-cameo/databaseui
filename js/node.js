@@ -317,8 +317,13 @@ NodeDialog.prototype.openCiteVarDialog = function ( ) {
 }
 
 NodeDialog.prototype.selectRangeMap = function() {
+	//--------------------------------------------------
+	// var cite = new CiteDlg();
+	// cite.open(createMethodReference());
+	//-------------------------------------------------- 
 	mapentry.open(MapEntry.MODE_RANGE,this.location_result != null ? this.location_result.range : -1,createMethodReference(this,'mapClosed'));
 } 
+
 
 NodeDialog.prototype.mapClosed = function(result)
 {

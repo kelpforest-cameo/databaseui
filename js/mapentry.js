@@ -282,17 +282,16 @@ MapEntry.prototype.addBoxSelect = function()
 		tree.css('height','82%');
 		$("<div>")
 			.attr('id','box-select')
-			.append($("<label>")
-				.attr('for','selectBox')
-				.text('Select using box:')
-				.css('text-align','left')
-				.css('width','83px')
-			)
 			.append($("<input>")
 				.attr('type','checkbox')
 				.attr('id','selectBox')
 				.css('width','25px')
 				.prop('checked',that.select.box)
+			)
+			.append($("<label>")
+				.attr('for','selectBox')
+				.text('Select using box:')
+				.css('width','90px')
 			)
 			.prependTo('#nav');
 		$("#selectBox").change(function() {
@@ -590,3 +589,107 @@ MapEntry.prototype.layerSelect = function(feature)
 		$("#tree").jstree('search',srch_id);	
 	}
 }
+
+function CiteDlg(callback)
+{
+	var that = this;
+	this.id = 'cite_dlg';
+	this.callback = callback;
+	this.element = document.createElement('div');
+	$(this.element).attr('id',this.id);
+	$(this.element).css("padding","5px");
+	$(this.element).css("overflow","hidden");
+	$(this.element).hide();
+	
+	var html = '<style> .ui-effects-wrapper { display: inline; } </style><div id="simple_cite" >' +
+		'<div class="divpad"><label for="search_cite" style="text-align: left; width: 85px; ">Search citations:</label><input id="search_cite" type="text" size="45"></div>' +
+		'<div class="divpad"><label for="add_cite" style="text-align: left; width: 85px;">Add new:</label><button id="add_cite">Add Citation</button></div>' +
+		'<div style="display: none;" id="selected_cite_box">Selected:' +
+	  '<div style="border: 1px solid black; overflow: auto: height: 35px; width: 100%" id="selected_cite"></div>' + 
+		'</div>' + 
+		'</div>';
+	$(this.element).append(html);
+	$(this.element).appendTo('body');
+
+	$(this.element).find("#search_cite")
+		.autocomplete({
+			minLength: 3,
+			select: createMethodReference(that,'ac_Callback'),
+			source: makeAutocompleteFunc("auto/citation_name.php")
+		})
+		.keypress(function(e) {
+			if (e.which == 13) {
+				var b = $(that.element).dialog('option','buttons');
+				b['Select'].apply(that);
+			}
+		});
+	$(this.element).find("#add_cite")
+		.button()
+		.click(createMethodReference(this,'addCite'));
+}
+
+CiteDlg.prototype.ac_Callback = function(e, result)
+{
+	var f = $(this.element).find("#selected_cite");
+	$(this.element).find("#selected_cite")
+		.text(result.item.label);
+	$(this.element).find("#selected_cite_box").show();
+	$(this.element).dialog('option','height',155 + $(this.element).find("#selected_cite_box").outerHeight() + 5);
+	this.cite_id = result.item.id;
+}
+
+CiteDlg.prototype.addCite = function()
+{
+	addcitation.open(new callbackObject(this,'addCite_Callback'));
+}
+
+CiteDlg.prototype.addCite_Callback = function(cite)
+{
+	var s = cite.authors[0].last_name + ", " + cite.authors[0].first_name + ": " + "'" + cite.title + "', " + cite.year;
+	var result = 
+	{
+		item: { cite_id: cite.id, label: s }
+	};
+	this.ac_Callback(null,result);
+}
+
+CiteDlg.prototype.check = function()
+{
+	if (this.cite_id != undefined && this.cite_id != null && this.cite_id != -1) {
+		return true;
+	} else {
+		$(this.element).find("#search_cite").effect('shake', { times: 3, distance: 3, direction: 'right'}, 60, createMethodReference(this,'doneShakin'));
+		return false;
+	}
+}
+
+CiteDlg.prototype.doneShakin = function() {
+	$(this.element).find("#search_cite").focus();
+}
+
+CiteDlg.prototype.open = function()
+{
+	var that = this;
+	$(this.element).dialog({
+		autoOpen: true,
+		title: 'Select citation for species range',
+		width: 365,
+		height: 155,
+		closeOnEscape: true,
+		modal: true,
+		buttons: {
+			"Select": function() { 
+				if (that.check()) {
+					$(that.element).dialog('close'); 
+					if (that.callback != undefined) {
+						that.callback(that.cite_id);
+					}
+				}
+			},
+			"Cancel": function() { $(that.element).dialog('close'); }
+		},
+		close: function() { $(that.element).remove(); }
+	});
+}
+
+
