@@ -13,10 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130322170803) do
 
-  create_table "location", :id => false, :force => true do |t|
-    t.integer "id"
-  end
-
   create_table "locations", :force => true do |t|
     t.string   "name"
     t.string   "state"
