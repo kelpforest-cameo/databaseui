@@ -9,8 +9,13 @@ development:
   host: localhost
   database: foodweb
   pool: 5
+<<<<<<< HEAD
   username: root
   password: 
+=======
+  username: fwd
+  password: Afcoin0j2
+>>>>>>> master
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -22,8 +27,13 @@ test:
   host: localhost
   database: foodweb
   pool: 5
+<<<<<<< HEAD
   username: root
   password: 
+=======
+  username: fwd
+  password: Afcoin0j2
+>>>>>>> master
   socket: /var/run/mysqld/mysqld.sock
 
 production:
@@ -32,6 +42,11 @@ production:
   host: localhost
   database: foodweb
   pool: 5
+<<<<<<< HEAD
   username: root
   password: 
+=======
+  username: fwd
+  password: Afcoin0j2
+>>>>>>> master
   socket: /var/run/mysqld/mysqld.sock
