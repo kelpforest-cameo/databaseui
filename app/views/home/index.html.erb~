@@ -1,3 +1,23 @@
+<<<<<<< HEAD
+<div class="row">
+    <div class="span10 offset1">
+        <h1 class="text-center">Welcome to Food Web Builder</h1>
+    </div>
+</div>
+
+<!-- <div class="row">
+    <div class='span8 offset2 well'>
+        <img src="assets/worldmap.jpg" alt="World Map" title="Place Holder Map">
+    </div>
+</div> -->
+
+<div class="row">
+	<div class="span8 offset2 well">
+		<%= gmaps4rails(@json) %>
+        <%= yield(:scripts)%>
+	</div>
+</div>
+=======
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -34,5 +54,5 @@
 
     </body>
 </html>
-
+>>>>>>> master
 
