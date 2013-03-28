@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326042522) do
+ActiveRecord::Schema.define(:version => 20130328191806) do
 
   create_table "author_cites", :force => true do |t|
     t.integer  "author_id"
@@ -22,38 +22,41 @@ ActiveRecord::Schema.define(:version => 20130326042522) do
   end
 
   create_table "authors", :force => true do |t|
-    t.string   "first_name", :default => "", :null => false
-    t.string   "last_name",  :default => "", :null => false
+    t.string   "first_name", :null => false
+    t.string   "last_name",  :null => false
     t.integer  "user_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "citations", :force => true do |t|
-    t.string   "title",        :default => "",    :null => false
+    t.string   "title"
     t.string   "document"
-    t.integer  "year",                            :null => false
+    t.integer  "year"
     t.text     "abstract"
+    t.string   "format"
     t.string   "format_title"
     t.string   "publisher"
     t.integer  "number"
     t.integer  "volume"
     t.string   "pages"
-    t.boolean  "closed",       :default => false, :null => false
+    t.boolean  "closed"
     t.integer  "user_id"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "competition_interaction_observations", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "comptetition_interaction_id"
+    t.integer  "cite_id"
+    t.integer  "competition_interaction_id"
     t.integer  "location_id"
+    t.string   "observation_type"
+    t.string   "competition_type"
     t.text     "comment"
-    t.string   "datum",                       :default => "", :null => false
+    t.string   "datum"
     t.integer  "user_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "competition_interactions", :force => true do |t|
@@ -65,14 +68,16 @@ ActiveRecord::Schema.define(:version => 20130326042522) do
   end
 
   create_table "facilitation_interaction_observations", :force => true do |t|
-    t.integer  "citation_id"
+    t.integer  "cite_id"
     t.integer  "facilitation_interaction_id"
     t.integer  "location_id"
+    t.string   "observation_type"
+    t.string   "facilitation_type"
     t.text     "comment"
-    t.string   "datum",                       :default => "", :null => false
+    t.string   "datum"
     t.integer  "user_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "facilitation_interactions", :force => true do |t|
@@ -84,9 +89,9 @@ ActiveRecord::Schema.define(:version => 20130326042522) do
   end
 
   create_table "functional_groups", :force => true do |t|
-    t.string   "name",       :default => "", :null => false
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "location_data", :force => true do |t|
@@ -99,11 +104,14 @@ ActiveRecord::Schema.define(:version => 20130326042522) do
 
   create_table "locations", :force => true do |t|
     t.string   "name"
-    t.string   "state"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.boolean  "gmaps"
-    t.integer  "population"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "parent"
+    t.integer  "active"
+    t.integer  "visible"
+    t.integer  "zoom_min"
+    t.integer  "zoom_max"
+    t.integer  "z_index"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -134,22 +142,23 @@ ActiveRecord::Schema.define(:version => 20130326042522) do
   create_table "nodes", :force => true do |t|
     t.integer  "itis_id"
     t.integer  "non_itis_id"
-    t.string   "working_name",        :default => "", :null => false
+    t.string   "working_name"
     t.integer  "functional_group_id"
-    t.boolean  "is_assemblage",                       :null => false
+    t.string   "native_status"
+    t.boolean  "is_assemblage"
     t.integer  "user_id"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "non_itis", :force => true do |t|
-    t.integer  "parent_id",                         :null => false
-    t.string   "latin_name",        :default => "", :null => false
-    t.boolean  "parent_id_is_itis",                 :null => false
+    t.integer  "parent_id",         :null => false
+    t.string   "latin_name",        :null => false
+    t.boolean  "parent_id_is_itis", :null => false
     t.text     "info"
     t.integer  "user_id"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "parasitic_interaction_observations", :force => true do |t|
@@ -187,12 +196,12 @@ ActiveRecord::Schema.define(:version => 20130326042522) do
   create_table "stage_biomass_changes", :force => true do |t|
     t.integer  "citation_id"
     t.integer  "stage_id"
-    t.float    "biomass_change",                 :null => false
+    t.float    "biomass_change", :null => false
     t.text     "comment"
-    t.string   "datum",          :default => "", :null => false
+    t.string   "datum",          :null => false
     t.integer  "user_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "stage_biomass_densities", :force => true do |t|
@@ -252,7 +261,7 @@ ActiveRecord::Schema.define(:version => 20130326042522) do
   create_table "stage_fecundities", :force => true do |t|
     t.integer  "citation_id"
     t.integer  "stage_id"
-    t.string   "fecundity",   :default => "", :null => false
+    t.string   "fecundity",                   :null => false
     t.text     "comment"
     t.string   "datum",       :default => "", :null => false
     t.integer  "user_id"

@@ -5,6 +5,7 @@ one:
   non_itis_id: 1
   working_name: MyString
   functional_group_id: 1
+  native_status: MyString
   is_assemblage: false
   user_id: 1
 
@@ -13,5 +14,6 @@ two:
   non_itis_id: 1
   working_name: MyString
   functional_group_id: 1
+  native_status: MyString
   is_assemblage: false
   user_id: 1
