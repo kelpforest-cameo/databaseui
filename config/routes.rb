@@ -1,5 +1,41 @@
 FoodWebBuilder::Application.routes.draw do
 
+  resources :trophic_interaction_observations
+
+
+  resources :stage_residencies
+
+
+  resources :stage_reproductive_strategies
+
+
+  resources :stage_mobilities
+
+
+  resources :stage_lifestyles
+
+
+  resources :stage_length_weights
+
+
+  resources :stage_length_fecundities
+
+
+  resources :stage_habitat_descriptors
+
+
+  resources :parasitic_interaction_observations
+
+
+  resources :stage_habitats
+
+
+  resources :stage_consumer_strategies
+
+
+  resources :non_itis
+
+
   authenticated :user do
   	root :to => 'dashboard#index' 
   end

@@ -3,6 +3,7 @@
 one:
   parent_id: 1
   latin_name: MyString
+  taxonomy_level: MyString
   parent_id_is_itis: false
   info: MyText
   user_id: 1
@@ -10,6 +11,7 @@ one:
 two:
   parent_id: 1
   latin_name: MyString
+  taxonomy_level: MyString
   parent_id_is_itis: false
   info: MyText
   user_id: 1

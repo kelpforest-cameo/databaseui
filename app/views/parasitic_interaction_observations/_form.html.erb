@@ -1,0 +1,65 @@
+<%= form_for(@parasitic_interaction_observation) do |f| %>
+  <% if @parasitic_interaction_observation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@parasitic_interaction_observation.errors.count, "error") %> prohibited this parasitic_interaction_observation from being saved:</h2>
+
+      <ul>
+      <% @parasitic_interaction_observation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cite_id %><br />
+    <%= f.number_field :cite_id %>
+  </div>
+  <div class="field">
+    <%= f.label :parasitic_interaction_id %><br />
+    <%= f.number_field :parasitic_interaction_id %>
+  </div>
+  <div class="field">
+    <%= f.label :location_id %><br />
+    <%= f.number_field :location_id %>
+  </div>
+  <div class="field">
+    <%= f.label :endo_ecto %><br />
+    <%= f.text_field :endo_ecto %>
+  </div>
+  <div class="field">
+    <%= f.label :lethality %><br />
+    <%= f.text_field :lethality %>
+  </div>
+  <div class="field">
+    <%= f.label :prevalence %><br />
+    <%= f.text_field :prevalence %>
+  </div>
+  <div class="field">
+    <%= f.label :intensity %><br />
+    <%= f.text_field :intensity %>
+  </div>
+  <div class="field">
+    <%= f.label :parasite_type %><br />
+    <%= f.text_field :parasite_type %>
+  </div>
+  <div class="field">
+    <%= f.label :observation_type %><br />
+    <%= f.text_field :observation_type %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </div>
+  <div class="field">
+    <%= f.label :datum %><br />
+    <%= f.text_field :datum %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

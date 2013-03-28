@@ -1,0 +1,41 @@
+<%= form_for(@stage_consumer_strategy) do |f| %>
+  <% if @stage_consumer_strategy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stage_consumer_strategy.errors.count, "error") %> prohibited this stage_consumer_strategy from being saved:</h2>
+
+      <ul>
+      <% @stage_consumer_strategy.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cite_id %><br />
+    <%= f.number_field :cite_id %>
+  </div>
+  <div class="field">
+    <%= f.label :stage_id %><br />
+    <%= f.number_field :stage_id %>
+  </div>
+  <div class="field">
+    <%= f.label :consumer_strategy %><br />
+    <%= f.text_field :consumer_strategy %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </div>
+  <div class="field">
+    <%= f.label :datum %><br />
+    <%= f.text_field :datum %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

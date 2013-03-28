@@ -1,21 +1,29 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  citation_id: 1
+  cite_id: 1
   parasitic_interaction_id: 1
   location_id: 1
-  prevalence: 1.5
-  intensity: 1.5
+  endo_ecto: MyString
+  lethality: MyString
+  prevalence: 9.99
+  intensity: 9.99
+  parasite_type: MyString
+  observation_type: MyString
   comment: MyText
   datum: MyString
   user_id: 1
 
 two:
-  citation_id: 1
+  cite_id: 1
   parasitic_interaction_id: 1
   location_id: 1
-  prevalence: 1.5
-  intensity: 1.5
+  endo_ecto: MyString
+  lethality: MyString
+  prevalence: 9.99
+  intensity: 9.99
+  parasite_type: MyString
+  observation_type: MyString
   comment: MyText
   datum: MyString
   user_id: 1

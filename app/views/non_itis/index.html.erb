@@ -1,0 +1,33 @@
+<h1>Listing non_itis</h1>
+
+<table>
+  <tr>
+    <th>Parent</th>
+    <th>Latin name</th>
+    <th>Taxonomy level</th>
+    <th>Parent id is itis</th>
+    <th>Info</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @non_itis.each do |non_iti| %>
+  <tr>
+    <td><%= non_iti.parent_id %></td>
+    <td><%= non_iti.latin_name %></td>
+    <td><%= non_iti.taxonomy_level %></td>
+    <td><%= non_iti.parent_id_is_itis %></td>
+    <td><%= non_iti.info %></td>
+    <td><%= non_iti.user_id %></td>
+    <td><%= link_to 'Show', non_iti %></td>
+    <td><%= link_to 'Edit', edit_non_iti_path(non_iti) %></td>
+    <td><%= link_to 'Destroy', non_iti, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Non iti', new_non_iti_path %>

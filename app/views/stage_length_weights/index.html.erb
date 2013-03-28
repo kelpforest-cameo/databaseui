@@ -1,0 +1,37 @@
+<h1>Listing stage_length_weights</h1>
+
+<table>
+  <tr>
+    <th>Cite</th>
+    <th>Stage</th>
+    <th>Length weight</th>
+    <th>A</th>
+    <th>B</th>
+    <th>Comment</th>
+    <th>Datum</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_length_weights.each do |stage_length_weight| %>
+  <tr>
+    <td><%= stage_length_weight.cite_id %></td>
+    <td><%= stage_length_weight.stage_id %></td>
+    <td><%= stage_length_weight.length_weight %></td>
+    <td><%= stage_length_weight.a %></td>
+    <td><%= stage_length_weight.b %></td>
+    <td><%= stage_length_weight.comment %></td>
+    <td><%= stage_length_weight.datum %></td>
+    <td><%= stage_length_weight.user_id %></td>
+    <td><%= link_to 'Show', stage_length_weight %></td>
+    <td><%= link_to 'Edit', edit_stage_length_weight_path(stage_length_weight) %></td>
+    <td><%= link_to 'Destroy', stage_length_weight, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage length weight', new_stage_length_weight_path %>

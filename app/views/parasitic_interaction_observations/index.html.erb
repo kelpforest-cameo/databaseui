@@ -1,0 +1,45 @@
+<h1>Listing parasitic_interaction_observations</h1>
+
+<table>
+  <tr>
+    <th>Cite</th>
+    <th>Parasitic interaction</th>
+    <th>Location</th>
+    <th>Endo ecto</th>
+    <th>Lethality</th>
+    <th>Prevalence</th>
+    <th>Intensity</th>
+    <th>Parasite type</th>
+    <th>Observation type</th>
+    <th>Comment</th>
+    <th>Datum</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @parasitic_interaction_observations.each do |parasitic_interaction_observation| %>
+  <tr>
+    <td><%= parasitic_interaction_observation.cite_id %></td>
+    <td><%= parasitic_interaction_observation.parasitic_interaction_id %></td>
+    <td><%= parasitic_interaction_observation.location_id %></td>
+    <td><%= parasitic_interaction_observation.endo_ecto %></td>
+    <td><%= parasitic_interaction_observation.lethality %></td>
+    <td><%= parasitic_interaction_observation.prevalence %></td>
+    <td><%= parasitic_interaction_observation.intensity %></td>
+    <td><%= parasitic_interaction_observation.parasite_type %></td>
+    <td><%= parasitic_interaction_observation.observation_type %></td>
+    <td><%= parasitic_interaction_observation.comment %></td>
+    <td><%= parasitic_interaction_observation.datum %></td>
+    <td><%= parasitic_interaction_observation.user_id %></td>
+    <td><%= link_to 'Show', parasitic_interaction_observation %></td>
+    <td><%= link_to 'Edit', edit_parasitic_interaction_observation_path(parasitic_interaction_observation) %></td>
+    <td><%= link_to 'Destroy', parasitic_interaction_observation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Parasitic interaction observation', new_parasitic_interaction_observation_path %>

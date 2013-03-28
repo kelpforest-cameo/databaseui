@@ -1,0 +1,41 @@
+<%= form_for(@stage_lifestyle) do |f| %>
+  <% if @stage_lifestyle.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stage_lifestyle.errors.count, "error") %> prohibited this stage_lifestyle from being saved:</h2>
+
+      <ul>
+      <% @stage_lifestyle.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cite_id %><br />
+    <%= f.number_field :cite_id %>
+  </div>
+  <div class="field">
+    <%= f.label :stage_id %><br />
+    <%= f.number_field :stage_id %>
+  </div>
+  <div class="field">
+    <%= f.label :lifestyle %><br />
+    <%= f.text_field :lifestyle %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </div>
+  <div class="field">
+    <%= f.label :datum %><br />
+    <%= f.text_field :datum %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

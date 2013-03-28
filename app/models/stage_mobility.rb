@@ -1,5 +1,3 @@
 class StageMobility < ActiveRecord::Base
-  attr_accessible :citation_id, :comment, :datum, :stage_id, :user_id
-  has_many :citations
-  belongs_to :stage, :user
+  attr_accessible :cite_id, :comment, :datum, :mobility, :stage_id, :user_id
 end

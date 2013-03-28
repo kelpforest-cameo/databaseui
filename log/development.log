@@ -1,0 +1,1803 @@
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-28 15:25:14 -0400
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+Processing by DashboardController#index as HTML
+  Rendered dashboard/index.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_navigation.html.erb (3.2ms)
+  Rendered layouts/_messages.html.erb (0.7ms)
+Completed 200 OK in 192ms (Views: 191.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /application.css - 304 Not Modified (20ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (14ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (13ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /custom.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /dashboard.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /home.css - 304 Not Modified (64ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /visualization.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /jquery.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /bootstrap.js - 304 Not Modified (18ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /application.js - 304 Not Modified (81ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /highcharts.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/worldmap.jpg" for 127.0.0.1 at 2013-03-28 15:25:15 -0400
+Served asset /worldmap.jpg - 304 Not Modified (7ms)
+
+
+Started GET "/users/edit" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  Rendered devise/registrations/edit.html.erb within layouts/application (19.1ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 111ms (Views: 108.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Served asset /dashboard.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:18 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:19 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:19 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:19 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:19 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:19 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:19 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:19 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:19 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:19 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:19 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:19 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:19 -0400
+Served asset /bootstrap.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:19 -0400
+Served asset /application.js - 304 Not Modified (67ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-03-28 15:25:19 -0400
+Processing by DashboardController#dataentry as HTML
+  Rendered dashboard/_denode.html.erb (1.0ms)
+  Rendered dashboard/_decitations.html.erb (1.1ms)
+  Rendered dashboard/_deinteractions.html.erb (0.5ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (7.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendered layouts/_navigation.html.erb (4.6ms)
+  Rendered layouts/_messages.html.erb (0.2ms)
+Completed 200 OK in 50ms (Views: 48.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /application.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /application.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /bootstrap.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:20 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/about" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Processing by HomeController#about as HTML
+  Rendered home/about.html.erb within layouts/application (0.5ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  Rendered layouts/_navigation.html.erb (3.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 89ms (Views: 88.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /bootstrap.js - 304 Not Modified (70ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:21 -0400
+Served asset /application.js - 304 Not Modified (3ms)
+
+
+Started GET "/visualization" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Processing by VisualizationController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` >= 0) ORDER BY `users`.`id` ASC LIMIT 1000[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `citations` WHERE `citations`.`user_id` = 2
+  Rendered visualization/index.html.erb within layouts/application (1.6ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendered layouts/_navigation.html.erb (3.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 48ms (Views: 35.0ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /application.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (70ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /home.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /application.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:22 -0400
+Served asset /bootstrap.js - 304 Not Modified (2ms)
+
+
+Started GET "/help" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Processing by HomeController#help as HTML
+  Rendered home/help.html.erb within layouts/application (0.4ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  Rendered layouts/_navigation.html.erb (3.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 90ms (Views: 89.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /application.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:23 -0400
+Served asset /bootstrap.js - 304 Not Modified (71ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /application.js - 304 Not Modified (3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+Processing by DashboardController#index as HTML
+  Rendered dashboard/index.html.erb within layouts/application (0.1ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 32ms (Views: 31.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /bootstrap.css - 304 Not Modified (68ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:24 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:25 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:25 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:25 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:25 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:25 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:25 -0400
+Served asset /bootstrap.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:25 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:25 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-28 15:25:25 -0400
+Served asset /application.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/worldmap.jpg" for 127.0.0.1 at 2013-03-28 15:25:25 -0400
+Served asset /worldmap.jpg - 304 Not Modified (3ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to DeviseCreateUsers (20130306045411)
+Migrating to RolifyCreateRoles (20130306045615)
+Migrating to CreateAuthors (20130321004941)
+Migrating to CreateAuthorCites (20130321005348)
+Migrating to CreateCompetitionInteractions (20130321011138)
+Migrating to CreateFacilitationInteractions (20130321011716)
+Migrating to CreateFunctionalGroups (20130321012317)
+Migrating to CreateLocationData (20130321013002)
+Migrating to CreateNodeRanges (20130321015117)
+Migrating to CreateParasiticInteractions (20130321194943)
+Migrating to CreateParasiticInteractionObservations (20130321195205)
+Migrating to CreateStages (20130321195308)
+Migrating to CreateStageBiomassChanges (20130321195442)
+Migrating to CreateStageBiomassDensities (20130321195624)
+Migrating to CreateStageConsumerStrategies (20130321195813)
+Migrating to CreateStageConsumBiomassRatios (20130321195952)
+Migrating to CreateStageDrymasses (20130321200119)
+Migrating to CreateStageDurations (20130321200242)
+Migrating to CreateStageFecundities (20130321200405)
+Migrating to CreateStageHabitats (20130321200520)
+Migrating to CreateStageLengths (20130321200638)
+Migrating to CreateStageLengthFecundities (20130321200801)
+Migrating to CreateStageLengthWeights (20130321201045)
+Migrating to CreateStageLifestyles (20130321204106)
+Migrating to CreateStageMasses (20130321204236)
+Migrating to CreateStageMaxDepths (20130321204353)
+Migrating to CreateStageMobilities (20130321204504)
+Migrating to CreateStagePopulations (20130321204627)
+Migrating to CreateStageProdBiomassRatios (20130321204742)
+Migrating to CreateStageProdConsumRatios (20130321204926)
+Migrating to CreateStageReproductiveStrategies (20130321205058)
+Migrating to CreateStageResidencies (20130321205229)
+Migrating to CreateStageResidencyTimes (20130321205404)
+Migrating to CreateStageUnassimilatedConsumRatios (20130321205536)
+Migrating to CreateTrophicInteractions (20130321205704)
+Migrating to CreateTrophicInteractionObservations (20130321205936)
+Migrating to CreateNodeMaxAges (20130325155752)
+Migrating to DefaultsAndNils (20130326042522)
+Migrating to CreateCitations (20130328190350)
+Migrating to CreateCompetitionInteractionObservations (20130328190541)
+Migrating to CreateFacilitationInteractionObservations (20130328190647)
+Migrating to CreateNodes (20130328190846)
+Migrating to CreateLocations (20130328191806)
+Migrating to CreateNonItis (20130328201812)
+  [1m[35m (200.6ms)[0m  CREATE TABLE `non_itis` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `parent_id` int(11), `latin_name` varchar(255), `taxonomy_level` varchar(255), `parent_id_is_itis` tinyint(1), `info` text, `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (66.0ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130328201812')[0m
+  [1m[35m (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to DeviseCreateUsers (20130306045411)
+Migrating to RolifyCreateRoles (20130306045615)
+Migrating to CreateAuthors (20130321004941)
+Migrating to CreateAuthorCites (20130321005348)
+Migrating to CreateCompetitionInteractions (20130321011138)
+Migrating to CreateFacilitationInteractions (20130321011716)
+Migrating to CreateFunctionalGroups (20130321012317)
+Migrating to CreateLocationData (20130321013002)
+Migrating to CreateNodeRanges (20130321015117)
+Migrating to CreateParasiticInteractions (20130321194943)
+Migrating to CreateStages (20130321195308)
+Migrating to CreateStageBiomassChanges (20130321195442)
+Migrating to CreateStageBiomassDensities (20130321195624)
+Migrating to CreateStageConsumBiomassRatios (20130321195952)
+Migrating to CreateStageDrymasses (20130321200119)
+Migrating to CreateStageDurations (20130321200242)
+Migrating to CreateStageFecundities (20130321200405)
+Migrating to CreateStageLengths (20130321200638)
+Migrating to CreateStageLengthWeights (20130321201045)
+Migrating to CreateStageLifestyles (20130321204106)
+Migrating to CreateStageMasses (20130321204236)
+Migrating to CreateStageMaxDepths (20130321204353)
+Migrating to CreateStageMobilities (20130321204504)
+Migrating to CreateStagePopulations (20130321204627)
+Migrating to CreateStageProdBiomassRatios (20130321204742)
+Migrating to CreateStageProdConsumRatios (20130321204926)
+Migrating to CreateStageReproductiveStrategies (20130321205058)
+Migrating to CreateStageResidencies (20130321205229)
+Migrating to CreateStageResidencyTimes (20130321205404)
+Migrating to CreateStageUnassimilatedConsumRatios (20130321205536)
+Migrating to CreateTrophicInteractions (20130321205704)
+Migrating to CreateTrophicInteractionObservations (20130321205936)
+Migrating to CreateNodeMaxAges (20130325155752)
+Migrating to DefaultsAndNils (20130326042522)
+Migrating to CreateCitations (20130328190350)
+Migrating to CreateCompetitionInteractionObservations (20130328190541)
+Migrating to CreateFacilitationInteractionObservations (20130328190647)
+Migrating to CreateNodes (20130328190846)
+Migrating to CreateLocations (20130328191806)
+Migrating to CreateNonItis (20130328201812)
+Migrating to CreateParasiticInteractionObservations (20130328202337)
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to DeviseCreateUsers (20130306045411)
+Migrating to RolifyCreateRoles (20130306045615)
+Migrating to CreateAuthors (20130321004941)
+Migrating to CreateAuthorCites (20130321005348)
+Migrating to CreateCompetitionInteractions (20130321011138)
+Migrating to CreateFacilitationInteractions (20130321011716)
+Migrating to CreateFunctionalGroups (20130321012317)
+Migrating to CreateLocationData (20130321013002)
+Migrating to CreateNodeRanges (20130321015117)
+Migrating to CreateParasiticInteractions (20130321194943)
+Migrating to CreateStages (20130321195308)
+Migrating to CreateStageBiomassChanges (20130321195442)
+Migrating to CreateStageBiomassDensities (20130321195624)
+Migrating to CreateStageConsumBiomassRatios (20130321195952)
+Migrating to CreateStageDrymasses (20130321200119)
+Migrating to CreateStageDurations (20130321200242)
+Migrating to CreateStageFecundities (20130321200405)
+Migrating to CreateStageLengths (20130321200638)
+Migrating to CreateStageLengthWeights (20130321201045)
+Migrating to CreateStageLifestyles (20130321204106)
+Migrating to CreateStageMasses (20130321204236)
+Migrating to CreateStageMaxDepths (20130321204353)
+Migrating to CreateStageMobilities (20130321204504)
+Migrating to CreateStagePopulations (20130321204627)
+Migrating to CreateStageProdBiomassRatios (20130321204742)
+Migrating to CreateStageProdConsumRatios (20130321204926)
+Migrating to CreateStageReproductiveStrategies (20130321205058)
+Migrating to CreateStageResidencies (20130321205229)
+Migrating to CreateStageResidencyTimes (20130321205404)
+Migrating to CreateStageUnassimilatedConsumRatios (20130321205536)
+Migrating to CreateTrophicInteractions (20130321205704)
+Migrating to CreateTrophicInteractionObservations (20130321205936)
+Migrating to CreateNodeMaxAges (20130325155752)
+Migrating to DefaultsAndNils (20130326042522)
+Migrating to CreateCitations (20130328190350)
+Migrating to CreateCompetitionInteractionObservations (20130328190541)
+Migrating to CreateFacilitationInteractionObservations (20130328190647)
+Migrating to CreateNodes (20130328190846)
+Migrating to CreateLocations (20130328191806)
+Migrating to CreateNonItis (20130328201812)
+Migrating to CreateParasiticInteractionObservations (20130328202337)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to DeviseCreateUsers (20130306045411)
+Migrating to RolifyCreateRoles (20130306045615)
+Migrating to CreateAuthors (20130321004941)
+Migrating to CreateAuthorCites (20130321005348)
+Migrating to CreateCompetitionInteractions (20130321011138)
+Migrating to CreateFacilitationInteractions (20130321011716)
+Migrating to CreateFunctionalGroups (20130321012317)
+Migrating to CreateLocationData (20130321013002)
+Migrating to CreateNodeRanges (20130321015117)
+Migrating to CreateParasiticInteractions (20130321194943)
+Migrating to CreateStages (20130321195308)
+Migrating to CreateStageBiomassChanges (20130321195442)
+Migrating to CreateStageBiomassDensities (20130321195624)
+Migrating to CreateStageConsumBiomassRatios (20130321195952)
+Migrating to CreateStageDrymasses (20130321200119)
+Migrating to CreateStageDurations (20130321200242)
+Migrating to CreateStageFecundities (20130321200405)
+Migrating to CreateStageLengths (20130321200638)
+Migrating to CreateStageLengthWeights (20130321201045)
+Migrating to CreateStageLifestyles (20130321204106)
+Migrating to CreateStageMasses (20130321204236)
+Migrating to CreateStageMaxDepths (20130321204353)
+Migrating to CreateStageMobilities (20130321204504)
+Migrating to CreateStagePopulations (20130321204627)
+Migrating to CreateStageProdBiomassRatios (20130321204742)
+Migrating to CreateStageProdConsumRatios (20130321204926)
+Migrating to CreateStageReproductiveStrategies (20130321205058)
+Migrating to CreateStageResidencies (20130321205229)
+Migrating to CreateStageResidencyTimes (20130321205404)
+Migrating to CreateStageUnassimilatedConsumRatios (20130321205536)
+Migrating to CreateTrophicInteractions (20130321205704)
+Migrating to CreateTrophicInteractionObservations (20130321205936)
+Migrating to CreateNodeMaxAges (20130325155752)
+Migrating to DefaultsAndNils (20130326042522)
+Migrating to CreateCitations (20130328190350)
+Migrating to CreateCompetitionInteractionObservations (20130328190541)
+Migrating to CreateFacilitationInteractionObservations (20130328190647)
+Migrating to CreateNodes (20130328190846)
+Migrating to CreateLocations (20130328191806)
+Migrating to CreateNonItis (20130328201812)
+Migrating to CreateStageConsumerStrategies (20130328202730)
+  [1m[35m (173.4ms)[0m  CREATE TABLE `stage_consumer_strategies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `cite_id` int(11), `stage_id` int(11), `consumer_strategy` varchar(255), `comment` text, `datum` varchar(255), `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (66.1ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130328202730')[0m
+Migrating to CreateStageHabitats (20130328203046)
+  [1m[35m (109.0ms)[0m  CREATE TABLE `stage_habitats` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `cite_id` int(11), `stage_id` int(11), `habitat` varchar(255), `comment` text, `datum` varchar(255), `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (55.1ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130328203046')[0m
+Migrating to CreateParasiticInteractionObservations (20130328203542)
+  [1m[35m (110.2ms)[0m  CREATE TABLE `parasitic_interaction_observations` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `cite_id` int(11), `parasitic_interaction_id` int(11), `location_id` int(11), `endo_ecto` varchar(255), `lethality` varchar(255), `prevalence` decimal, `intensity` decimal, `parasite_type` varchar(255), `observation_type` varchar(255), `comment` text, `datum` varchar(255), `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (55.1ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130328203542')[0m
+  [1m[35m (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to DeviseCreateUsers (20130306045411)
+Migrating to RolifyCreateRoles (20130306045615)
+Migrating to CreateAuthors (20130321004941)
+Migrating to CreateAuthorCites (20130321005348)
+Migrating to CreateCompetitionInteractions (20130321011138)
+Migrating to CreateFacilitationInteractions (20130321011716)
+Migrating to CreateFunctionalGroups (20130321012317)
+Migrating to CreateLocationData (20130321013002)
+Migrating to CreateNodeRanges (20130321015117)
+Migrating to CreateParasiticInteractions (20130321194943)
+Migrating to CreateStages (20130321195308)
+Migrating to CreateStageBiomassChanges (20130321195442)
+Migrating to CreateStageBiomassDensities (20130321195624)
+Migrating to CreateStageConsumBiomassRatios (20130321195952)
+Migrating to CreateStageDrymasses (20130321200119)
+Migrating to CreateStageDurations (20130321200242)
+Migrating to CreateStageFecundities (20130321200405)
+Migrating to CreateStageLengths (20130321200638)
+Migrating to CreateStageLengthWeights (20130321201045)
+Migrating to CreateStageLifestyles (20130321204106)
+Migrating to CreateStageMasses (20130321204236)
+Migrating to CreateStageMaxDepths (20130321204353)
+Migrating to CreateStageMobilities (20130321204504)
+Migrating to CreateStagePopulations (20130321204627)
+Migrating to CreateStageProdBiomassRatios (20130321204742)
+Migrating to CreateStageProdConsumRatios (20130321204926)
+Migrating to CreateStageReproductiveStrategies (20130321205058)
+Migrating to CreateStageResidencies (20130321205229)
+Migrating to CreateStageResidencyTimes (20130321205404)
+Migrating to CreateStageUnassimilatedConsumRatios (20130321205536)
+Migrating to CreateTrophicInteractions (20130321205704)
+Migrating to CreateTrophicInteractionObservations (20130321205936)
+Migrating to CreateNodeMaxAges (20130325155752)
+Migrating to DefaultsAndNils (20130326042522)
+Migrating to CreateCitations (20130328190350)
+Migrating to CreateCompetitionInteractionObservations (20130328190541)
+Migrating to CreateFacilitationInteractionObservations (20130328190647)
+Migrating to CreateNodes (20130328190846)
+Migrating to CreateLocations (20130328191806)
+Migrating to CreateNonItis (20130328201812)
+Migrating to CreateStageConsumerStrategies (20130328202730)
+Migrating to CreateStageHabitats (20130328203046)
+Migrating to CreateParasiticInteractionObservations (20130328203542)
+Migrating to CreateStageHabitatDescriptors (20130328203657)
+  [1m[35m (120.9ms)[0m  CREATE TABLE `stage_habitat_descriptors` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `descriptor` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (54.9ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130328203657')[0m
+  [1m[35m (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to DeviseCreateUsers (20130306045411)
+Migrating to RolifyCreateRoles (20130306045615)
+Migrating to CreateAuthors (20130321004941)
+Migrating to CreateAuthorCites (20130321005348)
+Migrating to CreateCompetitionInteractions (20130321011138)
+Migrating to CreateFacilitationInteractions (20130321011716)
+Migrating to CreateFunctionalGroups (20130321012317)
+Migrating to CreateLocationData (20130321013002)
+Migrating to CreateNodeRanges (20130321015117)
+Migrating to CreateParasiticInteractions (20130321194943)
+Migrating to CreateStages (20130321195308)
+Migrating to CreateStageBiomassChanges (20130321195442)
+Migrating to CreateStageBiomassDensities (20130321195624)
+Migrating to CreateStageConsumBiomassRatios (20130321195952)
+Migrating to CreateStageDrymasses (20130321200119)
+Migrating to CreateStageDurations (20130321200242)
+Migrating to CreateStageFecundities (20130321200405)
+Migrating to CreateStageLengths (20130321200638)
+Migrating to CreateStageLengthWeights (20130321201045)
+Migrating to CreateStageLifestyles (20130321204106)
+Migrating to CreateStageMasses (20130321204236)
+Migrating to CreateStageMaxDepths (20130321204353)
+Migrating to CreateStageMobilities (20130321204504)
+Migrating to CreateStagePopulations (20130321204627)
+Migrating to CreateStageProdBiomassRatios (20130321204742)
+Migrating to CreateStageProdConsumRatios (20130321204926)
+Migrating to CreateStageReproductiveStrategies (20130321205058)
+Migrating to CreateStageResidencies (20130321205229)
+Migrating to CreateStageResidencyTimes (20130321205404)
+Migrating to CreateStageUnassimilatedConsumRatios (20130321205536)
+Migrating to CreateTrophicInteractions (20130321205704)
+Migrating to CreateTrophicInteractionObservations (20130321205936)
+Migrating to CreateNodeMaxAges (20130325155752)
+Migrating to DefaultsAndNils (20130326042522)
+Migrating to CreateCitations (20130328190350)
+Migrating to CreateCompetitionInteractionObservations (20130328190541)
+Migrating to CreateFacilitationInteractionObservations (20130328190647)
+Migrating to CreateNodes (20130328190846)
+Migrating to CreateLocations (20130328191806)
+Migrating to CreateNonItis (20130328201812)
+Migrating to CreateStageConsumerStrategies (20130328202730)
+Migrating to CreateStageHabitats (20130328203046)
+Migrating to CreateParasiticInteractionObservations (20130328203542)
+Migrating to CreateStageHabitatDescriptors (20130328203657)
+Migrating to CreateStageLengthFecundities (20130328203937)
+  [1m[35m (129.1ms)[0m  CREATE TABLE `stage_length_fecundities` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `cite_id` int(11), `stage_id` int(11), `length_fecundity` varchar(255), `a` decimal, `b` decimal, `comment` text, `datum` varchar(255), `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (32.7ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130328203937')[0m
+  [1m[35m (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to DeviseCreateUsers (20130306045411)
+Migrating to RolifyCreateRoles (20130306045615)
+Migrating to CreateAuthors (20130321004941)
+Migrating to CreateAuthorCites (20130321005348)
+Migrating to CreateCompetitionInteractions (20130321011138)
+Migrating to CreateFacilitationInteractions (20130321011716)
+Migrating to CreateFunctionalGroups (20130321012317)
+Migrating to CreateLocationData (20130321013002)
+Migrating to CreateNodeRanges (20130321015117)
+Migrating to CreateParasiticInteractions (20130321194943)
+Migrating to CreateStages (20130321195308)
+Migrating to CreateStageBiomassChanges (20130321195442)
+Migrating to CreateStageBiomassDensities (20130321195624)
+Migrating to CreateStageConsumBiomassRatios (20130321195952)
+Migrating to CreateStageDrymasses (20130321200119)
+Migrating to CreateStageDurations (20130321200242)
+Migrating to CreateStageFecundities (20130321200405)
+Migrating to CreateStageLengths (20130321200638)
+Migrating to CreateStageLifestyles (20130321204106)
+Migrating to CreateStageMasses (20130321204236)
+Migrating to CreateStageMaxDepths (20130321204353)
+Migrating to CreateStageMobilities (20130321204504)
+Migrating to CreateStagePopulations (20130321204627)
+Migrating to CreateStageProdBiomassRatios (20130321204742)
+Migrating to CreateStageProdConsumRatios (20130321204926)
+Migrating to CreateStageReproductiveStrategies (20130321205058)
+Migrating to CreateStageResidencies (20130321205229)
+Migrating to CreateStageResidencyTimes (20130321205404)
+Migrating to CreateStageUnassimilatedConsumRatios (20130321205536)
+Migrating to CreateTrophicInteractions (20130321205704)
+Migrating to CreateTrophicInteractionObservations (20130321205936)
+Migrating to CreateNodeMaxAges (20130325155752)
+Migrating to DefaultsAndNils (20130326042522)
+Migrating to CreateCitations (20130328190350)
+Migrating to CreateCompetitionInteractionObservations (20130328190541)
+Migrating to CreateFacilitationInteractionObservations (20130328190647)
+Migrating to CreateNodes (20130328190846)
+Migrating to CreateLocations (20130328191806)
+Migrating to CreateNonItis (20130328201812)
+Migrating to CreateStageConsumerStrategies (20130328202730)
+Migrating to CreateStageHabitats (20130328203046)
+Migrating to CreateParasiticInteractionObservations (20130328203542)
+Migrating to CreateStageHabitatDescriptors (20130328203657)
+Migrating to CreateStageLengthFecundities (20130328203937)
+Migrating to CreateStageLengthWeights (20130328204247)
+  [1m[35m (178.5ms)[0m  CREATE TABLE `stage_length_weights` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `cite_id` int(11), `stage_id` int(11), `length_weight` varchar(255), `a` decimal, `b` decimal, `comment` text, `datum` varchar(255), `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (42.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130328204247')[0m
+  [1m[35m (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to DeviseCreateUsers (20130306045411)
+Migrating to RolifyCreateRoles (20130306045615)
+Migrating to CreateAuthors (20130321004941)
+Migrating to CreateAuthorCites (20130321005348)
+Migrating to CreateCompetitionInteractions (20130321011138)
+Migrating to CreateFacilitationInteractions (20130321011716)
+Migrating to CreateFunctionalGroups (20130321012317)
+Migrating to CreateLocationData (20130321013002)
+Migrating to CreateNodeRanges (20130321015117)
+Migrating to CreateParasiticInteractions (20130321194943)
+Migrating to CreateStages (20130321195308)
+Migrating to CreateStageBiomassChanges (20130321195442)
+Migrating to CreateStageBiomassDensities (20130321195624)
+Migrating to CreateStageConsumBiomassRatios (20130321195952)
+Migrating to CreateStageDrymasses (20130321200119)
+Migrating to CreateStageDurations (20130321200242)
+Migrating to CreateStageFecundities (20130321200405)
+Migrating to CreateStageLengths (20130321200638)
+Migrating to CreateStageMasses (20130321204236)
+Migrating to CreateStageMaxDepths (20130321204353)
+Migrating to CreateStageMobilities (20130321204504)
+Migrating to CreateStagePopulations (20130321204627)
+Migrating to CreateStageProdBiomassRatios (20130321204742)
+Migrating to CreateStageProdConsumRatios (20130321204926)
+Migrating to CreateStageReproductiveStrategies (20130321205058)
+Migrating to CreateStageResidencies (20130321205229)
+Migrating to CreateStageResidencyTimes (20130321205404)
+Migrating to CreateStageUnassimilatedConsumRatios (20130321205536)
+Migrating to CreateTrophicInteractions (20130321205704)
+Migrating to CreateTrophicInteractionObservations (20130321205936)
+Migrating to CreateNodeMaxAges (20130325155752)
+Migrating to DefaultsAndNils (20130326042522)
+Migrating to CreateCitations (20130328190350)
+Migrating to CreateCompetitionInteractionObservations (20130328190541)
+Migrating to CreateFacilitationInteractionObservations (20130328190647)
+Migrating to CreateNodes (20130328190846)
+Migrating to CreateLocations (20130328191806)
+Migrating to CreateNonItis (20130328201812)
+Migrating to CreateStageConsumerStrategies (20130328202730)
+Migrating to CreateStageHabitats (20130328203046)
+Migrating to CreateParasiticInteractionObservations (20130328203542)
+Migrating to CreateStageHabitatDescriptors (20130328203657)
+Migrating to CreateStageLengthFecundities (20130328203937)
+Migrating to CreateStageLengthWeights (20130328204247)
+Migrating to CreateStageLifestyles (20130328204414)
+  [1m[35m (121.0ms)[0m  CREATE TABLE `stage_lifestyles` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `cite_id` int(11), `stage_id` int(11), `lifestyle` varchar(255), `comment` text, `datum` varchar(255), `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (43.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130328204414')[0m
+  [1m[35m (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to DeviseCreateUsers (20130306045411)
+Migrating to RolifyCreateRoles (20130306045615)
+Migrating to CreateAuthors (20130321004941)
+Migrating to CreateAuthorCites (20130321005348)
+Migrating to CreateCompetitionInteractions (20130321011138)
+Migrating to CreateFacilitationInteractions (20130321011716)
+Migrating to CreateFunctionalGroups (20130321012317)
+Migrating to CreateLocationData (20130321013002)
+Migrating to CreateNodeRanges (20130321015117)
+Migrating to CreateParasiticInteractions (20130321194943)
+Migrating to CreateStages (20130321195308)
+Migrating to CreateStageBiomassChanges (20130321195442)
+Migrating to CreateStageBiomassDensities (20130321195624)
+Migrating to CreateStageConsumBiomassRatios (20130321195952)
+Migrating to CreateStageDrymasses (20130321200119)
+Migrating to CreateStageDurations (20130321200242)
+Migrating to CreateStageFecundities (20130321200405)
+Migrating to CreateStageLengths (20130321200638)
+Migrating to CreateStageMasses (20130321204236)
+Migrating to CreateStageMaxDepths (20130321204353)
+Migrating to CreateStagePopulations (20130321204627)
+Migrating to CreateStageProdBiomassRatios (20130321204742)
+Migrating to CreateStageProdConsumRatios (20130321204926)
+Migrating to CreateStageReproductiveStrategies (20130321205058)
+Migrating to CreateStageResidencies (20130321205229)
+Migrating to CreateStageResidencyTimes (20130321205404)
+Migrating to CreateStageUnassimilatedConsumRatios (20130321205536)
+Migrating to CreateTrophicInteractions (20130321205704)
+Migrating to CreateTrophicInteractionObservations (20130321205936)
+Migrating to CreateNodeMaxAges (20130325155752)
+Migrating to DefaultsAndNils (20130326042522)
+Migrating to CreateCitations (20130328190350)
+Migrating to CreateCompetitionInteractionObservations (20130328190541)
+Migrating to CreateFacilitationInteractionObservations (20130328190647)
+Migrating to CreateNodes (20130328190846)
+Migrating to CreateLocations (20130328191806)
+Migrating to CreateNonItis (20130328201812)
+Migrating to CreateStageConsumerStrategies (20130328202730)
+Migrating to CreateStageHabitats (20130328203046)
+Migrating to CreateParasiticInteractionObservations (20130328203542)
+Migrating to CreateStageHabitatDescriptors (20130328203657)
+Migrating to CreateStageLengthFecundities (20130328203937)
+Migrating to CreateStageLengthWeights (20130328204247)
+Migrating to CreateStageLifestyles (20130328204414)
+Migrating to CreateStageMobilities (20130328204616)
+  [1m[35m (135.6ms)[0m  CREATE TABLE `stage_mobilities` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `cite_id` int(11), `stage_id` int(11), `mobility` varchar(255), `comment` text, `datum` varchar(255), `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (54.3ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130328204616')[0m
+  [1m[35m (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to DeviseCreateUsers (20130306045411)
+Migrating to RolifyCreateRoles (20130306045615)
+Migrating to CreateAuthors (20130321004941)
+Migrating to CreateAuthorCites (20130321005348)
+Migrating to CreateCompetitionInteractions (20130321011138)
+Migrating to CreateFacilitationInteractions (20130321011716)
+Migrating to CreateFunctionalGroups (20130321012317)
+Migrating to CreateLocationData (20130321013002)
+Migrating to CreateNodeRanges (20130321015117)
+Migrating to CreateParasiticInteractions (20130321194943)
+Migrating to CreateStages (20130321195308)
+Migrating to CreateStageBiomassChanges (20130321195442)
+Migrating to CreateStageBiomassDensities (20130321195624)
+Migrating to CreateStageConsumBiomassRatios (20130321195952)
+Migrating to CreateStageDrymasses (20130321200119)
+Migrating to CreateStageDurations (20130321200242)
+Migrating to CreateStageFecundities (20130321200405)
+Migrating to CreateStageLengths (20130321200638)
+Migrating to CreateStageMasses (20130321204236)
+Migrating to CreateStageMaxDepths (20130321204353)
+Migrating to CreateStagePopulations (20130321204627)
+Migrating to CreateStageProdBiomassRatios (20130321204742)
+Migrating to CreateStageProdConsumRatios (20130321204926)
+Migrating to CreateStageResidencies (20130321205229)
+Migrating to CreateStageResidencyTimes (20130321205404)
+Migrating to CreateStageUnassimilatedConsumRatios (20130321205536)
+Migrating to CreateTrophicInteractions (20130321205704)
+Migrating to CreateTrophicInteractionObservations (20130321205936)
+Migrating to CreateNodeMaxAges (20130325155752)
+Migrating to DefaultsAndNils (20130326042522)
+Migrating to CreateCitations (20130328190350)
+Migrating to CreateCompetitionInteractionObservations (20130328190541)
+Migrating to CreateFacilitationInteractionObservations (20130328190647)
+Migrating to CreateNodes (20130328190846)
+Migrating to CreateLocations (20130328191806)
+Migrating to CreateNonItis (20130328201812)
+Migrating to CreateStageConsumerStrategies (20130328202730)
+Migrating to CreateStageHabitats (20130328203046)
+Migrating to CreateParasiticInteractionObservations (20130328203542)
+Migrating to CreateStageHabitatDescriptors (20130328203657)
+Migrating to CreateStageLengthFecundities (20130328203937)
+Migrating to CreateStageLengthWeights (20130328204247)
+Migrating to CreateStageLifestyles (20130328204414)
+Migrating to CreateStageMobilities (20130328204616)
+Migrating to CreateStageReproductiveStrategies (20130328205000)
+  [1m[35m (119.6ms)[0m  CREATE TABLE `stage_reproductive_strategies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `cite_id` int(11), `stage_id` int(11), `reproductive_strategy` varchar(255), `comment` text, `datum` varchar(255), `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (54.3ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130328205000')[0m
+  [1m[35m (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to DeviseCreateUsers (20130306045411)
+Migrating to RolifyCreateRoles (20130306045615)
+Migrating to CreateAuthors (20130321004941)
+Migrating to CreateAuthorCites (20130321005348)
+Migrating to CreateCompetitionInteractions (20130321011138)
+Migrating to CreateFacilitationInteractions (20130321011716)
+Migrating to CreateFunctionalGroups (20130321012317)
+Migrating to CreateLocationData (20130321013002)
+Migrating to CreateNodeRanges (20130321015117)
+Migrating to CreateParasiticInteractions (20130321194943)
+Migrating to CreateStages (20130321195308)
+Migrating to CreateStageBiomassChanges (20130321195442)
+Migrating to CreateStageBiomassDensities (20130321195624)
+Migrating to CreateStageConsumBiomassRatios (20130321195952)
+Migrating to CreateStageDrymasses (20130321200119)
+Migrating to CreateStageDurations (20130321200242)
+Migrating to CreateStageFecundities (20130321200405)
+Migrating to CreateStageLengths (20130321200638)
+Migrating to CreateStageMasses (20130321204236)
+Migrating to CreateStageMaxDepths (20130321204353)
+Migrating to CreateStagePopulations (20130321204627)
+Migrating to CreateStageProdBiomassRatios (20130321204742)
+Migrating to CreateStageProdConsumRatios (20130321204926)
+Migrating to CreateStageResidencyTimes (20130321205404)
+Migrating to CreateStageUnassimilatedConsumRatios (20130321205536)
+Migrating to CreateTrophicInteractions (20130321205704)
+Migrating to CreateTrophicInteractionObservations (20130321205936)
+Migrating to CreateNodeMaxAges (20130325155752)
+Migrating to DefaultsAndNils (20130326042522)
+Migrating to CreateCitations (20130328190350)
+Migrating to CreateCompetitionInteractionObservations (20130328190541)
+Migrating to CreateFacilitationInteractionObservations (20130328190647)
+Migrating to CreateNodes (20130328190846)
+Migrating to CreateLocations (20130328191806)
+Migrating to CreateNonItis (20130328201812)
+Migrating to CreateStageConsumerStrategies (20130328202730)
+Migrating to CreateStageHabitats (20130328203046)
+Migrating to CreateParasiticInteractionObservations (20130328203542)
+Migrating to CreateStageHabitatDescriptors (20130328203657)
+Migrating to CreateStageLengthFecundities (20130328203937)
+Migrating to CreateStageLengthWeights (20130328204247)
+Migrating to CreateStageLifestyles (20130328204414)
+Migrating to CreateStageMobilities (20130328204616)
+Migrating to CreateStageReproductiveStrategies (20130328205000)
+Migrating to CreateStageResidencies (20130328205137)
+  [1m[35m (168.9ms)[0m  CREATE TABLE `stage_residencies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `cite_id` int(11), `stage_id` int(11), `residency` varchar(255), `comment` text, `datum` varchar(255), `user_id` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (43.7ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130328205137')[0m
+  [1m[35m (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to DeviseCreateUsers (20130306045411)
+Migrating to RolifyCreateRoles (20130306045615)
+Migrating to CreateAuthors (20130321004941)
+Migrating to CreateAuthorCites (20130321005348)
+Migrating to CreateCompetitionInteractions (20130321011138)
+Migrating to CreateFacilitationInteractions (20130321011716)
+Migrating to CreateFunctionalGroups (20130321012317)
+Migrating to CreateLocationData (20130321013002)
+Migrating to CreateNodeRanges (20130321015117)
+Migrating to CreateParasiticInteractions (20130321194943)
+Migrating to CreateStages (20130321195308)
+Migrating to CreateStageBiomassChanges (20130321195442)
+Migrating to CreateStageBiomassDensities (20130321195624)
+Migrating to CreateStageConsumBiomassRatios (20130321195952)
+Migrating to CreateStageDrymasses (20130321200119)
+Migrating to CreateStageDurations (20130321200242)
+Migrating to CreateStageFecundities (20130321200405)
+Migrating to CreateStageLengths (20130321200638)
+Migrating to CreateStageMasses (20130321204236)
+Migrating to CreateStageMaxDepths (20130321204353)
+Migrating to CreateStagePopulations (20130321204627)
+Migrating to CreateStageProdBiomassRatios (20130321204742)
+Migrating to CreateStageProdConsumRatios (20130321204926)
+Migrating to CreateStageResidencyTimes (20130321205404)
+Migrating to CreateStageUnassimilatedConsumRatios (20130321205536)
+Migrating to CreateTrophicInteractions (20130321205704)
+Migrating to CreateNodeMaxAges (20130325155752)
+Migrating to DefaultsAndNils (20130326042522)
+Migrating to CreateCitations (20130328190350)
+Migrating to CreateCompetitionInteractionObservations (20130328190541)
+Migrating to CreateFacilitationInteractionObservations (20130328190647)
+Migrating to CreateNodes (20130328190846)
+Migrating to CreateLocations (20130328191806)
+Migrating to CreateNonItis (20130328201812)
+Migrating to CreateStageConsumerStrategies (20130328202730)
+Migrating to CreateStageHabitats (20130328203046)
+Migrating to CreateParasiticInteractionObservations (20130328203542)
+Migrating to CreateStageHabitatDescriptors (20130328203657)
+Migrating to CreateStageLengthFecundities (20130328203937)
+Migrating to CreateStageLengthWeights (20130328204247)
+Migrating to CreateStageLifestyles (20130328204414)
+Migrating to CreateStageMobilities (20130328204616)
+Migrating to CreateStageReproductiveStrategies (20130328205000)
+Migrating to CreateStageResidencies (20130328205137)
+Migrating to CreateTrophicInteractionObservations (20130328205540)
+  [1m[35m (131.7ms)[0m  CREATE TABLE `trophic_interaction_observations` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `cite_id` int(11), `trophic_interaction_id` int(11), `location_id` int(11), `lethality` varchar(255), `structures_consumed` varchar(255), `percentage_consumed` decimal, `percentage_diet` decimal, `percentage_diet_by` varchar(255), `prefernce` varchar(255), `observation_type` varchar(255), `comment` text, `datum` varchar(255), `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (43.9ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130328205540')[0m
+  [1m[35m (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-28 17:00:27 -0400
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+Processing by DashboardController#index as HTML
+  Rendered dashboard/index.html.erb within layouts/application (12.8ms)
+Compiled non_itis.css  (1ms)  (pid 9286)
+Compiled parasitic_interaction_observations.css  (1ms)  (pid 9286)
+Compiled scaffolds.css  (13ms)  (pid 9286)
+Compiled stage_consumer_strategies.css  (1ms)  (pid 9286)
+Compiled stage_habitat_descriptors.css  (1ms)  (pid 9286)
+Compiled stage_habitats.css  (1ms)  (pid 9286)
+Compiled stage_length_fecundities.css  (1ms)  (pid 9286)
+Compiled stage_length_weights.css  (1ms)  (pid 9286)
+Compiled stage_lifestyles.css  (1ms)  (pid 9286)
+Compiled stage_mobilities.css  (1ms)  (pid 9286)
+Compiled stage_reproductive_strategies.css  (1ms)  (pid 9286)
+Compiled stage_residencies.css  (1ms)  (pid 9286)
+Compiled trophic_interaction_observations.css  (1ms)  (pid 9286)
+Compiled application.css  (97ms)  (pid 9286)
+  Rendered layouts/_navigation.html.erb (3.2ms)
+  Rendered layouts/_messages.html.erb (1.2ms)
+Completed 200 OK in 931ms (Views: 929.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:28 -0400
+Served asset /scaffolds.css - 200 OK (2ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:28 -0400
+Served asset /custom.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:28 -0400
+Served asset /parasitic_interaction_observations.css - 200 OK (2ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:28 -0400
+Served asset /home.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:28 -0400
+Served asset /non_itis.css - 200 OK (2ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:28 -0400
+Served asset /stage_consumer_strategies.css - 200 OK (13ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:28 -0400
+Served asset /dashboard.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:28 -0400
+Served asset /application.css - 304 Not Modified (89ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:28 -0400
+Served asset /stage_length_fecundities.css - 200 OK (2ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:28 -0400
+Served asset /stage_habitats.css - 200 OK (2ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:28 -0400
+Served asset /stage_habitat_descriptors.css - 200 OK (2ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:28 -0400
+Served asset /stage_length_weights.css - 200 OK (2ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:28 -0400
+Served asset /stage_lifestyles.css - 200 OK (6ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:28 -0400
+Served asset /stage_mobilities.css - 200 OK (2ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:28 -0400
+Served asset /stage_reproductive_strategies.css - 200 OK (3ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /stage_residencies.css - 200 OK (5ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /trophic_interaction_observations.css - 200 OK (2ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /visualization.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap.js - 304 Not Modified (69ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /application.js - 304 Not Modified (21ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /highcharts.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /jquery.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (73ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/worldmap.jpg" for 127.0.0.1 at 2013-03-28 17:00:29 -0400
+Served asset /worldmap.jpg - 304 Not Modified (49ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"B8Zc1eP6M2e33owK01+6JqJ7me2U/D5KilEb1bXbrZ0="}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 97ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Processing by HomeController#index as HTML
+  [1m[36mLocation Load (0.5ms)[0m  [1mSELECT `locations`.* FROM `locations` [0m
+  Rendered home/index.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation.html.erb (2.2ms)
+  Rendered layouts/_messages.html.erb (0.2ms)
+Completed 200 OK in 120ms (Views: 109.1ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /application.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /home.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (61ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /bootstrap.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /application.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/worldmap.jpg" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
+Served asset /worldmap.jpg - 304 Not Modified (3ms)
