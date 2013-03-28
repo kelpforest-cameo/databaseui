@@ -1,0 +1,2 @@
+module FacilitationInteractionsHelper
+end

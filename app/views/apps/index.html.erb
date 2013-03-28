@@ -1,0 +1,57 @@
+<h1>Listing apps</h1>
+
+<table>
+  <tr>
+    <th>Config</th>
+    <th>Config.ru</th>
+    <th>Db</th>
+    <th>Doc</th>
+    <th>Gemfile</th>
+    <th>Gemfile~</th>
+    <th>Gemfile.lock</th>
+    <th>Lib</th>
+    <th>Log</th>
+    <th>Old</th>
+    <th>Public</th>
+    <th>Rakefile</th>
+    <th>Readme.md</th>
+    <th>Readme.rdoc</th>
+    <th>Script</th>
+    <th>Test</th>
+    <th>Tmp</th>
+    <th>Vendor</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @apps.each do |app| %>
+  <tr>
+    <td><%= app.config %></td>
+    <td><%= app.config.ru %></td>
+    <td><%= app.db %></td>
+    <td><%= app.doc %></td>
+    <td><%= app.Gemfile %></td>
+    <td><%= app.Gemfile~ %></td>
+    <td><%= app.Gemfile.lock %></td>
+    <td><%= app.lib %></td>
+    <td><%= app.log %></td>
+    <td><%= app.old %></td>
+    <td><%= app.public %></td>
+    <td><%= app.Rakefile %></td>
+    <td><%= app.README.md %></td>
+    <td><%= app.README.rdoc %></td>
+    <td><%= app.script %></td>
+    <td><%= app.test %></td>
+    <td><%= app.tmp %></td>
+    <td><%= app.vendor %></td>
+    <td><%= link_to 'Show', app %></td>
+    <td><%= link_to 'Edit', edit_app_path(app) %></td>
+    <td><%= link_to 'Destroy', app, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New App', new_app_path %>

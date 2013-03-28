@@ -1,0 +1,2 @@
+module LocationDataHelper
+end

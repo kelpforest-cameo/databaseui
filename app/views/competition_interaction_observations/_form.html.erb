@@ -1,0 +1,17 @@
+<%= form_for(@competition_interaction_observation) do |f| %>
+  <% if @competition_interaction_observation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@competition_interaction_observation.errors.count, "error") %> prohibited this competition_interaction_observation from being saved:</h2>
+
+      <ul>
+      <% @competition_interaction_observation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

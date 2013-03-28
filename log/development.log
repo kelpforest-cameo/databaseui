@@ -1801,3 +1801,71 @@ Served asset /application.js - 304 Not Modified (3ms)
 
 Started GET "/assets/worldmap.jpg" for 127.0.0.1 at 2013-03-28 17:00:32 -0400
 Served asset /worldmap.jpg - 304 Not Modified (3ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to DeviseCreateUsers (20130306045411)
+Migrating to RolifyCreateRoles (20130306045615)
+Migrating to CreateAuthors (20130321004941)
+Migrating to CreateAuthorCites (20130321005348)
+Migrating to CreateCompetitionInteractions (20130321011138)
+Migrating to CreateFacilitationInteractions (20130321011716)
+Migrating to CreateFunctionalGroups (20130321012317)
+Migrating to CreateLocationData (20130321013002)
+Migrating to CreateNodeRanges (20130321015117)
+Migrating to CreateParasiticInteractions (20130321194943)
+Migrating to CreateStages (20130321195308)
+Migrating to CreateStageBiomassChanges (20130321195442)
+Migrating to CreateStageBiomassDensities (20130321195624)
+Migrating to CreateStageConsumBiomassRatios (20130321195952)
+Migrating to CreateStageDrymasses (20130321200119)
+Migrating to CreateStageDurations (20130321200242)
+Migrating to CreateStageFecundities (20130321200405)
+Migrating to CreateStageLengths (20130321200638)
+Migrating to CreateStageMasses (20130321204236)
+Migrating to CreateStageMaxDepths (20130321204353)
+Migrating to CreateStagePopulations (20130321204627)
+Migrating to CreateStageProdBiomassRatios (20130321204742)
+Migrating to CreateStageProdConsumRatios (20130321204926)
+Migrating to CreateStageResidencyTimes (20130321205404)
+Migrating to CreateStageUnassimilatedConsumRatios (20130321205536)
+Migrating to CreateTrophicInteractions (20130321205704)
+Migrating to CreateNodeMaxAges (20130325155752)
+Migrating to DefaultsAndNils (20130326042522)
+Migrating to CreateCitations (20130328190350)
+Migrating to CreateNodes (20130328190846)
+Migrating to CreateLocations (20130328191806)
+Migrating to CreateStageConsumerStrategies (20130328202730)
+Migrating to CreateStageHabitats (20130328203046)
+Migrating to CreateStageHabitatDescriptors (20130328203657)
+Migrating to CreateStageLengthFecundities (20130328203937)
+Migrating to CreateStageLengthWeights (20130328204247)
+Migrating to CreateStageLifestyles (20130328204414)
+Migrating to CreateStageMobilities (20130328204616)
+Migrating to CreateStageReproductiveStrategies (20130328205000)
+Migrating to CreateStageResidencies (20130328205137)
+Migrating to CreateTrophicInteractionObservations (20130328205540)
+Migrating to CreateNonItis (20130328211725)
+  [1m[35m (146.9ms)[0m  CREATE TABLE `non_itis` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `parent_id` int(11), `latin_name` varchar(255), `taxonomy_level` varchar(255), `parent_id_is_itis` tinyint(1), `info` text, `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (43.7ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130328211725')[0m
+  [1m[35m (0.3ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 

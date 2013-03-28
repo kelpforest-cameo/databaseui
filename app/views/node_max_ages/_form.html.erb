@@ -1,0 +1,17 @@
+<%= form_for(@node_max_age) do |f| %>
+  <% if @node_max_age.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@node_max_age.errors.count, "error") %> prohibited this node_max_age from being saved:</h2>
+
+      <ul>
+      <% @node_max_age.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

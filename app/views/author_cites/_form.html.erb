@@ -1,0 +1,17 @@
+<%= form_for(@author_cite) do |f| %>
+  <% if @author_cite.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@author_cite.errors.count, "error") %> prohibited this author_cite from being saved:</h2>
+
+      <ul>
+      <% @author_cite.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
