@@ -7,7 +7,7 @@ class Ability
        user ||= User.new # guest user (not logged in)
        if user.role? :user
        	can :read, :all
-       	can :manage, User, :id =>{:id => user.id}
+       	#can :update, User, :id => user.id
        end
        if user.role? :moderator
          can :read, :all

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   rolify
+  resourcify
   # admin = super user, moderator = scientist user = data entry
   ROLES = %w[user moderator admin]
   def role?(base_role)
