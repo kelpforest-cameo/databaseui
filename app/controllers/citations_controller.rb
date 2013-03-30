@@ -25,7 +25,7 @@ class CitationsController < ApplicationController
   # GET /citations/new.json
   def new
     @citation = Citation.new
-
+    @citation = current_user.id
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @citation }
@@ -41,7 +41,7 @@ class CitationsController < ApplicationController
   # POST /citations.json
   def create
     @citation = Citation.new(params[:citation])
-
+    @citation.user_id = current.user_id
     respond_to do |format|
       if @citation.save
         format.html { redirect_to @citation, notice: 'Citation was successfully created.' }

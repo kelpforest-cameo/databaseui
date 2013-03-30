@@ -40,7 +40,8 @@ FoodWebBuilder::Application.routes.draw do
 
   resources :non_itis
 
-
+  resources :citations
+  resources :authors
   authenticated :user do
   	root :to => 'dashboard#index' 
   end

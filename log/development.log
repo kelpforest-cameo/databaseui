@@ -15032,3 +15032,3301 @@ Served asset /application.js - 304 Not Modified (3ms)
 
 Started GET "/assets/worldmap.jpg" for 127.0.0.1 at 2013-03-29 14:25:37 -0400
 Served asset /worldmap.jpg - 304 Not Modified (3ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-29 19:10:06 -0400
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+Processing by DashboardController#index as HTML
+  Rendered dashboard/index.html.erb within layouts/application (9.0ms)
+Compiled author_cites.css  (6ms)  (pid 9668)
+Compiled bootstrap-responsive.css  (0ms)  (pid 9668)
+Compiled bootstrap-responsive.min.css  (0ms)  (pid 9668)
+Compiled bootstrap.css  (0ms)  (pid 9668)
+Compiled bootstrap.min.css  (0ms)  (pid 9668)
+Compiled bootstrap_and_overrides.css  (1256ms)  (pid 9668)
+Compiled custom.css  (0ms)  (pid 9668)
+Compiled dashboard.css  (29ms)  (pid 9668)
+Compiled home.css  (2ms)  (pid 9668)
+Compiled non_itis.css  (0ms)  (pid 9668)
+Compiled parasitic_interaction_observations.css  (0ms)  (pid 9668)
+Compiled scaffolds.css  (7ms)  (pid 9668)
+Compiled stage_consumer_strategies.css  (20ms)  (pid 9668)
+Compiled stage_habitat_descriptors.css  (0ms)  (pid 9668)
+Compiled stage_habitats.css  (0ms)  (pid 9668)
+Compiled stage_length_fecundities.css  (1ms)  (pid 9668)
+Compiled stage_length_weights.css  (1ms)  (pid 9668)
+Compiled stage_lifestyles.css  (1ms)  (pid 9668)
+Compiled stage_mobilities.css  (3ms)  (pid 9668)
+Compiled stage_reproductive_strategies.css  (0ms)  (pid 9668)
+Compiled stage_residencies.css  (1ms)  (pid 9668)
+Compiled trophic_interaction_observations.css  (1ms)  (pid 9668)
+Compiled visualization.css  (1ms)  (pid 9668)
+Compiled application.css  (1663ms)  (pid 9668)
+Compiled jquery.js  (2ms)  (pid 9668)
+Compiled jquery_ujs.js  (1ms)  (pid 9668)
+Compiled bootstrap-transition.js  (0ms)  (pid 9668)
+Compiled bootstrap-affix.js  (0ms)  (pid 9668)
+Compiled bootstrap-alert.js  (0ms)  (pid 9668)
+Compiled bootstrap-button.js  (0ms)  (pid 9668)
+Compiled bootstrap-carousel.js  (0ms)  (pid 9668)
+Compiled bootstrap-collapse.js  (0ms)  (pid 9668)
+Compiled bootstrap-dropdown.js  (0ms)  (pid 9668)
+Compiled bootstrap-modal.js  (0ms)  (pid 9668)
+Compiled bootstrap-scrollspy.js  (0ms)  (pid 9668)
+Compiled bootstrap-tab.js  (0ms)  (pid 9668)
+Compiled bootstrap-tooltip.js  (0ms)  (pid 9668)
+Compiled bootstrap-popover.js  (0ms)  (pid 9668)
+Compiled bootstrap-typeahead.js  (0ms)  (pid 9668)
+Compiled bootstrap.js  (201ms)  (pid 9668)
+Compiled highcharts.js  (3ms)  (pid 9668)
+Compiled application.js  (369ms)  (pid 9668)
+  Rendered layouts/_navigation.html.erb (4.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 2471ms (Views: 2470.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (19ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /author_cites.css - 200 OK (3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /application.css - 304 Not Modified (34ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /bootstrap.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /bootstrap_and_overrides.css - 200 OK (3ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /custom.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /dashboard.css - 304 Not Modified (18ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /home.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /non_itis.css - 200 OK (3ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /parasitic_interaction_observations.css - 200 OK (2ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /scaffolds.css - 200 OK (17ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /stage_consumer_strategies.css - 200 OK (4ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /stage_habitat_descriptors.css - 200 OK (2ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /stage_habitats.css - 200 OK (3ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /stage_length_fecundities.css - 200 OK (3ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /stage_length_weights.css - 200 OK (3ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /stage_lifestyles.css - 200 OK (1ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /stage_mobilities.css - 200 OK (1ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /stage_reproductive_strategies.css - 200 OK (2ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /trophic_interaction_observations.css - 200 OK (2ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /stage_residencies.css - 200 OK (2ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /visualization.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /jquery.js - 304 Not Modified (20ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:09 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (22ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (17ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /bootstrap.js - 304 Not Modified (31ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /highcharts.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:10 -0400
+Served asset /application.js - 304 Not Modified (30ms)
+
+
+Started GET "/assets/worldmap.jpg" for 127.0.0.1 at 2013-03-29 19:10:11 -0400
+Served asset /worldmap.jpg - 304 Not Modified (16ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-03-29 19:10:13 -0400
+Processing by DashboardController#dataentry as HTML
+  Rendered dashboard/_denode.html.erb (0.0ms)
+  Rendered dashboard/_decitations.html.erb (0.0ms)
+  Rendered dashboard/_deinteractions.html.erb (0.0ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (5.0ms)
+  [1m[35mUser Load (1.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 44ms (Views: 43.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:14 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:14 -0400
+Served asset /author_cites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:14 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:14 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:14 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:14 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:14 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:14 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:14 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:14 -0400
+Served asset /home.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:14 -0400
+Served asset /non_itis.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:14 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:14 -0400
+Served asset /scaffolds.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:14 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /stage_habitats.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /stage_residencies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:15 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:16 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:16 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:16 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:16 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:16 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:16 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:16 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:16 -0400
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:16 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:16 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2013-03-29 19:10:26 -0400
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"QiMr93Z6o01YKgJjP6FqWkJkm3WpYwobPTfXbxnrnoA="}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 124ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-29 19:10:27 -0400
+Processing by HomeController#index as HTML
+  [1m[35mLocation Load (0.0ms)[0m  SELECT `locations`.* FROM `locations` 
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 64ms (Views: 24.0ms | ActiveRecord: 34.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:27 -0400
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:27 -0400
+Served asset /author_cites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:27 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:27 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:27 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:27 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:27 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:27 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:27 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /non_itis.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /stage_habitats.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /stage_residencies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:28 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:29 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:29 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:29 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:29 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:29 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:29 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:29 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:29 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:29 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:29 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:29 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:29 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:29 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:29 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:29 -0400
+Served asset /application.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/worldmap.jpg" for 127.0.0.1 at 2013-03-29 19:10:30 -0400
+Served asset /worldmap.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/visualization" for 127.0.0.1 at 2013-03-29 19:10:30 -0400
+Processing by VisualizationController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` >= 0) ORDER BY `users`.`id` ASC LIMIT 1000[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM `citations` WHERE `citations`.`user_id` = 1
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM `citations` WHERE `citations`.`user_id` = 2[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM `citations` WHERE `citations`.`user_id` = 3
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM `citations` WHERE `citations`.`user_id` = 4[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM `citations` WHERE `citations`.`user_id` = 5
+  Rendered visualization/index.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 38ms (Views: 25.0ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:30 -0400
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:30 -0400
+Served asset /author_cites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /non_itis.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /stage_habitats.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:31 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /stage_residencies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /visualization.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:32 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:33 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:33 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:33 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:33 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:33 -0400
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-29 19:10:47 -0400
+Processing by HomeController#index as HTML
+  [1m[36mLocation Load (0.0ms)[0m  [1mSELECT `locations`.* FROM `locations` [0m
+  Rendered home/index.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 24ms (Views: 23.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:47 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /author_cites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /non_itis.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /stage_habitats.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:48 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /stage_residencies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:49 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:50 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:50 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:50 -0400
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:50 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 19:10:50 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/worldmap.jpg" for 127.0.0.1 at 2013-03-29 19:10:50 -0400
+Served asset /worldmap.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/citations" for 127.0.0.1 at 2013-03-29 19:29:23 -0400
+
+ActionController::RoutingError (No route matches [GET] "/citations"):
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.0ms)
+
+
+Started GET "/citations" for 127.0.0.1 at 2013-03-29 19:30:24 -0400
+Processing by CitationsController#index as HTML
+Completed 500 Internal Server Error in 1ms
+
+NameError (uninitialized constant CitationsController::Citation):
+  app/controllers/citations_controller.rb:5:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.0ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/citations" for 127.0.0.1 at 2013-03-29 19:30:59 -0400
+Processing by CitationsController#index as HTML
+Completed 500 Internal Server Error in 2ms
+
+NameError (uninitialized constant CitationsController::Citation):
+  app/controllers/citations_controller.rb:5:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (37.0ms)
+
+
+Started GET "/citations" for 127.0.0.1 at 2013-03-29 19:32:27 -0400
+Processing by CitationsController#index as HTML
+Completed 500 Internal Server Error in 15ms
+
+NameError (uninitialized constant CitationsController::Citation):
+  app/controllers/citations_controller.rb:5:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.0ms)
+
+
+Started GET "/citation" for 127.0.0.1 at 2013-03-29 19:33:31 -0400
+
+ActionController::RoutingError (No route matches [GET] "/citation"):
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/citations" for 127.0.0.1 at 2013-03-29 19:33:34 -0400
+Processing by CitationsController#index as HTML
+  [1m[36mCitation Load (0.0ms)[0m  [1mSELECT `citations`.* FROM `citations` [0m
+  Rendered citations/index.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_navigation.html.erb (30.0ms)
+  Rendered layouts/_messages.html.erb (1.0ms)
+Completed 200 OK in 233ms (Views: 170.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:34 -0400
+Served asset /application.css - 304 Not Modified (41ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:34 -0400
+Served asset /author_cites.css - 304 Not Modified (17ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:34 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:34 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:34 -0400
+Served asset /bootstrap.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:34 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (25ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /custom.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /dashboard.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /home.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /non_itis.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (18ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /scaffolds.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /stage_habitats.css - 304 Not Modified (17ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /stage_residencies.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 19:33:35 -0400
+Served asset /visualization.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /jquery.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (16ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /bootstrap.js - 304 Not Modified (33ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:36 -0400
+Served asset /highcharts.js - 304 Not Modified (18ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 19:33:37 -0400
+Served asset /application.js - 304 Not Modified (32ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-29 19:43:16 -0400
+Processing by HomeController#index as HTML
+  [1m[35mLocation Load (0.0ms)[0m  SELECT `locations`.* FROM `locations` 
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 46ms (Views: 37.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:17 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:17 -0400
+Served asset /author_cites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:17 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:17 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:17 -0400
+Served asset /bootstrap.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:17 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:17 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:17 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:17 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:17 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:17 -0400
+Served asset /non_itis.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:17 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:17 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:17 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /stage_habitats.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /stage_residencies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:18 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:19 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:19 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:19 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:19 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:19 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:19 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:19 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:19 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:19 -0400
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:19 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:19 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/worldmap.jpg" for 127.0.0.1 at 2013-03-29 19:43:19 -0400
+Served asset /worldmap.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-03-29 19:43:21 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (2.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (12.0ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 127ms (Views: 39.0ms | ActiveRecord: 59.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:21 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /author_cites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /non_itis.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /stage_habitats.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:22 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /stage_residencies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:23 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:24 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:24 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:24 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:24 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:24 -0400
+Served asset /application.js - 304 Not Modified (2ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-03-29 19:43:29 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FSCJghqu9xivC8gVrpnEqQ9K6ExSk0L+EXOH2XJSUkM=", "user"=>{"email"=>"diceydawg@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'diceydawg@gmail.com' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (31.0ms)[0m  [1mUPDATE `users` SET `last_sign_in_at` = '2013-03-28 06:44:56', `current_sign_in_at` = '2013-03-29 23:43:29', `sign_in_count` = 4, `updated_at` = '2013-03-29 23:43:29' WHERE `users`.`id` = 1[0m
+  [1m[35m (17.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 279ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-03-29 19:43:29 -0400
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Processing by DashboardController#index as HTML
+  Rendered dashboard/index.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 40ms (Views: 40.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:29 -0400
+Served asset /author_cites.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:29 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /non_itis.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /stage_habitats.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:30 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /stage_residencies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:31 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:32 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:32 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:32 -0400
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:32 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:32 -0400
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/worldmap.jpg" for 127.0.0.1 at 2013-03-29 19:43:32 -0400
+Served asset /worldmap.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-03-29 19:43:35 -0400
+Processing by DashboardController#dataentry as HTML
+  Rendered dashboard/_denode.html.erb (1.0ms)
+  Rendered dashboard/_decitations.html.erb (0.0ms)
+  Rendered dashboard/_deinteractions.html.erb (0.0ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (5.0ms)
+  [1m[35mUser Load (1.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 28ms (Views: 27.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:35 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:35 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:35 -0400
+Served asset /author_cites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:35 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:35 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:35 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:35 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:35 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:35 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:35 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:35 -0400
+Served asset /non_itis.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:35 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:35 -0400
+Served asset /scaffolds.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /stage_habitats.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /stage_residencies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:36 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:37 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:37 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:37 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:37 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:37 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:37 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:37 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:37 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:37 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:37 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:37 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:37 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 19:43:37 -0400
+Served asset /application.js - 304 Not Modified (2ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-03-29 19:54:46 -0400
+Processing by DashboardController#dataentry as HTML
+  Rendered dashboard/_denode.html.erb (0.0ms)
+  Rendered dashboard/_decitations.html.erb (5.0ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (7.0ms)
+Completed 500 Internal Server Error in 14ms
+
+ActionView::Template::Error (Missing partial authors/show with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :jbuilder, :coffee, :haml]}. Searched in:
+  * "C:/Sites/databaseui/app/views"
+  * "C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/devise-2.2.3/app/views"
+  * "C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/gmaps4rails-1.5.6/app/views"
+  * "C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rails_admin-0.4.6/app/views"
+  * "C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/kaminari-0.14.1/app/views"
+):
+    37:         <fieldset>
+    38:             <legend>
+    39:                 Add New Author
+    40: <%= render :partial => 'authors/show', :authors => @author %>
+    41:             </legend>
+    42: 		
+    43: 
+  app/views/dashboard/_decitations.html.erb:40:in `_app_views_dashboard__decitations_html_erb___267135525_34192368'
+  app/views/dashboard/dataentry.html.erb:30:in `_app_views_dashboard_dataentry_html_erb__518056087_34215264'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (16.0ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-03-29 19:57:20 -0400
+Processing by DashboardController#dataentry as HTML
+  Rendered dashboard/_denode.html.erb (0.0ms)
+  Rendered authors/_form.html.erb (2.0ms)
+  Rendered dashboard/_decitations.html.erb (3.0ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (5.0ms)
+Completed 500 Internal Server Error in 11ms
+
+ActionView::Template::Error (undefined method `model_name' for NilClass:Class):
+    1: <%= form_for(@author) do |f| %>
+    2:   <% if @author.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(@author.errors.count, "error") %> prohibited this author from being saved:</h2>
+  app/views/authors/_form.html.erb:1:in `_app_views_authors__form_html_erb___1059607588_40906836'
+  app/views/dashboard/_decitations.html.erb:40:in `_app_views_dashboard__decitations_html_erb___267135525_40638552'
+  app/views/dashboard/dataentry.html.erb:30:in `_app_views_dashboard_dataentry_html_erb__518056087_34215264'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (16.0ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-03-29 19:58:21 -0400
+Processing by DashboardController#dataentry as HTML
+  Rendered dashboard/_denode.html.erb (0.0ms)
+  Rendered authors/_form.html.erb (1.0ms)
+  Rendered dashboard/_decitations.html.erb (2.0ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (4.0ms)
+Completed 500 Internal Server Error in 11ms
+
+ActionView::Template::Error (undefined method `model_name' for NilClass:Class):
+    1: <%= form_for(@author) do |f| %>
+    2:   <% if @author.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(@author.errors.count, "error") %> prohibited this author from being saved:</h2>
+  app/views/authors/_form.html.erb:1:in `_app_views_authors__form_html_erb___1059607588_40906836'
+  app/views/dashboard/_decitations.html.erb:41:in `_app_views_dashboard__decitations_html_erb___267135525_40636080'
+  app/views/dashboard/dataentry.html.erb:30:in `_app_views_dashboard_dataentry_html_erb__518056087_34215264'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (30.0ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-03-29 20:00:22 -0400
+Processing by DashboardController#dataentry as HTML
+  [1m[36mCitation Load (0.0ms)[0m  [1mSELECT `citations`.* FROM `citations` [0m
+  Rendered dashboard/_denode.html.erb (0.0ms)
+  Rendered authors/_form.html.erb (7.0ms)
+  Rendered dashboard/_decitations.html.erb (9.0ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (11.0ms)
+Completed 500 Internal Server Error in 112ms
+
+ActionView::Template::Error (undefined method `authors_path' for #<#<Class:0x537d968>:0x537a9b0>):
+    1: <%= form_for(@author) do |f| %>
+    2:   <% if @author.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(@author.errors.count, "error") %> prohibited this author from being saved:</h2>
+  app/views/authors/_form.html.erb:1:in `_app_views_authors__form_html_erb___1059607588_40906836'
+  app/views/dashboard/_decitations.html.erb:41:in `_app_views_dashboard__decitations_html_erb___267135525_40636080'
+  app/views/dashboard/dataentry.html.erb:30:in `_app_views_dashboard_dataentry_html_erb__518056087_34215264'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (16.0ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-03-29 20:00:59 -0400
+Processing by DashboardController#dataentry as HTML
+  [1m[35mCitation Load (0.0ms)[0m  SELECT `citations`.* FROM `citations` 
+  Rendered dashboard/_denode.html.erb (0.0ms)
+  Rendered authors/_form.html.erb (2.0ms)
+  Rendered dashboard/_decitations.html.erb (4.0ms)
+  Rendered dashboard/_deinteractions.html.erb (0.0ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (7.0ms)
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered layouts/_navigation.html.erb (13.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 69ms (Views: 39.0ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 20:00:59 -0400
+Served asset /author_cites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 20:00:59 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 20:00:59 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 20:00:59 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 20:00:59 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 20:00:59 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /non_itis.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /stage_habitats.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /stage_residencies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 20:01:00 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 20:01:01 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started POST "/authors" for 127.0.0.1 at 2013-03-29 20:01:08 -0400
+Processing by AuthorsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FSCJghqu9xivC8gVrpnEqQ9K6ExSk0L+EXOH2XJSUkM=", "author"=>{"first_name"=>"dfdf", "last_name"=>"dfdf"}, "commit"=>"Create Author"}
+Completed 500 Internal Server Error in 3ms
+
+NameError (undefined local variable or method `current' for #<AuthorsController:0x4fd82c0>):
+  app/controllers/authors_controller.rb:44:in `create'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (31.0ms)
+
+
+Started POST "/authors" for 127.0.0.1 at 2013-03-29 20:03:21 -0400
+Processing by AuthorsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FSCJghqu9xivC8gVrpnEqQ9K6ExSk0L+EXOH2XJSUkM=", "author"=>{"first_name"=>"dfdf", "last_name"=>"dfdf"}, "commit"=>"Create Author"}
+  [1m[35mUser Load (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `authors` (`created_at`, `first_name`, `last_name`, `updated_at`, `user_id`) VALUES ('2013-03-30 00:03:22', 'dfdf', 'dfdf', '2013-03-30 00:03:22', 1)
+  [1m[36m (2.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/authors/9
+Completed 302 Found in 60ms (ActiveRecord: 8.0ms)
+
+
+Started GET "/authors/9" for 127.0.0.1 at 2013-03-29 20:03:22 -0400
+Processing by AuthorsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mAuthor Load (0.0ms)[0m  SELECT `authors`.* FROM `authors` WHERE `authors`.`id` = 9 LIMIT 1
+  Rendered authors/show.html.erb within layouts/application (1.0ms)
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 43ms (Views: 42.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:22 -0400
+Served asset /author_cites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:22 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:22 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:22 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:22 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:22 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:22 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:22 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:22 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:22 -0400
+Served asset /home.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:22 -0400
+Served asset /non_itis.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:22 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:22 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:22 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /stage_habitats.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /stage_residencies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:23 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:24 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:24 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:24 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:24 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:24 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:24 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:24 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:24 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:24 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:24 -0400
+Served asset /bootstrap.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:24 -0400
+Served asset /highcharts.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 20:03:24 -0400
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-03-29 20:08:15 -0400
+Processing by DashboardController#dataentry as HTML
+  [1m[35mCitation Load (0.0ms)[0m  SELECT `citations`.* FROM `citations` 
+  Rendered dashboard/_denode.html.erb (0.0ms)
+  Rendered authors/_form.html.erb (2.0ms)
+  Rendered dashboard/_decitations.html.erb (3.0ms)
+  Rendered dashboard/_deinteractions.html.erb (0.0ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (7.0ms)
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered layouts/_navigation.html.erb (33.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 105ms (Views: 58.0ms | ActiveRecord: 8.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /author_cites.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /custom.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /non_itis.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:16 -0400
+Served asset /stage_habitats.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /stage_residencies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:17 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:18 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:18 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:18 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:18 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:18 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:18 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:18 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 20:08:18 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-03-29 20:18:36 -0400
+Processing by DashboardController#dataentry as HTML
+  [1m[35mCitation Load (0.0ms)[0m  SELECT `citations`.* FROM `citations` 
+  Rendered dashboard/_denode.html.erb (0.0ms)
+  Rendered authors/_form.html.erb (1.0ms)
+  Rendered dashboard/_decitations.html.erb (8.0ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (10.0ms)
+Completed 500 Internal Server Error in 17ms
+
+ActionView::Template::Error (Missing partial citations/index with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :jbuilder, :coffee, :haml]}. Searched in:
+  * "C:/Sites/databaseui/app/views"
+  * "C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/devise-2.2.3/app/views"
+  * "C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/gmaps4rails-1.5.6/app/views"
+  * "C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rails_admin-0.4.6/app/views"
+  * "C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/kaminari-0.14.1/app/views"
+):
+    140:             </div>
+    141:         </div>
+    142:     </div>
+    143:    <%= render :partial => 'citations/index', :citations => @citationslist %>
+    144: </div>
+  app/views/dashboard/_decitations.html.erb:143:in `_app_views_dashboard__decitations_html_erb___267135525_34134132'
+  app/views/dashboard/dataentry.html.erb:30:in `_app_views_dashboard_dataentry_html_erb__518056087_34215264'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (17.0ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-03-29 20:19:04 -0400
+Processing by DashboardController#dataentry as HTML
+  [1m[36mCitation Load (0.0ms)[0m  [1mSELECT `citations`.* FROM `citations` [0m
+  Rendered dashboard/_denode.html.erb (0.0ms)
+  Rendered authors/_form.html.erb (2.0ms)
+  Rendered dashboard/_decitations.html.erb (7.0ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (9.0ms)
+Completed 500 Internal Server Error in 31ms
+
+ActionView::Template::Error (Missing partial citations/index with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :jbuilder, :coffee, :haml]}. Searched in:
+  * "C:/Sites/databaseui/app/views"
+  * "C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/devise-2.2.3/app/views"
+  * "C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/gmaps4rails-1.5.6/app/views"
+  * "C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rails_admin-0.4.6/app/views"
+  * "C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/kaminari-0.14.1/app/views"
+):
+    140:             </div>
+    141:         </div>
+    142:     </div>
+    143:    <%= render :partial => 'citations/index', :citations => @citationlist %>
+    144: </div>
+  app/views/dashboard/_decitations.html.erb:143:in `_app_views_dashboard__decitations_html_erb___267135525_32377092'
+  app/views/dashboard/dataentry.html.erb:30:in `_app_views_dashboard_dataentry_html_erb__518056087_34215264'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (16.0ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-03-29 20:21:52 -0400
+Processing by DashboardController#dataentry as HTML
+  [1m[35mCitation Load (1.0ms)[0m  SELECT `citations`.* FROM `citations` 
+  Rendered dashboard/_denode.html.erb (0.0ms)
+  Rendered authors/_form.html.erb (2.0ms)
+  Rendered citations/_index.html.erb (2.0ms)
+  Rendered dashboard/_decitations.html.erb (5.0ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (7.0ms)
+Completed 500 Internal Server Error in 14ms
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    7:     <th></th>
+    8:   </tr>
+    9: 
+    10: <% @citations.each do |citation| %>
+    11:   <tr>
+    12:     <td><%= link_to 'Show', citation %></td>
+    13:     <td><%= link_to 'Edit', edit_citation_path(citation) %></td>
+  app/views/citations/_index.html.erb:10:in `_app_views_citations__index_html_erb__673859247_34374756'
+  app/views/dashboard/_decitations.html.erb:143:in `_app_views_dashboard__decitations_html_erb___267135525_32377092'
+  app/views/dashboard/dataentry.html.erb:30:in `_app_views_dashboard_dataentry_html_erb__518056087_34215264'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (16.0ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-03-29 20:26:59 -0400
+Processing by DashboardController#dataentry as HTML
+  [1m[36mCitation Load (0.0ms)[0m  [1mSELECT `citations`.* FROM `citations` [0m
+  Rendered dashboard/_denode.html.erb (0.0ms)
+  Rendered authors/_form.html.erb (2.0ms)
+  Rendered dashboard/_decitations.html.erb (3.0ms)
+  Rendered dashboard/_deinteractions.html.erb (0.0ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (6.0ms)
+  [1m[35mUser Load (1.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 32ms (Views: 29.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 20:26:59 -0400
+Served asset /author_cites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 20:26:59 -0400
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 20:26:59 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 20:26:59 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /non_itis.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /stage_habitats.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:00 -0400
+Served asset /stage_residencies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:01 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:02 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:02 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/visualization" for 127.0.0.1 at 2013-03-29 20:27:18 -0400
+Processing by VisualizationController#index as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` >= 0) ORDER BY `users`.`id` ASC LIMIT 1000[0m
+Completed 500 Internal Server Error in 4ms
+
+NameError (uninitialized constant VisualizationController::Citations):
+  app/controllers/visualization_controller.rb:7:in `block (2 levels) in index'
+  app/controllers/visualization_controller.rb:6:in `block in index'
+  app/controllers/visualization_controller.rb:3:in `new'
+  app/controllers/visualization_controller.rb:3:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.0ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-03-29 20:27:40 -0400
+Processing by DashboardController#dataentry as HTML
+  [1m[35mCitation Load (0.0ms)[0m  SELECT `citations`.* FROM `citations` 
+  Rendered dashboard/_denode.html.erb (0.0ms)
+  Rendered authors/_form.html.erb (2.0ms)
+  Rendered dashboard/_decitations.html.erb (3.0ms)
+  Rendered dashboard/_deinteractions.html.erb (0.0ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (6.0ms)
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered layouts/_navigation.html.erb (31.0ms)
+  Rendered layouts/_messages.html.erb (0.0ms)
+Completed 200 OK in 101ms (Views: 57.0ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:41 -0400
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:41 -0400
+Served asset /author_cites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:41 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:41 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:41 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:41 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:41 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:41 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:41 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:41 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:41 -0400
+Served asset /non_itis.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /stage_habitats.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /stage_residencies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:42 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:43 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:43 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:43 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:43 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:43 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:43 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:43 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:43 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:43 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:43 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:43 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:43 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:43 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 20:27:43 -0400
+Served asset /application.js - 304 Not Modified (2ms)
+
+
+Started GET "/visualization" for 127.0.0.1 at 2013-03-29 20:27:49 -0400
+Processing by VisualizationController#index as HTML
+  [1m[35mUser Load (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE (`users`.`id` >= 0) ORDER BY `users`.`id` ASC LIMIT 1000
+Completed 500 Internal Server Error in 4ms
+
+NameError (uninitialized constant VisualizationController::Citations):
+  app/controllers/visualization_controller.rb:7:in `block (2 levels) in index'
+  app/controllers/visualization_controller.rb:6:in `block in index'
+  app/controllers/visualization_controller.rb:3:in `new'
+  app/controllers/visualization_controller.rb:3:in `index'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (27.0ms)
+
+
+Started GET "/visualization" for 127.0.0.1 at 2013-03-29 20:28:08 -0400
+Processing by VisualizationController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (`users`.`id` >= 0) ORDER BY `users`.`id` ASC LIMIT 1000[0m
+  [1m[35m (58.0ms)[0m  SELECT COUNT(*) FROM `citations` WHERE `citations`.`user_id` = 1
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM `citations` WHERE `citations`.`user_id` = 2[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM `citations` WHERE `citations`.`user_id` = 3
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM `citations` WHERE `citations`.`user_id` = 4[0m
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM `citations` WHERE `citations`.`user_id` = 5
+  Rendered visualization/index.html.erb within layouts/application (2.0ms)
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered layouts/_navigation.html.erb (3.0ms)
+  Rendered layouts/_messages.html.erb (1.0ms)
+Completed 200 OK in 142ms (Views: 42.0ms | ActiveRecord: 63.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:09 -0400
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:09 -0400
+Served asset /author_cites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:09 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:09 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:09 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:09 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:09 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:09 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:09 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:09 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:09 -0400
+Served asset /non_itis.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:09 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:09 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:09 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /stage_habitats.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /stage_residencies.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:10 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:11 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:11 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:11 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:11 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:11 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:11 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:11 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:11 -0400
+Served asset /bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:11 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-03-29 20:28:11 -0400
+Served asset /application.js - 304 Not Modified (0ms)
