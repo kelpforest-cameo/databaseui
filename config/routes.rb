@@ -1,5 +1,8 @@
 FoodWebBuilder::Application.routes.draw do
 
+  resources :stage_consume_biomass_ratios
+
+
   resources :author_cites
 
 

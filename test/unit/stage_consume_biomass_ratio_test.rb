@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class StageConsumBiomassRatioTest < ActiveSupport::TestCase
+class StageConsumeBiomassRatioTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
