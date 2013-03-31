@@ -1,54 +1,62 @@
 FoodWebBuilder::Application.routes.draw do
 		#Load resources for models
 	
-	resource :authors
-	resource :author_cites
-	resource :citation
-	resource :competition_interation
-	resource :compeition_interaction_observation
-	resource :faciliation_interaction
-	resource :facilitation_interaction_observation
-	resource :functional_group
-	resource :location
-	resource :location_data
-	resource :node
-	resource :node_max_age
-	resource :node_range
-	resource :non_itis
-	resource :parasitic_interaction
-	resource :parasitic_interaction_observation
-	resource :stage
-	resource :stage_biomass_change
-	resource :stage_biomass_density
-	resource :stage_consume_biomass_ratio
-	resource :stage_consumer_strategy
-	resource :stage_drymass
-	resource :stage_duration
-	resource :stage_fecundity
-	resource :stage_habitat
-	resource :stage_habitat_descriptor
-	resource :stage_length
-	resource :stage_length_fecundity
-	resource :stage_length_weight
-	resource :stage_lifestyle
-	resource :stage_masses
-	resource :stage_max_depth
-	resource :stage_mobility
-	resource :stage_populations
-	resource :stage_prod_biomass_ratio
-	resource :stage_prod_consum_ratio
-	resource :stage_reproductive_strategy
-	resource :stage_residency
-	resource :stage_residency_time
-	resource :stage_unassimilated_consum_ratio
-	resource :trophic_interaction
-	resource :trophic_interaction_observation
+	resources :authors
+	resources :author_cites
+	resources :citation
+	resources :competition_interation
+	resources :compeition_interaction_observation
+	resources :faciliation_interaction
+	resources :facilitation_interaction_observation
+	resources :functional_group
+	resources :location
+	resources :location_data
+	resources :node
+	resources :node_max_age
+	resources :node_range
+	resources :non_itis
+	resources :parasitic_interaction
+	resources :parasitic_interaction_observation
+	resources :stage
+	resources :stage_biomass_change
+	resources :stage_biomass_density
+	resources :stage_consume_biomass_ratio
+	resources :stage_consumer_strategy
+	resources :stage_drymass
+	resources :stage_duration
+	resources :stage_fecundity
+	resources :stage_habitat
+	resources :stage_habitat_descriptor
+	resources :stage_length
+	resources :stage_length_fecundity
+	resources :stage_length_weight
+	resources :stage_lifestyle
+	resources :stage_masses
+	resources :stage_max_depth
+	resources :stage_mobility
+	resources :stage_populations
+	resources :stage_prod_biomass_ratio
+	resources :stage_prod_consum_ratio
+	resources :stage_reproductive_strategy
+	resources :stage_residency
+	resources :stage_residency_time
+	resources :stage_unassimilated_consum_ratio
+	resources :trophic_interaction
+	resources :trophic_interaction_observation
 
 	# Mount the Rails Admin engine
 	mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 	# Configure routes for authenticated User to dashboard
   authenticated :user do
-  	root :to => 'dashboard#index' 
+  	root :to => 'dashboard#index'
+  	devise_for :users
+  	resources :users
+  end
+  
+  authenticated :admin do
+  	root :to => 'admin_dashboard#index'
+  	devise_for :admin
+  	resources :admin
   end
   # Default root to home/index.html.erb
   root :to =>"home#index"

@@ -48,8 +48,11 @@ FoodWebBuilder::Application.routes.draw do
 	mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 	# Configure routes for authenticated User to dashboard
   authenticated :user do
-  	root :to => 'dashboard#index' 
+  	root :to => 'dashboard#index'
+  	devise_for :users
+  	resources :users
   end
+  
   # Default root to home/index.html.erb
   root :to =>"home#index"
   devise_for :users
