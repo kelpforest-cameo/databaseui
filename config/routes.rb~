@@ -1,69 +1,65 @@
 FoodWebBuilder::Application.routes.draw do
+		#Load resources for models
+	
+	resource :authors
+	resource :author_cites
+	resource :citation
+	resource :competition_interation
+	resource :compeition_interaction_observation
+	resource :faciliation_interaction
+	resource :facilitation_interaction_observation
+	resource :functional_group
+	resource :location
+	resource :location_data
+	resource :node
+	resource :node_max_age
+	resource :node_range
+	resource :non_itis
+	resource :parasitic_interaction
+	resource :parasitic_interaction_observation
+	resource :stage
+	resource :stage_biomass_change
+	resource :stage_biomass_density
+	resource :stage_consume_biomass_ratio
+	resource :stage_consumer_strategy
+	resource :stage_drymass
+	resource :stage_duration
+	resource :stage_fecundity
+	resource :stage_habitat
+	resource :stage_habitat_descriptor
+	resource :stage_length
+	resource :stage_length_fecundity
+	resource :stage_length_weight
+	resource :stage_lifestyle
+	resource :stage_masses
+	resource :stage_max_depth
+	resource :stage_mobility
+	resource :stage_populations
+	resource :stage_prod_biomass_ratio
+	resource :stage_prod_consum_ratio
+	resource :stage_reproductive_strategy
+	resource :stage_residency
+	resource :stage_residency_time
+	resource :stage_unassimilated_consum_ratio
+	resource :trophic_interaction
+	resource :trophic_interaction_observation
 
+	# Mount the Rails Admin engine
+	mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+	# Configure routes for authenticated User to dashboard
   authenticated :user do
   	root :to => 'dashboard#index' 
   end
+  # Default root to home/index.html.erb
   root :to =>"home#index"
   devise_for :users
   resources :users
+  
+  # add some matching to make coding easier
   match 'about' => 'home#about'
   match 'help' => 'home#help'
-  match 'visualization' => 'visualization#home'
+  match 'visualization' => 'visualization#index'
   match 'dataentry' => 'dashboard#dataentry'
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
+	
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
 end

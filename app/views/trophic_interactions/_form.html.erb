@@ -1,0 +1,17 @@
+<%= form_for(@trophic_interaction) do |f| %>
+  <% if @trophic_interaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trophic_interaction.errors.count, "error") %> prohibited this trophic_interaction from being saved:</h2>
+
+      <ul>
+      <% @trophic_interaction.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

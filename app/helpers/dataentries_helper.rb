@@ -1,0 +1,2 @@
+module DataentriesHelper
+end

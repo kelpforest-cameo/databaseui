@@ -1,6 +1,7 @@
 class AuthorsController < ApplicationController
   # GET /authors
   # GET /authors.json
+   load_and_authorize_resource :only => [:show, :update, :destroy, :edit]
   def index
     @authors = Author.all
 
@@ -41,7 +42,7 @@ class AuthorsController < ApplicationController
   # POST /authors.json
   def create
     @author = Author.new(params[:author])
-    @author.user_id = current_user.id
+
     respond_to do |format|
       if @author.save
         format.html { redirect_to @author, notice: 'Author was successfully created.' }

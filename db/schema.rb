@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130329162335) do
+ActiveRecord::Schema.define(:version => 20130330153726) do
 
   create_table "author_cites", :force => true do |t|
     t.integer  "author_id"
@@ -229,6 +229,17 @@ ActiveRecord::Schema.define(:version => 20130329162335) do
     t.integer  "user_id"
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
+  end
+
+  create_table "stage_consume_biomass_ratios", :force => true do |t|
+    t.integer  "cite_id"
+    t.integer  "stage_id"
+    t.decimal  "consume_biomass_ratio", :precision => 10, :scale => 0
+    t.text     "comment"
+    t.string   "datum"
+    t.integer  "user_id"
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
   end
 
   create_table "stage_consumer_strategies", :force => true do |t|

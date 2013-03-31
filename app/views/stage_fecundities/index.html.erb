@@ -1,0 +1,21 @@
+<h1>Listing stage_fecundities</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_fecundities.each do |stage_fecundity| %>
+  <tr>
+    <td><%= link_to 'Show', stage_fecundity %></td>
+    <td><%= link_to 'Edit', edit_stage_fecundity_path(stage_fecundity) %></td>
+    <td><%= link_to 'Destroy', stage_fecundity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage fecundity', new_stage_fecundity_path %>
