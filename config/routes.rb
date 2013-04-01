@@ -4,45 +4,45 @@ FoodWebBuilder::Application.routes.draw do
 	resources :authors
 	resources :author_cites
 	resources :citations
-	resources :competition_interation
-	resources :compeition_interaction_observation
-	resources :faciliation_interaction
-	resources :facilitation_interaction_observation
-	resources :functional_group
-	resources :location
+	resources :competition_interations
+	resources :compeition_interaction_observations
+	resources :faciliation_interactions
+	resources :facilitation_interaction_observations
+	resources :functional_groups
+	resources :locations
 	resources :location_data
-	resources :node
-	resources :node_max_age
-	resources :node_range
+	resources :nodes
+	resources :node_max_ages
+	resources :node_ranges
 	resources :non_itis
-	resources :parasitic_interaction
-	resources :parasitic_interaction_observation
-	resources :stage
-	resources :stage_biomass_change
-	resources :stage_biomass_density
-	resources :stage_consume_biomass_ratio
-	resources :stage_consumer_strategy
-	resources :stage_drymass
-	resources :stage_duration
-	resources :stage_fecundity
-	resources :stage_habitat
-	resources :stage_habitat_descriptor
-	resources :stage_length
-	resources :stage_length_fecundity
-	resources :stage_length_weight
-	resources :stage_lifestyle
+	resources :parasitic_interactions
+	resources :parasitic_interaction_observations
+	resources :stages
+	resources :stage_biomass_changes
+	resources :stage_biomass_densities
+	resources :stage_consume_biomass_ratios
+	resources :stage_consumer_strategies
+	resources :stage_drymasses
+	resources :stage_durations
+	resources :stage_fecundities
+	resources :stage_habitats
+	resources :stage_habitat_descriptors
+	resources :stage_lengths
+	resources :stage_length_fecundities
+	resources :stage_length_weights
+	resources :stage_lifestyles
 	resources :stage_masses
-	resources :stage_max_depth
-	resources :stage_mobility
+	resources :stage_max_depths
+	resources :stage_mobilities
 	resources :stage_populations
-	resources :stage_prod_biomass_ratio
-	resources :stage_prod_consum_ratio
-	resources :stage_reproductive_strategy
-	resources :stage_residency
-	resources :stage_residency_time
-	resources :stage_unassimilated_consum_ratio
-	resources :trophic_interaction
-	resources :trophic_interaction_observation
+	resources :stage_prod_biomass_ratios
+	resources :stage_prod_consum_ratios
+	resources :stage_reproductive_strategies
+	resources :stage_residencies
+	resources :stage_residency_times
+	resources :stage_unassimilated_consum_ratios
+	resources :trophic_interactions
+	resources :trophic_interaction_observations
 
 	# Mount the Rails Admin engine
 	mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'

@@ -1,16 +1,8 @@
 class HomeController < ApplicationController
+	skip_load_and_authorize_resource
+
   def index
-<<<<<<< HEAD
-    @json = Location.all.to_gmaps4rails
-=======
-<<<<<<< HEAD
-	  @json = Location.all.to_gmaps4rails
->>>>>>> 85a5b21b2ed6bf6301f009149ec42a5c9d3d19cc
+    #@json = Location.all.to_gmaps4rails
   end
 
-=======
-  end
->>>>>>> master
-  def about
-  end
 end
