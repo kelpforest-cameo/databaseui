@@ -3,7 +3,7 @@ FoodWebBuilder::Application.routes.draw do
 	
 	resources :authors
 	resources :author_cites
-	resources :citation
+	resources :citations
 	resources :competition_interation
 	resources :compeition_interaction_observation
 	resources :faciliation_interaction

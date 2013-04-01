@@ -53,11 +53,6 @@ FoodWebBuilder::Application.routes.draw do
   	resources :users
   end
   
-  authenticated :admin do
-  	root :to => 'admin_dashboard#index'
-  	devise_for :admin
-  	resources :admin
-  end
   # Default root to home/index.html.erb
   root :to =>"home#index"
   devise_for :users

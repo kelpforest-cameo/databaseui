@@ -28,16 +28,16 @@
 	<% end %>
 </ul>
 
-<%if can? :create, @author %>
-	<div class="tab-content">
-		<div class="tab-pane active" id="citehome">
-			<p>
-				Above you will find tabs for entering a new author into a
-				database, creating news citation, and for listing all citations
-				currently in a database.
-			</p>
-		</div>
-		
+<div class="tab-content">
+	<div class="tab-pane active" id="citehome">
+		<p>
+			Above you will find tabs for entering a new author into a
+			database, creating news citation, and for listing all citations
+			currently in a database.
+		</p>
+	</div>
+	
+	<% if can? :create, @author %>
 		<div class="tab-pane" id="newauthor">
 			<div class="well">
 				<h3>Instructions
@@ -64,59 +64,74 @@
 
 			</fieldset>
 		</div>
-	</div>
-<% end %>
-    
-<% if can? :create, @citation %>
-	<div class="tab-pane" id="newcite">
-		<div class="well">
-			<h3>Instructions
-				<button type="button" data-toggle="collapse" data-target="#newciteinfo" class="btn btn-info btn-mini">
-					Collapse/Expand
-				</button>
-			</h3>
+	<% end %>
 
-			<div id="newciteinfo" class="collapse">
-				<p>
-					Enter a new citation. Please enter all necessary
-					information. If the author you are citing is not listed
-					please enter them into the database using the 
-					<em>New Authoer</em> tab above.
-				</p>
+	<% if can? :read, @author %>
+		<div class="tab-pane" id="authorlist">
+			<div class="well">
+				<h3>Instructions
+					<button type="button" data-toggle="collapse" data-target="#authorlistinfo" class="btn btn-info btn-mini">
+						Collapse/Expand
+					</button>
+				</h3>
 
-				<p>
-					Acceptable formats of publications are; Journal, Books,
-					Book Sections, Reports, Thesis, Websites, Personal
-					Observations, and Unpublished Data. There is also an
-					<em>other</em> option for sources not listed.
-				</p>
+				<div id="authorlistinfo" class="collapse">
+					<p>
+						Below is (or soon will be) a list of all the authors
+						currently in the database. authors are listed
+						alphabetically by author's last name.
+					</p>
+				</div>
 			</div>
 		</div>
-		<fieldset>
-			<legend>
-				Add New Citation
-			</legend>
-			<%= render :partial => 'citations_form', :citation => @citation %>
-		</fieldset>
-	</div>
-<% end %>
+	<% end %>
 
-<% if can? :read, @citation %>
-	<div class="tab-pane" id="citelist">
-		<div class="well">
-			<h3>Instructions
-				<button type="button" data-toggle="collapse" data-target="#citelistinfo" class="btn btn-info btn-mini">
-					Collapse/Expand
-				</button>
-			</h3>
+	<% if can? :create, @citation %>
+		<div class="tab-pane" id="newcite">
+			<div class="well">
+				<h3>Instructions
+					<button type="button" data-toggle="collapse" data-target="#newciteinfo" class="btn btn-info btn-mini">
+						Collapse/Expand
+					</button>
+				</h3>
 
-			<div id="citelistinfo" class="collapse">
-				<p>
-					Below is (or soon will be) a list of all the citations
-					currently in the database. Citations are listed
-					alphabetically by author's last name.
-				</p>
+				<div id="newciteinfo" class="collapse">
+					<p>
+						Enter a new citation. Please enter all necessary
+						information. If the author you are citing is not listed
+						please enter them into the database using the 
+						<em>New Author</em> tab above.
+					</p>
+
+					<p>
+						Acceptable formats of publications are; Journal, Books,
+						Book Sections, Reports, Thesis, Websites, Personal
+						Observations, and Unpublished Data. There is also an
+						<em>other</em> option for sources not listed.
+					</p>
+				</div>
+			</div>
+			<fieldset>
+				<legend>
+					Add New Citation
+				</legend>
+				<%= render :partial => 'citations/form', :citation => @citation %>
+			</fieldset>
+		</div>
+	<% end %>
+
+	<% if can? :read, @citation %>
+		<div class="tab-pane" id="citelist">
+			<div class="well">
+				<h3>Instructions
+					<button type="button" data-toggle="collapse" data-target="#citelistinfo" class="btn btn-info btn-mini">
+						Collapse/Expand
+					</button>
+				</h3>
+				<div id="citelistinfo" class="collapse"
+				</div>
 			</div>
 		</div>
-	</div>
-<% end %>
+	<% end %>
+</div>
+</div>
