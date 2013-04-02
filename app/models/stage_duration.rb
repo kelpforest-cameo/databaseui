@@ -1,4 +1,4 @@
-class Stage_Duration < ActiveRecord::Base
+class StageDuration < ActiveRecord::Base
   attr_accessible :citation_id, :comment, :datum, :duration, :stage_id, :user_id
   
   has_many :citations

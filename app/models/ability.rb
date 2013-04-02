@@ -5,6 +5,12 @@ class Ability
 		# Define abilities for the passed in user here. For example:
 
 		user ||= User.new # guest user (not logged in)
+		
+		# Default abilities
+			can :read, :all
+			can :show, :all
+			cannot [:read, :show] , User
+		
 		if user.role? :user
 			can :read, :all
 			can :show, :all
@@ -18,28 +24,28 @@ class Ability
 			can [:update, :edit, :destroy], Author, :user_id => user.id
 			
 			# Author_cite
-			can :create, Author_Cite
-			can [:update, :edit, :destroy], Author_Cite, :user_id => user.id
+			can :create, AuthorCite
+			can [:update, :edit, :destroy], AuthorCite, :user_id => user.id
 			
 			# Citation
 			can :create, Citation
 			can [:update, :edit, :destroy], Citation, :user_id=>user.id
 			
 			# Competition_interaction
-			can :create, Competition_Interaction
-			can [:update, :edit, :destroy], Competition_Interaction, :user_id=>user.id
+			can :create, CompetitionInteraction
+			can [:update, :edit, :destroy], CompetitionInteraction, :user_id=>user.id
 			
 			# Competition_interaction_observation
-			can :create, Competition_Interaction_Observation
-			can [:update, :edit, :destroy], Competition_Interaction_Observation, :user_id => user.id
+			can :create, CompetitionInteractionObservation
+			can [:update, :edit, :destroy], CompetitionInteractionObservation, :user_id => user.id
 			
 			# Facilitation_Interaction
-			can :create, Facilitation_Interaction
-			can [:update, :edit, :destroy], Facilitation_Interaction, :user_id => user.id
+			can :create, FacilitationInteraction
+			can [:update, :edit, :destroy], FacilitationInteraction, :user_id => user.id
 			
 			# Facilitation_Interaction_Observation
-			can :create, Facilitation_Interaction_Observation
-			can [:update, :edit, :destroy], Facilitation_Interaction_Observation, :user_id => user.id
+			can :create, FacilitationInteractionObservation
+			can [:update, :edit, :destroy], FacilitationInteractionObservation, :user_id => user.id
 			
 			# User can only read functional_groups 
 			
@@ -50,128 +56,128 @@ class Ability
 			can [:update, :edit, :destroy], Node, :user_id => user.id
 			
 			# Node_Max_Age
-			can :create, Node_Max_Age
-			can [:update, :edit, :destroy], Node_Max_Age, :user_id => user.id
+			can :create, NodeMaxAge
+			can [:update, :edit, :destroy], NodeMaxAge, :user_id => user.id
 			
 			# Node_Range
-			can :create, Node_Range
-			can [:update, :edit, :destroy], Node_Range, :user_id => user.id
+			can :create, NodeRange
+			can [:update, :edit, :destroy], NodeRange, :user_id => user.id
 			
 			# Non_Itis
-			can :create, Non_Iti
-			can [:update, :edit, :destroy], Non_Iti, :user_id => user.id
+			can :create, NonIti
+			can [:update, :edit, :destroy], NonIti, :user_id => user.id
 			
 			# Parasitic_Interaction
-			can :create, Parasitic_Interaction
-			can [:edit, :update, :destroy], Parasitic_Interaction, :user_id => user.id
+			can :create, ParasiticInteraction
+			can [:edit, :update, :destroy], ParasiticInteraction, :user_id => user.id
 			
 			# Parasitic_Interaction_Observation
-			can :create, Parasitic_Interaction_Observation
-			can [:edit, :update, :destroy], Parasitic_Interaction_Observation, :user_id => user.id
+			can :create, ParasiticInteractionObservation
+			can [:edit, :update, :destroy], ParasiticInteractionObservation, :user_id => user.id
 			
 			# Stage
 			can :create, Stage
 			can [:edit, :update, :destroy], Stage, :user_id => user.id
 			
 			# Stage_Biomass_Change
-			can :create, Stage_Biomass_Change
-			can [:edit, :update, :destroy], Stage_Biomass_Change, :user_id => user.id
+			can :create, StageBiomassChange
+			can [:edit, :update, :destroy], StageBiomassChange, :user_id => user.id
 			
 			# Stage_Biomass_Density
-			can :create, Stage_Biomass_Density
-			can [:edit, :update, :destroy], Stage_Biomass_Density, :user_id => user.id
+			can :create, StageBiomassDensity
+			can [:edit, :update, :destroy], StageBiomassDensity, :user_id => user.id
 			
 			# Stage_Consume_Biomass_Ratio
-			can :create, Stage_Consume_Biomass_Ratio
-			can [:edit, :update, :destroy], Stage_Consume_Biomass_Ratio, :user_id => user.id
+			can :create, StageConsumeBiomassRatio
+			can [:edit, :update, :destroy], StageConsumeBiomassRatio, :user_id => user.id
 			
 			# Stage_Consumer_Strategy
-			can :create, Stage_Consumer_Strategy
-			can [:edit, :update, :destroy], Stage_Consumer_Strategy, :user_id => user.id
+			can :create, StageConsumerStrategy
+			can [:edit, :update, :destroy], StageConsumerStrategy, :user_id => user.id
 			
 			# Stage_Drymass
-			can :create, Stage_Drymass
-			can [:edit, :update, :destroy], Stage_Drymass, :user_id => user.id
+			can :create, StageDrymass
+			can [:edit, :update, :destroy], StageDrymass, :user_id => user.id
 			
 			# Stage_Duration
-			can :create, Stage_Duration
-			can [:edit, :update, :destroy], Stage_Duration, :user_id => user.id
+			can :create, StageDuration
+			can [:edit, :update, :destroy], StageDuration, :user_id => user.id
 			
 			# Stage_Fecundity
-			can :create, Stage_Fecundity
-			can [:edit, :update, :destroy], Stage_Fecundity, :user_id => user.id
+			can :create, StageFecundity
+			can [:edit, :update, :destroy], StageFecundity, :user_id => user.id
 			
 			# Stage_Habitat
-			can :create, Stage_Habitat
-			can [:edit, :update, :destroy], Stage_Habitat, :user_id => user.id
+			can :create, StageHabitat
+			can [:edit, :update, :destroy], StageHabitat, :user_id => user.id
 			
 			# Can only read Stage_Habitat_Descriptor
 			
 			# Stage_Length
-			can :create, Stage_Length
-			can [:edit, :update, :destroy], Stage_Length, :user_id => user.id
+			can :create, StageLength
+			can [:edit, :update, :destroy], StageLength, :user_id => user.id
 			
 			# Stage_Length_Fecundity
-			can :create, Stage_Length_Fecundity
-			can [:edit, :update, :destroy], Stage_Length_Fecundity, :user_id => user.id
+			can :create, StageLengthFecundity
+			can [:edit, :update, :destroy], StageLengthFecundity, :user_id => user.id
 			
 			# Stage_Length_Weight
-			can :create, Stage_Length_Weight
-			can [:edit, :update, :destroy], Stage_Length_Weight, :user_id => user.id
+			can :create, StageLengthWeight
+			can [:edit, :update, :destroy], StageLengthWeight, :user_id => user.id
 			
 			# Stage_Lifestyle
-			can :create, Stage_Lifestyle
-			can [:edit, :update, :destroy], Stage_Lifestyle, :user_id => user.id
+			can :create, StageLifestyle
+			can [:edit, :update, :destroy], StageLifestyle, :user_id => user.id
 			
 			# Stage_Masses
-			can :create, Stage_Masses
-			can [:edit, :update, :destroy], Stage_Masses, :user_id => user.id
+			can :create, StageMasses
+			can [:edit, :update, :destroy], StageMasses, :user_id => user.id
 			
 			# Stage_Max_Depth
-			can :create, Stage_Max_Depth
-			can [:edit, :update, :destroy], Stage_Max_Depth, :user_id => user.id
+			can :create, StageMaxDepth
+			can [:edit, :update, :destroy], StageMaxDepth, :user_id => user.id
 			
 			# Stage_Mobility
-			can :create, Stage_Mobility
-			can [:edit, :update, :destroy], Stage_Mobility, :user_id => user.id
+			can :create, StageMobility
+			can [:edit, :update, :destroy], StageMobility, :user_id => user.id
 			
 			# Stage_Populations
-			can :create, Stage_Populations
-			can [:edit, :update, :destroy], Stage_Populations, :user_id => user.id
+			can :create, StagePopulations
+			can [:edit, :update, :destroy], StagePopulations, :user_id => user.id
 			
 			# Stage_Prod_Biomass_Ratio
-			can :create, Stage_Prod_Biomass_Ratio
-			can [:edit, :update, :destroy], Stage_Prod_Biomass_Ratio, :user_id => user.id
+			can :create, StageProdBiomassRatio
+			can [:edit, :update, :destroy], StageProdBiomassRatio, :user_id => user.id
 			
 			# Stage_Prod_Consum_Ratio
-			can :create, Stage_Prod_Consum_Ratio
-			can [:edit, :update, :destroy], Stage_Prod_Consum_Ratio, :user_id => user.id
+			can :create, StageProdConsumRatio
+			can [:edit, :update, :destroy], StageProdConsumRatio, :user_id => user.id
 			
 			# Stage_Reproductive_Strategy
-			can :create, Stage_Reproductive_Strategy
-			can [:edit, :update, :destroy], Stage_Reproductive_Strategy, :user_id => user.id
+			can :create, StageReproductiveStrategy
+			can [:edit, :update, :destroy], StageReproductiveStrategy, :user_id => user.id
 			
 			# Stage_Residency
-			can :create, Stage_Residency
-			can [:edit, :update, :destroy], Stage_Residency, :user_id => user.id
+			can :create, StageResidency
+			can [:edit, :update, :destroy], StageResidency, :user_id => user.id
 			
 			# Stage_Residency_Time
-			can :create, Stage_Residency_Time
-			can [:edit, :update, :destroy], Stage_Residency_Time, :user_id => user.id
+			can :create, StageResidencyTime
+			can [:edit, :update, :destroy], StageResidencyTime, :user_id => user.id
 			
 			# Stage_Unassimilated_Consum_Ratio
-			can :create, Stage_Unassimilated_Consum_Ratio
-			can [:edit, :update, :destroy], Stage_Unassimilated_Consum_Ratio, :user_id => user.id
+			can :create, StageUnassimilatedConsumRatio
+			can [:edit, :update, :destroy], StageUnassimilatedConsumRatio, :user_id => user.id
 			
 			cannot :read, Role
 			cannot :show, Role
 			# Trophic_Interaction
-			can :create, Trophic_Interaction
-			can [:edit, :update, :destroy], Trophic_Interaction, :user_id => user.id
+			can :create, TrophicInteraction
+			can [:edit, :update, :destroy], TrophicInteraction, :user_id => user.id
 			
 			# Trophic_Interaction_Observation
-			can :create, Trophic_Interaction_Observation
-			can [:edit, :update, :destroy], Trophic_Interaction_Observation, :user_id => user.id
+			can :create, TrophicInteractionObservation
+			can [:edit, :update, :destroy], TrophicInteractionObservation, :user_id => user.id
 			
 		end
 		
@@ -182,13 +188,14 @@ class Ability
 			can :manage, Locations, :user_id => user.id
 			
 			# Location_Data
-			can [:create, :read], Location_Data
-			can :manage, Location_Data, :user_id => user.id
+			can [:create, :read], LocationData
+			can :manage, LocationData, :user_id => user.id
 			
 			# Stage_Habitat_Descriptor
-			can :create, Stage_Habitat_Descriptor
-			can :manage, Stage_Habitat_Descriptor, :user_id => user.id
+			can :create, StageHabitatDescriptor
+			can :manage, StageHabitatDescriptor, :user_id => user.id
 			can :access, :rails_admin
+			can :dashboard
 			
 		end
 		
@@ -197,12 +204,5 @@ class Ability
 			can :access, :rails_admin
 			can :dashboard
 		end
-		
-		
-		
-		else
-			can :read, :all
-			can :show, :all
-			cannot [:read, :show] , User
 	end
 end
