@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130330153726) do
+ActiveRecord::Schema.define(:version => 20130826042522) do
 
   create_table "author_cites", :force => true do |t|
     t.integer  "author_id"
@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(:version => 20130330153726) do
   end
 
   create_table "citations", :force => true do |t|
-    t.string   "title"
+    t.string   "title",                           :null => false
     t.string   "document"
-    t.integer  "year"
+    t.integer  "year",                            :null => false
     t.text     "abstract"
     t.string   "format"
     t.string   "format_title"
@@ -40,10 +40,10 @@ ActiveRecord::Schema.define(:version => 20130330153726) do
     t.integer  "number"
     t.integer  "volume"
     t.string   "pages"
-    t.boolean  "closed"
+    t.boolean  "closed",       :default => false, :null => false
     t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "competition_interaction_observations", :force => true do |t|
@@ -53,10 +53,10 @@ ActiveRecord::Schema.define(:version => 20130330153726) do
     t.string   "observation_type"
     t.string   "competition_type"
     t.text     "comment"
-    t.string   "datum"
+    t.string   "datum",                      :default => "", :null => false
     t.integer  "user_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "competition_interactions", :force => true do |t|
@@ -74,10 +74,10 @@ ActiveRecord::Schema.define(:version => 20130330153726) do
     t.string   "observation_type"
     t.string   "facilitation_type"
     t.text     "comment"
-    t.string   "datum"
+    t.string   "datum",                       :default => "", :null => false
     t.integer  "user_id"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
   end
 
   create_table "facilitation_interactions", :force => true do |t|
@@ -142,20 +142,20 @@ ActiveRecord::Schema.define(:version => 20130330153726) do
   create_table "nodes", :force => true do |t|
     t.integer  "itis_id"
     t.integer  "non_itis_id"
-    t.string   "working_name"
+    t.string   "working_name",        :null => false
     t.integer  "functional_group_id"
     t.string   "native_status"
-    t.boolean  "is_assemblage"
+    t.boolean  "is_assemblage",       :null => false
     t.integer  "user_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end
 
   create_table "non_itis", :force => true do |t|
-    t.integer  "parent_id"
-    t.string   "latin_name"
+    t.integer  "parent_id",         :null => false
+    t.string   "latin_name",        :null => false
     t.string   "taxonomy_level"
-    t.boolean  "parent_id_is_itis"
+    t.boolean  "parent_id_is_itis", :null => false
     t.text     "info"
     t.integer  "user_id"
     t.datetime "created_at",        :null => false
@@ -168,15 +168,15 @@ ActiveRecord::Schema.define(:version => 20130330153726) do
     t.integer  "location_id"
     t.string   "endo_ecto"
     t.string   "lethality"
-    t.decimal  "prevalence",               :precision => 10, :scale => 0
-    t.decimal  "intensity",                :precision => 10, :scale => 0
+    t.float    "prevalence"
+    t.float    "intensity"
     t.string   "parasite_type"
     t.string   "observation_type"
     t.text     "comment"
-    t.string   "datum"
+    t.string   "datum",                    :default => "", :null => false
     t.integer  "user_id"
-    t.datetime "created_at",                                              :null => false
-    t.datetime "updated_at",                                              :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   create_table "parasitic_interactions", :force => true do |t|
@@ -247,10 +247,10 @@ ActiveRecord::Schema.define(:version => 20130330153726) do
     t.integer  "stage_id"
     t.string   "consumer_strategy"
     t.text     "comment"
-    t.string   "datum"
+    t.string   "datum",             :default => "", :null => false
     t.integer  "user_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "stage_drymasses", :force => true do |t|
@@ -297,36 +297,36 @@ ActiveRecord::Schema.define(:version => 20130330153726) do
     t.integer  "stage_id"
     t.string   "habitat"
     t.text     "comment"
-    t.string   "datum"
+    t.string   "datum",      :default => "", :null => false
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "stage_length_fecundities", :force => true do |t|
     t.integer  "cite_id"
     t.integer  "stage_id"
     t.string   "length_fecundity"
-    t.decimal  "a",                :precision => 10, :scale => 0
-    t.decimal  "b",                :precision => 10, :scale => 0
+    t.float    "a",                :default => 0.0, :null => false
+    t.float    "b",                :default => 0.0, :null => false
     t.text     "comment"
-    t.string   "datum"
+    t.string   "datum",            :default => "",  :null => false
     t.integer  "user_id"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "stage_length_weights", :force => true do |t|
     t.integer  "cite_id"
     t.integer  "stage_id"
     t.string   "length_weight"
-    t.decimal  "a",             :precision => 10, :scale => 0
-    t.decimal  "b",             :precision => 10, :scale => 0
+    t.float    "a",             :default => 0.0, :null => false
+    t.float    "b",             :default => 0.0, :null => false
     t.text     "comment"
-    t.string   "datum"
+    t.string   "datum",         :default => "",  :null => false
     t.integer  "user_id"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "stage_lengths", :force => true do |t|
@@ -345,10 +345,10 @@ ActiveRecord::Schema.define(:version => 20130330153726) do
     t.integer  "stage_id"
     t.string   "lifestyle"
     t.text     "comment"
-    t.string   "datum"
+    t.string   "datum",      :default => "", :null => false
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "stage_masses", :force => true do |t|
@@ -378,10 +378,10 @@ ActiveRecord::Schema.define(:version => 20130330153726) do
     t.integer  "stage_id"
     t.string   "mobility"
     t.text     "comment"
-    t.string   "datum"
+    t.string   "datum",      :default => "", :null => false
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "stage_populations", :force => true do |t|
@@ -422,10 +422,10 @@ ActiveRecord::Schema.define(:version => 20130330153726) do
     t.integer  "stage_id"
     t.string   "reproductive_strategy"
     t.text     "comment"
-    t.string   "datum"
+    t.string   "datum",                 :default => "", :null => false
     t.integer  "user_id"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "stage_residencies", :force => true do |t|
@@ -433,10 +433,10 @@ ActiveRecord::Schema.define(:version => 20130330153726) do
     t.integer  "stage_id"
     t.string   "residency"
     t.text     "comment"
-    t.string   "datum"
+    t.string   "datum",      :default => "", :null => false
     t.string   "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "stage_residency_times", :force => true do |t|
@@ -474,16 +474,16 @@ ActiveRecord::Schema.define(:version => 20130330153726) do
     t.integer  "location_id"
     t.string   "lethality"
     t.string   "structures_consumed"
-    t.decimal  "percentage_consumed",    :precision => 10, :scale => 0
-    t.decimal  "percentage_diet",        :precision => 10, :scale => 0
+    t.float    "percentage_consumed"
+    t.float    "percentage_diet"
     t.string   "percentage_diet_by"
     t.string   "prefernce"
     t.string   "observation_type"
     t.text     "comment"
-    t.string   "datum"
+    t.string   "datum",                  :default => "", :null => false
     t.integer  "user_id"
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   create_table "trophic_interactions", :force => true do |t|

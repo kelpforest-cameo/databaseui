@@ -6,16 +6,11 @@
 development:
   adapter: mysql2
   encoding: utf8
-  host: localhost
+  host: 127.0.0.1
   database: foodweb
   pool: 5
-<<<<<<< HEAD
-  username: root
-  password: 
-=======
   username: fwd
   password: Afcoin0j2
->>>>>>> master
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -24,29 +19,19 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  host: localhost
-  database: foodweb
+  host: 127.0.0.1
+  database: foodweb2
   pool: 5
-<<<<<<< HEAD
-  username: root
-  password: 
-=======
   username: fwd
   password: Afcoin0j2
->>>>>>> master
   socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter: mysql2
   encoding: utf8
-  host: localhost
-  database: foodweb
+  host: 127.0.0.1
+  database: foodweb3
   pool: 5
-<<<<<<< HEAD
-  username: root
-  password: 
-=======
   username: fwd
   password: Afcoin0j2
->>>>>>> master
   socket: /var/run/mysqld/mysqld.sock
