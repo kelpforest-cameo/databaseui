@@ -16,14 +16,15 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me , :role , :approved
   # attr_accessible :title, :body
   def active_for_authentication? 
-  	super && :approved == true
+  	super && approved?
+  	
 	end 
 
 	def inactive_message 
-  	if :approved == false
-  	  :not_approved 
+  	if !approved?
+  	  :inactive
   	else 
-    	super # Use whatever other message 
+    	super
   	end 
 	end
 end

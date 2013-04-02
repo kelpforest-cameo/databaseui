@@ -163,6 +163,8 @@ class Ability
 			can :create, Stage_Unassimilated_Consum_Ratio
 			can [:edit, :update, :destroy], Stage_Unassimilated_Consum_Ratio, :user_id => user.id
 			
+			cannot :read, Role
+			cannot :show, Role
 			# Trophic_Interaction
 			can :create, Trophic_Interaction
 			can [:edit, :update, :destroy], Trophic_Interaction, :user_id => user.id
@@ -174,26 +176,29 @@ class Ability
 		end
 		
 		if user.role? :moderator
-			can :read, :all
 			
 			# Locations
-			can :create, Locations
+			can [:create, :read], Locations
 			can :manage, Locations, :user_id => user.id
 			
 			# Location_Data
-			can :create, Location_Data
+			can [:create, :read], Location_Data
 			can :manage, Location_Data, :user_id => user.id
 			
 			# Stage_Habitat_Descriptor
 			can :create, Stage_Habitat_Descriptor
 			can :manage, Stage_Habitat_Descriptor, :user_id => user.id
-			
+			can :access, :rails_admin
 			
 		end
 		
 		if user.role? :admin
 			can :manage, :all
+			can :access, :rails_admin
+			can :dashboard
 		end
+		
+		
 		
 		else
 			can :read, :all
