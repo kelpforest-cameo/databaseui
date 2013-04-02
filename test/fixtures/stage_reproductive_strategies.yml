@@ -1,15 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  citation_id: 1
+  cite_id: 1
   stage_id: 1
+  reproductive_strategy: MyString
   comment: MyText
   datum: MyString
   user_id: 1
 
 two:
-  citation_id: 1
+  cite_id: 1
   stage_id: 1
+  reproductive_strategy: MyString
   comment: MyText
   datum: MyString
   user_id: 1

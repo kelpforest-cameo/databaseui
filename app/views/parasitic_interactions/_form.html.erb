@@ -1,0 +1,17 @@
+<%= form_for(@parasitic_interaction) do |f| %>
+  <% if @parasitic_interaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@parasitic_interaction.errors.count, "error") %> prohibited this parasitic_interaction from being saved:</h2>
+
+      <ul>
+      <% @parasitic_interaction.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

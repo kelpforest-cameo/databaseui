@@ -5,6 +5,7 @@ one:
   document: MyString
   year: 1
   abstract: MyText
+  format: MyString
   format_title: MyString
   publisher: MyString
   number: 1
@@ -18,6 +19,7 @@ two:
   document: MyString
   year: 1
   abstract: MyText
+  format: MyString
   format_title: MyString
   publisher: MyString
   number: 1

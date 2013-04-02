@@ -1,0 +1,27 @@
+<h1>Listing author_cites</h1>
+
+<table>
+  <tr>
+    <th>Author</th>
+    <th>Cite</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @author_cites.each do |author_cite| %>
+  <tr>
+    <td><%= author_cite.author_id %></td>
+    <td><%= author_cite.cite_id %></td>
+    <td><%= author_cite.user_id %></td>
+    <td><%= link_to 'Show', author_cite %></td>
+    <td><%= link_to 'Edit', edit_author_cite_path(author_cite) %></td>
+    <td><%= link_to 'Destroy', author_cite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Author cite', new_author_cite_path %>

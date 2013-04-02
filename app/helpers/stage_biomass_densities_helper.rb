@@ -1,0 +1,2 @@
+module StageBiomassDensitiesHelper
+end

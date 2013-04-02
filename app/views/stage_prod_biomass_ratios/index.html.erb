@@ -1,0 +1,21 @@
+<h1>Listing stage_prod_biomass_ratios</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_prod_biomass_ratios.each do |stage_prod_biomass_ratio| %>
+  <tr>
+    <td><%= link_to 'Show', stage_prod_biomass_ratio %></td>
+    <td><%= link_to 'Edit', edit_stage_prod_biomass_ratio_path(stage_prod_biomass_ratio) %></td>
+    <td><%= link_to 'Destroy', stage_prod_biomass_ratio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage prod biomass ratio', new_stage_prod_biomass_ratio_path %>

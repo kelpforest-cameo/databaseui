@@ -1,0 +1,21 @@
+<h1>Listing competition_interactions</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @competition_interactions.each do |competition_interaction| %>
+  <tr>
+    <td><%= link_to 'Show', competition_interaction %></td>
+    <td><%= link_to 'Edit', edit_competition_interaction_path(competition_interaction) %></td>
+    <td><%= link_to 'Destroy', competition_interaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Competition interaction', new_competition_interaction_path %>

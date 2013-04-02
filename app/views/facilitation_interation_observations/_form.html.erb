@@ -1,0 +1,17 @@
+<%= form_for(@facilitation_interation_observation) do |f| %>
+  <% if @facilitation_interation_observation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@facilitation_interation_observation.errors.count, "error") %> prohibited this facilitation_interation_observation from being saved:</h2>
+
+      <ul>
+      <% @facilitation_interation_observation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

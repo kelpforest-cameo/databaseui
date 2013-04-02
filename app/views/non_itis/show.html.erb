@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Parent:</b>
+  <%= @non_iti.parent_id %>
+</p>
+
+<p>
+  <b>Latin name:</b>
+  <%= @non_iti.latin_name %>
+</p>
+
+<p>
+  <b>Taxonomy level:</b>
+  <%= @non_iti.taxonomy_level %>
+</p>
+
+<p>
+  <b>Parent id is itis:</b>
+  <%= @non_iti.parent_id_is_itis %>
+</p>
+
+<p>
+  <b>Info:</b>
+  <%= @non_iti.info %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @non_iti.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_non_iti_path(@non_iti) %> |
+<%= link_to 'Back', non_itis_path %>

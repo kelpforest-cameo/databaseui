@@ -1,0 +1,3 @@
+class StageLengthWeight < ActiveRecord::Base
+  attr_accessible :a, :b, :cite_id, :comment, :datum, :length_weight, :stage_id, :user_id
+end

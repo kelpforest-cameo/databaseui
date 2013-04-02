@@ -1,0 +1,23 @@
+<h1>Listing stage_habitat_descriptors</h1>
+
+<table>
+  <tr>
+    <th>Descriptor</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_habitat_descriptors.each do |stage_habitat_descriptor| %>
+  <tr>
+    <td><%= stage_habitat_descriptor.descriptor %></td>
+    <td><%= link_to 'Show', stage_habitat_descriptor %></td>
+    <td><%= link_to 'Edit', edit_stage_habitat_descriptor_path(stage_habitat_descriptor) %></td>
+    <td><%= link_to 'Destroy', stage_habitat_descriptor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage habitat descriptor', new_stage_habitat_descriptor_path %>

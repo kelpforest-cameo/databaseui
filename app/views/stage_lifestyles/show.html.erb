@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Cite:</b>
+  <%= @stage_lifestyle.cite_id %>
+</p>
+
+<p>
+  <b>Stage:</b>
+  <%= @stage_lifestyle.stage_id %>
+</p>
+
+<p>
+  <b>Lifestyle:</b>
+  <%= @stage_lifestyle.lifestyle %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @stage_lifestyle.comment %>
+</p>
+
+<p>
+  <b>Datum:</b>
+  <%= @stage_lifestyle.datum %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @stage_lifestyle.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_stage_lifestyle_path(@stage_lifestyle) %> |
+<%= link_to 'Back', stage_lifestyles_path %>

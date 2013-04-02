@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Cite:</b>
+  <%= @stage_consumer_strategy.cite_id %>
+</p>
+
+<p>
+  <b>Stage:</b>
+  <%= @stage_consumer_strategy.stage_id %>
+</p>
+
+<p>
+  <b>Consumer strategy:</b>
+  <%= @stage_consumer_strategy.consumer_strategy %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @stage_consumer_strategy.comment %>
+</p>
+
+<p>
+  <b>Datum:</b>
+  <%= @stage_consumer_strategy.datum %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @stage_consumer_strategy.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_stage_consumer_strategy_path(@stage_consumer_strategy) %> |
+<%= link_to 'Back', stage_consumer_strategies_path %>

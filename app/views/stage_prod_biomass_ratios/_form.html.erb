@@ -1,0 +1,17 @@
+<%= form_for(@stage_prod_biomass_ratio) do |f| %>
+  <% if @stage_prod_biomass_ratio.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stage_prod_biomass_ratio.errors.count, "error") %> prohibited this stage_prod_biomass_ratio from being saved:</h2>
+
+      <ul>
+      <% @stage_prod_biomass_ratio.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

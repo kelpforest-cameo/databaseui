@@ -1,0 +1,21 @@
+<h1>Listing stage_biomass_changes</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_biomass_changes.each do |stage_biomass_change| %>
+  <tr>
+    <td><%= link_to 'Show', stage_biomass_change %></td>
+    <td><%= link_to 'Edit', edit_stage_biomass_change_path(stage_biomass_change) %></td>
+    <td><%= link_to 'Destroy', stage_biomass_change, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage biomass change', new_stage_biomass_change_path %>

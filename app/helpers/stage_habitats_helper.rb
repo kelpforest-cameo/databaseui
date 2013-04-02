@@ -1,0 +1,2 @@
+module StageHabitatsHelper
+end

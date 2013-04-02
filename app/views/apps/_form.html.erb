@@ -1,0 +1,89 @@
+<%= form_for(@app) do |f| %>
+  <% if @app.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@app.errors.count, "error") %> prohibited this app from being saved:</h2>
+
+      <ul>
+      <% @app.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :config %><br />
+    <%= f.text_field :config %>
+  </div>
+  <div class="field">
+    <%= f.label :config.ru %><br />
+    <%= f.text_field :config.ru %>
+  </div>
+  <div class="field">
+    <%= f.label :db %><br />
+    <%= f.text_field :db %>
+  </div>
+  <div class="field">
+    <%= f.label :doc %><br />
+    <%= f.text_field :doc %>
+  </div>
+  <div class="field">
+    <%= f.label :Gemfile %><br />
+    <%= f.text_field :Gemfile %>
+  </div>
+  <div class="field">
+    <%= f.label :Gemfile~ %><br />
+    <%= f.text_field :Gemfile~ %>
+  </div>
+  <div class="field">
+    <%= f.label :Gemfile.lock %><br />
+    <%= f.text_field :Gemfile.lock %>
+  </div>
+  <div class="field">
+    <%= f.label :lib %><br />
+    <%= f.text_field :lib %>
+  </div>
+  <div class="field">
+    <%= f.label :log %><br />
+    <%= f.text_field :log %>
+  </div>
+  <div class="field">
+    <%= f.label :old %><br />
+    <%= f.text_field :old %>
+  </div>
+  <div class="field">
+    <%= f.label :public %><br />
+    <%= f.text_field :public %>
+  </div>
+  <div class="field">
+    <%= f.label :Rakefile %><br />
+    <%= f.text_field :Rakefile %>
+  </div>
+  <div class="field">
+    <%= f.label :README.md %><br />
+    <%= f.text_field :README.md %>
+  </div>
+  <div class="field">
+    <%= f.label :README.rdoc %><br />
+    <%= f.text_field :README.rdoc %>
+  </div>
+  <div class="field">
+    <%= f.label :script %><br />
+    <%= f.text_field :script %>
+  </div>
+  <div class="field">
+    <%= f.label :test %><br />
+    <%= f.text_field :test %>
+  </div>
+  <div class="field">
+    <%= f.label :tmp %><br />
+    <%= f.text_field :tmp %>
+  </div>
+  <div class="field">
+    <%= f.label :vendor %><br />
+    <%= f.text_field :vendor %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

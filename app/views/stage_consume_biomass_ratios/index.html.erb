@@ -1,0 +1,33 @@
+<h1>Listing stage_consume_biomass_ratios</h1>
+
+<table>
+  <tr>
+    <th>Cite</th>
+    <th>Stage</th>
+    <th>Consume biomass ratio</th>
+    <th>Comment</th>
+    <th>Datum</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_consume_biomass_ratios.each do |stage_consume_biomass_ratio| %>
+  <tr>
+    <td><%= stage_consume_biomass_ratio.cite_id %></td>
+    <td><%= stage_consume_biomass_ratio.stage_id %></td>
+    <td><%= stage_consume_biomass_ratio.consume_biomass_ratio %></td>
+    <td><%= stage_consume_biomass_ratio.comment %></td>
+    <td><%= stage_consume_biomass_ratio.datum %></td>
+    <td><%= stage_consume_biomass_ratio.user_id %></td>
+    <td><%= link_to 'Show', stage_consume_biomass_ratio %></td>
+    <td><%= link_to 'Edit', edit_stage_consume_biomass_ratio_path(stage_consume_biomass_ratio) %></td>
+    <td><%= link_to 'Destroy', stage_consume_biomass_ratio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage consume biomass ratio', new_stage_consume_biomass_ratio_path %>

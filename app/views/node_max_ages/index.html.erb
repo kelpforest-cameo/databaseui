@@ -1,0 +1,21 @@
+<h1>Listing node_max_ages</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @node_max_ages.each do |node_max_age| %>
+  <tr>
+    <td><%= link_to 'Show', node_max_age %></td>
+    <td><%= link_to 'Edit', edit_node_max_age_path(node_max_age) %></td>
+    <td><%= link_to 'Destroy', node_max_age, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Node max age', new_node_max_age_path %>
