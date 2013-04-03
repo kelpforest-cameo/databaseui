@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 20, 2013 at 11:50 PM
+-- Generation Time: Apr 04, 2013 at 12:49 AM
 -- Server version: 5.5.25
 -- PHP Version: 5.4.4
 
@@ -33,7 +33,7 @@ CREATE TABLE `authors` (
   `owner_id` int(10) unsigned NOT NULL COMMENT 'foreign key into users table, tells us who owns this data',
   PRIMARY KEY (`first_name`,`last_name`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1  ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -70,7 +70,7 @@ CREATE TABLE `citations` (
   `owner_id` int(10) unsigned NOT NULL COMMENT 'foreign key into users table, tells us who owns this data',
   PRIMARY KEY (`title`,`format`,`year`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1  ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -85,7 +85,7 @@ CREATE TABLE `competition_interactions` (
   `owner_id` int(10) unsigned NOT NULL COMMENT 'foreign key into users table, tells us who owns this data',
   PRIMARY KEY (`stage_1_id`,`stage_2_id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1  ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -118,7 +118,7 @@ CREATE TABLE `facilitation_interactions` (
   `owner_id` int(10) unsigned NOT NULL COMMENT 'foreign key into users table, tells us who owns this data',
   PRIMARY KEY (`stage_1_id`,`stage_2_id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1  ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -149,7 +149,7 @@ CREATE TABLE `functional_groups` (
   `name` varchar(255) NOT NULL COMMENT 'name of group',
   PRIMARY KEY (`name`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1  ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -173,7 +173,7 @@ CREATE TABLE `locations` (
   PRIMARY KEY (`id`),
   KEY `name` (`name`,`lft`,`rgt`),
   KEY `active` (`active`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1  ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -190,7 +190,7 @@ CREATE TABLE `location_data` (
   PRIMARY KEY (`id`),
   KEY `location_id` (`location_id`),
   KEY `location_id_2` (`location_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1  ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -209,7 +209,23 @@ CREATE TABLE `nodes` (
   `owner_id` int(10) unsigned NOT NULL COMMENT 'foreign key into users table, tells us who owns this data',
   PRIMARY KEY (`working_name`,`itis_id`,`non_itis_id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1  ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `node_geo_range`
+--
+
+CREATE TABLE `node_geo_range` (
+  `cite_id` int(10) unsigned NOT NULL COMMENT 'foreign key into citation table.',
+  `node_id` int(10) unsigned NOT NULL COMMENT 'foreign key into node table.',
+  `geo_range` varchar(255) NOT NULL COMMENT 'comma-separated list of location ids (HACK HACK HACK)',
+  `comment` text COMMENT 'extra field for optional comment on this entry',
+  `datum` varchar(255) NOT NULL DEFAULT '' COMMENT 'extra field for optional date(s) on this entry.',
+  `owner_id` int(10) unsigned NOT NULL COMMENT 'foreign key into users table, tells us who owns this data',
+  PRIMARY KEY (`cite_id`,`node_id`,`geo_range`,`datum`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -230,23 +246,6 @@ CREATE TABLE `node_max_age` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `node_range`
---
-
-CREATE TABLE `node_range` (
-  `cite_id` int(10) unsigned NOT NULL COMMENT 'foreign key into citation table.',
-  `node_id` int(10) unsigned NOT NULL COMMENT 'foreign key into node table.',
-  `location_n_id` int(10) NOT NULL COMMENT 'northern-most location',
-  `location_s_id` int(10) NOT NULL COMMENT 'southern-most location',
-  `comment` text COMMENT 'extra field for optional comment on this entry',
-  `datum` varchar(255) NOT NULL DEFAULT '' COMMENT 'extra field for optional date(s) on this entry.',
-  `owner_id` int(10) unsigned NOT NULL COMMENT 'foreign key into users table, tells us who owns this data',
-  PRIMARY KEY (`cite_id`,`node_id`,`location_n_id`,`location_s_id`,`datum`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `non_itis`
 --
 
@@ -260,7 +259,7 @@ CREATE TABLE `non_itis` (
   `owner_id` int(10) unsigned NOT NULL COMMENT 'foreign key into users table, tells us who owns this data',
   PRIMARY KEY (`parent_id`,`latin_name`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1  ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -275,7 +274,7 @@ CREATE TABLE `parasitic_interactions` (
   `owner_id` int(10) unsigned NOT NULL COMMENT 'foreign key into users table, tells us who owns this data',
   PRIMARY KEY (`stage_1_id`,`stage_2_id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1  ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -312,7 +311,7 @@ CREATE TABLE `stages` (
   `owner_id` int(10) unsigned NOT NULL COMMENT 'foreign key into users table, tells us who owns this data',
   PRIMARY KEY (`node_id`,`name`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1  ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -683,7 +682,7 @@ CREATE TABLE `trophic_interactions` (
   `owner_id` int(10) unsigned NOT NULL COMMENT 'foreign key into users table, tells us who owns this data',
   PRIMARY KEY (`stage_1_id`,`stage_2_id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1  ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -725,7 +724,7 @@ CREATE TABLE `users` (
   `can_modify_others` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'can the user modify (edit or delete) entries from other users?',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1  ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

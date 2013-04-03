@@ -1,3 +1,4 @@
+//TODO: make multiselect work properly in the tree view
 function MapEntry() {  
 
 	var that = this;
@@ -26,8 +27,7 @@ function MapEntry() {
 	this.location_id = -1;
 	this.selected_id = -1;
 	this.selected_nodes = [];
-	this.comment = new Comment();
-	this.date = new Datum();
+	this.zoomChanged = false;
 	OpenLayers.Feature.Vector.style['default']['strokeWidth'] = '2';
 
 
@@ -95,18 +95,6 @@ function MapEntry() {
 			}
 			that.setTitle(t);
 			that.setStatus(t);
-			if ($("#buttondiv").length == 0)
-			{
-				e = $("<div>")
-					.append(that.comment.button)
-					.append("&nbsp;")
-					.append(that.date.button)
-					.attr('id','buttondiv')
-					.css('float','right')
-					.css('margin-right','5px')
-					.css('margin-top','4px');
-				$("#map_interface ~ .ui-dialog-buttonpane").append(e);
-			}
 		}
 	});
 }
@@ -155,9 +143,7 @@ MapEntry.prototype.getResult = function() {
 		{ 
 			id: that.location_id,
 			path: that.location_id != -1 ? $("#tree").jstree('get_path',$("#node_"+that.location_id),false) : [],
-			name: $.trim($("#node_"+that.location_id).text()),
-			date: that.date.getDatum(),
-			comment: that.comment.getComment()
+			name: $.trim($("#node_"+that.location_id).text())
 		};
 		obj.coords = this.entered_latlon != null ? 
 		{
@@ -190,6 +176,21 @@ MapEntry.prototype.open = function (mode, selected, done) {
 	$(this.element).dialog('open');
 }
 
+MapEntry.prototype.checkZoomTransition = function()
+{
+	//Assumption: all visible layers have the same zoom range
+	if (this.vectors.features.length > 0) {
+		var zoom = this.map.getZoom();
+		var min = this.vectors.features[0].attributes.zoom_range.min;
+		var max = this.vectors.features[0].attributes.zoom_range.max;
+		if (zoom < min || zoom > max) {
+			this.zoomChanged = true;
+			return;
+		}
+	}
+	this.zoomChanged = false;
+}
+
 MapEntry.prototype.updateMap = function()
 {
 	var that = this;
@@ -210,7 +211,6 @@ MapEntry.prototype.updateMap = function()
 				var feature = that.createFeature(data[i]);
 				that.vectors.addFeatures([feature]);
 			}
-			//TODO: when zoom level changes, unselect features from previous zoom level
 			$.each(that.selected_nodes,function(i,n) {
 				var lyr = that.getLayer(n);
 				if (lyr != null && that.vectors.selectedFeatures.indexOf(lyr) == -1) {
@@ -385,10 +385,13 @@ MapEntry.prototype.initializeMap = function()
 			renderers: renderer
 		}
 	);
-	//TODO: when changing zoom and returning, clickout no longer deselects selected layers
 	this.vectors.events.on({
 		'featureselected': function(feature) {
 			if (that.featureEvent) {
+				if (that.zoomChanged) {
+					that.selected_nodes = [];
+					that.zoomChanged = false;
+				}
 				if (that.selected_nodes.indexOf(feature.feature.attributes.region_id) == -1) {
 					that.selected_nodes.push(feature.feature.attributes.region_id);
 				}
@@ -410,15 +413,12 @@ MapEntry.prototype.initializeMap = function()
 
 	this.map.events.on({
 		'moveend': function(e) {
+			that.checkZoomTransition();
 			that.updateMap();
-		},
-		'zoomend': function(e) {
-		}	
+		}
 	});
 
-	//map.addLayers([wmsLayer, this.vectors]);
 	this.map.addLayers([satLayer, this.vectors]);
-	this.map.addControl(new OpenLayers.Control.LayerSwitcher());
 
 	this.select =  new OpenLayers.Control.SelectFeature(
 			this.vectors,
@@ -589,107 +589,4 @@ MapEntry.prototype.layerSelect = function(feature)
 		$("#tree").jstree('search',srch_id);	
 	}
 }
-
-function CiteDlg(callback)
-{
-	var that = this;
-	this.id = 'cite_dlg';
-	this.callback = callback;
-	this.element = document.createElement('div');
-	$(this.element).attr('id',this.id);
-	$(this.element).css("padding","5px");
-	$(this.element).css("overflow","hidden");
-	$(this.element).hide();
-	
-	var html = '<style> .ui-effects-wrapper { display: inline; } </style><div id="simple_cite" >' +
-		'<div class="divpad"><label for="search_cite" style="text-align: left; width: 85px; ">Search citations:</label><input id="search_cite" type="text" size="45"></div>' +
-		'<div class="divpad"><label for="add_cite" style="text-align: left; width: 85px;">Add new:</label><button id="add_cite">Add Citation</button></div>' +
-		'<div style="display: none;" id="selected_cite_box">Selected:' +
-	  '<div style="border: 1px solid black; overflow: auto: height: 35px; width: 100%" id="selected_cite"></div>' + 
-		'</div>' + 
-		'</div>';
-	$(this.element).append(html);
-	$(this.element).appendTo('body');
-
-	$(this.element).find("#search_cite")
-		.autocomplete({
-			minLength: 3,
-			select: createMethodReference(that,'ac_Callback'),
-			source: makeAutocompleteFunc("auto/citation_name.php")
-		})
-		.keypress(function(e) {
-			if (e.which == 13) {
-				var b = $(that.element).dialog('option','buttons');
-				b['Select'].apply(that);
-			}
-		});
-	$(this.element).find("#add_cite")
-		.button()
-		.click(createMethodReference(this,'addCite'));
-}
-
-CiteDlg.prototype.ac_Callback = function(e, result)
-{
-	var f = $(this.element).find("#selected_cite");
-	$(this.element).find("#selected_cite")
-		.text(result.item.label);
-	$(this.element).find("#selected_cite_box").show();
-	$(this.element).dialog('option','height',155 + $(this.element).find("#selected_cite_box").outerHeight() + 5);
-	this.cite_id = result.item.id;
-}
-
-CiteDlg.prototype.addCite = function()
-{
-	addcitation.open(new callbackObject(this,'addCite_Callback'));
-}
-
-CiteDlg.prototype.addCite_Callback = function(cite)
-{
-	var s = cite.authors[0].last_name + ", " + cite.authors[0].first_name + ": " + "'" + cite.title + "', " + cite.year;
-	var result = 
-	{
-		item: { cite_id: cite.id, label: s }
-	};
-	this.ac_Callback(null,result);
-}
-
-CiteDlg.prototype.check = function()
-{
-	if (this.cite_id != undefined && this.cite_id != null && this.cite_id != -1) {
-		return true;
-	} else {
-		$(this.element).find("#search_cite").effect('shake', { times: 3, distance: 3, direction: 'right'}, 60, createMethodReference(this,'doneShakin'));
-		return false;
-	}
-}
-
-CiteDlg.prototype.doneShakin = function() {
-	$(this.element).find("#search_cite").focus();
-}
-
-CiteDlg.prototype.open = function()
-{
-	var that = this;
-	$(this.element).dialog({
-		autoOpen: true,
-		title: 'Select citation for species range',
-		width: 365,
-		height: 155,
-		closeOnEscape: true,
-		modal: true,
-		buttons: {
-			"Select": function() { 
-				if (that.check()) {
-					$(that.element).dialog('close'); 
-					if (that.callback != undefined) {
-						that.callback(that.cite_id);
-					}
-				}
-			},
-			"Cancel": function() { $(that.element).dialog('close'); }
-		},
-		close: function() { $(that.element).remove(); }
-	});
-}
-
 

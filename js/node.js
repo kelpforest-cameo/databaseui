@@ -1,4 +1,3 @@
-
 function Node( data ) {
 	this.id=null;
 	this.dlog= null;
@@ -151,15 +150,10 @@ function NodeDialog( node ) {
 
 	// hold an object for all of our cited variables
 	this.cvars = new Object();
-	this.node_range_but = new Input(this,'node_range_but','button');
-	this.node_range_but.tooltip = "Select species range";
-	this.node_range_but.display_name = "Range :";
-	this.node_range_but.setButton("Select Range", createMethodReference(this,"selectRangeMap"));
-	//--------------------------------------------------
-	// this.cvars.node_range = new CiteInput(this, "range", "number");
-	// this.cvars.node_range.display_name = "Range :";
-	// this.cvars.node_range.tooltip = "Northern and Southern limits of species occurrence";
-	//-------------------------------------------------- 
+	this.cvars.node_range = new CiteInput(this, "geo_range", "button");
+	this.cvars.node_range.display_name = "Range :";
+	this.cvars.node_range.tooltip = "Select species range";
+	this.cvars.node_range.setButton("Select Range", createMethodReference(this,"selectRangeMap"));
 
 	this.cvars.node_max_age= new CiteInput(this, "max_age", "number");
 	this.cvars.node_max_age.display_name = "Max age :";
@@ -249,11 +243,19 @@ NodeDialog.prototype.open = function () {
 	}
 
 	if (this.node.node_range.length > 0) {
-		this.node_range_but.setButton("Edit Range", createMethodReference(this,"selectRangeMap"));
+		//--------------------------------------------------
+		// this.node_range_but.setButton("Edit Range", createMethodReference(this,"selectRangeMap"));
+		//-------------------------------------------------- 
+		this.cvars.node_range.setButton("Edit Range", createMethodReference(this,"selectRangeMap"));
 	} else {
-		this.node_range_but.setButton("Select Range", createMethodReference(this,"selectRangeMap"));
+		//--------------------------------------------------
+		// this.node_range_but.setButton("Select Range", createMethodReference(this,"selectRangeMap"));
+		//-------------------------------------------------- 
+		this.cvars.node_range.setButton("Select Range", createMethodReference(this,"selectRangeMap"));
 	}
-	this.node_range_but.createTableRow(this.cvars_table);
+	//--------------------------------------------------
+	// this.node_range_but.createTableRow(this.cvars_table);
+	//-------------------------------------------------- 
 
 	for (var i in this.cvars) {
 		this.cvars[i].createTableRow(this.cvars_table) ;
@@ -293,6 +295,7 @@ NodeDialog.prototype.openCiteVarDialogCB = function ( cite_id ) {
 			cvar.addNewCitedVar( cite_id );
 		}
 	}
+	this.cvars.node_range.setStatus('');
 
 }
 
@@ -316,28 +319,21 @@ NodeDialog.prototype.openCiteVarDialog = function ( ) {
 	citevardialog.open(this, "Set Node Values for " + this.node.working_name, cback);
 }
 
-NodeDialog.prototype.selectRangeMap = function() {
-	//--------------------------------------------------
-	// var cite = new CiteDlg();
-	// cite.open(createMethodReference());
-	//-------------------------------------------------- 
-	mapentry.open(MapEntry.MODE_RANGE,this.location_result != null ? this.location_result.range : -1,createMethodReference(this,'mapClosed'));
+NodeDialog.prototype.selectRangeMap = function() 
+{
+	mapentry.open(MapEntry.MODE_RANGE,-1,createMethodReference(this,'rangeSelect'));
 } 
 
-
-NodeDialog.prototype.mapClosed = function(result)
+NodeDialog.prototype.rangeSelect = function(result)
 {
 	this.location_result = result;
-	console.log(this.location_result);
-		//--------------------------------------------------
-	// var s = result.path.length > 0 ? '['+result.path.join(' | ')+']' : (result.name != '' ? '['+result.name+']' : "");
-	// $(this.location_label).text(s);
-	// if (s != "") {
-	// 	$(this.label_row).show();
-	// } else {
-	// 	$(this.label_row).hide();
-	// }
-	//-------------------------------------------------- 
+	$(this.cvars.node_range.element).val(result.range);
+	this.cvars.node_range.setStatus('"Set Node Values" to save','Cancel range data','Species data entered but not saved. Click "Save Node Values" to add citation info and save this data.',createMethodReference(this,'delStatus') );
+}
+
+NodeDialog.prototype.delStatus = function()
+{
+	$(this.cvars.node_range.element).val(undefined);
 }
 
 function listNodesDialog() {

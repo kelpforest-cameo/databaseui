@@ -259,7 +259,7 @@ function getNodeItems () {
 	if (!empty($result)) {
 		$result["node_max_age"] =  getValues("node_max_age", "node_id", $result['id'], "max_age" ) ;
 		//$result["node_reproductive_strategy"] =  getValues("node_reproductive_strategy", "node_id", $result['id'], "reproductive_strategy" ) ;
-		$result["node_range"] =  getValues("node_range", "node_id", $result['id'], "cite_id") ;
+		$result["node_geo_range"] =  getValues("node_geo_range", "node_id", $result['id'], "cite_id") ;
 		// stages can be null here
 		$result["stages"] =  getStages( $result['id']) ;
 		//echo jsonprint( json_encode($result) );

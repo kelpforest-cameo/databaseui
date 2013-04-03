@@ -1,4 +1,3 @@
-
 function Comment(  ) {
 	//this.container = document.createElement('div');
 	//$(this.container).css( "display", "inline-block" );
@@ -609,7 +608,12 @@ CiteInput.prototype.constructor = CiteInput;
 function CiteInput( p, field_name, type) {
 	Input.call(this, p, field_name, type);
 
-	this.element.setAttribute("class", "medium");
+	if (type != 'button') {
+		this.element.setAttribute("class", "medium");
+	} else {
+		$(this.element).css('width','120px');
+		$(this.element).css('margin-right','2px');
+	}
 
 	this.citedvars = document.createElement('td');
 	this.citedvars.setAttribute('align', "left");
@@ -657,6 +661,10 @@ CiteInput.prototype.createTableRow = function( el ) {
 	datum_td.setAttribute('valign', "top");
 	this.container.appendChild(datum_td);
 
+	this.status_td = document.createElement('td');
+	this.container.appendChild(this.status_td);
+	$(this.status_td).hide();
+
 	comment_td.appendChild( this.comment.button );
 	datum_td.appendChild( this.datum.button );
 
@@ -670,7 +678,12 @@ CiteInput.prototype.createTableRow = function( el ) {
 	}
 
 
-	this.element.setAttribute("class", "medium");
+	if (this.type != 'button') {
+		this.element.setAttribute("class", "medium");
+	} else {
+		$(this.element).css('width','120px');
+		$(this.element).css('margin-right','2px');
+	}
 
 	if (this.type == "length_measure") {
 		this.a_label = document.createElement('span');
@@ -708,6 +721,33 @@ CiteInput.prototype.createTableRow = function( el ) {
 
 	this.init();
 	this.setValues();
+}
+
+CiteInput.prototype.setStatus = function(txt,hov,tip,func)
+{
+	if (txt.length) {
+		if (this.ss != null && this.ss != undefined) {
+			this.ss.remove();
+		}
+		this.status_cb = func;
+		this.ss = new StatSpan(this.status_td,txt,hov,createMethodReference(this,'statusDel'));
+		if (tip != undefined) {
+			this.ss.setTip(tip);
+		}
+		$(this.status_td).show();
+	} else if (this.ss != null && this.ss != undefined) {
+		this.ss.remove();
+		this.status_cb = undefined;
+		$(this.status_td).hide();
+	}
+}
+
+CiteInput.prototype.statusDel = function(e)
+{
+	this.ss = null;
+	if (this.status_cb != undefined) {
+		this.status_cb();
+	}
 }
 
 CiteInput.prototype.setLengthWeight = function (select_array) {
@@ -808,6 +848,63 @@ CiteInput.prototype.setOnPressEnterEvent = function ( callback ) {
 			callback(event);
 		}
 	});
+}
+
+function StatSpan(e,text,hov,del)
+{
+	this.text = text;
+	this.deleteCallback = del;
+	this.parent = e;
+	this.span = document.createElement('span');
+	do {
+		this.id = $(e).attr('id')+Math.floor(Math.random()*1000);
+	} while ($("#"+this.id).length > 0);
+
+	var $sp = $(this.span);
+	$sp.css('margin','2px');
+	$sp.css('display','inline-block');
+	$sp.attr('id',this.id);
+	$sp.addClass('cited');
+	$sp.css('background','#ffffcc');
+	$sp.append(text+'&nbsp;');
+
+	this.delete_button = document.createElement('button');
+	var $but = $(this.delete_button);
+	$but.attr('data-icon','delete');
+	$but.text(hov);
+	$sp.append($but);
+	$but.button( { icons: {primary:'ui-icon-circle-close'}, text: false } );
+	$but.click(  createMethodReference(this, "deleteClicked") );
+	$but.css( "border", "0px" );
+	$but.css( "height", "10px" );
+	$but.css( "width", "10px" );
+	$but.css( "padding", "0px" );
+	$but.css( "display", "inline-block" );
+	
+	$sp.appendTo($(e));
+}
+
+StatSpan.prototype.setTip = function(txt)
+{
+	$(this.span).attr('title',txt);
+	$(this.span).tipTip();
+}
+
+StatSpan.prototype.remove = function(call)
+{
+	$(this.span).remove();
+	if ((call == undefined || call == true) && this.deleteCallback != undefined) {
+		this.deleteCallback(undefined);
+	}
+	this.span = undefined;
+}
+
+StatSpan.prototype.deleteClicked = function(e)
+{
+	$(this.span).remove();
+	if (this.deleteCallback != undefined) {
+		this.deleteCallback(e);
+	}
 }
 
 function CiteSpan (citeinput, val_obj, val) {
