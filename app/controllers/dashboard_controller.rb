@@ -18,7 +18,7 @@ end
   @citation = Citation.new
   @citationlist = Citation.all
   @node = Node.new
-  @non_iti = Non_Iti.new
+  @non_iti = NonIti.new
   @nodelist = Node.all
   end
 
