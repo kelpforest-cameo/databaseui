@@ -46,17 +46,6 @@ ActiveRecord::Schema.define(:version => 20130926042526) do
     t.datetime "updated_at",                      :null => false
   end
 
-  create_table "cities", :force => true do |t|
-    t.string   "name"
-    t.string   "state"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.boolean  "gmaps"
-    t.integer  "population"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "competition_interaction_observations", :force => true do |t|
     t.integer  "cite_id"
     t.integer  "competition_interaction_id"
