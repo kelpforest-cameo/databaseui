@@ -48,7 +48,7 @@
         <div class="tab-pane" id="users">
         	<div class="tab-pane" id="all">
         		<div class="well">
-        			<%= render :partial => 'listusers', :user => @userlist%>
+        			<%= render :partial => 'listusers', :user => @userlist %>
         		</div>
         	</div>
         </div>
