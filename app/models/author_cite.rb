@@ -3,5 +3,4 @@ class AuthorCite < ActiveRecord::Base
   attr_accessible :author_id, :citation_id, :user_id
   belongs_to :author
   belongs_to :citation
-  belongs_to :user
 end

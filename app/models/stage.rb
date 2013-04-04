@@ -1,5 +1,4 @@
-<<<<<<< HEAD:app/models/stages.rb
-class Stages < ActiveRecord::Base
+class Stage < ActiveRecord::Base
   attr_accessible :node_id, :user_id
   belongs_to :node
   belongs_to :user
@@ -26,10 +25,3 @@ class Stages < ActiveRecord::Base
   has_one :stage_residency_time, :dependent => :destroy
   has_one :stage_unassimilated_consum_ratio, :dependent => :destroy
 end
-=======
-class Stage < ActiveRecord::Base
-  attr_accessible :node_id, :user_id
-  belongs_to :node
-  belongs_to :user
-end
->>>>>>> upstream/umass_branch:app/models/stage.rb

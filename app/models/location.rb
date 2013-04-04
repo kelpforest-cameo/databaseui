@@ -1,9 +1,6 @@
 class Location < ActiveRecord::Base
-  acts_as_gmappable
-  attr_accessible :name, :state, :latitude, :longitude, :population
-  has_many :location_data, :dependent => :destroy
+  attr_accessible :active, :lft, :name, :parent, :rgt, :visible, :z_index, :zoom_max, :zoom_min
+belongs_to :user
 
-  def gmaps4rails_address
-    "#{name}, #{state}"
-  end
+
 end
