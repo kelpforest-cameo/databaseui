@@ -43,9 +43,10 @@ FoodWebBuilder::Application.routes.draw do
 	resources :stage_unassimilated_consum_ratios
 	resources :trophic_interactions
 	resources :trophic_interaction_observations
+	
 
-	# Mount the Rails Admin engine
 	mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+	
 	# Configure routes for authenticated User to dashboard
   authenticated :user do
   	root :to => 'dashboard#index'
@@ -53,6 +54,7 @@ FoodWebBuilder::Application.routes.draw do
   	resources :users
   end
   
+
   # Default root to home/index.html.erb
   root :to =>"home#index"
   devise_for :users

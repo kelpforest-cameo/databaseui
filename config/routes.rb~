@@ -33,19 +33,20 @@ FoodWebBuilder::Application.routes.draw do
 	resources :stage_lifestyles
 	resources :stage_masses
 	resources :stage_max_depths
-	resources :stage_mobility
+	resources :stage_mobilities
 	resources :stage_populations
-	resources :stage_prod_biomass_ratio
-	resources :stage_prod_consum_ratio
-	resources :stage_reproductive_strategy
-	resources :stage_residency
-	resources :stage_residency_time
-	resources :stage_unassimilated_consum_ratio
-	resources :trophic_interaction
-	resources :trophic_interaction_observation
-
-	# Mount the Rails Admin engine
+	resources :stage_prod_biomass_ratios
+	resources :stage_prod_consum_ratios
+	resources :stage_reproductive_strategies
+	resources :stage_residencies
+	resources :stage_residency_times
+	resources :stage_unassimilated_consum_ratios
+	resources :trophic_interactions
+	resources :trophic_interaction_observations
+	
+	devise_for :users
 	mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+	
 	# Configure routes for authenticated User to dashboard
   authenticated :user do
   	root :to => 'dashboard#index'
@@ -53,6 +54,7 @@ FoodWebBuilder::Application.routes.draw do
   	resources :users
   end
   
+
   # Default root to home/index.html.erb
   root :to =>"home#index"
   devise_for :users

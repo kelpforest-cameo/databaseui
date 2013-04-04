@@ -7,5 +7,10 @@ class StageLifestyle < ActiveRecord::Base
 =======
 class Stage_Lifestyle < ActiveRecord::Base
   attr_accessible :cite_id, :comment, :datum, :lifestyle, :stage_id, :user_id
+<<<<<<< HEAD
 >>>>>>> upstream/umass_branch
+=======
+
+belongs_to :user
+>>>>>>> fc2143d52fc7ef2ed4c013849c7ceab1f69c9da3
 end

@@ -1,4 +1,4 @@
-class Parasitic_Interactions < ActiveRecord::Base
+class Parasitic_Interaction < ActiveRecord::Base
   attr_accessible :stage_1_id, :stage_2_id, :user_id
   belongs_to :user
   has_many :parasitic_interaction_observations, :dependent => :destroy
