@@ -80,6 +80,7 @@ class DefaultsAndNils < ActiveRecord::Migration
   	change_column :trophic_interaction_observations, :percentage_consumed, :float, :default => nil
   	change_column :trophic_interaction_observations, :percentage_diet, :float, :default => nil
   	change_column :trophic_interaction_observations, :datum, :string, :null => false, :default => ''
+
   end
 
   def down
