@@ -34,6 +34,15 @@ class User < ActiveRecord::Base
   	end 
 	end
 	
+	# For listing users
+	def index
+ 	 if params[:approved] == "false"
+  	  @users = User.find_all_by_approved(false)
+  	else
+  	  @users = User.all
+  	end
+	end
+	
 	# Need to override the find for authentication method
 	def self.find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup

@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController
  
  def index
+   @userlist = User.all
   @locations = LocationData.all
   @json = @locations.to_gmaps4rails do |location, marker|
   marker.infowindow render_to_string(:partial => "/locatio_ndata/infowindow", :locals => { :location => location})
@@ -20,6 +21,7 @@ end
   @node = Node.new
   @non_iti = NonIti.new
   @nodelist = Node.all
+
   end
 
   
