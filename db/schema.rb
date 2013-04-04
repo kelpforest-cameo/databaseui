@@ -57,38 +57,12 @@ ActiveRecord::Schema.define(:version => 20130926042523) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "competition_interaction_observations", :force => true do |t|
-    t.integer  "cite_id"
-    t.integer  "competition_interaction_id"
-    t.integer  "location_id"
-    t.string   "observation_type"
-    t.string   "competition_type"
-    t.text     "comment"
-    t.string   "datum",                      :default => "", :null => false
-    t.integer  "user_id"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-  end
-
   create_table "competition_interactions", :force => true do |t|
     t.integer  "stage_1_id", :null => false
     t.integer  "stage_2_id", :null => false
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "facilitation_interaction_observations", :force => true do |t|
-    t.integer  "cite_id"
-    t.integer  "facilitation_interaction_id"
-    t.integer  "location_id"
-    t.string   "observation_type"
-    t.string   "facilitation_type"
-    t.text     "comment"
-    t.string   "datum",                       :default => "", :null => false
-    t.integer  "user_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
   end
 
   create_table "facilitation_interactions", :force => true do |t|
@@ -106,25 +80,12 @@ ActiveRecord::Schema.define(:version => 20130926042523) do
   end
 
   create_table "location_data", :force => true do |t|
+    t.float    "latitude",    :null => false
+    t.float    "longitude",   :null => false
     t.integer  "location_id"
-    t.float    "lat",         :null => false
-    t.float    "lon",         :null => false
+    t.string   "name"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-  end
-
-  create_table "locations", :force => true do |t|
-    t.string   "name"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.integer  "parent"
-    t.integer  "active"
-    t.integer  "visible"
-    t.integer  "zoom_min"
-    t.integer  "zoom_max"
-    t.integer  "z_index"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "node_max_ages", :force => true do |t|
@@ -173,23 +134,6 @@ ActiveRecord::Schema.define(:version => 20130926042523) do
     t.datetime "updated_at",                        :null => false
   end
 
-  create_table "parasitic_interaction_observations", :force => true do |t|
-    t.integer  "cite_id"
-    t.integer  "parasitic_interaction_id"
-    t.integer  "location_id"
-    t.string   "endo_ecto"
-    t.string   "lethality"
-    t.float    "prevalence"
-    t.float    "intensity"
-    t.string   "parasite_type"
-    t.string   "observation_type"
-    t.text     "comment"
-    t.string   "datum",                    :default => "", :null => false
-    t.integer  "user_id"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-  end
-
   create_table "parasitic_interactions", :force => true do |t|
     t.integer  "stage_1_id", :null => false
     t.integer  "stage_2_id", :null => false
@@ -229,17 +173,6 @@ ActiveRecord::Schema.define(:version => 20130926042523) do
     t.integer  "user_id"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
-  end
-
-  create_table "stage_consum_biomass_ratios", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.float    "consum_biomass_ratio",                 :null => false
-    t.text     "comment"
-    t.string   "datum",                :default => "", :null => false
-    t.integer  "user_id"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
   end
 
   create_table "stage_consume_biomass_ratios", :force => true do |t|
