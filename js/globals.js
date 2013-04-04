@@ -13,10 +13,15 @@ $.ajax( { async:false,type:"GET", dataType:"json",
 	}
 });
 // call on ready
-//--------------------------------------------------
-// $(function() {
-// //makeTmpDialogWindow( "<pre>" +JSON.stringify(display_options) + "</pre>", "display_options");
-// //$("#log").html( JSON.stringify(display_options) , "display_options");
-// //node = new Node( 159903 , "itis_id");
-// });
-//-------------------------------------------------- 
+$(function() {
+//makeTmpDialogWindow( "<pre>" +JSON.stringify(display_options) + "</pre>", "display_options");
+//$("#log").html( JSON.stringify(display_options) , "display_options");
+//node = new Node( 159903 , "itis_id");
+});
+function stripslashes(str) {
+str=str.replace(/\\'/g,'\'');
+str=str.replace(/\\"/g,'"');
+str=str.replace(/\\0/g,'\0');
+str=str.replace(/\\\\/g,'\\');
+return str;
+}

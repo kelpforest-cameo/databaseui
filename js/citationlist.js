@@ -8,7 +8,7 @@ function setCitationClosed( cite_id, open_or_closed ) {
 	postdata.functionName = "setCitationClosed";
 	postdata.cite_id = cite_id;
 	postdata.open_or_closed = open_or_closed;
-	$.ajax( { async:false, type:"POST", dataType:"json",
+	$.ajax( { async:false, type:"GET", dataType:"json",
 		data: postdata, 
 		url: "query.php", 
 		success: function(data, t, x) { 
@@ -200,6 +200,7 @@ listCitationsDialog.prototype.listAllCitationsCB = function (data, t, x) {
 	}
 }
 
+listcitationsdialog = new listCitationsDialog();
 
 
 

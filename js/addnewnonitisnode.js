@@ -248,7 +248,7 @@ AddNonItisNode.prototype.addNewNonItisNode = function() {
 
 		if (this.goodtogo == false) return;
 
-		$.ajax( { async:false, type:"POST", dataType:"json",
+		$.ajax( { async:false, type:"GET", dataType:"json",
 			data: p, 
 			url: "query.php", 
 			error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },
@@ -259,3 +259,4 @@ AddNonItisNode.prototype.addNewNonItisNode = function() {
 	}
 }
 
+var addnonitisnode = new AddNonItisNode();

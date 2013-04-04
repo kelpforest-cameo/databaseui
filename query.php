@@ -3,7 +3,7 @@
 function queryRollbackIfFail ( $sql, $user, $table, $field, $id ) {
 	global $db;
 	// first see if we are allowed to act on this table
-	if (!canModify($user, $table, $field, $id )) {
+	if (!canModify($user, $table, array( $field => $id ) )) {
 		$db->query("ROLLBACK"); 
 		$response['error'] ="No permissions to modify $table with $field : $id";
 		$response['sql'] = $sql;
@@ -12,19 +12,13 @@ function queryRollbackIfFail ( $sql, $user, $table, $field, $id ) {
 	}
 
 	$result = $db->query( $sql);
-	if(DB::isError($result)) {  
+	if(DB::IsError($result)) {  
 		$db->query("ROLLBACK"); 
 		$response['error'] = $result->getMessage();
 		$response['sql'] = $sql;
 		echo json_encode( $response );	
 		exit();
 	} 
-}
-
-function getRectWKT($bbox)
-{
-	list($left,$bottom,$right,$top) = explode(',',$bbox);
-	return "POLYGON(($left $bottom, $left $top, $right $top, $right $bottom, $left $bottom))";
 }
 
 function error ( $msg ) {
@@ -43,16 +37,21 @@ function canWrite($user) {
 	return false;
 }
 
-function canModify($user, $table, $field, $id) {
+function canModify($user, $table, $fields) {
 	global $db;
 	if ($user['can_modify_others']) {
 		//error(" Yes, you can modify it you are superuser" );	
 		return true;
 	} else {
 		// check to see if the table row id is owned by user
-		$sql = "SELECT * FROM $table WHERE $field=" . $db->quote($id); 
+		$clause = ""; $c=0;
+		foreach ( $fields as $field => $val	) {
+			if( $c++ > 0 ) $clause .= " AND ";
+			$clause .= "$field=" . $db->quote($val); 
+		}
+		$sql = "SELECT * FROM $table WHERE $clause";
 		$row = $db->getRow( $sql );  
-		if(DB::isError($row)) { 
+		if(DB::IsError($row)) { 
 			error( $row->getMessage());
 		} else if( empty($row) ) {
 			// the row is empty, so the user can't modify it anyway
@@ -99,7 +98,7 @@ function getFunctionalGroups () {
 	global $db;
 	$sql = "SELECT id, name FROM functional_groups ORDER BY name"; 
 	$results = $db->getAll($sql);
-	if(DB::isError($results)) { error($results->getMessage(  )); }
+	if(DB::IsError($results)) { error($results->getMessage(  )); }
 	return $results;
 }
 
@@ -107,7 +106,7 @@ function getLocations () {
 	global $db;
 	$sql = "SELECT * FROM locations ORDER BY id"; 
 	$results = $db->getAll($sql);
-	if(DB::isError($results)) { error($results->getMessage(  )); }
+	if(DB::IsError($results)) { error($results->getMessage(  )); }
 	return $results;
 }
 
@@ -117,7 +116,7 @@ function getAuthors($cite_id) {
 	$sql = "SELECT authors.last_name, authors.first_name from author_cite ";
 	$sql .= " INNER JOIN authors ON authors.id=author_cite.author_id WHERE author_cite.cite_id=" . $db->quote($cite_id);
 	$results = $db->getAll($sql);
-	if(DB::isError($results)) { error($results->getMessage(  )); }
+	if(DB::IsError($results)) { error($results->getMessage(  )); }
 	return $results;
 }
 
@@ -127,7 +126,7 @@ function getValues ( $table, $field, $id, $value) {
 	$sql = "SELECT * FROM $table ";
 	$sql .= " WHERE $field=" . $db->quote($id) ."  ORDER BY $value";
 	$res = $db->getAll($sql);
-	if(DB::isError($res)) { error($res->getMessage(  ) . " - " . $sql); }
+	if(DB::IsError($res)) { error($res->getMessage(  ) . " - " . $sql); }
 	return $res;
 }
 
@@ -135,7 +134,7 @@ function getCitationInfo ( $cite_id ) {
 	global $db;
 	$sql = "SELECT * FROM citations  WHERE id=" . $db->quote($cite_id) ;
 	$res = $db->getRow($sql);
-	if(DB::isError($res)) { error($res->getMessage(  )); }
+	if(DB::IsError($res)) { error($res->getMessage(  )); }
 	if (!empty($res)) {
 		$res['authors'] = getAuthors($cite_id);
 	}
@@ -152,7 +151,7 @@ function getStageVars () {
 	global $db;
 
 	$results = $db->getListOf('tables');
-	if(DB::isError($results)) { error($results->getMessage(  )); }
+	if(DB::IsError($results)) { error($results->getMessage(  )); }
 	$tmp  =Array();
 	if (!empty($results)) {
 		foreach( $results as $k => $v ) {
@@ -182,7 +181,7 @@ function getStageOld( $stage ) {
 	}
 	return $tmp;
 }
- */
+*/
 
 function getStage( $stage ) {
 	$stage_vars = getStageVars();
@@ -200,7 +199,7 @@ function getStagesOld( $node_id ) {
 	$sql = "SELECT * FROM stages WHERE node_id=$node_id";            // create SQL query
 	$results = $db->getAll($sql);
 	$tmp = Array();
-	if(DB::isError($results)) { error($results->getMessage(  )); }
+	if(DB::IsError($results)) { error($results->getMessage(  )); }
 	if (empty($results)) {
 		// always return at least one stage identifier, the "general" stage
 		//$results = Array( Array( id=> null, name=> "general", node_id=> null,  ) ); 
@@ -223,7 +222,7 @@ function getStages( $node_id ) {
 	$sql = "SELECT * FROM stages WHERE node_id=$node_id";            // create SQL query
 	$results = $db->getAll($sql);
 	$tmp = Array();
-	if(DB::isError($results)) { error($results->getMessage(  )); }
+	if(DB::IsError($results)) { error($results->getMessage(  )); }
 	if (empty($results)) {
 		// always return at least one stage identifier, the "general" stage
 		//$results = Array( Array( id=> null, name=> "general", node_id=> null,  ) ); 
@@ -244,22 +243,22 @@ function getNodeItems () {
 	global $db;
 	$sql = "";
 	$itis_id= null;
-	if ( !empty( $_REQUEST['itis_id']) ) { 
-		$itis_id = $_REQUEST['itis_id']; 
+	if ( !empty( $_GET['itis_id']) ) { 
+		$itis_id = $_GET['itis_id']; 
 		$sql = "SELECT * FROM nodes WHERE itis_id=$itis_id";            // create SQL query
-	} else if ( !empty( $_REQUEST['node_id']) ) {
-		$node_id = $_REQUEST['node_id']; 
+	} else if ( !empty( $_GET['node_id']) ) {
+		$node_id = $_GET['node_id']; 
 		$sql = "SELECT * FROM nodes WHERE id=$node_id";            // create SQL query
 	} else { 
 		error("No itis_id or node_id given.");
 	}
 	//$result = $db->queryRow($sql);
 	$result = $db->getRow($sql);
-	if(DB::isError($result)) { error($result->getMessage(  )); }
+	if(DB::IsError($result)) { error($result->getMessage(  )); }
 	if (!empty($result)) {
 		$result["node_max_age"] =  getValues("node_max_age", "node_id", $result['id'], "max_age" ) ;
 		//$result["node_reproductive_strategy"] =  getValues("node_reproductive_strategy", "node_id", $result['id'], "reproductive_strategy" ) ;
-		$result["node_geo_range"] =  getValues("node_geo_range", "node_id", $result['id'], "cite_id") ;
+		$result["node_range"] =  getValues("node_range", "node_id", $result['id'], "cite_id") ;
 		// stages can be null here
 		$result["stages"] =  getStages( $result['id']) ;
 		//echo jsonprint( json_encode($result) );
@@ -286,7 +285,7 @@ function getAllInteractionsForNode ( $node_id , $stage_1_or_2) {
 		// first, get the stages for this node
 		$sql = "SELECT * FROM stages WHERE node_id=" .  $db->quote( $node_id); 
 		$results = $db->getAll($sql);
-		if(DB::isError($results)) { $response['error'] = $results->getMessage(  ); $response['sql'] = $sql; break; }
+		if(DB::IsError($results)) { $response['error'] = $results->getMessage(  ); $response['sql'] = $sql; break; }
 
 		for($k=0; $k< count($results); $k++ ) {
 			// now get the interactions for each of the stages	
@@ -299,7 +298,7 @@ function getAllInteractionsForNode ( $node_id , $stage_1_or_2) {
 				$sql .= " LEFT JOIN (stages,nodes) ON (stages.id=$table.$other_stage_number AND nodes.id=stages.node_id) ";
 				$sql .= " WHERE  $stage_number=" . $db->quote( $stage_id );
 				$sres = $db->getAll($sql);
-				if(DB::isError($sres)) { 
+				if(DB::IsError($sres)) { 
 					$response['error'] = $sres->getMessage(  ); 
 					$response['sql'] = $sql; 
 					break;
@@ -320,28 +319,11 @@ function getAllInteractionsForNode ( $node_id , $stage_1_or_2) {
 	}
 	return $response;
 }
-
-function addLocationData($location_data)
-{
-	global $db;
-	$coords = '';
-	if ($location_data['coordinates'] != null) {
-		$coords = "POINT({$location_data[coordinates][lon]} {$location_data[coordinates][lat]})";
-	}
-	$r = $db->query("INSERT INTO location_data (location_id, sdata) VALUES (?,GeomFromText(?))",array($location_data['location_id'],$coords));
-	if (!DB::isError($r)) {
-		return $db->getOne("SELECT LAST_INSERT_ID() FROM location_data");
-	} else {
-		return -1;
-	}
-}
 // ------------- Get params ------------------------------------------------------------//
 
 $functionName="";
-if ( !empty( $_REQUEST['functionName']) ) { $functionName = $_REQUEST['functionName']; }
-//--------------------------------------------------
-// if ( !empty( $_POST['functionName']) ) { $functionName = $_POST['functionName']; }
-//-------------------------------------------------- 
+if ( !empty( $_GET['functionName']) ) { $functionName = $_GET['functionName']; }
+if ( !empty( $_POST['functionName']) ) { $functionName = $_POST['functionName']; }
 
 
 //if(!isset($_SESSION['is_logged_in'])) {
@@ -353,7 +335,7 @@ if(!is_authenticated()  ) {
 
 	$email = $_SESSION['username'];
 	$user = $db->getRow( "SELECT * FROM users WHERE email=". $db->quote($email) );  
-	if(DB::isError($user)) { 
+	if(DB::IsError($user)) { 
 		error( $user->getMessage()) ;
 	} 
 
@@ -366,17 +348,17 @@ if(!is_authenticated()  ) {
 		case "listAllCitationsByAuthor":
 			$sql = "SELECT * FROM authors ORDER BY last_name"; 
 			$results = $db->getAll($sql);
-			if(DB::isError($results)) { error($results->getMessage(  )); }
+			if(DB::IsError($results)) { error($results->getMessage(  )); }
 			else {
 				for($i=0; $i < count($results); $i++ ) {
 					$citations = Array();
 					$q1= "SELECT * FROM author_cite WHERE author_id=". $db->quote($results[$i]['id']);
 					$r1 = $db->getAll($q1);
-					if(DB::isError($r1)) { error($r1->getMessage(  )); }
+					if(DB::IsError($r1)) { error($r1->getMessage(  )); }
 					for ($j=0; $j < count($r1); $j++ ) {
 						$q2= "SELECT id, title, year FROM citations WHERE id=". $db->quote($r1[$j]['cite_id'] . " ORDER BY year");
 						$r2 = $db->getAll($q2);
-						if(DB::isError($r2)) { error($r2->getMessage(  )); }
+						if(DB::IsError($r2)) { error($r2->getMessage(  )); }
 						for ($k=0;$k <  count($r2); $k++){
 							array_push($citations, $r2[$k]);
 						}
@@ -391,7 +373,7 @@ if(!is_authenticated()  ) {
 			$q2= "SELECT * FROM citations ORDER BY title";
 			$citations = Array();
 			$r2 = $db->getAll($q2);
-			if(DB::isError($r2)) { error($r2->getMessage(  )); }
+			if(DB::IsError($r2)) { error($r2->getMessage(  )); }
 			for ($k=0;$k <  count($r2); $k++){
 				$cite = $r2[$k];
 				$cite['authors'] = getAuthors($cite['id']);
@@ -402,15 +384,15 @@ if(!is_authenticated()  ) {
 
 		case "setCitationClosed":
 			$tmp = "Attempting to set citation open/close: ";
-			if (!isset( $_REQUEST['cite_id'] ) ) error( $tmp . "missing cite_id.");
-			if (!isset( $_REQUEST['open_or_closed'] ) ) error( $tmp . "missing open_or_closed");
+			if (!isset( $_GET['cite_id'] ) ) error( $tmp . "missing cite_id.");
+			if (!isset( $_GET['open_or_closed'] ) ) error( $tmp . "missing open_or_closed");
 			$response = Array();
 			$sql = "UPDATE citations SET ";
-			if (  $_REQUEST['open_or_closed'] == "open" ) $sql .=  " closed=0";
+			if (  $_GET['open_or_closed'] == "open" ) $sql .=  " closed=0";
 			else  $sql .=  " closed=1";
-			$sql .= " WHERE id=" . $db->quote( $_REQUEST['cite_id'] );
+			$sql .= " WHERE id=" . $db->quote( $_GET['cite_id'] );
 			$result = $db->query($sql);
-			if(DB::isError($result)) { 
+			if(DB::IsError($result)) { 
 				$response['error'] = $result->getMessage();
 				$response['sql'] = $sql;
 			}
@@ -420,7 +402,7 @@ if(!is_authenticated()  ) {
 		case "listAllNodes":
 			$sql = "SELECT id,itis_id,working_name FROM nodes ORDER BY working_name"; 
 			$results = $db->getAll($sql);
-			if(DB::isError($results)) { error($results->getMessage(  )); }
+			if(DB::IsError($results)) { error($results->getMessage(  )); }
 			else {
 				//foreach ($results as $r ) {
 				for($i=0; $i < count($results); $i++ ) {
@@ -470,19 +452,19 @@ if(!is_authenticated()  ) {
 			break;
 		case "getItisId":
 			$sql = "";
-			if ( !empty( $_REQUEST['node_id']) ) {
-				$node_id = $_REQUEST['node_id']; 
+			if ( !empty( $_GET['node_id']) ) {
+				$node_id = $_GET['node_id']; 
 				$sql = "SELECT itis_id FROM nodes WHERE id=$node_id";            // create SQL query
 			} else { 
 				error("No itis_id or node_id given.");
 			}
 			$result = $db->getRow($sql);
-			if(DB::isError($result)) { error($result->getMessage(  )); }
+			if(DB::IsError($result)) { error($result->getMessage(  )); }
 			echo json_encode($result);
 			break;
 		case "getCitationInfo":
-			if ( !empty( $_REQUEST['cite_id']) ) { 
-				$cite_id = $_REQUEST['cite_id'];
+			if ( !empty( $_GET['cite_id']) ) { 
+				$cite_id = $_GET['cite_id'];
 				$info = getCitationInfo( $cite_id );
 				echo json_encode(  $info );
 				//echo jsonprint( json_encode( $info ));
@@ -492,21 +474,21 @@ if(!is_authenticated()  ) {
 			break;
 		case "getInteractionInfo":
 			$response = Array ( );
-			if ( isset( $_REQUEST['stage_1_id']) && isset( $_REQUEST['stage_2_id']) && isset( $_REQUEST['interaction_type']) ) { 
-				$table =  $_REQUEST['interaction_type'] . "_interactions";
-				$sql = "SELECT * from $table WHERE  stage_1_id=" . $db->quote(  $_REQUEST['stage_1_id'] );
-				$sql .= " AND stage_2_id=".  $db->quote(  $_REQUEST['stage_2_id'] );
+			if ( isset( $_GET['stage_1_id']) && isset( $_GET['stage_2_id']) && isset( $_GET['interaction_type']) ) { 
+				$table =  $_GET['interaction_type'] . "_interactions";
+				$sql = "SELECT * from $table WHERE  stage_1_id=" . $db->quote(  $_GET['stage_1_id'] );
+				$sql .= " AND stage_2_id=".  $db->quote(  $_GET['stage_2_id'] );
 				$result = $db->getRow($sql);
-				if(DB::isError($result)) { 
+				if(DB::IsError($result)) { 
 						$response['error'] = $result->getMessage(  ); 
 						$response['sql'] = $sql; 
 				} else if ( $result['id']) {
 					$response['id'] = $result['id'];
-					$table = $_REQUEST['interaction_type'] . "_interaction_observation";
-					$match = $_REQUEST['interaction_type'] . "_interaction_id";
+					$table = $_GET['interaction_type'] . "_interaction_observation";
+					$match = $_GET['interaction_type'] . "_interaction_id";
 					$sql = "SELECT * from $table WHERE $match=" . $result['id'];
 					$result = $db->getAll($sql);
-					if(DB::isError($result)) { 
+					if(DB::IsError($result)) { 
 						$response['error'] = $result->getMessage(  ); 
 						$response['sql'] = $sql; 
 					} else if ( count( $result ) > 0) {
@@ -515,7 +497,7 @@ if(!is_authenticated()  ) {
 				}
 			} else {
 				$response['error'] = "No stage_2_id or stage_1_id or interaction_type given. 1:" 
-					. $_REQUEST['stage_1_id'] . " 2:". $_REQUEST['stage_2_id'] . " int_type:".  $_REQUEST['interaction_type'];
+					. $_GET['stage_1_id'] . " 2:". $_GET['stage_2_id'] . " int_type:".  $_GET['interaction_type'];
 			}
 		  echo ( json_encode($response) );
 			break;	
@@ -523,7 +505,7 @@ if(!is_authenticated()  ) {
 		// whether or not it is the left or right hand side of the interaction.
 		// 1 == left; 2 == right; 
 		case "getAllInteractionsForNode":
-			$response = getAllInteractionsForNode( $_REQUEST['node_id'],  $_REQUEST['stage_1_or_2'] );
+			$response = getAllInteractionsForNode( $_GET['node_id'],  $_GET['stage_1_or_2'] );
 		  echo ( json_encode($response) );
 			break;	
 		case "getStageVars":
@@ -531,8 +513,8 @@ if(!is_authenticated()  ) {
 		  echo ( json_encode($result) );
 			break;
 		case "getStages":
-			if ( empty( $_REQUEST['node_id']) ) error("getStages requires a node_id"); 
-			$result = getStages(  $_REQUEST['node_id'] );
+			if ( empty( $_GET['node_id']) ) error("getStages requires a node_id"); 
+			$result = getStages(  $_GET['node_id'] );
 		  echo ( json_encode($result) );
 			break;
 
@@ -542,11 +524,11 @@ if(!is_authenticated()  ) {
 			break;
 		case "checkItisId":
 			$result = Array();
-			if (isset( $_REQUEST['itis_id'])  ) {
-				$result['itis_id'] = $_REQUEST['itis_id'];
-				$sql = "SELECT * FROM nodes WHERE itis_id=" . $_REQUEST['itis_id'] ;
+			if (isset( $_GET['itis_id'])  ) {
+				$result['itis_id'] = $_GET['itis_id'];
+				$sql = "SELECT * FROM nodes WHERE itis_id=" . $_GET['itis_id'] ;
 				$res = $db->getRow($sql);
-				if(DB::isError($res)) { 
+				if(DB::IsError($res)) { 
           $result['error'] = $res->getMessage();
         } else if ( count($res) > 0 ) { 
 					$result = getNodeItems();
@@ -562,12 +544,12 @@ if(!is_authenticated()  ) {
 		case "addNewNodeCheck":
 			// we want to check here if there are any nodes with a similar working name
 			$result = Array();
-			if ( isset( $_REQUEST['working_name']) ) {
-				$working_name = $_REQUEST['working_name'];
+			if ( isset( $_GET['working_name']) ) {
+				$working_name = $_GET['working_name'];
 				$result['similar_items'] = Array();
 				$sql = "SELECT id, itis_id, working_name FROM nodes WHERE working_name LIKE " . $db->quote( '%'. $working_name . '%') . " ORDER BY working_name"; 
 				$results = $db->getAll($sql);
-				if(DB::isError($results)) { error($results->getMessage(  )); }
+				if(DB::IsError($results)) { error($results->getMessage(  )); }
 				foreach( $results as $k => $v ) {
 					$r = Array();
 					$r["id"] = $v['id'];
@@ -584,32 +566,32 @@ if(!is_authenticated()  ) {
 			$result = Array();
 			if (!canWrite($user) ) { error("No permissions to add New Node."); }
 			$tmp = "Attempting to insert new node: ";
-			if (!isset( $_REQUEST['itis_id'] ) ) error( $tmp . "missing itis_id.");
-			if (!isset( $_REQUEST['working_name'] ) ) error( $tmp . "missing working_name.");
-			if (!isset( $_REQUEST['native_status'] ) ) error( $tmp . "missing native_status.");
-			if (!isset( $_REQUEST['functional_group_id'] ) ) error( $tmp . "missing functional_group_id .");
-			if (!isset( $_REQUEST['is_assemblage'] ) ) error( $tmp . "missing is_assemblage .");
+			if (!isset( $_GET['itis_id'] ) ) error( $tmp . "missing itis_id.");
+			if (!isset( $_GET['working_name'] ) ) error( $tmp . "missing working_name.");
+			if (!isset( $_GET['native_status'] ) ) error( $tmp . "missing native_status.");
+			if (!isset( $_GET['functional_group_id'] ) ) error( $tmp . "missing functional_group_id .");
+			if (!isset( $_GET['is_assemblage'] ) ) error( $tmp . "missing is_assemblage .");
 
 			// first, we need to check if there is one with the same itis_id
-			$sql = "SELECT * FROM nodes WHERE itis_id=" . $_REQUEST['itis_id'] . " OR working_name=" . $db->quote( $_REQUEST['working_name'] );
+			$sql = "SELECT * FROM nodes WHERE itis_id=" . $_GET['itis_id'] . " OR working_name=" . $db->quote( $_GET['working_name'] );
 			$res = $db->getRow($sql);
-			if(DB::isError($res)) { 
+			if(DB::IsError($res)) { 
 				$result['error'] = $res->getMessage();
 				$result['sql'] = $sql;
 			} else if ( count($res) > 0 ) { 
-				$result['error'] = "A node with this itis id ( " .$_REQUEST['itist_id'] ." ) or working name ( ". $_REQUEST['working_name'] . " ) already exists in the database.";
+				$result['error'] = "A node with this itis id ( " .$_GET['itist_id'] ." ) or working name ( ". $_GET['working_name'] . " ) already exists in the database.";
 				$result['sql'] = $sql;
 			} else {
 				$sql = "INSERT into nodes ( itis_id, non_itis_id, working_name, native_status, functional_group_id, owner_id, is_assemblage ) VALUES (";
-				$sql .= $db->quote($_REQUEST['itis_id']) . ", ";
+				$sql .= $db->quote($_GET['itis_id']) . ", ";
 				$sql .=  "-1 , ";
-				$sql .= $db->quote($_REQUEST['working_name']) . ", ";
-				$sql .= $db->quote($_REQUEST['native_status']) . ", ";
-				$sql .= $db->quote($_REQUEST['functional_group_id']) . ", ";
+				$sql .= $db->quote($_GET['working_name']) . ", ";
+				$sql .= $db->quote($_GET['native_status']) . ", ";
+				$sql .= $db->quote($_GET['functional_group_id']) . ", ";
 				$sql .= $db->quote($user['id']) . ", ";
-				$sql .= $db->quote($_REQUEST['is_assemblage']) . ") ";
+				$sql .= $db->quote($_GET['is_assemblage']) . ") ";
 				$res = $db->query($sql);
-				if(DB::isError($res)) { 
+				if(DB::IsError($res)) { 
 					$result['error'] = $res->getMessage();
 					$result['sql'] = $sql;
 				} else { 
@@ -632,13 +614,13 @@ if(!is_authenticated()  ) {
 		case "addNewNonItisNodeCheck":
 			// we want to check here if there are any nodes with a similar working name
 			$result = Array();
-			if ( isset( $_REQUEST['working_name']) && isset( $_REQUEST['latin_name']) ) {
-				$working_name = $_REQUEST['working_name'];
-				$latin_name = $_REQUEST['latin_name'];
+			if ( isset( $_GET['working_name']) && isset( $_GET['latin_name']) ) {
+				$working_name = $_GET['working_name'];
+				$latin_name = $_GET['latin_name'];
 				$result['similar_items'] = Array();
 				$sql = "SELECT id, itis_id, working_name FROM nodes WHERE working_name LIKE " . $db->quote( '%'. $working_name . '%') . " ORDER BY working_name"; 
 				$results = $db->getAll($sql);
-				if(DB::isError($results)) { error($results->getMessage(  )); }
+				if(DB::IsError($results)) { error($results->getMessage(  )); }
 				foreach( $results as $k => $v ) {
 					$r = Array();
 					$r["id"] = $v['id'];
@@ -648,7 +630,7 @@ if(!is_authenticated()  ) {
 				}
 				$sql = "SELECT * FROM non_itis WHERE latin_name LIKE " . $db->quote( '%'. $latin_name . '%') . " ORDER BY latin_name"; 
 				$results = $db->getAll($sql);
-				if(DB::isError($results)) { error($results->getMessage(  )); }
+				if(DB::IsError($results)) { error($results->getMessage(  )); }
 				foreach( $results as $k => $v ) {
 					$r = Array();
 					$r["id"] = $v['id'];
@@ -670,18 +652,18 @@ if(!is_authenticated()  ) {
 			if (!canWrite($user) ) { 
 				error("No permissions to add New NonItis Node."); 
 			}
-			if ( !isset( $_REQUEST['parent_id']) )  error("addNewNonItisNode: No parent id."); 
-			if ( !isset( $_REQUEST['parent_id_is_itis']) )  error("addNewNonItisNode: No parent_id_is_itis. "); 
-			if ( !isset( $_REQUEST['latin_name']) )  error("addNewNonItisNode: No latin_name."); 
-			if ( !isset( $_REQUEST['taxonomy_level']) )  error("addNewNonItisNode: No taxonomy_level."); 
-			if ( !isset( $_REQUEST['working_name']) )  error("addNewNonItisNode: No working_name."); 
-			if ( !isset( $_REQUEST['functional_group_id']) )  error("addNewNonItisNode: No functional_group_id."); 
-			if ( !isset( $_REQUEST['native_status']) )  error("addNewNonItisNode: No native_status."); 
-			if ( !isset( $_REQUEST['is_assemblage']) )  error("addNewNonItisNode: No is_assemblage."); 
+			if ( !isset( $_GET['parent_id']) )  error("addNewNonItisNode: No parent id."); 
+			if ( !isset( $_GET['parent_id_is_itis']) )  error("addNewNonItisNode: No parent_id_is_itis. "); 
+			if ( !isset( $_GET['latin_name']) )  error("addNewNonItisNode: No latin_name."); 
+			if ( !isset( $_GET['taxonomy_level']) )  error("addNewNonItisNode: No taxonomy_level."); 
+			if ( !isset( $_GET['working_name']) )  error("addNewNonItisNode: No working_name."); 
+			if ( !isset( $_GET['functional_group_id']) )  error("addNewNonItisNode: No functional_group_id."); 
+			if ( !isset( $_GET['native_status']) )  error("addNewNonItisNode: No native_status."); 
+			if ( !isset( $_GET['is_assemblage']) )  error("addNewNonItisNode: No is_assemblage."); 
 			// first, we need to check if there is one with the same itis_id
-			$sql = "SELECT * FROM non_itis WHERE latin_name=" . $db->quote( $_REQUEST['latin_name'] );
+			$sql = "SELECT * FROM non_itis WHERE latin_name=" . $db->quote( $_GET['latin_name'] );
 			$res = $db->getRow($sql);
-			if(DB::isError($res)) { 
+			if(DB::IsError($res)) { 
 				$response['error'] = $res->getMessage();
 				$response['sql'] = $sql;
 			} else if ( count($res) > 0 ) { 
@@ -689,32 +671,32 @@ if(!is_authenticated()  ) {
 				$response['sql'] = $sql;
 			} else {
 				$sql = "INSERT into non_itis ( parent_id, parent_id_is_itis, latin_name, owner_id, info, taxonomy_level ) VALUES (";
-				$sql .= $db->quote($_REQUEST['parent_id']) . ", ";
-				$sql .= $db->quote($_REQUEST['parent_id_is_itis']) . ", ";
-				$sql .= $db->quote($_REQUEST['latin_name']) . ", ";
+				$sql .= $db->quote($_GET['parent_id']) . ", ";
+				$sql .= $db->quote($_GET['parent_id_is_itis']) . ", ";
+				$sql .= $db->quote($_GET['latin_name']) . ", ";
 				$sql .= $db->quote($user['id']) . ", ";
-				$sql .= $db->quote($_REQUEST['info']) . ", ";
-				$sql .= $db->quote($_REQUEST['taxonomy_level']) . ")";
+				$sql .= $db->quote($_GET['info']) . ", ";
+				$sql .= $db->quote($_GET['taxonomy_level']) . ")";
 				$res = $db->query($sql);
-				if(DB::isError($res)) { 
+				if(DB::IsError($res)) { 
 					$response['error'] = $res->getMessage();
 					$response['sql'] = $sql;
 				} else { 
 					$non_itis_id= $db->getOne("SELECT * from non_itis WHERE id=LAST_INSERT_ID()");
-					if (DB::isError($non_itis_id)) { 
+					if (DB::IsError($non_itis_id)) { 
 						$response['error'] = $res->getMessage(); 
 						$response['sql'] = $sql;
 					} else {
 						$sql = "INSERT into nodes ( itis_id, non_itis_id, working_name, native_status, functional_group_id, owner_id, is_assemblage ) VALUES (";
 						$sql .= $db->quote( -1 ) . ", ";
 						$sql .=  $db->quote($non_itis_id) . ", ";;
-						$sql .= $db->quote($_REQUEST['working_name']) . ", ";
-						$sql .= $db->quote($_REQUEST['native_status']) . ", ";
-						$sql .= $db->quote($_REQUEST['functional_group_id']) . ", ";
+						$sql .= $db->quote($_GET['working_name']) . ", ";
+						$sql .= $db->quote($_GET['native_status']) . ", ";
+						$sql .= $db->quote($_GET['functional_group_id']) . ", ";
 						$sql .= $db->quote($user['id']) . ", ";
-						$sql .= $db->quote($_REQUEST['is_assemblage']) . ") ";
+						$sql .= $db->quote($_GET['is_assemblage']) . ") ";
 						$res = $db->query($sql);
-						if(DB::isError($res)) { 
+						if(DB::IsError($res)) { 
 							$response['error'] = $res->getMessage();
 							$response['sql'] = $sql;
 						} else { 
@@ -736,26 +718,41 @@ if(!is_authenticated()  ) {
 
 		case "deleteInteraction": 
 			$response = Array();
-			if ( isset( $_REQUEST['stage_1_id']) && isset( $_REQUEST['stage_2_id']) 
-					&& isset( $_REQUEST['interaction_type'])  && isset( $_REQUEST['interaction_id']) ) { 
-				$type = $_REQUEST['interaction_type'];
+			if ( isset( $_GET['stage_1_id']) && isset( $_GET['stage_2_id']) 
+					&& isset( $_GET['interaction_type'])  && isset( $_GET['interaction_id']) ) { 
+				$type = $_GET['interaction_type'];
 				$table =  $type . "_interactions";
-				$interaction_id = $_REQUEST['interaction_id'];
+				$interaction_id = $_GET['interaction_id'];
 
-				if (!canModify($user, $table, "id", $interaction_id) ) {
+				if (!canModify($user, $table, array("id" => $interaction_id) ) ) {
 					error("No permissions to modify this entry, $table:$interaction_id");
 				} 
-				$sql = "DELETE from $table WHERE stage_1_id=" .  $db->quote($_REQUEST['stage_1_id']);
-				$sql .= " AND stage_2_id=" . $db->quote( $_REQUEST['stage_2_id'] );
+				$sql = "DELETE from $table WHERE stage_1_id=" .  $db->quote($_GET['stage_1_id']);
+				$sql .= " AND stage_2_id=" . $db->quote( $_GET['stage_2_id'] );
 				$sql .= " AND id=" . $db->quote( $interaction_id );
 				$result = $db->query($sql);
-				if(DB::isError($result)) { 
+				if(DB::IsError($result)) { 
 					$response['error'] = $result->getMessage(); $response['sql'] = $sql;
 				} else {
 					$response['response'] = "Deleted interaction";
 					// now delete all Interaction Observations
-					$sql = "DELETE FROM {$type}_interaction_observation WHERE {$type}_interaction_id = ?";
-					$result = $db->query($sql,array($interaction_id));
+					$sql = "DELETE from trophic_interaction_observation WHERE trophic_interaction_id=" . $db->quote( $interaction_id );
+					$result = $db->query($sql);
+					if(DB::IsError($result)) { $response['error'] .= $result->getMessage(); $response['sql'] .= $sql;}
+					$sql = "DELETE from parasitic_interaction_observation WHERE parasitic_interaction_id=" . $db->quote( $interaction_id );
+					$result = $db->query($sql);
+					if(DB::IsError($result)) { $response['error'] .= $result->getMessage(); $response['sql'] .= $sql;}
+					$sql = "DELETE from competition_interaction_observation WHERE competition_interaction_id=" . $db->quote( $interaction_id );
+					$result = $db->query($sql);
+					if(DB::IsError($result)) { $response['error'] .= $result->getMessage(); $response['sql'] .= $sql;}
+					$sql = "DELETE from facilitation_interaction_observation WHERE facilitation_interaction_id=" . $db->quote( $interaction_id );
+					$result = $db->query($sql);
+					if(DB::IsError($result)) { $response['error'] .= $result->getMessage(); $response['sql'] .= $sql;}
+					$result = $db->query($sql);
+					if(DB::IsError($result)) { 
+						$response['error'] = $result->getMessage(); 
+						$response['sql'] = $sql;
+					}
 				}
 			} else {
 				$response['error'] = "No stage_1_id stage_2_id interaction_type or interaction_id";
@@ -765,30 +762,36 @@ if(!is_authenticated()  ) {
 
 		case "deleteInteractionObservation": 
 			$response = Array();
-			if (!isset( $_REQUEST['cite_id']) ) error("deleteInteractionObservation: Must have a cite_id");
-			if (!isset( $_REQUEST['interaction_id']) )  error("deleteInteractionObservation: must have interaction_id");
-			if (!isset( $_REQUEST['interaction_type']) ) error("deleteInteractionObservation: must have interaction_type");
-			if (!isset( $_REQUEST['location_id']) ) error("deleteInteractionObservation: must have location_id");
-			if (!isset( $_REQUEST['observation_type']) )  error("deleteInteractionObservation: must have observation_type");
+			if (!isset( $_GET['cite_id']) ) error("deleteInteractionObservation: Must have a cite_id");
+			if (!isset( $_GET['interaction_id']) )  error("deleteInteractionObservation: must have interaction_id");
+			if (!isset( $_GET['interaction_type']) ) error("deleteInteractionObservation: must have interaction_type");
+			if (!isset( $_GET['location_id']) ) error("deleteInteractionObservation: must have location_id");
+			if (!isset( $_GET['observation_type']) )  error("deleteInteractionObservation: must have observation_type");
+			if (!isset( $_GET['datum']) )  error("deleteInteractionObservation: must have a datum");
 
-			$type = $_REQUEST['interaction_type'];
-			$interaction_id= $_REQUEST['interaction_id'];
+			$type = $_GET['interaction_type'];
+			$interaction_id= $_GET['interaction_id'];
 			$table =  $type . "_interaction_observation";
 			$idname = $type . "_interaction_id";
 
-	
-			if (!canModify($user, $table, $idname, $interaction_id) ) {
+			$modify_fields = array (
+				$idname => $interaction_id,
+				"cite_id" => $_GET['cite_id'],
+				"location_id" => $_GET['location_id'],
+				"observation_type" => $_GET['observation_type'],
+				"datum" => $_GET['datum']
+			);	
+
+			if (!canModify($user, $table, $modify_fields ) ) {
 				error("No permissions to modify this entry, $table:$idname:$interaction_id");
 			}
-
-			$db->query("DELETE FROM location_data WHERE id = ?",array($_REQUEST['location_id']));
-
-			$sql = "DELETE from $table WHERE cite_id=" .  $db->quote($_REQUEST['cite_id']);
-			$sql .= " AND location_id=" . $db->quote( $_REQUEST['location_id'] ) ;
-			$sql .= " AND observation_type=" . $db->quote( $_REQUEST['observation_type'] ) ;
-			$sql .= " AND $idname=" . $db->quote( $_REQUEST['interaction_id'] );
+			$sql = "DELETE from $table WHERE cite_id=" .  $db->quote($_GET['cite_id']);
+			$sql .= " AND location_id=" . $db->quote( $_GET['location_id'] ) ;
+			$sql .= " AND observation_type=" . $db->quote( $_GET['observation_type'] ) ;
+			$sql .= " AND $idname=" . $db->quote( $_GET['interaction_id'] );
+			$sql .= " AND datum=" . $db->quote($_GET['datum']);
 			$result = $db->query($sql);
-			if(DB::isError($result)) { 
+			if(DB::IsError($result)) { 
 				$response['error'] = $result->getMessage();
 				$response['sql'] = $sql;
 			} 
@@ -796,42 +799,68 @@ if(!is_authenticated()  ) {
 			break;
 
 		case "deleteCitedVar": 
-			if ( !isset( $_REQUEST['table']) ) error("you must provide table name in order to delete a cited variable.");
-			if ( !isset( $_REQUEST['cite_id']) ) error("you must provide cite_id in order to delete a cited variable.");
-			if ( !isset( $_REQUEST['node_id']) AND !isset( $_REQUEST['stage_id']) ) 
+			if ( !isset( $_GET['table']) ) error("you must provide table name in order to delete a cited variable.");
+			if ( !isset( $_GET['cite_id']) ) error("you must provide cite_id in order to delete a cited variable.");
+			if ( !isset( $_GET['field']) ) error("you must provide the field name in order to delete a cited variable.");
+			if ( !isset( $_GET['value']) ) error("you must provide the field name value in order to delete a cited variable.");
+			if ( !isset( $_GET['node_id']) AND !isset( $_GET['stage_id']) ) 
 				error("you must provide either a node_id or stage_id in order to delete a cited variable.");
+			if ( !isset( $_GET['datum']) ) error("you must provide datum in order to delete a cited variable.");
 			$foreign_ptr="node_id";
-			if ( isset( $_REQUEST['stage_id'])) {	$foreign_ptr="stage_id"; }
-						
-			if (!canModify($user, $_REQUEST['table'], $foreign_ptr, $_REQUEST[$foreign_ptr] )) {
-				error("No permissions to modify/delete this cited var" . $_REQUEST['table'] .":". $foreign_ptr .":". $_REQUEST[$foreign_ptr]);
+			if ( isset( $_GET['stage_id'])) {	$foreign_ptr="stage_id"; }
+			$datum = $_GET['datum'];
+		  $modify_fields = array(	$foreign_ptr => $_GET[$foreign_ptr], 
+				$_GET['field'] => $_GET['value'],
+				"cite_id" => $_GET["cite_id"],
+				"datum" => $datum
+			);				
+			if (  $_GET['table'] == "stage_length_weight" || $_GET['table'] == "stage_length_fecundity"  ) { 
+				if ( !isset( $_GET['a']) && !isset( $_GET['b']) ) 
+					error("For " .  $_GET['table'] ." you must provide both A and B variables of the equation.");
+				$modify_fields["a"] = $_GET['a'];
+				$modify_fields["b"] = $_GET['b'];
+			} 
+
+			if (!canModify($user, $_GET['table'], $modify_fields )) {
+				error("No permissions to modify/delete this cited var " . $_GET['table'] .":". $foreign_ptr .":". $_GET[$foreign_ptr]);
 			}
 
 			$response = Array();
-			$sql = "DELETE from " .$_REQUEST['table'] . " WHERE cite_id=" .  $db->quote($_REQUEST['cite_id']);
-			$sql .= " AND $foreign_ptr=" . $db->quote($_REQUEST[$foreign_ptr]);
+			$sql = "DELETE from " .$_GET['table'] . " WHERE cite_id=" .  $db->quote($_GET['cite_id']);
+			$sql .= " AND $foreign_ptr=" . $db->quote($_GET[$foreign_ptr] );
+			$sql .= " AND ". 	$_GET['field'] . "=" . $db->quote($_GET['value']);
+			$sql .= " AND datum=" . $db->quote($datum);
+
+			if (  $_GET['table'] == "stage_length_weight" || $_GET['table'] == "stage_length_fecundity"  ) { 
+				$sql .= " AND a=" . $db->quote($_GET['a']);
+				$sql .= " AND b=" . $db->quote($_GET['b']);
+			}
+
 			$result = $db->query($sql);
-			if(DB::isError($result)) { 
+			if(DB::IsError($result)) { 
 				$response['error'] = $result->getMessage();
 				$response['sql'] = $sql;
 			} else {
 				$response['success'] = $result;
+				//$response['sql'] = $sql;
 			}	
 			echo json_encode( $response );
 			break;
 
 		case "deleteStage": 
 			$response = Array();
-			if (!canWrite($user) ) { 
-				error("No permissions to delete a stage."); 
+
+			if (!($user['can_modify_others'])) {
+				error("No permissions to delete a stage. You must be an administrator."); 
 			}
-			if ( !isset( $_REQUEST['stage_id']) )  error("deleteStage: no stage_id provided."); 
-			$stage_id = $_REQUEST['stage_id'];
+			if ( !isset( $_GET['stage_id']) )  error("deleteStage: no stage_id provided."); 
+
+			$stage_id = $_GET['stage_id'];
 			$response['stage_id'] =  $stage_id;
 			$stage_vars = getStageVars();
 
 			$result = $db->query("START TRANSACTION");
-			if(DB::isError($result)) {  
+			if(DB::IsError($result)) {  
 				error("Couldn't start transaction"); 
 			}
 			queryRollbackIfFail("DELETE  from stages WHERE stages.id=" .   $db->quote($stage_id ), $user, "stages", "id", $stage_id );
@@ -841,7 +870,7 @@ if(!is_authenticated()  ) {
 			
 			$sql = "SELECT * from trophic_interactions WHERE stage_1_id=" .   $db->quote($stage_id ) . " OR stage_2_id=" . $db->quote($stage_id ) ;
 			$results = $db->getAll($sql);
-			if(DB::isError($results)) { $db->query("ROLLBACK"); error("Couldn't select on trophic_interactions"); }
+			if(DB::IsError($results)) { $db->query("ROLLBACK"); error("Couldn't select on trophic_interactions"); }
 			for( $k=0; $k < count($results); $k++ ) {
 				$id = $results[$k]['id'];
 				queryRollbackIfFail( "DELETE from trophic_interactions WHERE id=" .   $db->quote($id ), $user, "trophic_interactions", "id", $id );
@@ -851,7 +880,7 @@ if(!is_authenticated()  ) {
 
 			$sql = "SELECT * from parasitic_interactions WHERE stage_1_id=" .   $db->quote($stage_id ) . " OR stage_2_id=" . $db->quote($stage_id ) ;
 			$results = $db->getAll($sql);
-			if(DB::isError($results)) { $db->query("ROLLBACK"); error("Couldn't select on parasitic_interactions"); }
+			if(DB::IsError($results)) { $db->query("ROLLBACK"); error("Couldn't select on parasitic_interactions"); }
 			for( $k=0; $k < count($results); $k++ ) {
 				$id = $results[$k]['id'];
 				queryRollbackIfFail( "DELETE from parasitic_interactions WHERE id=" .   $db->quote($id ), $user, "parasitic_interactions", "id", $id );
@@ -861,7 +890,7 @@ if(!is_authenticated()  ) {
 
 			$sql = "SELECT * from competition_interactions WHERE stage_1_id=" .   $db->quote($stage_id ) . " OR stage_2_id=" . $db->quote($stage_id ) ;
 			$results = $db->getAll($sql);
-			if(DB::isError($results)) { $db->query("ROLLBACK"); error("Couldn't select on competition_interactions"); }
+			if(DB::IsError($results)) { $db->query("ROLLBACK"); error("Couldn't select on competition_interactions"); }
 			for( $k=0; $k < count($results); $k++ ) {
 				$id = $results[$k]['id'];
 				queryRollbackIfFail( "DELETE from competition_interactions WHERE id=" .   $db->quote($id ), $user, "competition_interactions", "id", $id );
@@ -871,7 +900,7 @@ if(!is_authenticated()  ) {
 
 			$sql = "SELECT * from facilitation_interactions WHERE stage_1_id=" .   $db->quote($stage_id ) . " OR stage_2_id=" . $db->quote($stage_id ) ;
 			$results = $db->getAll($sql);
-			if(DB::isError($results)) { $db->query("ROLLBACK"); error("Couldn't select on facilitation_interactions"); }
+			if(DB::IsError($results)) { $db->query("ROLLBACK"); error("Couldn't select on facilitation_interactions"); }
 			for( $k=0; $k < count($results); $k++ ) {
 				$id = $results[$k]['id'];
 				queryRollbackIfFail( "DELETE from facilitation_interactions WHERE id=" .   $db->quote($id ), $user, "facilitation_interactions", "id", $id );
@@ -881,7 +910,7 @@ if(!is_authenticated()  ) {
 
 
 			$result = $db->query("COMMIT");
-			if(DB::isError($result)) { 
+			if(DB::IsError($result)) { 
 				$response['error'] = $result->getMessage();
 				$response['sql'] = $sql;
 			} 
@@ -890,14 +919,14 @@ if(!is_authenticated()  ) {
 		case "addNewCitationCheck":
 			// we want to check here if there are any publications with a similar title 
 			$result = Array();
-			if ( isset( $_REQUEST['title']) ) {
-				$title = $_REQUEST['title'];
+			if ( isset( $_GET['title']) ) {
+				$title = $_GET['title'];
 				$result['similar_items'] = Array();
 	
 				$sql = "SELECT * FROM citations WHERE title LIKE " . $db->quote( '%'. $title . '%') . 
 					" ORDER BY title"; 
 				$similar_items = $db->getAll($sql);
-				if(DB::isError($similar_items)) { 
+				if(DB::IsError($similar_items)) { 
 					error($similar_items->getMessage(  )); 
 				}
 				foreach( $similar_items as $k => $v ) {
@@ -917,37 +946,37 @@ if(!is_authenticated()  ) {
 		case "addNewCitation":
 			$response = Array();
 			if (!canWrite($user) ) { error("No permissions to add New Citation."); }
-			if ( !isset( $_REQUEST['author_ids']) || count($_REQUEST['author_ids']) < 1 ) { error("Need at least one author.");}
-			if ( !isset( $_REQUEST['title']) || empty( $_REQUEST['title']  ) ) { error("Need at least one title.");}
-			if ( !isset( $_REQUEST['year']) || empty(  $_REQUEST['year']  ) ) { error("Need to state the year.");}
-			if ( !isset( $_REQUEST['format']) || empty($_REQUEST['format']) ) { error("Need format.");}
+			if ( !isset( $_GET['author_ids']) || count($_GET['author_ids']) < 1 ) { error("Need at least one author.");}
+			if ( !isset( $_GET['title']) || empty( $_GET['title']  ) ) { error("Need at least one title.");}
+			if ( !isset( $_GET['year']) || empty(  $_GET['year']  ) ) { error("Need to state the year.");}
+			if ( !isset( $_GET['format']) || empty($_GET['format']) ) { error("Need format.");}
 
-			if ( !isset( $_REQUEST['document']) ) { $_REQUEST['document'] = "No document.";}
-			if ( !isset( $_REQUEST['abstract']) ) { $_REQUEST['abstract'] = "Need abstract.";}
+			if ( !isset( $_GET['document']) ) { $_GET['document'] = "No document.";}
+			if ( !isset( $_GET['abstract']) ) { $_GET['abstract'] = "Need abstract.";}
 			$sql = "INSERT into citations (title, document, year, abstract, format, format_title, number, pages, owner_id, publisher, volume) ";
-			$sql .= " VALUES (" . $db->quote($_REQUEST['title']);
-			$sql .= ", " . $db->quote($_REQUEST['document']);
-			$sql .= ", " . $db->quote($_REQUEST['year']);
-			$sql .= ", " . $db->quote($_REQUEST['abstract']);
-			$sql .= ", " . $db->quote($_REQUEST['format']);
-			$sql .= ", " . $db->quote($_REQUEST['format_title']);
-			$sql .= ", " . $db->quote($_REQUEST['number']);
-			$sql .= ", " . $db->quote($_REQUEST['pages']);
+			$sql .= " VALUES (" . $db->quote($_GET['title']);
+			$sql .= ", " . $db->quote($_GET['document']);
+			$sql .= ", " . $db->quote($_GET['year']);
+			$sql .= ", " . $db->quote($_GET['abstract']);
+			$sql .= ", " . $db->quote($_GET['format']);
+			$sql .= ", " . $db->quote($_GET['format_title']);
+			$sql .= ", " . $db->quote($_GET['number']);
+			$sql .= ", " . $db->quote($_GET['pages']);
 			$sql .= ", " . $db->quote($user['id']);
-			$sql .= ", " . $db->quote($_REQUEST['publisher']);
-			$sql .= ", " . $db->quote($_REQUEST['volume']);
+			$sql .= ", " . $db->quote($_GET['publisher']);
+			$sql .= ", " . $db->quote($_GET['volume']);
 			$sql .= ")";
 			$result = $db->query($sql);
-			if(DB::isError($result)) { 
+			if(DB::IsError($result)) { 
 				$response['error'] = $result->getMessage();
 				$response['sql'] = $sql;
 			}else { 
 				$cite_id = $db->getOne( "SELECT LAST_INSERT_ID() from citations" );  
-				if (DB::isError($cite_id)) {
+				if (DB::IsError($cite_id)) {
 					$response['error'] = $cite_id->getMessage();
 					$response['sql'] = $sql;
 				} else {
-					foreach ( $_REQUEST['author_ids'] as $a_id) {
+					foreach ( $_GET['author_ids'] as $a_id) {
 						$sql = "INSERT into author_cite (author_id, owner_id, cite_id) VALUES";
 						$sql .=	" (" .$db->quote($a_id) ."," .$db->quote($user['id']) ."," . $db->quote($cite_id) . ")";
 						$res = $db->query($sql);
@@ -961,9 +990,9 @@ if(!is_authenticated()  ) {
 		case "addNewAuthorCheck":
 			// we want to check here if there are any authors with a similar working name
 			$result = Array();
-			if ( isset( $_REQUEST['first_name']) &&  isset( $_REQUEST['last_name'] ) ) {
-				$first_name = $_REQUEST['first_name'];
-				$last_name = $_REQUEST['last_name'];
+			if ( isset( $_GET['first_name']) &&  isset( $_GET['last_name'] ) ) {
+				$first_name = $_GET['first_name'];
+				$last_name = $_GET['last_name'];
 				$result['similar_items'] = Array();
 	
 				$sql = "SELECT id, first_name, last_name FROM authors WHERE first_name LIKE " . $db->quote( '%'. $first_name . '%') . 
@@ -971,7 +1000,7 @@ if(!is_authenticated()  ) {
 					" ORDER BY last_name"; 
 
 				$similar_items = $db->getAll($sql);
-				if(DB::isError($similar_items)) { 
+				if(DB::IsError($similar_items)) { 
 					error($similar_items->getMessage(  )); 
 				}
 				foreach( $similar_items as $k => $v ) {
@@ -990,18 +1019,18 @@ if(!is_authenticated()  ) {
 		case "addNewAuthor":
 			$response = Array();
 			if (!canWrite($user) ) { error("No permissions to add New Author."); }
-			if ( !empty( $_REQUEST['first_name']) && !empty( $_REQUEST['last_name']) ) {
-				$first_name = $_REQUEST['first_name'];
-				$last_name = $_REQUEST['last_name'];
+			if ( !empty( $_GET['first_name']) && !empty( $_GET['last_name']) ) {
+				$first_name = $_GET['first_name'];
+				$last_name = $_GET['last_name'];
 				$sql = "INSERT into authors (first_name, owner_id, last_name) VALUES (";
 				$sql .= $db->quote($first_name) . "," . $db->quote($user['id']) ."," . $db->quote($last_name) ." )";	
 				$result = $db->query($sql);
-				if(DB::isError($result)) { 
+				if(DB::IsError($result)) { 
 					$response['error'] = $result->getMessage();
 					$response['sql'] = $sql;
 				}else { 
 					$res = $db->getRow( "SELECT * FROM authors WHERE last_name=". $db->quote($last_name) ." AND first_name=" . $db->quote($first_name) );  
-					if(DB::isError($res)) { 
+					if(DB::IsError($res)) { 
 						$response['error'] = $res->getMessage();
 					} else {
 						$response['id'] = $res['id'];
@@ -1017,10 +1046,10 @@ if(!is_authenticated()  ) {
 		case "addNewInteraction":
 			$response = Array ( );
 			if (!canWrite($user) ) { error("No permissions to add New Interaction."); }
-			if ( isset( $_REQUEST['stage_1_id']) && isset( $_REQUEST['stage_2_id']) && isset( $_REQUEST['interaction_type']) ) { 
-				$table =  $_REQUEST['interaction_type'] . "_interactions";
+			if ( isset( $_GET['stage_1_id']) && isset( $_GET['stage_2_id']) && isset( $_GET['interaction_type']) ) { 
+				$table =  $_GET['interaction_type'] . "_interactions";
 				$sql = "INSERT into $table ( stage_1_id, owner_id, stage_2_id) values (";
-				$sql .= $db->quote( $_REQUEST['stage_1_id'] ) . ", "  . $db->quote($user['id']) ."," . $db->quote($_REQUEST['stage_2_id']) . ")";
+				$sql .= $db->quote( $_GET['stage_1_id'] ) . ", "  . $db->quote($user['id']) ."," . $db->quote($_GET['stage_2_id']) . ")";
 				$result = $db->query($sql);
 				if(DB::isError($result)) { 
 					$response['error'] = $result->getMessage();
@@ -1044,15 +1073,11 @@ if(!is_authenticated()  ) {
 			
 			$response = Array ( );
 			if (!canWrite($user) ) { error("No permissions to add New Interaction Observation."); }
-			if ( !isset( $_REQUEST['cite_id']) ) { error("Need a citation id"); }
-			if ( !isset( $_REQUEST['interaction_type'] ) ) {  error("Need an interaction type"); }
-			if ( !isset( $_REQUEST['location_data'] ) ) {  error("Need a location_id"); }
-			//--------------------------------------------------
-			// if ( !isset( $_REQUEST['location_id'] ) ) {  error("Need a location_id"); }
-			//-------------------------------------------------- 
-			$location_id = addLocationData($_REQUEST['location_data']);
+			if ( !isset( $_GET['cite_id']) ) { error("Need a citation id"); }
+			if ( !isset( $_GET['interaction_type'] ) ) {  error("Need an interaction type"); }
+			if ( !isset( $_GET['location_id'] ) ) {  error("Need a location_id"); }
 
-			$type = $_REQUEST['interaction_type'];
+			$type = $_GET['interaction_type'];
 			$table =  $type . "_interaction_observation";
 			$sql = "INSERT into $table  ";
 			switch ($type) {
@@ -1060,101 +1085,89 @@ if(!is_authenticated()  ) {
 				$sql .= "( cite_id, owner_id, trophic_interaction_id, location_id, lethality,";
 				$sql .= "structures_consumed,percentage_consumed, percentage_diet, percentage_diet_by, ";
 				$sql .= "preference, observation_type, comment, datum) ";
-				$sql .= " VALUES ( ". $db->quote( $_REQUEST['cite_id'] ) . ",";
+				$sql .= " VALUES ( ". $db->quote( $_GET['cite_id'] ) . ",";
 				$sql .=  $db->quote( $user['id']) . ",";
-				$sql .=  $db->quote( $_REQUEST['interaction_id'] ) . ",";
-				//--------------------------------------------------
-				// $sql .=  $db->quote( $_REQUEST['location_id'] ) . ",";
-				//-------------------------------------------------- 
-				$sql .=  $db->quote( $location_id ) . ",";
-				$sql .=  $db->quote( $_REQUEST['lethality'] ) . ",";
-				$sql .=  $db->quote( $_REQUEST['structures_consumed'] ) . ",";
-				if ( empty($_REQUEST['percentage_consumed']) )
+				$sql .=  $db->quote( $_GET['interaction_id'] ) . ",";
+				$sql .=  $db->quote( $_GET['location_id'] ) . ",";
+				$sql .=  $db->quote( $_GET['lethality'] ) . ",";
+				$sql .=  $db->quote( $_GET['structures_consumed'] ) . ",";
+				if ( empty($_GET['percentage_consumed']) )
 					$sql .=  "NULL,";
 				else
-					$sql .=  $db->quote( $_REQUEST['percentage_consumed'] ) . ",";
-				if ( empty($_REQUEST['percentage_diet']) )
+					$sql .=  $db->quote( $_GET['percentage_consumed'] ) . ",";
+				if ( empty($_GET['percentage_diet']) )
 					$sql .=  "NULL,";
 				else
-					$sql .=  $db->quote( $_REQUEST['percentage_diet'] ) . ",";
-				if ( empty($_REQUEST['percentage_diet_by']) )
+					$sql .=  $db->quote( $_GET['percentage_diet'] ) . ",";
+				if ( empty($_GET['percentage_diet_by']) )
 					$sql .=  "NULL,";
 				else
-					$sql .=  $db->quote( $_REQUEST['percentage_diet_by'] ) . ",";
+					$sql .=  $db->quote( $_GET['percentage_diet_by'] ) . ",";
 	
-				$sql .=  $db->quote( $_REQUEST['preference'] ) . ",";
-				$sql .=  $db->quote( $_REQUEST['observation_type'] ) . ",";
+				$sql .=  $db->quote( $_GET['preference'] ) . ",";
+				$sql .=  $db->quote( $_GET['observation_type'] ) . ",";
 				break;
 			case "facilitation":
 				$sql .= "( cite_id, owner_id, facilitation_interaction_id, location_id,";
 				$sql .= "facilitation_type, observation_type, comment, datum ) ";
-				$sql .= " VALUES ( ". $db->quote( $_REQUEST['cite_id'] ) . ",";
+				$sql .= " VALUES ( ". $db->quote( $_GET['cite_id'] ) . ",";
 				$sql .=  $db->quote( $user['id']) . ",";
-				$sql .=  $db->quote( $_REQUEST['interaction_id'] ) . ",";
-				//--------------------------------------------------
-				// $sql .=  $db->quote( $_REQUEST['location_id'] ) . ",";
-				//-------------------------------------------------- 
-				$sql .=  $db->quote( $location_id ) . ",";
-				$sql .=  $db->quote( $_REQUEST['facilitation_type'] ) . ",";
-				$sql .=  $db->quote( $_REQUEST['observation_type'] ) . ",";
+				$sql .=  $db->quote( $_GET['interaction_id'] ) . ",";
+				$sql .=  $db->quote( $_GET['location_id'] ) . ",";
+				$sql .=  $db->quote( $_GET['facilitation_type'] ) . ",";
+				$sql .=  $db->quote( $_GET['observation_type'] ) . ",";
 			break;
 			case "competition":
 				$sql .= "( cite_id, owner_id, competition_interaction_id, location_id,";
 				$sql .= "competition_type, observation_type, comment, datum) ";
-				$sql .= " VALUES ( ". $db->quote( $_REQUEST['cite_id'] ) . ",";
+				$sql .= " VALUES ( ". $db->quote( $_GET['cite_id'] ) . ",";
 				$sql .=  $db->quote( $user['id']) . ",";
-				$sql .=  $db->quote( $_REQUEST['interaction_id'] ) . ",";
-				//--------------------------------------------------
-				// $sql .=  $db->quote( $_REQUEST['location_id'] ) . ",";
-				//-------------------------------------------------- 
-				$sql .=  $db->quote( $location_id ) . ",";
-				$sql .=  $db->quote( $_REQUEST['competition_type'] ) . ",";
-				$sql .=  $db->quote( $_REQUEST['observation_type'] ) . ",";
+				$sql .=  $db->quote( $_GET['interaction_id'] ) . ",";
+				$sql .=  $db->quote( $_GET['location_id'] ) . ",";
+				$sql .=  $db->quote( $_GET['competition_type'] ) . ",";
+				$sql .=  $db->quote( $_GET['observation_type'] ) . ",";
 				break;
 			case "parasitic":
 				$sql .= "( cite_id, owner_id, parasitic_interaction_id, location_id,";
 				$sql .= "endo_ecto, lethality, prevalence, intensity,  parasite_type, observation_type, comment, datum) ";
-				$sql .= " VALUES ( ". $db->quote( $_REQUEST['cite_id'] ) . ",";
+				$sql .= " VALUES ( ". $db->quote( $_GET['cite_id'] ) . ",";
 				$sql .=  $db->quote( $user['id']) . ",";
-				$sql .=  $db->quote( $_REQUEST['interaction_id'] ) . ",";
-				//--------------------------------------------------
-				// $sql .=  $db->quote( $_REQUEST['location_id'] ) . ",";
-				//-------------------------------------------------- 
-				$sql .=  $db->quote( $location_id ) . ",";
-				$sql .=  $db->quote( $_REQUEST['endo_ecto'] ) . ",";
-				$sql .=  $db->quote( $_REQUEST['lethality'] ) . ",";
-				$sql .=  $db->quote( $_REQUEST['prevalence'] ) . ",";
-				$sql .=  $db->quote( $_REQUEST['intensity'] ) . ",";
-				$sql .=  $db->quote( $_REQUEST['parasite_type'] ) . ",";
-				$sql .=  $db->quote( $_REQUEST['observation_type'] ) . ",";
+				$sql .=  $db->quote( $_GET['interaction_id'] ) . ",";
+				$sql .=  $db->quote( $_GET['location_id'] ) . ",";
+				$sql .=  $db->quote( $_GET['endo_ecto'] ) . ",";
+				$sql .=  $db->quote( $_GET['lethality'] ) . ",";
+				$sql .=  $db->quote( $_GET['prevalence'] ) . ",";
+				$sql .=  $db->quote( $_GET['intensity'] ) . ",";
+				$sql .=  $db->quote( $_GET['parasite_type'] ) . ",";
+				$sql .=  $db->quote( $_GET['observation_type'] ) . ",";
 				break;
 			default:
 				break;
 			}
 
-			if ( empty($_REQUEST['comment']) ) $sql .=  "NULL,";
-			else $sql .=  $db->quote( $_REQUEST['comment'] ) . ",";
-			if ( empty($_REQUEST['datum']) ) $sql .=  "NULL )";
-			else $sql .=  $db->quote( $_REQUEST['datum'] ) . ")";
+			if ( isset($_GET['comment']) ) $sql .= $db->quote( $_GET['comment']).",";
+			else $sql .=  "NULL,";
+			if ( isset($_GET['datum']) ) $sql .=  $db->quote( $_GET['datum'] ).")";
+			else $sql .=  "'' )";
 	
 			$result = $db->query($sql);
 			if(DB::isError($result)) { 
 				$response['error'] = $result->getMessage();
 				$response['sql'] = $sql;
 			} else { 
-				$response = $_REQUEST;
+				$response = $_GET;
 			}	
 			echo json_encode( $response );
 			break;
 		// add stages to a node, return the node
 		case "addNewStages":
-			if (isset( $_REQUEST['node_id'] ) && isset( $_REQUEST['stage_names'] )){
+			if (isset( $_GET['node_id'] ) && isset( $_GET['stage_names'] )){
 				$response =Array();
-				$stage_names = explode(",", $_REQUEST['stage_names'] );
+				$stage_names = explode(",", $_GET['stage_names'] );
 				if (!canWrite($user) ) { error("No permissions to add New Stage."); }
 				foreach ($stage_names as $stage_name) {
 					$sql = "INSERT into stages  ( node_id, name, owner_id) VALUES (";
-					$sql .= $db->quote( $_REQUEST['node_id'] ) . ", " . $db->quote($stage_name) . ", ". $db->quote($user['id']) .  ")";
+					$sql .= $db->quote( $_GET['node_id'] ) . ", " . $db->quote($stage_name) . ", ". $db->quote($user['id']) .  ")";
 					$result = $db->query($sql);
 					if(db::iserror($result)) { 
 						$response['error'] = $result->getmessage();
@@ -1172,11 +1185,11 @@ if(!is_authenticated()  ) {
 			}	
 			break;
 		case "addNewStage":
-			if (isset( $_REQUEST['node_id'] ) && isset( $_REQUEST['stage_name'] )){
+			if (isset( $_GET['node_id'] ) && isset( $_GET['stage_name'] )){
 				$response =Array();
 				if (!canWrite($user) ) { error("No permissions to add New Stage."); }
 				$sql = "INSERT into stages  ( node_id, name, owner_id) VALUES (";
-				$sql .= $db->quote( $_REQUEST['node_id'] ) . ", " . $db->quote($_REQUEST['stage_name']) . ", ". $db->quote($user['id']) .  ")";
+				$sql .= $db->quote( $_GET['node_id'] ) . ", " . $db->quote($_GET['stage_name']) . ", ". $db->quote($user['id']) .  ")";
 				$result = $db->query($sql);
 				if(db::iserror($result)) { 
 					$response['error'] = $result->getmessage();
@@ -1191,43 +1204,43 @@ if(!is_authenticated()  ) {
 			}	
 			break;
 		case "addNewCitedVar":
-			if ( !isset( $_REQUEST['table']) ) error("you must provide table name for citation data");
-			if ( !isset( $_REQUEST['fields']) ) error("you must provide field names for citation data");
-			if ( !isset( $_REQUEST['values']) ) error("you must provide values for citation data");
-			if ( !isset( $_REQUEST['cite_id']) ) error("you must provide cite_id for citation data");
-			if ( !isset( $_REQUEST['node_id']) AND !isset( $_REQUEST['stage_id']) ) error("you must provide either a node_id or stage_id for citation data");
+			if ( !isset( $_GET['table']) ) error("you must provide table name for citation data");
+			if ( !isset( $_GET['fields']) ) error("you must provide field names for citation data");
+			if ( !isset( $_GET['values']) ) error("you must provide values for citation data");
+			if ( !isset( $_GET['cite_id']) ) error("you must provide cite_id for citation data");
+			if ( !isset( $_GET['node_id']) AND !isset( $_GET['stage_id']) ) error("you must provide either a node_id or stage_id for citation data");
 			if (!canWrite($user) ) { error("No permissions to add Cited Variable."); }
 			$foreign_ptr="node_id";
-			if ( isset( $_REQUEST['stage_id'])) {	$foreign_ptr="stage_id"; }
-			$sql = "INSERT into " .$_REQUEST['table'] . " ( cite_id, owner_id, ". $foreign_ptr;
-			if ( isset( $_REQUEST['comment']) ) $sql .= ", comment";
-			if ( isset( $_REQUEST['datum']) )   $sql .= ", datum";
-			foreach( $_REQUEST['fields'] as $f ) { $sql .= ', ' . $f;	}
-			$sql .= ") VALUES ( " . $db->quote($_REQUEST['cite_id']) . ', ' . $db->quote($user['id']) .', '. $db->quote($_REQUEST[$foreign_ptr]);
-			if ( isset( $_REQUEST['comment']) ) $sql .=  "," . $db->quote($_REQUEST['comment']);
-			if ( isset( $_REQUEST['datum']) ) $sql .=  "," . $db->quote($_REQUEST['datum']);
-			foreach( $_REQUEST['values'] as $v ) { $sql .= ', '. $db->quote($v);	}
+			if ( isset( $_GET['stage_id'])) {	$foreign_ptr="stage_id"; }
+			$sql = "INSERT into " .$_GET['table'] . " ( cite_id, owner_id, ". $foreign_ptr;
+			if ( isset( $_GET['comment']) ) $sql .= ", comment";
+			if ( isset( $_GET['datum']) )   $sql .= ", datum";
+			foreach( $_GET['fields'] as $f ) { $sql .= ', ' . $f;	}
+			$sql .= ") VALUES ( " . $db->quote($_GET['cite_id']) . ', ' . $db->quote($user['id']) .', '. $db->quote($_GET[$foreign_ptr]);
+			if ( isset( $_GET['comment']) ) $sql .=  "," . $db->quote($_GET['comment']);
+			if ( isset( $_GET['datum']) ) $sql .=  "," . $db->quote($_GET['datum']);
+			foreach( $_GET['values'] as $v ) { $sql .= ', '. $db->quote($v);	}
 				$sql .= ")";
 			$result = $db->query($sql);
-			if(DB::isError($result)) { 
+			if(DB::IsError($result)) { 
 				$tmp = Array();
 				$tmp['error'] = $result->getMessage();
 				$tmp['sql'] = $sql;
 				echo json_encode( $tmp );
 			} else { 
 				$tmp = Array();
-				$values = getValues($_REQUEST['table'], $foreign_ptr, $_REQUEST[$foreign_ptr], $foreign_ptr ) ;	
-				$tmp[$_REQUEST['table']] = $values;
+				$values = getValues($_GET['table'], $foreign_ptr, $_GET[$foreign_ptr], $foreign_ptr ) ;	
+				$tmp[$_GET['table']] = $values;
 				echo json_encode( $tmp );
 			}
 			break;
 	
 		case "addNewCitedVars":
-			if ( empty( $_REQUEST['json']) ) {  
+			if ( empty( $_GET['json']) ) {  
 				error("you must provide citation data");
 			}
 			if (!canWrite($user) ) { error("No permissions to add Cited Variable."); }
-			$request =  $_REQUEST['json'] ;
+			$request =  $_GET['json'] ;
 			$response = Array ( );
 			foreach ($request as $req) {
 				$foreign_ptr="node_id";
@@ -1238,7 +1251,7 @@ if(!is_authenticated()  ) {
 				foreach( $req['values'] as $v ) { $sql .= ', '. $db->quote($v);	}
 				$sql .= ")";
 				$result = $db->query($sql);
-				if(DB::isError($result)) { 
+				if(DB::IsError($result)) { 
 					$tmp = Array();
 					$tmp['error'] = $result->getMessage();
 					$tmp['sql'] = $sql;
@@ -1255,128 +1268,28 @@ if(!is_authenticated()  ) {
 	
 		case "updateTable":
 			$response = Array();
-			if ( isset( $_REQUEST['table_name']) &&  isset( $_REQUEST['fields']) && isset( $_REQUEST['values'])  && isset( $_REQUEST['id'])  ) {
+			if ( isset( $_GET['table_name']) &&  isset( $_GET['fields']) && isset( $_GET['values'])  && isset( $_GET['id'])  ) {
 
-				if (!canModify($user,  $_REQUEST['table_name'], "id",  $_REQUEST['id']) ) {
-						error("No permissions to modify this table" . $_REQUEST['table_name'] .":id:". $_REQUEST['id']);
+				if (!canModify($user,  $_GET['table_name'], array( "id" =>  $_GET['id'] ) ) ) {
+						error("No permissions to modify this table" . $_GET['table_name'] .":id:". $_GET['id']);
 				}
 
-			  $sql = "UPDATE " . $_REQUEST['table_name'] . " SET ";
-				for($i=0; $i < count($_REQUEST['fields']);$i++) {	
+			  $sql = "UPDATE " . $_GET['table_name'] . " SET ";
+				for($i=0; $i < count($_GET['fields']);$i++) {	
 					if ($i >0) $sql .= ", ";
-					$sql .=  $_REQUEST['fields'][$i]	. "=" . $db->quote($_REQUEST['values'][$i]); 
+					$sql .=  $_GET['fields'][$i]	. "=" . $db->quote($_GET['values'][$i]); 
 				}
-				$sql .= " WHERE id=" . $db->quote( $_REQUEST['id'] );
+				$sql .= " WHERE id=" . $db->quote( $_GET['id'] );
 				$result = $db->query($sql);
-				if(DB::isError($result)) { 
+				if(DB::IsError($result)) { 
 					$response['error'] = $result->getMessage();
 					$response['sql'] = $sql;
 				} 
 			}else{
-				$response['error'] = "Need more variables to update " . $_REQUEST['table_name'];
+				$response['error'] = "Need more variables to update " . $_GET['table_name'];
 			}
 		  echo json_encode( $response );
 			break;
-		//--------------------------------------------------
-		// Map interface server functions
-		//-------------------------------------------------- 
-		case 'contains_point':
-			$lat = $_REQUEST['lat'];
-			$lon = $_REQUEST['lon'];
-			$sql = "SELECT id, AsText(region) AS region FROM locations WHERE MBRIntersects(region,GeomFromText(?)) ORDER BY z_index DESC, zoom_max DESC";
-			$r = $db->getAll($sql,array("POINT($lon $lat)"),DB_FETCHMODE_ASSOC);
-			if (!DB::isError($r)) {
-				print json_encode($r);
-			} else {
-				error($r->getMessage());
-			}
-			break;
-		case 'select_region':
-			$id = $_REQUEST['id'];
-			$sql = "SELECT AsText(region) AS region, AsText(centroid) AS centroid FROM locations WHERE id = ?";
-			$r = $db->getAll($sql,array($id),DB_FETCHMODE_ASSOC);
-			if (!DB::isError($r)) {
-				print json_encode($r);
-			} else {
-				error($r->getMessage());
-			}
-			break;
-		case 'visible_regions':
-			$bbox = $_REQUEST['bbox'];
-			$rect = getRectWKT($bbox);
-			$zoom = $_REQUEST['zoom'];
-			$ignore = isset($_REQUEST['exclude']) ? $_REQUEST['exclude'] : '';
-			$sql = "SELECT AsText(region) AS region, AsText(centroid) AS centroid, z_index AS z_index, visible AS visible, parent AS parent,
-				id AS id, AsText(Envelope(region)) AS envelope, zoom_min AS zoom_min, zoom_max AS zoom_max, lft AS rank
-				FROM locations
-				WHERE ( (zoom_min <= ? AND zoom_max >= ?)\n";
-			if (isset($_REQUEST['exclude']) && count($ignore) > 0) {
-				$qmrk = str_repeat('?,',count($ignore)-1).'?';
-				$sql .= " AND id NOT IN ({$qmrk})\n";
-			}
-			$sql .= 	" AND MBRIntersects(GeomFromText(?),region) )";
-			$p = (isset($_REQUEST['exclude']) && count($ignore) > 0) ? array_merge(array($zoom,$zoom),$ignore,array($rect)) : array($zoom,$zoom,$rect);
-			$r = $db->getAll($sql,$p,DB_FETCHMODE_ASSOC);
-			if (!DB::isError($r)) {
-				print json_encode($r);
-			} else {
-				error($r->getMessage());
-			}
-			break;
-		case 'get_children':
-			$id = (int)$_REQUEST['id'];
-			$sql = "SELECT node.id AS id, node.name AS name, (COUNT(children.id) - 1) AS children,
-				node.zoom_min AS zoom_min, node.zoom_max AS zoom_max, AsText(node.centroid) AS centroid, node.parent AS parent
-				FROM locations AS node, locations as children
-				WHERE children.lft BETWEEN node.lft AND node.rgt
-				AND node.parent = ?
-				AND node.visible = 1
-				AND node.active = 1
-				AND children.visible = 1
-				AND children.active = 1
-				GROUP BY node.id
-				ORDER BY node.lft ASC";
-
-			$result = array();
-			$res = $db->query($sql,array($id));
-			if (!DB::isError($res)) {
-				while ($row = $res->fetchRow(DB_FETCHMODE_ASSOC)) {
-					$result[] = array(
-						"attr" => array("id" => "node_".$row['id']),
-						"data" => $row['name'],
-						"state" => ((int)$row['children'] >= 1) ? "closed" : "",
-						"zoom_min" => $row['zoom_min'],
-						'zoom_max' => $row['zoom_max'],
-						"centroid" => $row['centroid'],
-						'parent' => $row['parent']
-					);
-				}
-				print json_encode($result);
-			} else {
-				error($res->getMessage());
-			}
-			break;
-		case 'search':
-			$id = $_REQUEST['srch'];
-			$sql = "SELECT DISTINCT found.id 
-				FROM locations srch, locations found
-				WHERE 0 OR (found.lft < srch.lft AND found.rgt > srch.rgt) 
-				AND srch.id = ?
-				AND srch.visible = 1
-				AND srch.active = 1
-				ORDER BY found.lft ASC";
-			$sth = $db->query($sql,array($id));
-			if (!DB::isError($sth)) {
-				$result = array();
-				while ($row = $sth->fetchRow(DB_FETCHMODE_ARRAY)) {
-					$result[] = "#node_".$row[0];
-				}
-				print json_encode($result);
-			} else {
-				print "[]";
-			}
-			break;
-
 		default:
 			break;
 	}

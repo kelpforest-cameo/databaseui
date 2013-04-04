@@ -250,7 +250,7 @@ AddCitation.prototype.addNewCitation = function() {
 
 	if (this.goodtogo == false) return
 
-	$.ajax( { async:false, type:"POST", dataType:"json",
+	$.ajax( { async:false, type:"GET", dataType:"json",
 		data: postdata, 
 		url: "query.php", 
 		error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },
@@ -329,3 +329,4 @@ AddCitation.prototype.open = function ( cback ) {
 }
 
 
+var addcitation = new AddCitation();

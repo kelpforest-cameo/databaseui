@@ -21,11 +21,6 @@ require_authentication();
 <script type="text/javascript" src="js/jquery-ui-1.8.6.custom.min.js"></script>
 <script type="text/javascript" src="js/jquery.tipTip.minified.js"></script>
 <script type="text/javascript" src="js/json2.js"></script> 
-<script type="text/javascript" src="js/jquery.jstree.js"></script>
-<script type="text/javascript" src="js/jquery.hotkeys.js"></script>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAvQp4yENnLHBXW9xK-69jXRIAtlnycO9w&sensor=false&libraries=places&v=3"></script>
-<script type="text/javascript" src="js/jquery.geocomplete.js"></script>
-<script type="text/javascript" src="http://openlayers.org/api/OpenLayers.js"></script>
 
 <script type="text/javascript" src="js/utils.js"></script> 
 <script type="text/javascript" src="js/globals.js"></script> 
@@ -34,6 +29,7 @@ require_authentication();
 <script type="text/javascript" src="js/addnewnonitisnode.js"></script> 
 <script type="text/javascript" src="js/addnewcitation.js"></script> 
 <script type="text/javascript" src="js/addnewauthor.js"></script> 
+<script type="text/javascript" src="js/addnewnonitisnode.js"></script> 
 <script type="text/javascript" src="js/node.js"></script> 
 <script type="text/javascript" src="js/stage.js"></script> 
 <script type="text/javascript" src="js/searchnodes.js"></script> 
@@ -41,24 +37,6 @@ require_authentication();
 <script type="text/javascript" src="js/citationlist.js"></script> 
 <script type="text/javascript" src="js/interactions.js"></script> 
 <script type="text/javascript" src="js/observationdialog.js"></script> 
-<script type="text/javascript" src="js/mapentry.js"></script> 
-<script>
-var addnode,addnonitisnode,addcitation,addauthor,listnodesdialog,searchnodedialog,citevardialog,listnodesdialog,interactionseditor,observationdialog,mapentry;
-
-$(function() {
-	addnode = new AddNode();
-	addnonitisnode = new AddNonItisNode();
-	addcitation = new AddCitation();
-	addauthor = new AddAuthor();
-	listnodesdialog = new listNodesDialog();
-	searchnodedialog = new SearchNodeDialog();
-	citevardialog = new CitedVarDialog();
-	listcitationsdialog = new listCitationsDialog();
-	interactionseditor = new InteractionsEditor();
-	observationdialog = new InteractionObservationDialog();
-	mapentry = new MapEntry();
-});
-</script>
 
 </head>
 <body>

@@ -1,5 +1,4 @@
-//TODO: make sure adding/deleting observations deals appropriately with orphaned location data
-//
+
 function ObservationSpan ( parent_div, observation ) {
 	this.element = document.createElement("div");
 	this.element.className = "cited";
@@ -102,7 +101,9 @@ ObservationSpan.prototype.setCitationInfo = function(data) {
 	for (var i in this.observation) {
 		var p = document.createElement("div");
 		var txt = "&nbsp;&nbsp;" + i + "&nbsp;:&nbsp;";
-		txt += this.observation[i];
+		if (i == "datum")
+		txt += stripslashes(this.observation[i]);
+		else txt += this.observation[i];
 		tooltip += txt + "<br>";
 		p.innerHTML = txt ;
 		this.infodiv.appendChild( p );
@@ -175,7 +176,10 @@ ObservationSpan.prototype.deleteInteractionObservation = function( ) {
 	obj.observation_type = this.observation.observation_type;
 	obj.interaction_id = this.getInteractionId();
 	obj.interaction_type = this.getInteractionType();
-	$.ajax( { async:true, type:"POST", dataType:"json",
+	obj.datum = stripslashes(this.observation.datum);
+	console.log(obj);
+
+	$.ajax( { async:true, type:"GET", dataType:"json",
 		data: obj,
 		url: "query.php",
 		error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },
@@ -203,7 +207,6 @@ function InteractionObservationDialog() {
 	this.element = document.createElement("div");
 	this.element.setAttribute('id', this.id);
 	this.element.style.paddingTop = "15px";
-	this.location_result = null;
 
 	this.search = new Input(this, "search");
 	this.search.display_name = "Search Citations :";
@@ -215,7 +218,6 @@ function InteractionObservationDialog() {
 	this.cite_select.display_name = "Citation :";
 	this.cite_select.tooltip = "Select a citation here. There can only be one citation for a value.";
 	this.cite_select.setSelect( new Array());
-	this.loc_id = -1;
 
 	this.comment = new Comment();
 	this.datum = new Datum();
@@ -321,7 +323,6 @@ InteractionObservationDialog.prototype.onClick= function ( e ) {
 	postdata.cite_id = cite_id;
 	postdata.interaction_type = this.interaction_type;
 	postdata.interaction_id = this.ixdialog.interaction_id;
-	postdata.location_data = this.location_result;
 	var comment = this.comment.getComment();
 	if (comment!= "") {
 		postdata.comment = comment;
@@ -335,7 +336,7 @@ InteractionObservationDialog.prototype.onClick= function ( e ) {
 		var l = this.cvars[i].field_name;
 		postdata[l] = this.cvars[i].element.value;
 	}		
-	$.ajax( { async:false, type:"POST", dataType:"json",
+	$.ajax( { async:false, type:"GET", dataType:"json",
 		data: postdata, 
 		url: "query.php", 
 		error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },
@@ -364,7 +365,6 @@ InteractionObservationDialog.prototype.close = function ( ) {
 InteractionObservationDialog.prototype.open = function ( ixdialog) {
 	this.ixdialog = ixdialog;
 	this.search.clear();
-	this.location_result = null;
 
 	if ( $(this.element).dialog( "isOpen" ) === true ) {
 		return;
@@ -383,18 +383,6 @@ InteractionObservationDialog.prototype.open = function ( ixdialog) {
 
 	this.cite_select.createDivRow( this.element );
 	this.cite_select.element.style.marginBottom = "20px";
-
-	this.location_but = new Input(this,'location','button');
-	this.location_but.display_name = 'Location : ';
-	this.location_but.toolip = 'Select observation location from map';
-	this.location_but.setButton('Select location',createMethodReference(this,'selectLocation'));
-	this.location_but.createDivRow(this.element);
-
-	var lrow = $('<div id="label_row" style="display: none">').attr('class','divpad');
-	$(lrow).append("<label for=\"loc_label\">&nbsp;</label>\n<div id=\"loc_label\">&nbsp;</div>");
-	$(lrow).appendTo(this.element);
-	this.location_label = $("#loc_label");
-	this.label_row = $("#label_row");
 
 	this.interaction_type = $(this.ixdialog.interaction_type_select).val();
 	this.createInputs( );
@@ -430,30 +418,14 @@ InteractionObservationDialog.prototype.open = function ( ixdialog) {
 
 }
 
-InteractionObservationDialog.prototype.selectLocation = function()
-{
-	mapentry.open(MapEntry.MODE_LOCATION,this.location_result != null ? this.location_result.location_id : -1,createMethodReference(this,'mapClosed'));
-}
-
-InteractionObservationDialog.prototype.mapClosed = function(result)
-{
-	this.location_result = {
-		location_id: result.id,
-		coordinates: result.coords
-	};
-	var s = result.path.length > 0 ? '['+result.path.join(' | ')+']' : (result.name != '' ? '['+result.name+']' : "");
-	$(this.location_label).text(s);
-	if (s != "") {
-		$(this.label_row).show();
-	} else {
-		$(this.label_row).hide();
-	}
-}
-
 InteractionObservationDialog.prototype.createInputs = function (  ) {
 	this.cvars = new Object();
 	if (this.interaction_type == undefined) return;
 	// everything has a location
+	this.cvars.location = new Input(this, "location_id", "select");
+	this.cvars.location.display_name  = "Location :";
+	this.cvars.location.tooltip = "Add separate observations for an interaction observed in multiple regions."; 
+	this.cvars.location.setSelect( display_options.locations);
 
 	if ( this.interaction_type == "trophic") {
 
@@ -551,3 +523,4 @@ InteractionObservationDialog.prototype.createInputs = function (  ) {
 	}
 }
 	
+observationdialog = new InteractionObservationDialog();

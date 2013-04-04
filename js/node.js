@@ -1,3 +1,4 @@
+
 function Node( data ) {
 	this.id=null;
 	this.dlog= null;
@@ -82,7 +83,6 @@ Node.prototype.getFromDatabase = function ( id, lookup_type) {  //  lookup_type 
 function NodeDialog( node ) {
 	this.node = node;
 	this.node.dlog = this;
-	this.location_result = null;
 
 	// generate a unique dialog name for a node.  This is used as a DOM id for
 	// making and finding particular node dialog as well as their internal variable
@@ -150,10 +150,9 @@ function NodeDialog( node ) {
 
 	// hold an object for all of our cited variables
 	this.cvars = new Object();
-	this.cvars.node_range = new CiteInput(this, "geo_range", "button");
+	this.cvars.node_range = new CiteInput(this, "range", "number");
 	this.cvars.node_range.display_name = "Range :";
-	this.cvars.node_range.tooltip = "Select species range";
-	this.cvars.node_range.setButton("Select Range", createMethodReference(this,"selectRangeMap"));
+	this.cvars.node_range.tooltip = "Northern and Southern limits of species occurrence";
 
 	this.cvars.node_max_age= new CiteInput(this, "max_age", "number");
 	this.cvars.node_max_age.display_name = "Max age :";
@@ -224,7 +223,6 @@ NodeDialog.prototype.setValues = function () {
 // build the main dialog widget
 NodeDialog.prototype.open = function () { 
 
-	this.location_result = null;
 	var $maindiv = $(this.maindiv);
 	$maindiv.remove();
 
@@ -241,21 +239,6 @@ NodeDialog.prototype.open = function () {
 		var ww = $(this.inputs[i].label).width();
 		if (ww > w) w = ww;
 	}
-
-	if (this.node.node_range.length > 0) {
-		//--------------------------------------------------
-		// this.node_range_but.setButton("Edit Range", createMethodReference(this,"selectRangeMap"));
-		//-------------------------------------------------- 
-		this.cvars.node_range.setButton("Edit Range", createMethodReference(this,"selectRangeMap"));
-	} else {
-		//--------------------------------------------------
-		// this.node_range_but.setButton("Select Range", createMethodReference(this,"selectRangeMap"));
-		//-------------------------------------------------- 
-		this.cvars.node_range.setButton("Select Range", createMethodReference(this,"selectRangeMap"));
-	}
-	//--------------------------------------------------
-	// this.node_range_but.createTableRow(this.cvars_table);
-	//-------------------------------------------------- 
 
 	for (var i in this.cvars) {
 		this.cvars[i].createTableRow(this.cvars_table) ;
@@ -295,7 +278,6 @@ NodeDialog.prototype.openCiteVarDialogCB = function ( cite_id ) {
 			cvar.addNewCitedVar( cite_id );
 		}
 	}
-	this.cvars.node_range.setStatus('');
 
 }
 
@@ -319,22 +301,6 @@ NodeDialog.prototype.openCiteVarDialog = function ( ) {
 	citevardialog.open(this, "Set Node Values for " + this.node.working_name, cback);
 }
 
-NodeDialog.prototype.selectRangeMap = function() 
-{
-	mapentry.open(MapEntry.MODE_RANGE,-1,createMethodReference(this,'rangeSelect'));
-} 
-
-NodeDialog.prototype.rangeSelect = function(result)
-{
-	this.location_result = result;
-	$(this.cvars.node_range.element).val(result.range);
-	this.cvars.node_range.setStatus('"Set Node Values" to save','Cancel range data','Species data entered but not saved. Click "Save Node Values" to add citation info and save this data.',createMethodReference(this,'delStatus') );
-}
-
-NodeDialog.prototype.delStatus = function()
-{
-	$(this.cvars.node_range.element).val(undefined);
-}
 
 function listNodesDialog() {
 	this.element = document.createElement("div");
@@ -437,6 +403,7 @@ listNodesDialog.prototype.listAllNodesCB = function (data, t, x) {
 	}
 }
 
+listnodesdialog = new listNodesDialog();
 
 function openNodeDialog( node_id) {
 	// if we have it open, close it and destroy it

@@ -1,3 +1,4 @@
+
 function Comment(  ) {
 	//this.container = document.createElement('div');
 	//$(this.container).css( "display", "inline-block" );
@@ -19,7 +20,7 @@ Comment.prototype.addComment = function() {
 	$(this.dialog).remove();
 	this.dialog = undefined;
 
-	if ( $.trim($(this.textarea).val()) != "") {
+	if ( $(this.textarea).val().trim() != "") {
 		this.button.style.background="#990000";
 	} else {
 		this.button.style.background= this.bgcol;
@@ -46,7 +47,7 @@ Comment.prototype.clear = function() {
 	this.button.style.background= this.bgcol;
 }
 Comment.prototype.getComment = function() {
-	if (this.textarea != undefined && $.trim($(this.textarea).val()) != ""){
+	if (this.textarea != undefined && $(this.textarea).val().trim() != ""){
 		return this.textarea.value;
 	}
 	return;
@@ -170,7 +171,7 @@ Datum.prototype.openDialog = function() {
 		modal: true,
 		close: function() { $( this ).remove(); },
 		buttons: { 
-			"Set Date Info" : createMethodReference(this, "setDatum"),
+			"Set Datum" : createMethodReference(this, "setDatum"),
 			"Clear" : createMethodReference(this, "clear"),
 			"Close": function() {$( this ).remove(); }
 		} 
@@ -181,7 +182,6 @@ Datum.prototype.openDialog = function() {
 Datum.prototype.setSingle = function( e ){
 	if (this.number == 2) {
 		this.number=1;
-		console.log(this);
 		if (this.values != undefined) 
 			this.values = this.values.slice(0, 1);
 		this.makeWidgets();
@@ -608,12 +608,7 @@ CiteInput.prototype.constructor = CiteInput;
 function CiteInput( p, field_name, type) {
 	Input.call(this, p, field_name, type);
 
-	if (type != 'button') {
-		this.element.setAttribute("class", "medium");
-	} else {
-		$(this.element).css('width','120px');
-		$(this.element).css('margin-right','2px');
-	}
+	this.element.setAttribute("class", "medium");
 
 	this.citedvars = document.createElement('td');
 	this.citedvars.setAttribute('align', "left");
@@ -661,10 +656,6 @@ CiteInput.prototype.createTableRow = function( el ) {
 	datum_td.setAttribute('valign', "top");
 	this.container.appendChild(datum_td);
 
-	this.status_td = document.createElement('td');
-	this.container.appendChild(this.status_td);
-	$(this.status_td).hide();
-
 	comment_td.appendChild( this.comment.button );
 	datum_td.appendChild( this.datum.button );
 
@@ -678,12 +669,7 @@ CiteInput.prototype.createTableRow = function( el ) {
 	}
 
 
-	if (this.type != 'button') {
-		this.element.setAttribute("class", "medium");
-	} else {
-		$(this.element).css('width','120px');
-		$(this.element).css('margin-right','2px');
-	}
+	this.element.setAttribute("class", "medium");
 
 	if (this.type == "length_measure") {
 		this.a_label = document.createElement('span');
@@ -721,33 +707,6 @@ CiteInput.prototype.createTableRow = function( el ) {
 
 	this.init();
 	this.setValues();
-}
-
-CiteInput.prototype.setStatus = function(txt,hov,tip,func)
-{
-	if (txt.length) {
-		if (this.ss != null && this.ss != undefined) {
-			this.ss.remove();
-		}
-		this.status_cb = func;
-		this.ss = new StatSpan(this.status_td,txt,hov,createMethodReference(this,'statusDel'));
-		if (tip != undefined) {
-			this.ss.setTip(tip);
-		}
-		$(this.status_td).show();
-	} else if (this.ss != null && this.ss != undefined) {
-		this.ss.remove();
-		this.status_cb = undefined;
-		$(this.status_td).hide();
-	}
-}
-
-CiteInput.prototype.statusDel = function(e)
-{
-	this.ss = null;
-	if (this.status_cb != undefined) {
-		this.status_cb();
-	}
 }
 
 CiteInput.prototype.setLengthWeight = function (select_array) {
@@ -825,14 +784,14 @@ CiteInput.prototype.addNewCitedVar = function ( cite_id ) {
 		p.fields = this.getFields();
 		p.values = this.getValues();
 		var comment = this.comment.getComment();
-		if ( comment != undefined && $.trim(comment) != "" ) {
+		if ( comment != undefined && comment.trim() != "" ) {
 			p.comment = comment;
 		}
 		var datum = this.datum.getDatum();
 		if (datum!= undefined) {
 			p.datum = JSON.stringify( datum );
 		}
-		$.ajax( { async:true, type:"POST", dataType:"json", 
+		$.ajax( { async:true, type:"GET", dataType:"json", 
 			data: p,
 			url: "query.php",
 			error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },
@@ -850,67 +809,10 @@ CiteInput.prototype.setOnPressEnterEvent = function ( callback ) {
 	});
 }
 
-function StatSpan(e,text,hov,del)
-{
-	this.text = text;
-	this.deleteCallback = del;
-	this.parent = e;
-	this.span = document.createElement('span');
-	do {
-		this.id = $(e).attr('id')+Math.floor(Math.random()*1000);
-	} while ($("#"+this.id).length > 0);
-
-	var $sp = $(this.span);
-	$sp.css('margin','2px');
-	$sp.css('display','inline-block');
-	$sp.attr('id',this.id);
-	$sp.addClass('cited');
-	$sp.css('background','#ffffcc');
-	$sp.append(text+'&nbsp;');
-
-	this.delete_button = document.createElement('button');
-	var $but = $(this.delete_button);
-	$but.attr('data-icon','delete');
-	$but.text(hov);
-	$sp.append($but);
-	$but.button( { icons: {primary:'ui-icon-circle-close'}, text: false } );
-	$but.click(  createMethodReference(this, "deleteClicked") );
-	$but.css( "border", "0px" );
-	$but.css( "height", "10px" );
-	$but.css( "width", "10px" );
-	$but.css( "padding", "0px" );
-	$but.css( "display", "inline-block" );
-	
-	$sp.appendTo($(e));
-}
-
-StatSpan.prototype.setTip = function(txt)
-{
-	$(this.span).attr('title',txt);
-	$(this.span).tipTip();
-}
-
-StatSpan.prototype.remove = function(call)
-{
-	$(this.span).remove();
-	if ((call == undefined || call == true) && this.deleteCallback != undefined) {
-		this.deleteCallback(undefined);
-	}
-	this.span = undefined;
-}
-
-StatSpan.prototype.deleteClicked = function(e)
-{
-	$(this.span).remove();
-	if (this.deleteCallback != undefined) {
-		this.deleteCallback(e);
-	}
-}
-
 function CiteSpan (citeinput, val_obj, val) {
 	this.citeinput = citeinput;
 	this.val_obj = val_obj; // this contains the cite_id, datum, and comment
-	this.value = val.replace(/ /g, "&nbsp;") 
+	this.value = val; //.replace(/ /g, "&nbsp;") 
 
 	this.span = document.createElement("span");
 	this.span.style.margin = "2px";
@@ -935,7 +837,7 @@ CiteSpan.prototype.getCitationInfoCB = function(data, t, x) {
 		citations.push(data);
 		citevardialog.addCiteToCitationDialogSelect(data);
 		this.cite = data;
-		var tmp = this.value + '&nbsp;-&nbsp;[' + data.authors[0].last_name + '.' + data.year +']';
+		var tmp = this.value.replace(/ /g, "&nbsp;") + '&nbsp;-&nbsp;[' + data.authors[0].last_name + '.' + data.year +']';
 		tmp +=  '&nbsp;&nbsp;';
 		this.delete_button = document.createElement("button");
 		this.delete_button.setAttribute("data-icon", "delete");
@@ -961,13 +863,13 @@ CiteSpan.prototype.getCitationInfoCB = function(data, t, x) {
 			authors+=this.cite.authors[j].last_name;
 		}
 		var tooltip = authors + ' - \'' +  this.cite.title + '\',' +  this.cite.year;
-		tooltip += '<br><b>' + this.citeinput.display_name + '</b> '+ this.value;
+		tooltip += '<br><b>' + this.citeinput.display_name + '</b> '+ this.value.replace(/ /g, "&nbsp;");
 		if (this.val_obj.a != undefined && this.val_obj.b != undefined)
 			tooltip += ', <b>A:</b> ' + this.val_obj.a + '  <b>B:</b> '+ this.val_obj.b;
 		if (this.val_obj.comment != undefined && this.val_obj.comment != null && this.val_obj.comment != "")
 			tooltip += '<br>comment: ' + this.val_obj.comment;
 		if (this.val_obj.datum != undefined && this.val_obj.datum != null && this.val_obj.datum != "" )
-			tooltip += '<br>date: ' + this.val_obj.datum;  // datum is already in json string form here.
+			tooltip += '<br>date: ' + stripslashes(this.val_obj.datum);  // datum is already in json string form here.
 		this.span.setAttribute('title', tooltip);
 		$( this.span ).tipTip();
 	}
@@ -1000,16 +902,24 @@ CiteSpan.prototype.deleteCitedVar = function( ) {
 		return;
 	}
 	var obj = Object();
+	obj.field = this.citeinput.field_name;
+	obj.value = this.value;
 	obj.functionName = "deleteCitedVar";
 	if( this.citeinput.parent instanceof StageTab )	{
 		obj.stage_id = this.citeinput.parent.stage.id;
-		obj.table = "stage_" + this.citeinput.field_name;
+		obj.table = "stage_" + obj.field;
 	} else if ( this.citeinput.parent instanceof NodeDialog ) {
 		obj.node_id = this.citeinput.parent.node.id;
-		obj.table = "node_" + this.citeinput.field_name;
+		obj.table = "node_" + obj.field;
+	}
+	if (obj.field =="length_weight" || obj.field == "length_fecundity") {
+		// these are our exceptions
+		obj.a = this.val_obj.a;
+		obj.b = this.val_obj.b;
 	}
 	obj.cite_id = this.val_obj.cite_id;
-	$.ajax( { async:true, type:"POST", dataType:"json",
+	obj.datum  = stripslashes(this.val_obj.datum);
+	$.ajax( { async:true, type:"GET", dataType:"json",
 		data: obj,
 		url: "query.php",
 		error : function (data, t, errorThrown) { alert("error (" + t + "):" + errorThrown); },

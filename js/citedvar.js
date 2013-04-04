@@ -210,5 +210,6 @@ CitedVarDialog.prototype.open = function ( obj, title , callback_obj) {
 
 }
 
+citevardialog = new CitedVarDialog();
 
 

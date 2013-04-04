@@ -148,4 +148,5 @@ SearchNodeDialog.prototype.open =function ( itis_id) {
 };
 
 
+var searchnodedialog = new SearchNodeDialog();
 

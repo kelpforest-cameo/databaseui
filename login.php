@@ -34,17 +34,12 @@ $_SESSION['challenge'] = $challenge;
 <meta name="Publisher" content="August Black">
 
 <title>FoodWeb Interaction Database</title>
-<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
 <link type="text/css" href="css/custom-theme/jquery-ui-1.8.6.custom.css" rel="stylesheet" />	
 <link type="text/css" href="css/kelpstyle.css" rel="stylesheet" />	
 <script type="text/javascript" src="js/md5.js"></script>
+
 <script type="text/javascript">
-$(function() {
-	$("input[name='username']").focus();
-});
-function login(e) {
-	e = e || window.event;
-	e.preventDefault();
+function login() {
 	var loginForm = document.getElementById("loginForm");
 	if (loginForm.username.value == "") {
 		alert("Please enter your user name.");
@@ -59,11 +54,18 @@ function login(e) {
 	submitForm.response.value = hex_md5(loginForm.challenge.value+loginForm.password.value);
 	submitForm.submit();
 }
+function keydown(e) {
+	if (event.which == 13 || event.keyCode == 13) {
+		login();
+		return false;
+	}
+	return true;
+};
 </script>
 </head>
 <body>
 <h1>Please Login</h1>
-<form id="loginForm" onsubmit="login(event)">
+<form id="loginForm" action="#" method="post">
 <table>
 <?php if (isset($_REQUEST['error'])) { ?>
 	<tr>
@@ -73,17 +75,17 @@ function login(e) {
 		<?php } ?>
 		<tr>
 		<td>User Name (email):</td>
-		<td><input type="text" name="username" /></td>
+		<td><input type="text" name="username" onkeydown="keydown(event);"/></td>
 		</tr>
 		<tr>
 		<td>Password:</td>
-		<td><input type="password" name="password" /></td>
+		<td><input type="password" name="password" onkeydown="keydown(event);"/></td>
 		</tr>
 		<tr>
 		<td>&nbsp;</td>
 		<td>
 		<input type="hidden" name="challenge" value="<?php echo $challenge; ?>"/>
-		<input type="submit" name="submit" style="width:auto;border:1px solid black;padding:2px 4px 2px 4px;border-radius: 6px 6px 6px 6px;" value="Login" />
+		<input type="button" name="submit" style="width:auto;border:1px solid black;padding:2px 4px 2px 4px;border-radius: 6px 6px 6px 6px;" value="Login" onclick="login();"/>
 		</td>
 		</tr>
 		</table>
