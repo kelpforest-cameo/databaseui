@@ -1,6 +1,6 @@
-class CreateStageMasses < ActiveRecord::Migration
+class CreateStageMass < ActiveRecord::Migration
   def change
-    create_table :stage_masses do |t|
+    create_table :stage_mass do |t|
       t.integer :citation_id
       t.integer :stage_id
       t.float :mass
