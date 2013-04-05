@@ -1,4 +1,5 @@
 <?
+//HELLO
 include_once("init.php");
 require_authentication();
 
