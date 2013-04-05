@@ -88,8 +88,8 @@ class Ability
 			can [:edit, :update, :destroy], StageBiomassDensity, :user_id => user.id
 			
 			# Stage_Consume_Biomass_Ratio
-			can :create, StageConsumeBiomassRatio
-			can [:edit, :update, :destroy], StageConsumeBiomassRatio, :user_id => user.id
+			can :create, StageConsumBiomassRatio
+			can [:edit, :update, :destroy], StageConsumBiomassRatio, :user_id => user.id
 			
 			# Stage_Consumer_Strategy
 			can :create, StageConsumerStrategy
@@ -130,8 +130,8 @@ class Ability
 			can [:edit, :update, :destroy], StageLifestyle, :user_id => user.id
 			
 			# Stage_Masses
-			can :create, StageMasses
-			can [:edit, :update, :destroy], StageMasses, :user_id => user.id
+			can :create, StageMass
+			can [:edit, :update, :destroy], StageMass, :user_id => user.id
 			
 			# Stage_Max_Depth
 			can :create, StageMaxDepth
@@ -142,8 +142,8 @@ class Ability
 			can [:edit, :update, :destroy], StageMobility, :user_id => user.id
 			
 			# Stage_Populations
-			can :create, StagePopulations
-			can [:edit, :update, :destroy], StagePopulations, :user_id => user.id
+			can :create, StagePopulation
+			can [:edit, :update, :destroy], StagePopulation, :user_id => user.id
 			
 			# Stage_Prod_Biomass_Ratio
 			can :create, StageProdBiomassRatio
