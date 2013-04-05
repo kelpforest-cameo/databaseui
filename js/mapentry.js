@@ -1,4 +1,5 @@
 //TODO: make multiselect work properly in the tree view
+//TODO: make selecting from the tree view less kludgy (some stuff I did kind of broke it)
 function MapEntry() {  
 
 	var that = this;
@@ -206,18 +207,16 @@ MapEntry.prototype.updateMap = function()
 			'exclude': removedList
 		},
 		function(data) {
-			var toSelect = null;
-			for (var i in data) {
-				var feature = that.createFeature(data[i]);
+			$.each(data,function(i,obj) {
+				var feature = that.createFeature(obj);
 				that.vectors.addFeatures([feature]);
-			}
-			$.each(that.selected_nodes,function(i,n) {
-				var lyr = that.getLayer(n);
-				if (lyr != null && that.vectors.selectedFeatures.indexOf(lyr) == -1) {
-					that.featureEvent = false;
-					that.select.select(lyr);
-				}
 			});
+			//--------------------------------------------------
+			// for (var i in data) {
+			// 	var feature = that.createFeature(data[i]);
+			// 	that.vectors.addFeatures([feature]);
+			// }
+			//-------------------------------------------------- 
 			that.drawFinished();
 		},
 		"json"
@@ -541,6 +540,17 @@ MapEntry.prototype.reset = function()
 MapEntry.prototype.drawFinished = function()
 {
 	var that = this;
+	if (this.mode = MapEntry.MODE_LOCATION) {
+		this.select.unselectAll();
+	}
+	$.each(that.selected_nodes,function(i,n) {
+		var lyr = that.getLayer(n);
+		if (lyr != null && that.vectors.selectedFeatures.indexOf(lyr) == -1) {
+			that.featureEvent = false;
+			that.select.select(lyr);
+		}
+	});
+
 	if (this.manual_nav) {
 		this.manual_nav = false;
 		var c = this.coordinates.clone().transform("EPSG:4326","EPSG:3857");
@@ -561,9 +571,13 @@ MapEntry.prototype.nodeSelect = function(data)
 {
 	if (!this.mapClicked)
 	{
-		this.location_id = $(data.rslt.obj).attr('id').replace('node_','');
-		this.select_node = $(data.rslt.obj).attr('id').replace('node_','');
+		//--------------------------------------------------
+		// this.location_id = $(data.rslt.obj).attr('id').replace('node_','');
+		// this.select_node = $(data.rslt.obj).attr('id').replace('node_','');
+		//-------------------------------------------------- 
 		try { 
+			this.location_id = $(data.rslt.obj).attr('id').replace('node_','');
+			this.selected_nodes = [$(data.rslt.obj).attr('id').replace('node_','')];
 			var info = $(data.rslt.obj).data('node_info');
 			var zoom = this.map.getZoom();
 			zoom = (zoom >= info.zoom_min && zoom <= info.zoom_max) ? zoom : info.zoom_min;
