@@ -88,8 +88,8 @@ class Ability
 			can [:edit, :update, :destroy], StageBiomassDensity, :user_id => user.id
 			
 			# Stage_Consume_Biomass_Ratio
-			can :create, StageConsumeBiomassRatio
-			can [:edit, :update, :destroy], StageConsumeBiomassRatio, :user_id => user.id
+			can :create, StageConsumBiomassRatio
+			can [:edit, :update, :destroy], StageConsumBiomassRatio, :user_id => user.id
 			
 			# Stage_Consumer_Strategy
 			can :create, StageConsumerStrategy

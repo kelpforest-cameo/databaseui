@@ -1,4 +1,7 @@
 FoodWebBuilder::Application.routes.draw do
+  resources :projects
+
+
 		#Load resources for models
 	
 	resources :authors

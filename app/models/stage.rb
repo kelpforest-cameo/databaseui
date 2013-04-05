@@ -1,7 +1,9 @@
 class Stage < ActiveRecord::Base
-  attr_accessible :node_id, :user_id
+  attr_accessible :node_id, :user_id , :project_id, :mod , :approved
   belongs_to :node
   belongs_to :user
+  belongs_to :project
+  
   has_one :stage_biomass_change, :dependent => :destroy
   has_one :stage_biomass_density, :dependent => :destroy
   has_one :stage_consum_biomass_ratio, :dependent => :destroy
