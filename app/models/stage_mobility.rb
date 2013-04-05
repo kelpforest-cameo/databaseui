@@ -3,4 +3,5 @@ class StageMobility < ActiveRecord::Base
   belongs_to :citation
   belongs_to :stage
   belongs_to :user
+
 end
