@@ -5,4 +5,4 @@
 require File.expand_path('../config/application', __FILE__)
 
 FoodWebBuilder::Application.load_tasks
-ENV['SKIP_RAILS_ADMIN_INITIALIZER'] = 'true'
+ENV['SKIP_RAILS_ADMIN_INITIALIZER'] = true
