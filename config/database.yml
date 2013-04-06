@@ -1,3 +1,4 @@
+<% PASSWORD_FILE = File.join(Rails.root, '..','..', 'shared','config', 'dbpassword') %> 
 # SQLite version 3.x
 #   gem install mysql2
 #
@@ -29,9 +30,9 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  host: 127.0.0.1
+  host: localhost
   database: foodweb
   pool: 5
   username: fwd
-  password: Afcoin0j2
+  password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
   socket: /var/run/mysqld/mysqld.sock
