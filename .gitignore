@@ -1,10 +1,5 @@
 # Using wildcard to ignore auto generated backups
 *~
-
-# ignoring certain binary files
-
-tmp/**/*
-
 # ignore the development log
 
 log/*
@@ -29,4 +24,4 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 .project
-*~
+*.lock
