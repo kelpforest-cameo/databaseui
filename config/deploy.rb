@@ -42,9 +42,6 @@ task :production do
 end
 
 task :staging do
-  require "rvm/capistrano"
-  set :rvm_ruby_string, 'ruby-2.0.0-p0'
-  set :rvm_type, :user
   
   role :web, "fwb.cs.umb.edu"   # Your HTTP server, Apache/etc (where your web server software runs)
   role :app, "fwb.cs.umb.edu"   # This may be the same as your `Web` server
