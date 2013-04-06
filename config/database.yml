@@ -11,7 +11,7 @@ development:
   database: foodweb
   pool: 5
   username: fwb
-  password: Afcoin0j2
+  password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -24,7 +24,7 @@ test:
   database: foodweb
   pool: 5
   username: fwb
-  password: Afcoin0j2
+  password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
   socket: /var/run/mysqld/mysqld.sock
 
 production:
