@@ -45,7 +45,7 @@ task :staging do
   role :web, "fwb.cs.umb.edu"   # Your HTTP server, Apache/etc (where your web server software runs)
   role :app, "fwb.cs.umb.edu"   # This may be the same as your `Web` server
   role :db,  "fwb.cs.umb.edu", :primary => true 	# This is where Rails migrations will run
-  load 'deploy/assets' 
+ 
   set :rails_env, "production"
   set :deploy_to, "/var/rails/fwb"
   set :deploy_via, :remote_cache # only copy the most recent, not the entire repository
