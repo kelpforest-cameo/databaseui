@@ -1,4 +1,4 @@
-<% PASSWORD_FILE = File.join(Rails.root, '..','..', 'shared','config', 'dbpassword') %> 
+%q{<% PASSWORD_FILE = File.join(RAILS_ROOT, '..','..', 'shared','config', 'dbpassword') %> 
 # SQLite version 3.x
 #   gem install mysql2
 #
@@ -11,7 +11,7 @@ development:
   database: foodweb
   pool: 5
   username: fwb
-  password: 'a1234'
+  password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -34,5 +34,6 @@ production:
   database: foodweb
   pool: 5
   username: fwb
-  password: 'abcd_1234'
+  password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
   socket: /var/run/mysqld/mysqld.sock
+  }
