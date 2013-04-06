@@ -1,4 +1,4 @@
-%Q{<% PASSWORD_FILE = File.join(Rails.root, '..','..', 'shared','config', 'dbpassword') %> 
+<% PASSWORD_FILE = File.join(Rails.root, '..', 'shared','config', 'dbpassword') %> 
 # SQLite version 3.x
 #   gem install mysql2
 #
@@ -36,4 +36,4 @@ production:
   username: fwb
   password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
   socket: /var/run/mysqld/mysqld.sock
- }
+
