@@ -45,7 +45,7 @@ gem 'fastercsv'
 gem 'formtastic'
 
 # For admin back end
-gem 'rails_admin'
+# gem 'rails_admin'
 
 # For maps
 gem 'gmaps4rails'
