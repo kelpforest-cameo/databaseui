@@ -10,7 +10,7 @@ development:
   host: 127.0.0.1
   database: foodweb
   pool: 5
-  username: fwd
+  username: fwb
   password: Afcoin0j2
   socket: /var/run/mysqld/mysqld.sock
 
@@ -23,7 +23,7 @@ test:
   host: 127.0.0.1
   database: foodweb
   pool: 5
-  username: fwd
+  username: fwb
   password: Afcoin0j2
   socket: /var/run/mysqld/mysqld.sock
 
@@ -33,6 +33,6 @@ production:
   host: 127.0.0.1
   database: foodweb
   pool: 5
-  username: fwd
+  username: fwb
   password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
   socket: /var/run/mysqld/mysqld.sock
