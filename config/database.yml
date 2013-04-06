@@ -1,4 +1,4 @@
-<% PASSWORD_FILE = File.join(Rails.root, '..','..', 'shared','config', 'dbpassword') %> 
+<% PASSWORD_FILE = File.join(Rails.root,'..', 'shared','config', 'dbpassword') %> 
 # SQLite version 3.x
 #   gem install mysql2
 #
