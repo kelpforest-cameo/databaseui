@@ -5,7 +5,7 @@ class CreateLocations < ActiveRecord::Migration
   		t.integer :left
   		t.integer :right
   		t.integer :parent
-  		t.integer :active
+  		t.boolean :active
   		t.integer :visible
   		t.integer :zoom_min
   		t.integer :zoom_max
@@ -13,6 +13,7 @@ class CreateLocations < ActiveRecord::Migration
   		t.integer :user_id
   		t.integer :project_id
   		t.boolean :mod
+  		t.boolean :approved
   	
   		t.timestamps
   	end

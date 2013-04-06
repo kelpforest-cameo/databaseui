@@ -3,7 +3,7 @@ class CreateStageBiomassChanges < ActiveRecord::Migration
     create_table :stage_biomass_changes do |t|
       t.integer :citation_id
       t.integer :stage_id
-      t.float :biomass_change
+      t.decimal :biomass_change
       t.text :comment
       t.string :datum
       t.integer :user_id

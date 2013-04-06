@@ -8,6 +8,7 @@ class CreateLocationData < ActiveRecord::Migration
       t.integer :user_id
       t.integer :project_id
       t.boolean :mod
+      t.boolean :approved
 
       t.timestamps
     end

@@ -11,236 +11,238 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 2013040400045) do
+ActiveRecord::Schema.define(:version => 2013040500046) do
 
   create_table "author_cites", :force => true do |t|
-    t.integer  "author_id"
-    t.integer  "cite_id"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "author_id",                      :null => false
+    t.integer  "citation_id",                    :null => false
+    t.integer  "user_id",                        :null => false
+    t.integer  "project_id",                     :null => false
+    t.boolean  "mod",         :default => true
+    t.boolean  "approved",    :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "authors", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "first_name",                    :null => false
+    t.string   "last_name",                     :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "project_id",                    :null => false
+    t.boolean  "mod",        :default => true
+    t.boolean  "approved",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "citations", :force => true do |t|
-    t.string   "title"
+    t.string   "title",                           :null => false
     t.string   "document"
-    t.integer  "year"
+    t.integer  "year",                            :null => false
     t.text     "abstract"
-    t.string   "format"
+    t.string   "format",       :default => "",    :null => false
     t.string   "format_title"
     t.string   "publisher"
     t.integer  "number"
     t.integer  "volume"
     t.string   "pages"
-    t.boolean  "closed"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.boolean  "closed",       :default => false, :null => false
+    t.integer  "user_id",                         :null => false
+    t.integer  "project_id",                      :null => false
+    t.boolean  "mod",          :default => true
+    t.boolean  "approved",     :default => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "competition_interaction_observations", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "competition_interaction_id"
-    t.integer  "location_id"
-    t.string   "observation_type"
+    t.integer  "citation_id",                                   :null => false
+    t.integer  "competition_interaction_id",                    :null => false
+    t.integer  "location_id",                                   :null => false
+    t.string   "observation_type",           :default => "",    :null => false
     t.string   "competition_type"
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.string   "datum",                      :default => "",    :null => false
+    t.integer  "user_id",                                       :null => false
+    t.integer  "project_id",                                    :null => false
+    t.boolean  "mod",                        :default => true
+    t.boolean  "approved",                   :default => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
   end
 
   create_table "competition_interactions", :force => true do |t|
-    t.integer  "stage_1_id"
-    t.integer  "stage_2_id"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "stage_1_id",                    :null => false
+    t.integer  "stage_2_id",                    :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "project_id",                    :null => false
+    t.boolean  "mod",        :default => true
+    t.boolean  "approved",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "facilitation_interaction_observations", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "facilitation_interaction_id"
-    t.integer  "location_id"
-    t.string   "observation_type"
+    t.integer  "citation_id",                                    :null => false
+    t.integer  "facilitation_interaction_id",                    :null => false
+    t.integer  "location_id",                                    :null => false
+    t.string   "observation_type",            :default => "",    :null => false
     t.string   "facilitation_type"
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.string   "datum",                       :default => "",    :null => false
+    t.integer  "user_id",                                        :null => false
+    t.integer  "project_id",                                     :null => false
+    t.boolean  "mod",                         :default => true
+    t.boolean  "approved",                    :default => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
   end
 
   create_table "facilitation_interactions", :force => true do |t|
-    t.integer  "stage_1_id"
-    t.integer  "stage_2_id"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "stage_1_id",                    :null => false
+    t.integer  "stage_2_id",                    :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "project_id",                    :null => false
+    t.boolean  "mod",        :default => true
+    t.boolean  "approved",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "functional_groups", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "location_data", :force => true do |t|
-    t.float    "latitude"
-    t.float    "longitude"
+    t.decimal  "latitude",    :precision => 64, :scale => 12,                    :null => false
+    t.decimal  "longitude",   :precision => 64, :scale => 12,                    :null => false
     t.integer  "location_id"
     t.string   "name"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "user_id",                                                        :null => false
+    t.integer  "project_id",                                                     :null => false
+    t.boolean  "mod",                                         :default => true
+    t.boolean  "approved",                                    :default => false
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
   end
 
   create_table "locations", :force => true do |t|
-    t.string   "name"
-    t.integer  "left"
-    t.integer  "right"
-    t.integer  "parent"
-    t.integer  "active"
-    t.integer  "visible"
-    t.integer  "zoom_min"
-    t.integer  "zoom_max"
-    t.integer  "z_index"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",                         :null => false
+    t.integer  "left",                         :null => false
+    t.integer  "right",                        :null => false
+    t.integer  "parent",                       :null => false
+    t.boolean  "active",     :default => true
+    t.boolean  "visible",    :default => true, :null => false
+    t.integer  "zoom_min",   :default => -1,   :null => false
+    t.integer  "zoom_max",   :default => 15,   :null => false
+    t.integer  "z_index",    :default => 1,    :null => false
+    t.integer  "user_id",                      :null => false
+    t.integer  "project_id",                   :null => false
+    t.boolean  "mod",        :default => true
+    t.boolean  "approved"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "node_max_ages", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "node_id"
-    t.float    "max_age"
+    t.integer  "citation_id",                                                    :null => false
+    t.integer  "node_id",                                                        :null => false
+    t.decimal  "max_age",     :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "datum",                                       :default => "",    :null => false
+    t.integer  "user_id",                                                        :null => false
+    t.integer  "project_id",                                                     :null => false
+    t.boolean  "mod",                                         :default => true
+    t.boolean  "approved",                                    :default => false
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
   end
 
   create_table "node_ranges", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "node_id"
-    t.integer  "location_n_id"
-    t.integer  "location_s_id"
+    t.integer  "citation_id",                      :null => false
+    t.integer  "node_id",                          :null => false
+    t.integer  "location_n_id",                    :null => false
+    t.integer  "location_s_id",                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.string   "datum",         :default => "",    :null => false
+    t.integer  "user_id",                          :null => false
+    t.integer  "project_id",                       :null => false
+    t.boolean  "mod",           :default => true
+    t.boolean  "approved",      :default => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   create_table "nodes", :force => true do |t|
-    t.integer  "itis_id"
-    t.integer  "non_itis_id"
-    t.string   "working_name"
-    t.integer  "functional_group_id"
+    t.integer  "itis_id",                                :null => false
+    t.integer  "non_itis_id",                            :null => false
+    t.string   "working_name",                           :null => false
+    t.integer  "functional_group_id",                    :null => false
     t.string   "native_status"
-    t.boolean  "is_assemblage"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.boolean  "is_assemblage",                          :null => false
+    t.integer  "user_id",                                :null => false
+    t.integer  "project_id",                             :null => false
+    t.boolean  "mod",                 :default => true
+    t.boolean  "approved",            :default => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   create_table "non_itis", :force => true do |t|
-    t.integer  "parent_id"
-    t.string   "latin_name"
-    t.string   "taxonomy_level"
-    t.boolean  "parent_id_is_itis"
+    t.integer  "parent_id",                            :null => false
+    t.string   "latin_name",                           :null => false
+    t.string   "taxonomy_level",    :default => "",    :null => false
+    t.boolean  "parent_id_is_itis",                    :null => false
     t.text     "info"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.integer  "user_id",                              :null => false
+    t.integer  "project_id",                           :null => false
+    t.boolean  "mod",               :default => true
+    t.boolean  "approved",          :default => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   create_table "parasitic_interaction_observations", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "parasitic_interaction_id"
-    t.integer  "location_id"
+    t.integer  "citation_id",                                                                 :null => false
+    t.integer  "parasitic_interaction_id",                                                    :null => false
+    t.integer  "location_id",                                                                 :null => false
     t.string   "endo_ecto"
     t.string   "lethality"
-    t.float    "prevalence"
-    t.float    "intensity"
+    t.decimal  "prevalence",               :precision => 64, :scale => 12
+    t.decimal  "intensity",                :precision => 64, :scale => 12
     t.string   "parasite_type"
-    t.string   "observation_type"
+    t.string   "observation_type",                                         :default => "",    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.string   "datum",                                                    :default => "",    :null => false
+    t.integer  "user_id",                                                                     :null => false
+    t.integer  "project_id",                                                                  :null => false
+    t.boolean  "mod",                                                      :default => true
+    t.boolean  "approved",                                                 :default => false
+    t.datetime "created_at",                                                                  :null => false
+    t.datetime "updated_at",                                                                  :null => false
   end
 
   create_table "parasitic_interactions", :force => true do |t|
-    t.integer  "stage_1_id"
-    t.integer  "stage_2_id"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "stage_1_id",                    :null => false
+    t.integer  "stage_2_id",                    :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "project_id",                    :null => false
+    t.boolean  "mod",        :default => true
+    t.boolean  "approved",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "projects", :force => true do |t|
-    t.string   "name"
-    t.integer  "owner"
-    t.integer  "user_id"
-    t.boolean  "public"
-    t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",                          :null => false
+    t.integer  "owner",                         :null => false
+    t.integer  "user_id",                       :null => false
+    t.boolean  "public",     :default => false
+    t.boolean  "approved",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "roles", :force => true do |t|
@@ -255,367 +257,368 @@ ActiveRecord::Schema.define(:version => 2013040400045) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "stage_biomass_changes", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.float    "biomass_change"
+    t.integer  "citation_id",                                                       :null => false
+    t.integer  "stage_id",                                                          :null => false
+    t.decimal  "biomass_change", :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string   "datum",                                                             :null => false
+    t.integer  "user_id",                                                           :null => false
+    t.integer  "project_id",                                                        :null => false
+    t.boolean  "mod",                                            :default => true
+    t.boolean  "approved",                                       :default => false
+    t.datetime "created_at",                                                        :null => false
+    t.datetime "updated_at",                                                        :null => false
   end
 
   create_table "stage_biomass_densities", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.float    "biomass_density"
+    t.integer  "citation_id",                                                        :null => false
+    t.integer  "stage_id",                                                           :null => false
+    t.decimal  "biomass_density", :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.string   "datum",                                           :default => "",    :null => false
+    t.integer  "user_id",                                                            :null => false
+    t.integer  "project_id",                                                         :null => false
+    t.boolean  "mod",                                             :default => true
+    t.boolean  "approved",                                        :default => false
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
   end
 
   create_table "stage_consum_biomass_ratios", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.decimal  "consume_biomass_ratio", :precision => 10, :scale => 0
+    t.integer  "citation_id",                                                             :null => false
+    t.integer  "stage_id",                                                                :null => false
+    t.decimal  "consum_biomass_ratio", :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
+    t.string   "datum",                                                :default => "",    :null => false
+    t.integer  "user_id",                                                                 :null => false
+    t.integer  "project_id",                                                              :null => false
+    t.boolean  "mod",                                                  :default => true
+    t.boolean  "approved",                                             :default => false
+    t.datetime "created_at",                                                              :null => false
+    t.datetime "updated_at",                                                              :null => false
   end
 
   create_table "stage_consumer_strategies", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.string   "consumer_strategy"
+    t.integer  "citation_id",                                :null => false
+    t.integer  "stage_id",                                   :null => false
+    t.string   "consumer_strategy", :default => "autotroph", :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.string   "datum",             :default => "",          :null => false
+    t.integer  "user_id",                                    :null => false
+    t.integer  "project_id",                                 :null => false
+    t.boolean  "mod",               :default => true
+    t.boolean  "approved",          :default => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "stage_drymasses", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.float    "drymass"
+    t.integer  "citation_id",                                                    :null => false
+    t.integer  "stage_id",                                                       :null => false
+    t.decimal  "drymass",     :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "datum",                                       :default => "",    :null => false
+    t.integer  "user_id",                                                        :null => false
+    t.integer  "project_id",                                                     :null => false
+    t.boolean  "mod",                                         :default => true
+    t.boolean  "approved",                                    :default => false
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
   end
 
   create_table "stage_durations", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.float    "duration"
+    t.integer  "citation_id",                                                    :null => false
+    t.integer  "stage_id",                                                       :null => false
+    t.decimal  "duration",    :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "datum",                                       :default => "",    :null => false
+    t.integer  "user_id",                                                        :null => false
+    t.integer  "project_id",                                                     :null => false
+    t.boolean  "mod",                                         :default => true
+    t.boolean  "approved",                                    :default => false
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
   end
 
   create_table "stage_fecundities", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.string   "fecundity"
+    t.integer  "citation_id",                    :null => false
+    t.integer  "stage_id",                       :null => false
+    t.string   "fecundity",                      :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "datum",       :default => "",    :null => false
+    t.integer  "user_id",                        :null => false
+    t.integer  "project_id",                     :null => false
+    t.boolean  "mod",         :default => true
+    t.boolean  "approved",    :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "stage_habitat_descriptors", :force => true do |t|
-    t.string   "descriptor"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "descriptor",                    :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "project_id",                    :null => false
+    t.boolean  "mod",        :default => true
+    t.boolean  "approved",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "stage_habitats", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.string   "habitat"
+    t.integer  "citation_id",                    :null => false
+    t.integer  "stage_id",                       :null => false
+    t.string   "habitat",     :default => "",    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "datum",       :default => "",    :null => false
+    t.integer  "user_id",                        :null => false
+    t.integer  "project_id",                     :null => false
+    t.boolean  "mod",         :default => true
+    t.boolean  "approved",    :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "stage_length_fecundities", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.string   "length_fecundity"
-    t.decimal  "a",                :precision => 10, :scale => 0
-    t.decimal  "b",                :precision => 10, :scale => 0
+    t.integer  "citation_id",                                                                                      :null => false
+    t.integer  "stage_id",                                                                                         :null => false
+    t.string   "length_fecundity",                                 :default => "none exists - constant fecundity", :null => false
+    t.decimal  "a",                :precision => 64, :scale => 12, :default => 0.0,                                :null => false
+    t.decimal  "b",                :precision => 64, :scale => 12, :default => 0.0,                                :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.string   "datum",                                            :default => "",                                 :null => false
+    t.integer  "user_id",                                                                                          :null => false
+    t.integer  "project_id",                                                                                       :null => false
+    t.boolean  "mod",                                              :default => true
+    t.boolean  "approved",                                         :default => false
+    t.datetime "created_at",                                                                                       :null => false
+    t.datetime "updated_at",                                                                                       :null => false
   end
 
   create_table "stage_length_weights", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.string   "length_weight"
-    t.decimal  "a",             :precision => 10, :scale => 0
-    t.decimal  "b",             :precision => 10, :scale => 0
+    t.integer  "citation_id",                                                                                :null => false
+    t.integer  "stage_id",                                                                                   :null => false
+    t.string   "length_weight",                                 :default => "none exists - constant weight", :null => false
+    t.decimal  "a",             :precision => 64, :scale => 12, :default => 0.0,                             :null => false
+    t.decimal  "b",             :precision => 64, :scale => 12, :default => 0.0,                             :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.string   "datum",                                         :default => "",                              :null => false
+    t.integer  "user_id",                                                                                    :null => false
+    t.integer  "project_id",                                                                                 :null => false
+    t.boolean  "mod",                                           :default => true
+    t.boolean  "approved",                                      :default => false
+    t.datetime "created_at",                                                                                 :null => false
+    t.datetime "updated_at",                                                                                 :null => false
   end
 
   create_table "stage_lengths", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.float    "length"
+    t.integer  "citation_id",                                                    :null => false
+    t.integer  "stage_id",                                                       :null => false
+    t.decimal  "length",      :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "datum",                                       :default => "",    :null => false
+    t.integer  "user_id",                                                        :null => false
+    t.integer  "project_id",                                                     :null => false
+    t.boolean  "mod",                                         :default => true
+    t.boolean  "approved",                                    :default => false
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
   end
 
   create_table "stage_lifestyles", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.string   "lifestyle"
+    t.integer  "citation_id",                           :null => false
+    t.integer  "stage_id",                              :null => false
+    t.string   "lifestyle",   :default => "non-living", :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "datum",       :default => "",           :null => false
+    t.integer  "user_id",                               :null => false
+    t.integer  "project_id",                            :null => false
+    t.boolean  "mod",         :default => true
+    t.boolean  "approved",    :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "stage_masses", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.float    "mass"
+    t.integer  "citation_id",                                                    :null => false
+    t.integer  "stage_id",                                                       :null => false
+    t.decimal  "mass",        :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "datum",                                       :default => "",    :null => false
+    t.integer  "user_id",                                                        :null => false
+    t.integer  "project_id",                                                     :null => false
+    t.boolean  "mod",                                         :default => true
+    t.boolean  "approved",                                    :default => false
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
   end
 
   create_table "stage_max_depths", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.float    "max_depth"
+    t.integer  "citation_id",                                                    :null => false
+    t.integer  "stage_id",                                                       :null => false
+    t.decimal  "max_depth",   :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "datum",                                       :default => "",    :null => false
+    t.integer  "user_id",                                                        :null => false
+    t.integer  "project_id",                                                     :null => false
+    t.boolean  "mod",                                         :default => true
+    t.boolean  "approved",                                    :default => false
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
   end
 
   create_table "stage_mobilities", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.string   "mobility"
+    t.integer  "citation_id",                    :null => false
+    t.integer  "stage_id",                       :null => false
+    t.string   "mobility",                       :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "datum",       :default => "",    :null => false
+    t.integer  "user_id",                        :null => false
+    t.integer  "project_id",                     :null => false
+    t.boolean  "mod",         :default => true
+    t.boolean  "approved",    :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "stage_populations", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.float    "population"
+    t.integer  "citation_id",                                                    :null => false
+    t.integer  "stage_id",                                                       :null => false
+    t.decimal  "population",  :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "datum",                                       :default => "",    :null => false
+    t.integer  "user_id",                                                        :null => false
+    t.integer  "project_id",                                                     :null => false
+    t.boolean  "mod",                                         :default => true
+    t.boolean  "approved",                                    :default => false
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
   end
 
   create_table "stage_prod_biomass_ratios", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.float    "prod_biomass_ratio"
+    t.integer  "citation_id",                                                           :null => false
+    t.integer  "stage_id",                                                              :null => false
+    t.decimal  "prod_biomass_ratio", :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.string   "datum",                                              :default => "",    :null => false
+    t.integer  "user_id",                                                               :null => false
+    t.integer  "project_id",                                                            :null => false
+    t.boolean  "mod",                                                :default => true
+    t.boolean  "approved",                                           :default => false
+    t.datetime "created_at",                                                            :null => false
+    t.datetime "updated_at",                                                            :null => false
   end
 
   create_table "stage_prod_consum_ratios", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.float    "prod_consum_ratio"
+    t.integer  "citation_id",                                                          :null => false
+    t.integer  "stage_id",                                                             :null => false
+    t.decimal  "prod_consum_ratio", :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.string   "datum",                                             :default => "",    :null => false
+    t.integer  "user_id",                                                              :null => false
+    t.integer  "project_id",                                                           :null => false
+    t.boolean  "mod",                                               :default => true
+    t.boolean  "approved",                                          :default => false
+    t.datetime "created_at",                                                           :null => false
+    t.datetime "updated_at",                                                           :null => false
   end
 
   create_table "stage_reproductive_strategies", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.string   "reproductive_strategy"
+    t.integer  "citation_id",                              :null => false
+    t.integer  "stage_id",                                 :null => false
+    t.string   "reproductive_strategy",                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.string   "datum",                 :default => "",    :null => false
+    t.integer  "user_id",                                  :null => false
+    t.integer  "project_id",                               :null => false
+    t.boolean  "mod",                   :default => true
+    t.boolean  "approved",              :default => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   create_table "stage_residencies", :force => true do |t|
-    t.integer  "citation_id"
+    t.integer  "citation_id",                    :null => false
     t.integer  "stage_id"
-    t.string   "residency"
+    t.string   "residency",                      :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "datum",       :default => "",    :null => false
+    t.integer  "user_id",                        :null => false
+    t.integer  "project_id",                     :null => false
+    t.boolean  "mod",         :default => true
+    t.boolean  "approved",    :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "stage_residency_times", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.float    "residency_time"
+    t.integer  "citation_id",                                                       :null => false
+    t.integer  "stage_id",                                                          :null => false
+    t.decimal  "residency_time", :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string   "datum",                                          :default => "",    :null => false
+    t.integer  "user_id",                                                           :null => false
+    t.integer  "project_id",                                                        :null => false
+    t.boolean  "mod",                                            :default => true
+    t.boolean  "approved",                                       :default => false
+    t.datetime "created_at",                                                        :null => false
+    t.datetime "updated_at",                                                        :null => false
   end
 
   create_table "stage_unassimilated_consum_ratios", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "stage_id"
-    t.float    "unassimilated_consum_ratio"
+    t.integer  "citation_id",                                                                   :null => false
+    t.integer  "stage_id",                                                                      :null => false
+    t.decimal  "unassimilated_consum_ratio", :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.string   "datum",                                                      :default => "",    :null => false
+    t.integer  "user_id",                                                                       :null => false
+    t.integer  "project_id",                                                                    :null => false
+    t.boolean  "mod",                                                        :default => true
+    t.boolean  "approved",                                                   :default => false
+    t.datetime "created_at",                                                                    :null => false
+    t.datetime "updated_at",                                                                    :null => false
   end
 
   create_table "stages", :force => true do |t|
-    t.integer  "node_id"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",       :default => "",    :null => false
+    t.integer  "node_id",                       :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "project_id",                    :null => false
+    t.boolean  "mod",        :default => true
+    t.boolean  "approved",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "trophic_interaction_observations", :force => true do |t|
-    t.integer  "citation_id"
-    t.integer  "trophic_interaction_id"
-    t.integer  "location_id"
-    t.string   "lethality"
+    t.integer  "citation_id",                                                               :null => false
+    t.integer  "trophic_interaction_id",                                                    :null => false
+    t.integer  "location_id",                                                               :null => false
+    t.string   "lethality",                                                                 :null => false
     t.string   "structures_consumed"
-    t.decimal  "percentage_consumed",    :precision => 10, :scale => 0
-    t.decimal  "percentage_diet",        :precision => 10, :scale => 0
+    t.decimal  "percentage_consumed",    :precision => 64, :scale => 12
+    t.decimal  "percentage_diet",        :precision => 64, :scale => 12
     t.string   "percentage_diet_by"
-    t.string   "prefernce"
+    t.string   "preference"
     t.string   "observation_type"
     t.text     "comment"
-    t.string   "datum"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
+    t.string   "datum",                                                  :default => "",    :null => false
+    t.integer  "user_id",                                                                   :null => false
+    t.integer  "project_id",                                                                :null => false
+    t.boolean  "mod",                                                    :default => true
+    t.boolean  "approved",                                               :default => false
+    t.datetime "created_at",                                                                :null => false
+    t.datetime "updated_at",                                                                :null => false
   end
 
   create_table "trophic_interactions", :force => true do |t|
-    t.integer  "stage_1_id"
-    t.integer  "stage_2_id"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.boolean  "mod"
-    t.boolean  "approved"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "stage_1_id",                    :null => false
+    t.integer  "stage_2_id",                    :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "project_id",                    :null => false
+    t.boolean  "mod",        :default => true
+    t.boolean  "approved",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "users", :force => true do |t|

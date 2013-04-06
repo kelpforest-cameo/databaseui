@@ -3,7 +3,7 @@ class CreateStageUnassimilatedConsumRatios < ActiveRecord::Migration
     create_table :stage_unassimilated_consum_ratios do |t|
       t.integer :citation_id
       t.integer :stage_id
-      t.float :unassimilated_consum_ratio
+      t.decimal :unassimilated_consum_ratio
       t.text :comment
       t.string :datum
       t.integer :user_id

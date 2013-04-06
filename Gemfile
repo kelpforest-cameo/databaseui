@@ -58,3 +58,6 @@ gem 'rolify'
 
 # For charts
 gem 'lazy_high_charts'
+
+# For autocompletion in forms
+gem 'rails3-jquery-autocomplete'

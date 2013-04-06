@@ -1,8 +1,8 @@
 <ul class="nav nav-pills">
-    <li class="active">
+    <li>
         <a href="#nodehome" data-toggle="tab">Home</a>
     </li>
-    <li>
+    <li class="active">
         <a href="#newnode" data-toggle="tab">New Node</a>
     </li>
     <li>
@@ -16,7 +16,7 @@
     </li>
 </ul>
 <div class="tab-content">
-    <div class="tab-pane active" id="nodehome">
+    <div class="tab-pane" id="nodehome">
         <p>
             Above you will find tabs for creating new nodes into the database.
             There are two different type of node which can be entered. Nodes
@@ -29,7 +29,7 @@
         </p>
     </div>
     <!-- Begin NEW NODE Pane -->
-    <div class="tab-pane" id="newnode">
+    <div class="tab-pane active" id="newnode">
         <div class="well">
             <h3>Instructions
             <button type="button" data-toggle="collapse" data-target="#newnodeinfo" class="btn btn-info btn-mini">
@@ -44,17 +44,9 @@
                 </p>
             </div>
         </div>
-        
-            <fieldset>
-                <legend>
-                    Add New Node
-                </legend>
-				<%= render :partial => 'node_form', :nodes => @node %>
 
+        <%= render :partial => 'node_form', :nodes => @node %>
 
-
-                               </fieldset>
-        
     </div>
     <!-- End NEW NODE Pane -->
     <!-- Begin NEW Non-ITIS Pane -->
@@ -111,14 +103,13 @@
         </div>
         <%= render :partial => 'non_itis_node_form', :non_itis => @non_itis_node %>
 
+        <fieldset>
+            <legend>
+                Add New Non-ITIS Node
+            </legend>
 
-            <fieldset>
-                <legend>
-                    Add New Non-ITIS Node
-                </legend>
+        </fieldset>
 
-                         </fieldset>
-        
     </div>
     <!-- End NEW Non-ITIS Pane -->
     <!-- Begin Node Search Pane -->

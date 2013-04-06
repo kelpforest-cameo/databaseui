@@ -9,7 +9,7 @@ class CreateTrophicInteractionObservations < ActiveRecord::Migration
       t.decimal :percentage_consumed
       t.decimal :percentage_diet
       t.string :percentage_diet_by
-      t.string :prefernce
+      t.string :preference
       t.string :observation_type
       t.text :comment
       t.string :datum

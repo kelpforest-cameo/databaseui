@@ -3,7 +3,7 @@ class CreateStageProdConsumRatios < ActiveRecord::Migration
     create_table :stage_prod_consum_ratios do |t|
       t.integer :citation_id
       t.integer :stage_id
-      t.float :prod_consum_ratio
+      t.decimal :prod_consum_ratio
       t.text :comment
       t.string :datum
       t.integer :user_id
