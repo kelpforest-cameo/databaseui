@@ -1,10 +1,8 @@
 # -*- coding: iso-8859-1 -*-
 require 'capistrano/ext/multistage'
-require "bundler/capistrano"
+#require "bundler/capistrano"
 require 'capistrano-unicorn'
 set :application, "FoodWebBuilder"
-
-
 
 default_run_options[:pty] = true  # Must be set for the password prompt from #git to work    
 set :repository, "https://github.com/jjliang/databaseui.git"  # Your clone URL
