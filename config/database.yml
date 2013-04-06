@@ -34,5 +34,5 @@ production:
   database: foodweb
   pool: 5
   username: fwb
-  password: 'a1234'
+  password: 'abcd_1234'
   socket: /var/run/mysqld/mysqld.sock
