@@ -1,6 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 require 'capistrano/ext/multistage'
 require "bundler/capistrano"
+require 'capistrano-unicorn'
 set :application, "FoodWebBuilder"
 
 
@@ -52,6 +53,10 @@ task :staging do
   set :deploy_via, :remote_cache # only copy the most recent, not the entire repository
   set :branch, "staging" #branch to checkout during deployment
 end
+
+# added two tasks hooks as required by capistrano-unicorn
+after 'deploy:restart', 'unicorn:reload'
+after 'deploy:restart', 'unicorn:restart'
 
 # =============================================================================
 # SSH OPTIONS

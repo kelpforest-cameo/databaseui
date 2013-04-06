@@ -8,6 +8,9 @@
 # See http://unicorn.bogomips.org/Unicorn/Configurator.html for complete
 # documentation.
 
+# Setting the application path
+app_path = "/var/rails/fwb"
+
 # Use at least one worker per core if you're on a dedicated server,
 # more will usually help for _short_ waits on databases/caches.
 worker_processes 1
@@ -18,6 +21,9 @@ worker_processes 1
 # If running the master process as root and the workers as an unprivileged
 # user, do this to switch euid/egid in the workers (also chowns logs):
 # user "unprivileged_user", "unprivileged_group"
+user 'apps' , 'apps'
+
+rails_env = ENV['RAILS_ENV'] || 'production'
 
 # Help ensure your application will always spawn in the symlinked
 # "current" directory that Capistrano sets up.
@@ -29,7 +35,7 @@ listen "/var/rails/fwb/tmp/unicorn.sock", :backlog => 64
 listen 8000, :tcp_nopush => true
 
 # nuke workers after 30 seconds instead of 60 seconds (the default)
-timeout 30
+timeout 180
 
 # feel free to point this anywhere accessible on the filesystem
 pid "/var/rails/fwb/shared/pids/unicorn.pid"
@@ -69,14 +75,14 @@ before_fork do |server, worker|
   # # thundering herd (especially in the "preload_app false" case)
   # # when doing a transparent upgrade.  The last worker spawned
   # # will then kill off the old master process with a SIGQUIT.
-  # old_pid = "#{server.config[:pid]}.oldbin"
-  # if old_pid != server.pid
-  #   begin
-  #     sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
-  #     Process.kill(sig, File.read(old_pid).to_i)
-  #   rescue Errno::ENOENT, Errno::ESRCH
-  #   end
-  # end
+  old_pid = "#{server.config[:pid]}.oldbin"
+  if old_pid != server.pid
+  	begin
+        sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
+       Process.kill(sig, File.read(old_pid).to_i)
+     rescue Errno::ENOENT, Errno::ESRCH
+     end
+   end
   #
   # Throttle the master from forking too quickly by sleeping.  Due
   # to the implementation of standard Unix signal handlers, this
