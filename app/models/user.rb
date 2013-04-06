@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   has_many :facilitation_interactions
   has_many :facilitation_interaction_observations
   has_many :nodes
-  has_many :nod_max_ages
+  has_many :node_max_ages
   has_many :node_ranges
   has_many :non_itis
   has_many :parasitic_interactions

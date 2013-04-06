@@ -1,1 +1,2184 @@
 forgot to remove conflict in here
+Connecting to database specified by database.yml
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-04-06 12:19:31 -0400
+Processing by DashboardController#dataentry as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+Completed 401 Unauthorized in 89ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2013-04-06 12:19:32 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (2.4ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (22.4ms)
+  Rendered layouts/_navigation.html.erb (3.2ms)
+  Rendered layouts/_messages.html.erb (1.0ms)
+Completed 200 OK in 1207ms (Views: 1166.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-04-06 12:19:41 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IzF0vVBrAsIn+VSW3E0VpSXutNbuC4+uQEet1fWcVqg=", "user"=>{"login"=>"admin", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT `users`.* FROM `users` WHERE (lower(username) = 'admin' OR lower(email) = 'admin') LIMIT 1
+Completed 401 Unauthorized in 4ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IzF0vVBrAsIn+VSW3E0VpSXutNbuC4+uQEet1fWcVqg=", "user"=>{"login"=>"admin", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  Rendered devise/shared/_links.erb (0.7ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (5.3ms)
+  Rendered layouts/_navigation.html.erb (1.5ms)
+  Rendered layouts/_messages.html.erb (0.2ms)
+Completed 200 OK in 229ms (Views: 124.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:41 -0400
+Served asset /application.css - 304 Not Modified (119ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /author_cites.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /custom.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /gmaps4rails.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /non_itis.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /dashboard.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /home.css - 304 Not Modified (11ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /projects.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /scaffolds.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/stage_consume_biomass_ratios.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /stage_consume_biomass_ratios.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /stage_habitats.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /stage_residencies.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (95ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /jquery.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /visualization.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (76ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /bootstrap.js - 304 Not Modified (18ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:42 -0400
+Served asset /highcharts.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.base.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:43 -0400
+Served asset /gmaps4rails/gmaps4rails.base.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:43 -0400
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-06 12:19:43 -0400
+Served asset /application.js - 304 Not Modified (91ms)
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'foodwebbuilder@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `users` (`approved`, `created_at`, `current_sign_in_at`, `current_sign_in_ip`, `email`, `encrypted_password`, `firstname`, `last_sign_in_at`, `last_sign_in_ip`, `lastname`, `project_id`, `remember_created_at`, `reset_password_sent_at`, `reset_password_token`, `role`, `sign_in_count`, `updated_at`, `username`) VALUES (1, '2013-04-06 16:20:08', NULL, NULL, 'foodwebbuilder@gmail.com', '$2a$10$aqOhBZbCXsdlACskEqxPQumrisFho0dyFFreBV3wKkOUg5t3hIIYO', '', NULL, NULL, '', 1, NULL, NULL, NULL, 'admin', 0, '2013-04-06 16:20:08', '')
+  [1m[36m (68.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'admin@foodwebbuilder.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `users` (`approved`, `created_at`, `current_sign_in_at`, `current_sign_in_ip`, `email`, `encrypted_password`, `firstname`, `last_sign_in_at`, `last_sign_in_ip`, `lastname`, `project_id`, `remember_created_at`, `reset_password_sent_at`, `reset_password_token`, `role`, `sign_in_count`, `updated_at`, `username`) VALUES (1, '2013-04-06 16:20:08', NULL, NULL, 'admin@foodwebbuilder.com', '$2a$10$ThO4BUgY5YXxte.V6VVUG.x2WEbmPH.lgKlO1SXwXG.ZZ5VhXA1P.', 'Admin', NULL, NULL, 'Tester', 1, NULL, NULL, NULL, 'admin', 0, '2013-04-06 16:20:08', 'admin')
+  [1m[36m (58.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'mod@foodwebbuilder.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `users` (`approved`, `created_at`, `current_sign_in_at`, `current_sign_in_ip`, `email`, `encrypted_password`, `firstname`, `last_sign_in_at`, `last_sign_in_ip`, `lastname`, `project_id`, `remember_created_at`, `reset_password_sent_at`, `reset_password_token`, `role`, `sign_in_count`, `updated_at`, `username`) VALUES (1, '2013-04-06 16:20:08', NULL, NULL, 'mod@foodwebbuilder.com', '$2a$10$ANQkAvxxSixDjhjttAQf4uVDT0rgH0NsM2km1Rd4ynhDt74ZEoCNe', 'Moderator', NULL, NULL, 'Tester', 1, NULL, NULL, NULL, 'moderator', 0, '2013-04-06 16:20:08', 'mod')
+  [1m[36m (48.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'user@foodwebbuilder.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `users` (`approved`, `created_at`, `current_sign_in_at`, `current_sign_in_ip`, `email`, `encrypted_password`, `firstname`, `last_sign_in_at`, `last_sign_in_ip`, `lastname`, `project_id`, `remember_created_at`, `reset_password_sent_at`, `reset_password_token`, `role`, `sign_in_count`, `updated_at`, `username`) VALUES (1, '2013-04-06 16:20:08', NULL, NULL, 'user@foodwebbuilder.com', '$2a$10$1FR6Z7w9nme8zbA83qOqcOJDykBcciXjmNq1nvpUOE1XviqwFinoq', 'User', NULL, NULL, 'Tester', 1, NULL, NULL, NULL, 'user', 0, '2013-04-06 16:20:08', 'user')
+  [1m[36m (48.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'lead@foodwebbuilder.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `users` (`approved`, `created_at`, `current_sign_in_at`, `current_sign_in_ip`, `email`, `encrypted_password`, `firstname`, `last_sign_in_at`, `last_sign_in_ip`, `lastname`, `project_id`, `remember_created_at`, `reset_password_sent_at`, `reset_password_token`, `role`, `sign_in_count`, `updated_at`, `username`) VALUES (1, '2013-04-06 16:20:09', NULL, NULL, 'lead@foodwebbuilder.com', '$2a$10$HZDleDdOH/7YFug/tb7sz.gxeQ5yhDnZgM2Gahiu24D8BR8rnyIEy', 'Project', NULL, NULL, 'Lead', 1, NULL, NULL, NULL, 'user', 0, '2013-04-06 16:20:09', 'lead')
+  [1m[36m (37.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `location_data` (`approved`, `created_at`, `latitude`, `location_id`, `longitude`, `mod`, `name`, `project_id`, `updated_at`, `user_id`) VALUES (0, '2013-04-06 16:20:09', 42.31276, 1, -71.03645, 1, 'UMASS BOSTON', 1, '2013-04-06 16:20:09', NULL)[0m
+Mysql2::Error: Column 'user_id' cannot be null: INSERT INTO `location_data` (`approved`, `created_at`, `latitude`, `location_id`, `longitude`, `mod`, `name`, `project_id`, `updated_at`, `user_id`) VALUES (0, '2013-04-06 16:20:09', 42.31276, 1, -71.03645, 1, 'UMASS BOSTON', 1, '2013-04-06 16:20:09', NULL)
+  [1m[35m (0.1ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'foodwebbuilder@gmail.com' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'admin@foodwebbuilder.com' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'mod@foodwebbuilder.com' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'user@foodwebbuilder.com' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'lead@foodwebbuilder.com' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `location_data` (`approved`, `created_at`, `latitude`, `location_id`, `longitude`, `mod`, `name`, `project_id`, `updated_at`, `user_id`) VALUES (0, '2013-04-06 16:23:35', 42.31276, 1, -71.03645, 1, 'UMASS BOSTON', 1, '2013-04-06 16:23:35', 1)
+  [1m[36m (53.0ms)[0m  [1mCOMMIT[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'foodwebbuilder@gmail.com' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'admin@foodwebbuilder.com' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'mod@foodwebbuilder.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'user@foodwebbuilder.com' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'lead@foodwebbuilder.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `location_data` (`approved`, `created_at`, `latitude`, `location_id`, `longitude`, `mod`, `name`, `project_id`, `updated_at`, `user_id`) VALUES (0, '2013-04-06 16:24:20', 42.31276, 1, -71.03645, 1, 'UMASS BOSTON', 1, '2013-04-06 16:24:20', NULL)
+Mysql2::Error: Column 'user_id' cannot be null: INSERT INTO `location_data` (`approved`, `created_at`, `latitude`, `location_id`, `longitude`, `mod`, `name`, `project_id`, `updated_at`, `user_id`) VALUES (0, '2013-04-06 16:24:20', 42.31276, 1, -71.03645, 1, 'UMASS BOSTON', 1, '2013-04-06 16:24:20', NULL)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'foodwebbuilder@gmail.com' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'admin@foodwebbuilder.com' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'mod@foodwebbuilder.com' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'user@foodwebbuilder.com' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'lead@foodwebbuilder.com' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `location_data` (`approved`, `created_at`, `latitude`, `location_id`, `longitude`, `mod`, `name`, `project_id`, `updated_at`, `user_id`) VALUES (0, '2013-04-06 16:25:04', 42.31276, 1, -71.03645, 1, 'UMASS BOSTON', 1, '2013-04-06 16:25:04', 1)
+  [1m[36m (51.3ms)[0m  [1mCOMMIT[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'foodwebbuilder@gmail.com' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'admin@foodwebbuilder.com' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'mod@foodwebbuilder.com' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'user@foodwebbuilder.com' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'lead@foodwebbuilder.com' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `location_data` (`approved`, `created_at`, `latitude`, `location_id`, `longitude`, `mod`, `name`, `project_id`, `updated_at`, `user_id`) VALUES (0, '2013-04-06 16:26:26', 42.31276, 1, -71.03645, 1, 'UMASS BOSTON', 1, '2013-04-06 16:26:26', 1)
+  [1m[36m (53.5ms)[0m  [1mCOMMIT[0m
+Connecting to database specified by database.yml
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2013-04-06 12:26:44 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IzF0vVBrAsIn+VSW3E0VpSXutNbuC4+uQEet1fWcVqg=", "user"=>{"login"=>"admin", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (lower(username) = 'admin' OR lower(email) = 'admin') LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mUPDATE `users` SET `last_sign_in_at` = '2013-04-06 16:26:44', `current_sign_in_at` = '2013-04-06 16:26:44', `last_sign_in_ip` = '127.0.0.1', `current_sign_in_ip` = '127.0.0.1', `sign_in_count` = 1, `updated_at` = '2013-04-06 16:26:44' WHERE `users`.`id` = 2[0m
+  [1m[35m (70.5ms)[0m  COMMIT
+Redirected to http://localhost:3000/dataentry
+Completed 302 Found in 351ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-04-06 12:26:44 -0400
+Processing by DashboardController#dataentry as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mAuthor Load (0.4ms)[0m  SELECT `authors`.* FROM `authors` 
+  [1m[36mCitation Load (0.5ms)[0m  [1mSELECT `citations`.* FROM `citations` [0m
+  [1m[35mNode Load (0.4ms)[0m  SELECT `nodes`.* FROM `nodes` 
+  Rendered dashboard/_node_form.html.erb (33.1ms)
+  Rendered dashboard/_denode.html.erb (35.3ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (40.1ms)
+Completed 500 Internal Server Error in 456ms
+
+ActionView::Template::Error (undefined local variable or method `nodes_autocomplete_working_name_path' for #<#<Class:0x000000048cb578>:0x000000048d98a8>):
+    28:     </div>
+    29:     <div class="field">
+    30:         <%= f.label :working_name %>
+    31:         <%= f.text_field_tag 'working_name', '', :autocomplete => nodes_autocomplete_working_name_path %>
+    32:     </div>
+    33:     <div class="field">
+    34:         <%= f.label :functional_group_id %>
+  app/views/dashboard/_node_form.html.erb:31:in `block in _app_views_dashboard__node_form_html_erb__3465947644386102583_39332280'
+  app/views/dashboard/_node_form.html.erb:6:in `_app_views_dashboard__node_form_html_erb__3465947644386102583_39332280'
+  app/views/dashboard/_denode.html.erb:48:in `_app_views_dashboard__denode_html_erb__526208190437454692_39275940'
+  app/views/dashboard/dataentry.html.erb:27:in `_app_views_dashboard_dataentry_html_erb___3896230052459168575_38216600'
+
+
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.9ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (23.8ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-04-06 12:26:55 -0400
+Processing by DashboardController#dataentry as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mAuthor Load (0.2ms)[0m  SELECT `authors`.* FROM `authors` 
+  [1m[36mCitation Load (0.2ms)[0m  [1mSELECT `citations`.* FROM `citations` [0m
+  [1m[35mNode Load (0.2ms)[0m  SELECT `nodes`.* FROM `nodes` 
+  Rendered dashboard/_node_form.html.erb (31.4ms)
+  Rendered dashboard/_denode.html.erb (32.2ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (33.0ms)
+Completed 500 Internal Server Error in 41ms
+
+ActionView::Template::Error (undefined local variable or method `nodes_autocomplete_working_name_path' for #<#<Class:0x000000048cb578>:0x0000000441ac68>):
+    28:     </div>
+    29:     <div class="field">
+    30:         <%= f.label :working_name %>
+    31:         <%= f.text_field_tag 'working_name', '', :autocomplete => nodes_autocomplete_working_name_path %>
+    32:     </div>
+    33:     <div class="field">
+    34:         <%= f.label :functional_group_id %>
+  app/views/dashboard/_node_form.html.erb:31:in `block in _app_views_dashboard__node_form_html_erb__3465947644386102583_39332280'
+  app/views/dashboard/_node_form.html.erb:6:in `_app_views_dashboard__node_form_html_erb__3465947644386102583_39332280'
+  app/views/dashboard/_denode.html.erb:48:in `_app_views_dashboard__denode_html_erb__526208190437454692_39275940'
+  app/views/dashboard/dataentry.html.erb:27:in `_app_views_dashboard_dataentry_html_erb___3896230052459168575_38216600'
+
+
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.9ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.6ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.2ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-04-06 12:27:31 -0400
+Processing by DashboardController#dataentry as HTML
+  [1m[36mUser Load (4.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mAuthor Load (0.3ms)[0m  SELECT `authors`.* FROM `authors` 
+  [1m[36mCitation Load (3.9ms)[0m  [1mSELECT `citations`.* FROM `citations` [0m
+  [1m[35mNode Load (0.2ms)[0m  SELECT `nodes`.* FROM `nodes` 
+  Rendered dashboard/_node_form.html.erb (171.1ms)
+  Rendered dashboard/_denode.html.erb (172.2ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (173.0ms)
+Completed 500 Internal Server Error in 191ms
+
+ActionView::Template::Error (undefined method `text_field_tag' for #<ActionView::Helpers::FormBuilder:0x000000051f95c8>):
+    28:     </div>
+    29:     <div class="field">
+    30:         <%= f.label :working_name %>
+    31:         <%= f.text_field_tag 'working_name'%>
+    32:     </div>
+    33:     <div class="field">
+    34:         <%= f.label :functional_group_id %>
+  app/views/dashboard/_node_form.html.erb:31:in `block in _app_views_dashboard__node_form_html_erb__3465947644386102583_42846200'
+  app/views/dashboard/_node_form.html.erb:6:in `_app_views_dashboard__node_form_html_erb__3465947644386102583_42846200'
+  app/views/dashboard/_denode.html.erb:48:in `_app_views_dashboard__denode_html_erb__526208190437454692_39275940'
+  app/views/dashboard/dataentry.html.erb:27:in `_app_views_dashboard_dataentry_html_erb___3896230052459168575_38216600'
+
+
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.2ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.7ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.9ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-04-06 12:27:43 -0400
+Processing by DashboardController#dataentry as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mAuthor Load (0.2ms)[0m  SELECT `authors`.* FROM `authors` 
+  [1m[36mCitation Load (0.3ms)[0m  [1mSELECT `citations`.* FROM `citations` [0m
+  [1m[35mNode Load (0.2ms)[0m  SELECT `nodes`.* FROM `nodes` 
+  Rendered dashboard/_node_form.html.erb (156.3ms)
+  Rendered dashboard/_denode.html.erb (157.4ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (158.4ms)
+Completed 500 Internal Server Error in 169ms
+
+ActionView::Template::Error (undefined method `text_field_tag' for #<ActionView::Helpers::FormBuilder:0x0000000521c8e8>):
+    28:     </div>
+    29:     <div class="field">
+    30:         <%= f.label :working_name %>
+    31:         <%= f.text_field_tag 'working_name'%>
+    32:     </div>
+    33:     <div class="field">
+    34:         <%= f.label :functional_group_id %>
+  app/views/dashboard/_node_form.html.erb:31:in `block in _app_views_dashboard__node_form_html_erb__3465947644386102583_42846200'
+  app/views/dashboard/_node_form.html.erb:6:in `_app_views_dashboard__node_form_html_erb__3465947644386102583_42846200'
+  app/views/dashboard/_denode.html.erb:48:in `_app_views_dashboard__denode_html_erb__526208190437454692_39275940'
+  app/views/dashboard/dataentry.html.erb:27:in `_app_views_dashboard_dataentry_html_erb___3896230052459168575_38216600'
+
+
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.2ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.5ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-04-06 12:28:09 -0400
+Processing by DashboardController#dataentry as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mAuthor Load (0.2ms)[0m  SELECT `authors`.* FROM `authors` 
+  [1m[36mCitation Load (0.2ms)[0m  [1mSELECT `citations`.* FROM `citations` [0m
+  [1m[35mNode Load (0.2ms)[0m  SELECT `nodes`.* FROM `nodes` 
+  Rendered dashboard/_node_form.html.erb (8.3ms)
+  Rendered dashboard/_non_itis_node_form.html.erb (18.8ms)
+  Rendered dashboard/_denode.html.erb (29.4ms)
+  Rendered dashboard/_author_form.html.erb (5.8ms)
+  Rendered dashboard/_listauthor.html.erb (0.8ms)
+  Rendered citations/_form.html.erb (10.4ms)
+  Rendered dashboard/_listcitation.html.erb (1.6ms)
+  Rendered dashboard/_decitations.html.erb (652.3ms)
+  Rendered dashboard/_deinteractions.html.erb (0.4ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (685.0ms)
+  Rendered layouts/_navigation.html.erb (3.1ms)
+  Rendered layouts/_messages.html.erb (0.9ms)
+Completed 200 OK in 982ms (Views: 975.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:10 -0400
+Served asset /application.css - 304 Not Modified (127ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /author_cites.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /custom.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /dashboard.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /home.css - 304 Not Modified (11ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /non_itis.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /gmaps4rails.css - 304 Not Modified (11ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /projects.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /scaffolds.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stage_consume_biomass_ratios.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /stage_consume_biomass_ratios.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /stage_habitats.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /stage_residencies.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /visualization.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /jquery.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /bootstrap.js - 304 Not Modified (23ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /highcharts.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.base.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /gmaps4rails/gmaps4rails.base.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:11 -0400
+Served asset /application.js - 304 Not Modified (26ms)
+
+
+Started GET "/dataentry" for 127.0.0.1 at 2013-04-06 12:28:18 -0400
+Processing by DashboardController#dataentry as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mAuthor Load (0.2ms)[0m  SELECT `authors`.* FROM `authors` 
+  [1m[36mCitation Load (0.2ms)[0m  [1mSELECT `citations`.* FROM `citations` [0m
+  [1m[35mNode Load (0.2ms)[0m  SELECT `nodes`.* FROM `nodes` 
+  Rendered dashboard/_node_form.html.erb (5.4ms)
+  Rendered dashboard/_non_itis_node_form.html.erb (4.9ms)
+  Rendered dashboard/_denode.html.erb (12.0ms)
+  Rendered dashboard/_author_form.html.erb (3.1ms)
+  Rendered dashboard/_listauthor.html.erb (0.1ms)
+  Rendered citations/_form.html.erb (6.7ms)
+  Rendered dashboard/_listcitation.html.erb (0.4ms)
+  Rendered dashboard/_decitations.html.erb (97.2ms)
+  Rendered dashboard/_deinteractions.html.erb (0.0ms)
+  Rendered dashboard/dataentry.html.erb within layouts/application (111.4ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 238ms (Views: 232.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/author_cites.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /author_cites.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.min.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap-responsive.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /application.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-responsive.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap-responsive.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /gmaps4rails.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/dashboard.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /dashboard.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap_and_overrides.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /home.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/non_itis.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /non_itis.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/parasitic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /parasitic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/projects.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /projects.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_consume_biomass_ratios.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /stage_consume_biomass_ratios.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_consumer_strategies.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /stage_consumer_strategies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitat_descriptors.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /stage_habitat_descriptors.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_habitats.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /stage_habitats.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_fecundities.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /stage_length_fecundities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_length_weights.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /stage_length_weights.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_lifestyles.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /stage_lifestyles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_mobilities.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /stage_mobilities.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stage_reproductive_strategies.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /stage_reproductive_strategies.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stage_residencies.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /stage_residencies.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/trophic_interaction_observations.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /trophic_interaction_observations.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/visualization.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /visualization.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (90ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /bootstrap.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.base.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /gmaps4rails/gmaps4rails.base.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/gmaps4rails/gmaps4rails.googlemaps.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /gmaps4rails/gmaps4rails.googlemaps.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:19 -0400
+Served asset /application.js - 304 Not Modified (3ms)
+
+
+Started GET "/admin" for 127.0.0.1 at 2013-04-06 12:28:37 -0400
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `authors` WHERE (1=1)
+  [1m[36mAuthor Load (0.4ms)[0m  [1mSELECT `authors`.* FROM `authors` ORDER BY authors.updated_at desc LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `author_cites` WHERE (1=1)
+  [1m[36mAuthorCite Load (0.4ms)[0m  [1mSELECT `author_cites`.* FROM `author_cites` ORDER BY author_cites.updated_at desc LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `citations` WHERE (1=1)
+  [1m[36mCitation Load (0.5ms)[0m  [1mSELECT `citations`.* FROM `citations` ORDER BY citations.updated_at desc LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM `competition_interactions` WHERE (1=1)
+  [1m[36mCompetitionInteraction Load (0.7ms)[0m  [1mSELECT `competition_interactions`.* FROM `competition_interactions` ORDER BY competition_interactions.updated_at desc LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `competition_interaction_observations` WHERE (1=1)
+  [1m[36mCompetitionInteractionObservation Load (6.7ms)[0m  [1mSELECT `competition_interaction_observations`.* FROM `competition_interaction_observations` ORDER BY competition_interaction_observations.updated_at desc LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `facilitation_interactions` WHERE (1=1)
+  [1m[36mFacilitationInteraction Load (0.7ms)[0m  [1mSELECT `facilitation_interactions`.* FROM `facilitation_interactions` ORDER BY facilitation_interactions.updated_at desc LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `facilitation_interaction_observations` WHERE (1=1)
+  [1m[36mFacilitationInteractionObservation Load (0.5ms)[0m  [1mSELECT `facilitation_interaction_observations`.* FROM `facilitation_interaction_observations` ORDER BY facilitation_interaction_observations.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `functional_groups` WHERE (1=1)
+  [1m[36mFunctionalGroup Load (0.5ms)[0m  [1mSELECT `functional_groups`.* FROM `functional_groups` ORDER BY functional_groups.updated_at desc LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `locations` WHERE (1=1)
+  [1m[36mLocation Load (0.6ms)[0m  [1mSELECT `locations`.* FROM `locations` ORDER BY locations.updated_at desc LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `location_data` WHERE (1=1)
+  [1m[36mLocationData Load (0.8ms)[0m  [1mSELECT `location_data`.* FROM `location_data` ORDER BY location_data.updated_at desc LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `nodes` WHERE (1=1)
+  [1m[36mNode Load (0.7ms)[0m  [1mSELECT `nodes`.* FROM `nodes` ORDER BY nodes.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `node_max_ages` WHERE (1=1)
+  [1m[36mNodeMaxAge Load (0.4ms)[0m  [1mSELECT `node_max_ages`.* FROM `node_max_ages` ORDER BY node_max_ages.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `node_ranges` WHERE (1=1)
+  [1m[36mNodeRange Load (0.4ms)[0m  [1mSELECT `node_ranges`.* FROM `node_ranges` ORDER BY node_ranges.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `non_itis` WHERE (1=1)
+  [1m[36mNonIti Load (0.5ms)[0m  [1mSELECT `non_itis`.* FROM `non_itis` ORDER BY non_itis.updated_at desc LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `parasitic_interactions` WHERE (1=1)
+  [1m[36mParasiticInteraction Load (0.5ms)[0m  [1mSELECT `parasitic_interactions`.* FROM `parasitic_interactions` ORDER BY parasitic_interactions.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `parasitic_interaction_observations` WHERE (1=1)
+  [1m[36mParasiticInteractionObservation Load (0.4ms)[0m  [1mSELECT `parasitic_interaction_observations`.* FROM `parasitic_interaction_observations` ORDER BY parasitic_interaction_observations.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `projects` WHERE (1=1)
+  [1m[36mProject Load (0.4ms)[0m  [1mSELECT `projects`.* FROM `projects` ORDER BY projects.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stages` WHERE (1=1)
+  [1m[36mStage Load (0.4ms)[0m  [1mSELECT `stages`.* FROM `stages` ORDER BY stages.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_biomass_changes` WHERE (1=1)
+  [1m[36mStageBiomassChange Load (0.4ms)[0m  [1mSELECT `stage_biomass_changes`.* FROM `stage_biomass_changes` ORDER BY stage_biomass_changes.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_biomass_densities` WHERE (1=1)
+  [1m[36mStageBiomassDensity Load (0.5ms)[0m  [1mSELECT `stage_biomass_densities`.* FROM `stage_biomass_densities` ORDER BY stage_biomass_densities.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_consum_biomass_ratios` WHERE (1=1)
+  [1m[36mStageConsumBiomassRatio Load (0.4ms)[0m  [1mSELECT `stage_consum_biomass_ratios`.* FROM `stage_consum_biomass_ratios` ORDER BY stage_consum_biomass_ratios.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_consumer_strategies` WHERE (1=1)
+  [1m[36mStageConsumerStrategy Load (0.5ms)[0m  [1mSELECT `stage_consumer_strategies`.* FROM `stage_consumer_strategies` ORDER BY stage_consumer_strategies.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_drymasses` WHERE (1=1)
+  [1m[36mStageDrymass Load (0.4ms)[0m  [1mSELECT `stage_drymasses`.* FROM `stage_drymasses` ORDER BY stage_drymasses.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_durations` WHERE (1=1)
+  [1m[36mStageDuration Load (0.4ms)[0m  [1mSELECT `stage_durations`.* FROM `stage_durations` ORDER BY stage_durations.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_fecundities` WHERE (1=1)
+  [1m[36mStageFecundity Load (0.4ms)[0m  [1mSELECT `stage_fecundities`.* FROM `stage_fecundities` ORDER BY stage_fecundities.updated_at desc LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `stage_habitats` WHERE (1=1)
+  [1m[36mStageHabitat Load (0.4ms)[0m  [1mSELECT `stage_habitats`.* FROM `stage_habitats` ORDER BY stage_habitats.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_habitat_descriptors` WHERE (1=1)
+  [1m[36mStageHabitatDescriptor Load (0.4ms)[0m  [1mSELECT `stage_habitat_descriptors`.* FROM `stage_habitat_descriptors` ORDER BY stage_habitat_descriptors.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_lengths` WHERE (1=1)
+  [1m[36mStageLength Load (0.4ms)[0m  [1mSELECT `stage_lengths`.* FROM `stage_lengths` ORDER BY stage_lengths.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_length_fecundities` WHERE (1=1)
+  [1m[36mStageLengthFecundity Load (0.4ms)[0m  [1mSELECT `stage_length_fecundities`.* FROM `stage_length_fecundities` ORDER BY stage_length_fecundities.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_length_weights` WHERE (1=1)
+  [1m[36mStageLengthWeight Load (0.5ms)[0m  [1mSELECT `stage_length_weights`.* FROM `stage_length_weights` ORDER BY stage_length_weights.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_lifestyles` WHERE (1=1)
+  [1m[36mStageLifestyle Load (0.4ms)[0m  [1mSELECT `stage_lifestyles`.* FROM `stage_lifestyles` ORDER BY stage_lifestyles.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_masses` WHERE (1=1)
+  [1m[36mStageMass Load (0.4ms)[0m  [1mSELECT `stage_masses`.* FROM `stage_masses` ORDER BY stage_masses.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_max_depths` WHERE (1=1)
+  [1m[36mStageMaxDepth Load (0.4ms)[0m  [1mSELECT `stage_max_depths`.* FROM `stage_max_depths` ORDER BY stage_max_depths.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_mobilities` WHERE (1=1)
+  [1m[36mStageMobility Load (0.3ms)[0m  [1mSELECT `stage_mobilities`.* FROM `stage_mobilities` ORDER BY stage_mobilities.updated_at desc LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `stage_populations` WHERE (1=1)
+  [1m[36mStagePopulation Load (0.4ms)[0m  [1mSELECT `stage_populations`.* FROM `stage_populations` ORDER BY stage_populations.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_prod_biomass_ratios` WHERE (1=1)
+  [1m[36mStageProdBiomassRatio Load (0.4ms)[0m  [1mSELECT `stage_prod_biomass_ratios`.* FROM `stage_prod_biomass_ratios` ORDER BY stage_prod_biomass_ratios.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_prod_consum_ratios` WHERE (1=1)
+  [1m[36mStageProdConsumRatio Load (0.4ms)[0m  [1mSELECT `stage_prod_consum_ratios`.* FROM `stage_prod_consum_ratios` ORDER BY stage_prod_consum_ratios.updated_at desc LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `stage_reproductive_strategies` WHERE (1=1)
+  [1m[36mStageReproductiveStrategy Load (0.5ms)[0m  [1mSELECT `stage_reproductive_strategies`.* FROM `stage_reproductive_strategies` ORDER BY stage_reproductive_strategies.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_residencies` WHERE (1=1)
+  [1m[36mStageResidency Load (0.5ms)[0m  [1mSELECT `stage_residencies`.* FROM `stage_residencies` ORDER BY stage_residencies.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `stage_residency_times` WHERE (1=1)
+  [1m[36mStageResidencyTime Load (0.4ms)[0m  [1mSELECT `stage_residency_times`.* FROM `stage_residency_times` ORDER BY stage_residency_times.updated_at desc LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `stage_unassimilated_consum_ratios` WHERE (1=1)
+  [1m[36mStageUnassimilatedConsumRatio Load (0.4ms)[0m  [1mSELECT `stage_unassimilated_consum_ratios`.* FROM `stage_unassimilated_consum_ratios` ORDER BY stage_unassimilated_consum_ratios.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `trophic_interactions` WHERE (1=1)
+  [1m[36mTrophicInteraction Load (0.3ms)[0m  [1mSELECT `trophic_interactions`.* FROM `trophic_interactions` ORDER BY trophic_interactions.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `trophic_interaction_observations` WHERE (1=1)
+  [1m[36mTrophicInteractionObservation Load (0.4ms)[0m  [1mSELECT `trophic_interaction_observations`.* FROM `trophic_interaction_observations` ORDER BY trophic_interaction_observations.updated_at desc LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `users` WHERE (1=1)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` ORDER BY users.updated_at desc LIMIT 1[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application (867.9ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/layouts/rails_admin/_secondary_navigation.html.haml (11.9ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/layouts/rails_admin/pjax.html.haml (7.4ms)
+Completed 200 OK in 2884ms (Views: 1893.3ms | ActiveRecord: 118.6ms)
+
+
+Started GET "/assets/rails_admin/rails_admin.css?body=1" for 127.0.0.1 at 2013-04-06 12:28:40 -0400
+Served asset /rails_admin/rails_admin.css - 304 Not Modified (108ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /jquery.ui.mouse.js - 304 Not Modified (21ms)
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /jquery.ui.autocomplete.js - 304 Not Modified (29ms)
+
+
+Started GET "/assets/jquery.iframe-transport.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /jquery.iframe-transport.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /jquery.ui.menu.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /jquery.ui.core.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (90ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /bootstrap.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/rails_admin/jquery.remotipart.fixed.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /rails_admin/jquery.remotipart.fixed.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/rails_admin/custom/ui.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /rails_admin/custom/ui.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/rails_admin/jquery.colorpicker.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /rails_admin/jquery.colorpicker.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /jquery.ui.widget.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/rails_admin/rails_admin.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /rails_admin/rails_admin.js - 304 Not Modified (145ms)
+
+
+Started GET "/assets/rails_admin/ra.filter-box.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /rails_admin/ra.filter-box.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/rails_admin/jquery.ui.timepicker.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /rails_admin/jquery.ui.timepicker.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/rails_admin/ra.filtering-multiselect.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /rails_admin/ra.filtering-multiselect.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/rails_admin/ra.datetimepicker.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /rails_admin/ra.datetimepicker.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/rails_admin/ra.filtering-select.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /rails_admin/ra.filtering-select.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/rails_admin/jquery.pjax.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /rails_admin/jquery.pjax.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery_nested_form.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /jquery_nested_form.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /jquery.ui.datepicker.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/rails_admin/ui.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /rails_admin/ui.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /jquery.ui.sortable.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/jquery.ui.effect.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /jquery.ui.effect.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /jquery.ui.position.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/rails_admin/ra.nested-form-hooks.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:41 -0400
+Served asset /rails_admin/ra.nested-form-hooks.js - 304 Not Modified (95ms)
+
+
+Started GET "/assets/rails_admin/ra.widgets.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:42 -0400
+Served asset /rails_admin/ra.widgets.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/rails_admin/ra.remote-form.js?body=1" for 127.0.0.1 at 2013-04-06 12:28:42 -0400
+Served asset /rails_admin/ra.remote-form.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/fontawesome-webfont.woff" for 127.0.0.1 at 2013-04-06 12:28:42 -0400
+Served asset /fontawesome-webfont.woff - 304 Not Modified (37ms)
+
+
+Started GET "/admin/author?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:28:45 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"author"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mAuthor Load (0.5ms)[0m  [1mSELECT `authors`.* FROM `authors` WHERE (1=1) ORDER BY authors.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `authors` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (107.6ms)
+Completed 200 OK in 168ms (Views: 143.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/admin/author_cite?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:28:48 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"author_cite"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mAuthorCite Load (0.5ms)[0m  SELECT `author_cites`.* FROM `author_cites` WHERE (1=1) ORDER BY author_cites.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `author_cites` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (33.0ms)
+Completed 200 OK in 169ms (Views: 53.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/admin/citation?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:28:49 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"citation"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mCitation Load (0.5ms)[0m  [1mSELECT `citations`.* FROM `citations` WHERE (1=1) ORDER BY citations.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `citations` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (154.6ms)
+Completed 200 OK in 266ms (Views: 173.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/admin/competition_interaction?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:28:51 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"competition_interaction"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mCompetitionInteraction Load (0.5ms)[0m  SELECT `competition_interactions`.* FROM `competition_interactions` WHERE (1=1) ORDER BY competition_interactions.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `competition_interactions` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (112.9ms)
+Completed 200 OK in 167ms (Views: 132.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/admin/competition_interaction_observation?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:28:53 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"competition_interaction_observation"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mCompetitionInteractionObservation Load (0.5ms)[0m  [1mSELECT `competition_interaction_observations`.* FROM `competition_interaction_observations` WHERE (1=1) ORDER BY competition_interaction_observations.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `competition_interaction_observations` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (33.8ms)
+Completed 200 OK in 103ms (Views: 52.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/facilitation_interaction?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:28:55 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"facilitation_interaction"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mFacilitationInteraction Load (0.5ms)[0m  SELECT `facilitation_interactions`.* FROM `facilitation_interactions` WHERE (1=1) ORDER BY facilitation_interactions.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `facilitation_interactions` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (113.7ms)
+Completed 200 OK in 170ms (Views: 133.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/facilitation_interaction_observation?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:28:57 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"facilitation_interaction_observation"}
+  [1m[35mUser Load (1.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mFacilitationInteractionObservation Load (0.5ms)[0m  [1mSELECT `facilitation_interaction_observations`.* FROM `facilitation_interaction_observations` WHERE (1=1) ORDER BY facilitation_interaction_observations.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `facilitation_interaction_observations` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (35.5ms)
+Completed 200 OK in 100ms (Views: 53.9ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/admin/functional_group?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:28:59 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"functional_group"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mFunctionalGroup Load (0.4ms)[0m  SELECT `functional_groups`.* FROM `functional_groups` WHERE (1=1) ORDER BY functional_groups.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `functional_groups` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (25.1ms)
+Completed 200 OK in 152ms (Views: 127.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/location?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:00 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"location"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mLocation Load (0.5ms)[0m  [1mSELECT `locations`.* FROM `locations` WHERE (1=1) ORDER BY locations.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `locations` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (33.3ms)
+Completed 200 OK in 101ms (Views: 52.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/location_data?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:00 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"location_data"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mLocationData Load (0.5ms)[0m  SELECT `location_data`.* FROM `location_data` WHERE (1=1) ORDER BY location_data.id desc LIMIT 20 OFFSET 0
+  [1m[36mLocation Load (0.5ms)[0m  [1mSELECT `locations`.* FROM `locations` WHERE `locations`.`id` IN (1)[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` IN (1)
+  [1m[36mProject Load (0.5ms)[0m  [1mSELECT `projects`.* FROM `projects` WHERE `projects`.`id` IN (1)[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `location_data` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (247.2ms)
+Completed 200 OK in 288ms (Views: 266.8ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/admin/node?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:01 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"node"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mNode Load (0.4ms)[0m  SELECT `nodes`.* FROM `nodes` WHERE (1=1) ORDER BY nodes.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `nodes` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (39.2ms)
+Completed 200 OK in 81ms (Views: 57.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/admin/node_max_age?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:02 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"node_max_age"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mNodeMaxAge Load (0.5ms)[0m  [1mSELECT `node_max_ages`.* FROM `node_max_ages` WHERE (1=1) ORDER BY node_max_ages.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `node_max_ages` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (36.3ms)
+Completed 200 OK in 98ms (Views: 57.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/node_range?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:03 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"node_range"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mNodeRange Load (0.5ms)[0m  SELECT `node_ranges`.* FROM `node_ranges` WHERE (1=1) ORDER BY node_ranges.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `node_ranges` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (31.8ms)
+Completed 200 OK in 180ms (Views: 136.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/admin/non_iti?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:05 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"non_iti"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mNonIti Load (0.4ms)[0m  [1mSELECT `non_itis`.* FROM `non_itis` WHERE (1=1) ORDER BY non_itis.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `non_itis` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (36.1ms)
+Completed 200 OK in 76ms (Views: 55.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/parasitic_interaction?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:06 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"parasitic_interaction"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mParasiticInteraction Load (0.5ms)[0m  SELECT `parasitic_interactions`.* FROM `parasitic_interactions` WHERE (1=1) ORDER BY parasitic_interactions.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `parasitic_interactions` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (30.6ms)
+Completed 200 OK in 91ms (Views: 50.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/parasitic_interaction_observation?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:07 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"parasitic_interaction_observation"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mParasiticInteractionObservation Load (0.5ms)[0m  [1mSELECT `parasitic_interaction_observations`.* FROM `parasitic_interaction_observations` WHERE (1=1) ORDER BY parasitic_interaction_observations.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `parasitic_interaction_observations` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (38.1ms)
+Completed 200 OK in 197ms (Views: 57.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/project?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:07 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"project"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mProject Load (0.5ms)[0m  SELECT `projects`.* FROM `projects` WHERE (1=1) ORDER BY projects.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `projects` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (32.0ms)
+Completed 200 OK in 70ms (Views: 52.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/stage?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:08 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mStage Load (0.5ms)[0m  [1mSELECT `stages`.* FROM `stages` WHERE (1=1) ORDER BY stages.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `stages` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (48.6ms)
+Completed 200 OK in 220ms (Views: 69.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/admin/stage_biomass_change?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:09 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_biomass_change"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mStageBiomassChange Load (0.5ms)[0m  SELECT `stage_biomass_changes`.* FROM `stage_biomass_changes` WHERE (1=1) ORDER BY stage_biomass_changes.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `stage_biomass_changes` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (33.9ms)
+Completed 200 OK in 186ms (Views: 52.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/stage_biomass_density?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:10 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_biomass_density"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mStageBiomassDensity Load (0.5ms)[0m  [1mSELECT `stage_biomass_densities`.* FROM `stage_biomass_densities` WHERE (1=1) ORDER BY stage_biomass_densities.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `stage_biomass_densities` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (34.9ms)
+Completed 200 OK in 94ms (Views: 54.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/stage_consum_biomass_ratio?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:12 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_consum_biomass_ratio"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mStageConsumBiomassRatio Load (0.5ms)[0m  SELECT `stage_consum_biomass_ratios`.* FROM `stage_consum_biomass_ratios` WHERE (1=1) ORDER BY stage_consum_biomass_ratios.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `stage_consum_biomass_ratios` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (34.4ms)
+Completed 200 OK in 186ms (Views: 54.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/stage_consumer_strategy?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:13 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_consumer_strategy"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mStageConsumerStrategy Load (0.5ms)[0m  [1mSELECT `stage_consumer_strategies`.* FROM `stage_consumer_strategies` WHERE (1=1) ORDER BY stage_consumer_strategies.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `stage_consumer_strategies` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (37.6ms)
+Completed 200 OK in 98ms (Views: 56.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/admin/stage_drymass?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:15 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_drymass"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mStageDrymass Load (0.4ms)[0m  SELECT `stage_drymasses`.* FROM `stage_drymasses` WHERE (1=1) ORDER BY stage_drymasses.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `stage_drymasses` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (34.9ms)
+Completed 200 OK in 185ms (Views: 54.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/stage_duration?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:15 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_duration"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mStageDuration Load (0.5ms)[0m  [1mSELECT `stage_durations`.* FROM `stage_durations` WHERE (1=1) ORDER BY stage_durations.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `stage_durations` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (35.0ms)
+Completed 200 OK in 95ms (Views: 55.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/stage_fecundity?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:16 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_fecundity"}
+  [1m[36mUser Load (1.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mStageFecundity Load (0.5ms)[0m  SELECT `stage_fecundities`.* FROM `stage_fecundities` WHERE (1=1) ORDER BY stage_fecundities.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `stage_fecundities` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (38.5ms)
+Completed 200 OK in 99ms (Views: 58.9ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/admin/stage_habitat?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:17 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_habitat"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mStageHabitat Load (0.5ms)[0m  [1mSELECT `stage_habitats`.* FROM `stage_habitats` WHERE (1=1) ORDER BY stage_habitats.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `stage_habitats` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (32.5ms)
+Completed 200 OK in 94ms (Views: 51.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/stage_habitat_descriptor?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:19 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_habitat_descriptor"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mStageHabitatDescriptor Load (0.5ms)[0m  SELECT `stage_habitat_descriptors`.* FROM `stage_habitat_descriptors` WHERE (1=1) ORDER BY stage_habitat_descriptors.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `stage_habitat_descriptors` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (37.6ms)
+Completed 200 OK in 93ms (Views: 59.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/admin/stage_length?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:21 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_length"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mStageLength Load (0.5ms)[0m  [1mSELECT `stage_lengths`.* FROM `stage_lengths` WHERE (1=1) ORDER BY stage_lengths.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `stage_lengths` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (33.2ms)
+Completed 200 OK in 92ms (Views: 52.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/stage_length_fecundity?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:24 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_length_fecundity"}
+  [1m[36mUser Load (1.6ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mStageLengthFecundity Load (0.5ms)[0m  SELECT `stage_length_fecundities`.* FROM `stage_length_fecundities` WHERE (1=1) ORDER BY stage_length_fecundities.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `stage_length_fecundities` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (34.6ms)
+Completed 200 OK in 191ms (Views: 53.2ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/admin/stage_length_weight?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:26 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_length_weight"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mStageLengthWeight Load (0.5ms)[0m  [1mSELECT `stage_length_weights`.* FROM `stage_length_weights` WHERE (1=1) ORDER BY stage_length_weights.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `stage_length_weights` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (33.7ms)
+Completed 200 OK in 190ms (Views: 142.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/stage_lifestyle?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:28 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_lifestyle"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mStageLifestyle Load (0.5ms)[0m  SELECT `stage_lifestyles`.* FROM `stage_lifestyles` WHERE (1=1) ORDER BY stage_lifestyles.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `stage_lifestyles` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (35.7ms)
+Completed 200 OK in 98ms (Views: 55.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/stage_mass?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:30 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_mass"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mStageMass Load (0.5ms)[0m  [1mSELECT `stage_masses`.* FROM `stage_masses` WHERE (1=1) ORDER BY stage_masses.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `stage_masses` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (35.3ms)
+Completed 200 OK in 184ms (Views: 145.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/stage_max_depth?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:32 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_max_depth"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mStageMaxDepth Load (0.5ms)[0m  SELECT `stage_max_depths`.* FROM `stage_max_depths` WHERE (1=1) ORDER BY stage_max_depths.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `stage_max_depths` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (34.7ms)
+Completed 200 OK in 97ms (Views: 53.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/admin/stage_mobility?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:33 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_mobility"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mStageMobility Load (0.5ms)[0m  [1mSELECT `stage_mobilities`.* FROM `stage_mobilities` WHERE (1=1) ORDER BY stage_mobilities.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `stage_mobilities` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (37.7ms)
+Completed 200 OK in 187ms (Views: 147.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/stage_population?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:36 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_population"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mStagePopulation Load (0.5ms)[0m  SELECT `stage_populations`.* FROM `stage_populations` WHERE (1=1) ORDER BY stage_populations.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `stage_populations` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (38.3ms)
+Completed 200 OK in 100ms (Views: 58.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/admin/stage_prod_biomass_ratio?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:37 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_prod_biomass_ratio"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mStageProdBiomassRatio Load (0.5ms)[0m  [1mSELECT `stage_prod_biomass_ratios`.* FROM `stage_prod_biomass_ratios` WHERE (1=1) ORDER BY stage_prod_biomass_ratios.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `stage_prod_biomass_ratios` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (124.9ms)
+Completed 200 OK in 185ms (Views: 145.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/stage_prod_consum_ratio?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:39 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_prod_consum_ratio"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mStageProdConsumRatio Load (0.5ms)[0m  SELECT `stage_prod_consum_ratios`.* FROM `stage_prod_consum_ratios` WHERE (1=1) ORDER BY stage_prod_consum_ratios.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `stage_prod_consum_ratios` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (33.7ms)
+Completed 200 OK in 94ms (Views: 52.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/stage_reproductive_strategy?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:41 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_reproductive_strategy"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mStageReproductiveStrategy Load (0.5ms)[0m  [1mSELECT `stage_reproductive_strategies`.* FROM `stage_reproductive_strategies` WHERE (1=1) ORDER BY stage_reproductive_strategies.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `stage_reproductive_strategies` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (129.4ms)
+Completed 200 OK in 189ms (Views: 149.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/admin/stage_residency?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:43 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_residency"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mStageResidency Load (0.6ms)[0m  SELECT `stage_residencies`.* FROM `stage_residencies` WHERE (1=1) ORDER BY stage_residencies.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `stage_residencies` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (34.5ms)
+Completed 200 OK in 94ms (Views: 53.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/admin/stage_residency_time?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:45 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_residency_time"}
+  [1m[35mUser Load (1.7ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mStageResidencyTime Load (0.5ms)[0m  [1mSELECT `stage_residency_times`.* FROM `stage_residency_times` WHERE (1=1) ORDER BY stage_residency_times.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `stage_residency_times` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (128.5ms)
+Completed 200 OK in 190ms (Views: 148.3ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/admin/stage_unassimilated_consum_ratio?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:47 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"stage_unassimilated_consum_ratio"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mStageUnassimilatedConsumRatio Load (0.4ms)[0m  SELECT `stage_unassimilated_consum_ratios`.* FROM `stage_unassimilated_consum_ratios` WHERE (1=1) ORDER BY stage_unassimilated_consum_ratios.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `stage_unassimilated_consum_ratios` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (36.6ms)
+Completed 200 OK in 96ms (Views: 55.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/trophic_interaction?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:48 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"trophic_interaction"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mTrophicInteraction Load (0.5ms)[0m  [1mSELECT `trophic_interactions`.* FROM `trophic_interactions` WHERE (1=1) ORDER BY trophic_interactions.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `trophic_interactions` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (128.3ms)
+Completed 200 OK in 181ms (Views: 147.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/trophic_interaction_observation?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:50 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"trophic_interaction_observation"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mTrophicInteractionObservation Load (0.5ms)[0m  SELECT `trophic_interaction_observations`.* FROM `trophic_interaction_observations` WHERE (1=1) ORDER BY trophic_interaction_observations.id desc LIMIT 20 OFFSET 0
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `trophic_interaction_observations` WHERE (1=1)[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (38.0ms)
+Completed 200 OK in 111ms (Views: 56.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/admin/user?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:29:52 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"user"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (1=1) ORDER BY users.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `users` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (180.1ms)
+Completed 200 OK in 218ms (Views: 199.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/admin/user/1/delete?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:30:06 -0400
+Processing by RailsAdmin::MainController#delete as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"user", "id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mAuthor Load (0.5ms)[0m  [1mSELECT `authors`.* FROM `authors` WHERE `authors`.`user_id` = 1[0m
+  [1m[35mAuthorCite Load (0.4ms)[0m  SELECT `author_cites`.* FROM `author_cites` WHERE `author_cites`.`user_id` = 1
+  [1m[36mCitation Load (0.4ms)[0m  [1mSELECT `citations`.* FROM `citations` WHERE `citations`.`user_id` = 1[0m
+  [1m[35mCompetitionInteraction Load (0.4ms)[0m  SELECT `competition_interactions`.* FROM `competition_interactions` WHERE `competition_interactions`.`user_id` = 1
+  [1m[36mCompetitionInteractionObservation Load (0.4ms)[0m  [1mSELECT `competition_interaction_observations`.* FROM `competition_interaction_observations` WHERE `competition_interaction_observations`.`user_id` = 1[0m
+  [1m[35mFacilitationInteraction Load (0.4ms)[0m  SELECT `facilitation_interactions`.* FROM `facilitation_interactions` WHERE `facilitation_interactions`.`user_id` = 1
+  [1m[36mFacilitationInteractionObservation Load (0.9ms)[0m  [1mSELECT `facilitation_interaction_observations`.* FROM `facilitation_interaction_observations` WHERE `facilitation_interaction_observations`.`user_id` = 1[0m
+  [1m[35mNode Load (0.5ms)[0m  SELECT `nodes`.* FROM `nodes` WHERE `nodes`.`user_id` = 1
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/_delete_notice.html.haml (151.3ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/delete.html.haml within layouts/rails_admin/pjax (174.9ms)
+Completed 500 Internal Server Error in 201ms
+
+ActionView::Template::Error (uninitialized constant User::NodMaxAge):
+    8:   - else
+    9:     = wording
+    10:   %ul
+    11:     - @abstract_model.each_associated_children(object) do |association, child|
+    12:       %li
+    13:         - child_config = RailsAdmin.config(child)
+    14:         = @abstract_model.model.human_attribute_name association[:name]
+  activerecord (3.2.12) lib/active_record/inheritance.rb:111:in `compute_type'
+  activerecord (3.2.12) lib/active_record/reflection.rb:172:in `klass'
+  activerecord (3.2.12) lib/active_record/associations/association.rb:117:in `klass'
+  activerecord (3.2.12) lib/active_record/associations/association.rb:165:in `find_target?'
+  activerecord (3.2.12) lib/active_record/associations/collection_association.rb:334:in `load_target'
+  activerecord (3.2.12) lib/active_record/associations/collection_proxy.rb:44:in `load_target'
+  activerecord (3.2.12) lib/active_record/associations/collection_proxy.rb:87:in `method_missing'
+  rails_admin (0.4.6) lib/rails_admin/abstract_model.rb:96:in `block in each_associated_children'
+  rails_admin (0.4.6) lib/rails_admin/abstract_model.rb:89:in `each'
+  rails_admin (0.4.6) lib/rails_admin/abstract_model.rb:89:in `each_associated_children'
+  rails_admin (0.4.6) app/views/rails_admin/main/_delete_notice.html.haml:11:in `__home_jliang__rvm_gems_ruby_______p__gems_rails_admin_______app_views_rails_admin_main__delete_notice_html_haml___2274040953137314742_70238424121680'
+  actionpack (3.2.12) lib/action_view/template.rb:145:in `block in render'
+  activesupport (3.2.12) lib/active_support/notifications.rb:125:in `instrument'
+  actionpack (3.2.12) lib/action_view/template.rb:143:in `render'
+  actionpack (3.2.12) lib/action_view/renderer/partial_renderer.rb:265:in `render_partial'
+  actionpack (3.2.12) lib/action_view/renderer/partial_renderer.rb:238:in `block in render'
+  actionpack (3.2.12) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.12) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionpack (3.2.12) lib/action_view/renderer/partial_renderer.rb:237:in `render'
+  actionpack (3.2.12) lib/action_view/renderer/renderer.rb:41:in `render_partial'
+  actionpack (3.2.12) lib/action_view/renderer/renderer.rb:15:in `render'
+  actionpack (3.2.12) lib/action_view/helpers/rendering_helper.rb:24:in `render'
+  haml (4.0.1) lib/haml/helpers/action_view_mods.rb:10:in `block in render_with_haml'
+  haml (4.0.1) lib/haml/helpers.rb:89:in `non_haml'
+  haml (4.0.1) lib/haml/helpers/action_view_mods.rb:10:in `render_with_haml'
+  rails_admin (0.4.6) app/views/rails_admin/main/delete.html.haml:9:in `__home_jliang__rvm_gems_ruby_______p__gems_rails_admin_______app_views_rails_admin_main_delete_html_haml__1560153799128540692_70238322558940'
+  actionpack (3.2.12) lib/action_view/template.rb:145:in `block in render'
+  activesupport (3.2.12) lib/active_support/notifications.rb:125:in `instrument'
+  actionpack (3.2.12) lib/action_view/template.rb:143:in `render'
+  actionpack (3.2.12) lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+  actionpack (3.2.12) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.12) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionpack (3.2.12) lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+  actionpack (3.2.12) lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+  actionpack (3.2.12) lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+  actionpack (3.2.12) lib/action_view/renderer/template_renderer.rb:18:in `render'
+  actionpack (3.2.12) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.12) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.12) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.12) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.12) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.12) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.12) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /home/jliang/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/benchmark.rb:296:in `realtime'
+  activesupport (3.2.12) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.12) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  remotipart (1.0.5) lib/remotipart/render_overrides.rb:14:in `render_with_remotipart'
+  rails_admin (0.4.6) lib/rails_admin/config/actions/delete.rb:28:in `block (4 levels) in <class:Delete>'
+  actionpack (3.2.12) lib/action_controller/metal/mime_responds.rb:196:in `call'
+  actionpack (3.2.12) lib/action_controller/metal/mime_responds.rb:196:in `respond_to'
+  rails_admin (0.4.6) lib/rails_admin/config/actions/delete.rb:27:in `block (2 levels) in <class:Delete>'
+  (eval):8:in `instance_eval'
+  (eval):8:in `delete'
+  actionpack (3.2.12) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:502:in `_run__102707844593168230__process_action__1666737265596329552__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.12) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.12) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `each'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:601:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `each'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:601:in `call'
+  rack-pjax (0.7.0) lib/rack/pjax.rb:12:in `call'
+  warden (1.2.1) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.1) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.1) lib/warden/manager.rb:34:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/head.rb:14:in `call'
+  remotipart (1.0.5) lib/remotipart/middleware.rb:30:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.12) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.12) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `_run__1495194761882496720__call__1690322952202359414__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/jliang/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /home/jliang/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /home/jliang/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.1ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.1ms)
+
+
+Started GET "/admin/user/1/delete" for 127.0.0.1 at 2013-04-06 12:30:06 -0400
+Processing by RailsAdmin::MainController#delete as HTML
+  Parameters: {"model_name"=>"user", "id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mAuthor Load (0.2ms)[0m  [1mSELECT `authors`.* FROM `authors` WHERE `authors`.`user_id` = 1[0m
+  [1m[35mAuthorCite Load (0.2ms)[0m  SELECT `author_cites`.* FROM `author_cites` WHERE `author_cites`.`user_id` = 1
+  [1m[36mCitation Load (0.2ms)[0m  [1mSELECT `citations`.* FROM `citations` WHERE `citations`.`user_id` = 1[0m
+  [1m[35mCompetitionInteraction Load (0.2ms)[0m  SELECT `competition_interactions`.* FROM `competition_interactions` WHERE `competition_interactions`.`user_id` = 1
+  [1m[36mCompetitionInteractionObservation Load (0.2ms)[0m  [1mSELECT `competition_interaction_observations`.* FROM `competition_interaction_observations` WHERE `competition_interaction_observations`.`user_id` = 1[0m
+  [1m[35mFacilitationInteraction Load (0.2ms)[0m  SELECT `facilitation_interactions`.* FROM `facilitation_interactions` WHERE `facilitation_interactions`.`user_id` = 1
+  [1m[36mFacilitationInteractionObservation Load (0.2ms)[0m  [1mSELECT `facilitation_interaction_observations`.* FROM `facilitation_interaction_observations` WHERE `facilitation_interaction_observations`.`user_id` = 1[0m
+  [1m[35mNode Load (0.2ms)[0m  SELECT `nodes`.* FROM `nodes` WHERE `nodes`.`user_id` = 1
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/_delete_notice.html.haml (21.9ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/delete.html.haml within layouts/rails_admin/application (25.6ms)
+Completed 500 Internal Server Error in 49ms
+
+ActionView::Template::Error (uninitialized constant User::NodMaxAge):
+    8:   - else
+    9:     = wording
+    10:   %ul
+    11:     - @abstract_model.each_associated_children(object) do |association, child|
+    12:       %li
+    13:         - child_config = RailsAdmin.config(child)
+    14:         = @abstract_model.model.human_attribute_name association[:name]
+  activerecord (3.2.12) lib/active_record/inheritance.rb:111:in `compute_type'
+  activerecord (3.2.12) lib/active_record/reflection.rb:172:in `klass'
+  activerecord (3.2.12) lib/active_record/associations/association.rb:117:in `klass'
+  activerecord (3.2.12) lib/active_record/associations/association.rb:165:in `find_target?'
+  activerecord (3.2.12) lib/active_record/associations/collection_association.rb:334:in `load_target'
+  activerecord (3.2.12) lib/active_record/associations/collection_proxy.rb:44:in `load_target'
+  activerecord (3.2.12) lib/active_record/associations/collection_proxy.rb:87:in `method_missing'
+  rails_admin (0.4.6) lib/rails_admin/abstract_model.rb:96:in `block in each_associated_children'
+  rails_admin (0.4.6) lib/rails_admin/abstract_model.rb:89:in `each'
+  rails_admin (0.4.6) lib/rails_admin/abstract_model.rb:89:in `each_associated_children'
+  rails_admin (0.4.6) app/views/rails_admin/main/_delete_notice.html.haml:11:in `__home_jliang__rvm_gems_ruby_______p__gems_rails_admin_______app_views_rails_admin_main__delete_notice_html_haml___2274040953137314742_70238424121680'
+  actionpack (3.2.12) lib/action_view/template.rb:145:in `block in render'
+  activesupport (3.2.12) lib/active_support/notifications.rb:125:in `instrument'
+  actionpack (3.2.12) lib/action_view/template.rb:143:in `render'
+  actionpack (3.2.12) lib/action_view/renderer/partial_renderer.rb:265:in `render_partial'
+  actionpack (3.2.12) lib/action_view/renderer/partial_renderer.rb:238:in `block in render'
+  actionpack (3.2.12) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.12) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionpack (3.2.12) lib/action_view/renderer/partial_renderer.rb:237:in `render'
+  actionpack (3.2.12) lib/action_view/renderer/renderer.rb:41:in `render_partial'
+  actionpack (3.2.12) lib/action_view/renderer/renderer.rb:15:in `render'
+  actionpack (3.2.12) lib/action_view/helpers/rendering_helper.rb:24:in `render'
+  haml (4.0.1) lib/haml/helpers/action_view_mods.rb:10:in `block in render_with_haml'
+  haml (4.0.1) lib/haml/helpers.rb:89:in `non_haml'
+  haml (4.0.1) lib/haml/helpers/action_view_mods.rb:10:in `render_with_haml'
+  rails_admin (0.4.6) app/views/rails_admin/main/delete.html.haml:9:in `__home_jliang__rvm_gems_ruby_______p__gems_rails_admin_______app_views_rails_admin_main_delete_html_haml__1560153799128540692_70238322558940'
+  actionpack (3.2.12) lib/action_view/template.rb:145:in `block in render'
+  activesupport (3.2.12) lib/active_support/notifications.rb:125:in `instrument'
+  actionpack (3.2.12) lib/action_view/template.rb:143:in `render'
+  actionpack (3.2.12) lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+  actionpack (3.2.12) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.12) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionpack (3.2.12) lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+  actionpack (3.2.12) lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+  actionpack (3.2.12) lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+  actionpack (3.2.12) lib/action_view/renderer/template_renderer.rb:18:in `render'
+  actionpack (3.2.12) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.12) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.12) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.12) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.12) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.12) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.12) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /home/jliang/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/benchmark.rb:296:in `realtime'
+  activesupport (3.2.12) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.12) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  remotipart (1.0.5) lib/remotipart/render_overrides.rb:14:in `render_with_remotipart'
+  rails_admin (0.4.6) lib/rails_admin/config/actions/delete.rb:28:in `block (4 levels) in <class:Delete>'
+  actionpack (3.2.12) lib/action_controller/metal/mime_responds.rb:196:in `call'
+  actionpack (3.2.12) lib/action_controller/metal/mime_responds.rb:196:in `respond_to'
+  rails_admin (0.4.6) lib/rails_admin/config/actions/delete.rb:27:in `block (2 levels) in <class:Delete>'
+  (eval):8:in `instance_eval'
+  (eval):8:in `delete'
+  actionpack (3.2.12) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:502:in `_run__102707844593168230__process_action__1666737265596329552__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.12) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.12) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.12) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.12) lib/action_controller/metal/params_wrapper.rb:207:in `process_action'
+  activerecord (3.2.12) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.12) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.12) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.12) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.12) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `each'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:601:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/railtie/configurable.rb:30:in `method_missing'
+  journey (1.0.4) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.4) lib/journey/router.rb:56:in `each'
+  journey (1.0.4) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.12) lib/action_dispatch/routing/route_set.rb:601:in `call'
+  rack-pjax (0.7.0) lib/rack/pjax.rb:12:in `call'
+  warden (1.2.1) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.1) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.1) lib/warden/manager.rb:34:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.5) lib/rack/etag.rb:23:in `call'
+  rack (1.4.5) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/head.rb:14:in `call'
+  remotipart (1.0.5) lib/remotipart/middleware.rb:30:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:210:in `context'
+  rack (1.4.5) lib/rack/session/abstract/id.rb:205:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/cookies.rb:341:in `call'
+  activerecord (3.2.12) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.12) lib/active_record/connection_adapters/abstract/connection_pool.rb:479:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `_run__1495194761882496720__call__1690322952202359414__callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.12) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.12) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.12) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.12) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.12) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.12) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.12) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.12) lib/rails/engine.rb:479:in `call'
+  railties (3.2.12) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.12) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/jliang/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /home/jliang/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /home/jliang/.rvm/rubies/ruby-2.0.0-p0/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/actionpack-3.2.12/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.3ms)
+
+
+Started GET "/admin/user/4/delete?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2013-04-06 12:31:53 -0400
+Processing by RailsAdmin::MainController#delete as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"user", "id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 4 LIMIT 1
+  [1m[36mAuthor Load (0.3ms)[0m  [1mSELECT `authors`.* FROM `authors` WHERE `authors`.`user_id` = 4[0m
+  [1m[35mAuthorCite Load (0.3ms)[0m  SELECT `author_cites`.* FROM `author_cites` WHERE `author_cites`.`user_id` = 4
+  [1m[36mCitation Load (0.4ms)[0m  [1mSELECT `citations`.* FROM `citations` WHERE `citations`.`user_id` = 4[0m
+  [1m[35mCompetitionInteraction Load (0.4ms)[0m  SELECT `competition_interactions`.* FROM `competition_interactions` WHERE `competition_interactions`.`user_id` = 4
+  [1m[36mCompetitionInteractionObservation Load (0.4ms)[0m  [1mSELECT `competition_interaction_observations`.* FROM `competition_interaction_observations` WHERE `competition_interaction_observations`.`user_id` = 4[0m
+  [1m[35mFacilitationInteraction Load (0.4ms)[0m  SELECT `facilitation_interactions`.* FROM `facilitation_interactions` WHERE `facilitation_interactions`.`user_id` = 4
+  [1m[36mFacilitationInteractionObservation Load (0.5ms)[0m  [1mSELECT `facilitation_interaction_observations`.* FROM `facilitation_interaction_observations` WHERE `facilitation_interaction_observations`.`user_id` = 4[0m
+  [1m[35mNode Load (0.5ms)[0m  SELECT `nodes`.* FROM `nodes` WHERE `nodes`.`user_id` = 4
+  [1m[36mNodeMaxAge Load (0.5ms)[0m  [1mSELECT `node_max_ages`.* FROM `node_max_ages` WHERE `node_max_ages`.`user_id` = 4[0m
+  [1m[35mNodeRange Load (0.3ms)[0m  SELECT `node_ranges`.* FROM `node_ranges` WHERE `node_ranges`.`user_id` = 4
+  [1m[36mNonIti Load (0.4ms)[0m  [1mSELECT `non_itis`.* FROM `non_itis` WHERE `non_itis`.`user_id` = 4[0m
+  [1m[35mParasiticInteraction Load (0.4ms)[0m  SELECT `parasitic_interactions`.* FROM `parasitic_interactions` WHERE `parasitic_interactions`.`user_id` = 4
+  [1m[36mParasiticInteractionObservation Load (0.4ms)[0m  [1mSELECT `parasitic_interaction_observations`.* FROM `parasitic_interaction_observations` WHERE `parasitic_interaction_observations`.`user_id` = 4[0m
+  [1m[35mStage Load (0.4ms)[0m  SELECT `stages`.* FROM `stages` WHERE `stages`.`user_id` = 4
+  [1m[36mStageBiomassChange Load (0.4ms)[0m  [1mSELECT `stage_biomass_changes`.* FROM `stage_biomass_changes` WHERE `stage_biomass_changes`.`user_id` = 4[0m
+  [1m[35mStageBiomassDensity Load (0.4ms)[0m  SELECT `stage_biomass_densities`.* FROM `stage_biomass_densities` WHERE `stage_biomass_densities`.`user_id` = 4
+  [1m[36mStageConsumBiomassRatio Load (0.3ms)[0m  [1mSELECT `stage_consum_biomass_ratios`.* FROM `stage_consum_biomass_ratios` WHERE `stage_consum_biomass_ratios`.`user_id` = 4[0m
+  [1m[35mStageConsumerStrategy Load (0.4ms)[0m  SELECT `stage_consumer_strategies`.* FROM `stage_consumer_strategies` WHERE `stage_consumer_strategies`.`user_id` = 4
+  [1m[36mStageDrymass Load (0.4ms)[0m  [1mSELECT `stage_drymasses`.* FROM `stage_drymasses` WHERE `stage_drymasses`.`user_id` = 4[0m
+  [1m[35mStageDuration Load (0.4ms)[0m  SELECT `stage_durations`.* FROM `stage_durations` WHERE `stage_durations`.`user_id` = 4
+  [1m[36mStageFecundity Load (0.4ms)[0m  [1mSELECT `stage_fecundities`.* FROM `stage_fecundities` WHERE `stage_fecundities`.`user_id` = 4[0m
+  [1m[35mStageHabitat Load (0.3ms)[0m  SELECT `stage_habitats`.* FROM `stage_habitats` WHERE `stage_habitats`.`user_id` = 4
+  [1m[36mStageHabitatDescriptor Load (0.3ms)[0m  [1mSELECT `stage_habitat_descriptors`.* FROM `stage_habitat_descriptors` WHERE `stage_habitat_descriptors`.`user_id` = 4[0m
+  [1m[35mStageLength Load (0.4ms)[0m  SELECT `stage_lengths`.* FROM `stage_lengths` WHERE `stage_lengths`.`user_id` = 4
+  [1m[36mStageLengthFecundity Load (0.3ms)[0m  [1mSELECT `stage_length_fecundities`.* FROM `stage_length_fecundities` WHERE `stage_length_fecundities`.`user_id` = 4[0m
+  [1m[35mStageLengthWeight Load (0.4ms)[0m  SELECT `stage_length_weights`.* FROM `stage_length_weights` WHERE `stage_length_weights`.`user_id` = 4
+  [1m[36mStageLifestyle Load (0.4ms)[0m  [1mSELECT `stage_lifestyles`.* FROM `stage_lifestyles` WHERE `stage_lifestyles`.`user_id` = 4[0m
+  [1m[35mStageMass Load (0.4ms)[0m  SELECT `stage_masses`.* FROM `stage_masses` WHERE `stage_masses`.`user_id` = 4
+  [1m[36mStageMaxDepth Load (0.4ms)[0m  [1mSELECT `stage_max_depths`.* FROM `stage_max_depths` WHERE `stage_max_depths`.`user_id` = 4[0m
+  [1m[35mStageMobility Load (0.3ms)[0m  SELECT `stage_mobilities`.* FROM `stage_mobilities` WHERE `stage_mobilities`.`user_id` = 4
+  [1m[36mStagePopulation Load (0.4ms)[0m  [1mSELECT `stage_populations`.* FROM `stage_populations` WHERE `stage_populations`.`user_id` = 4[0m
+  [1m[35mStageProdBiomassRatio Load (0.4ms)[0m  SELECT `stage_prod_biomass_ratios`.* FROM `stage_prod_biomass_ratios` WHERE `stage_prod_biomass_ratios`.`user_id` = 4
+  [1m[36mStageProdConsumRatio Load (0.3ms)[0m  [1mSELECT `stage_prod_consum_ratios`.* FROM `stage_prod_consum_ratios` WHERE `stage_prod_consum_ratios`.`user_id` = 4[0m
+  [1m[35mStageReproductiveStrategy Load (0.4ms)[0m  SELECT `stage_reproductive_strategies`.* FROM `stage_reproductive_strategies` WHERE `stage_reproductive_strategies`.`user_id` = 4
+  [1m[36mStageResidency Load (0.3ms)[0m  [1mSELECT `stage_residencies`.* FROM `stage_residencies` WHERE `stage_residencies`.`user_id` = 4[0m
+  [1m[35mStageResidencyTime Load (0.4ms)[0m  SELECT `stage_residency_times`.* FROM `stage_residency_times` WHERE `stage_residency_times`.`user_id` = 4
+  [1m[36mStageUnassimilatedConsumRatio Load (0.4ms)[0m  [1mSELECT `stage_unassimilated_consum_ratios`.* FROM `stage_unassimilated_consum_ratios` WHERE `stage_unassimilated_consum_ratios`.`user_id` = 4[0m
+  [1m[35mTrophicInteraction Load (0.4ms)[0m  SELECT `trophic_interactions`.* FROM `trophic_interactions` WHERE `trophic_interactions`.`user_id` = 4
+  [1m[36mTrophicInteractionObservation Load (0.4ms)[0m  [1mSELECT `trophic_interaction_observations`.* FROM `trophic_interaction_observations` WHERE `trophic_interaction_observations`.`user_id` = 4[0m
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/_delete_notice.html.haml (360.4ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/delete.html.haml within layouts/rails_admin/pjax (366.9ms)
+Completed 200 OK in 1368ms (Views: 304.9ms | ActiveRecord: 89.3ms)
+
+
+Started DELETE "/admin/user/4/delete" for 127.0.0.1 at 2013-04-06 12:31:56 -0400
+Processing by RailsAdmin::MainController#delete as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IzF0vVBrAsIn+VSW3E0VpSXutNbuC4+uQEet1fWcVqg=", "return_to"=>"http://localhost:3000/admin/user", "model_name"=>"user", "id"=>"4"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 4 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mRole Load (0.4ms)[0m  [1mSELECT `roles`.* FROM `roles` INNER JOIN `users_roles` ON `roles`.`id` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = 4[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM `users` WHERE `users`.`id` = 4
+  [1m[36m (35.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/admin/user
+Completed 302 Found in 195ms (ActiveRecord: 39.9ms)
+
+
+Started GET "/admin/user" for 127.0.0.1 at 2013-04-06 12:31:57 -0400
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"model_name"=>"user"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (1=1) ORDER BY users.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `users` WHERE (1=1)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/application (71.5ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/layouts/rails_admin/_secondary_navigation.html.haml (7.1ms)
+  Rendered /home/jliang/.rvm/gems/ruby-2.0.0-p0/gems/rails_admin-0.4.6/app/views/layouts/rails_admin/pjax.html.haml (15.9ms)
+Completed 200 OK in 495ms (Views: 474.7ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/assets/rails_admin/rails_admin.css?body=1" for 127.0.0.1 at 2013-04-06 12:31:57 -0400
+Served asset /rails_admin/rails_admin.css - 304 Not Modified (168ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:57 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.iframe-transport.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:57 -0400
+Served asset /jquery.iframe-transport.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:57 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails_admin/jquery.remotipart.fixed.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:57 -0400
+Served asset /rails_admin/jquery.remotipart.fixed.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.ui.effect.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:57 -0400
+Served asset /jquery.ui.effect.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:57 -0400
+Served asset /jquery.ui.core.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:57 -0400
+Served asset /jquery.ui.widget.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:57 -0400
+Served asset /jquery.ui.mouse.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:57 -0400
+Served asset /jquery.ui.sortable.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:57 -0400
+Served asset /jquery.ui.position.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:57 -0400
+Served asset /jquery.ui.autocomplete.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /jquery.ui.menu.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /jquery.ui.datepicker.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/rails_admin/jquery.ui.timepicker.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /rails_admin/jquery.ui.timepicker.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails_admin/ra.datetimepicker.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /rails_admin/ra.datetimepicker.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails_admin/jquery.colorpicker.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /rails_admin/jquery.colorpicker.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails_admin/ra.filter-box.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /rails_admin/ra.filter-box.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails_admin/ra.filtering-multiselect.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /rails_admin/ra.filtering-multiselect.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails_admin/ra.filtering-select.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /rails_admin/ra.filtering-select.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails_admin/ra.remote-form.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /rails_admin/ra.remote-form.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails_admin/jquery.pjax.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /rails_admin/jquery.pjax.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_nested_form.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /jquery_nested_form.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails_admin/ra.nested-form-hooks.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /rails_admin/ra.nested-form-hooks.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-transition.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /bootstrap-transition.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-affix.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /bootstrap-affix.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /bootstrap-alert.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-button.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /bootstrap-button.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-carousel.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /bootstrap-carousel.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-dropdown.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /bootstrap-dropdown.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-collapse.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /bootstrap-collapse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-modal.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /bootstrap-modal.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-scrollspy.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /bootstrap-scrollspy.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-tab.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /bootstrap-tab.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/bootstrap-tooltip.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /bootstrap-tooltip.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-popover.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /bootstrap-popover.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-typeahead.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /bootstrap-typeahead.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /bootstrap.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/rails_admin/ra.widgets.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /rails_admin/ra.widgets.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails_admin/ui.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /rails_admin/ui.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails_admin/custom/ui.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /rails_admin/custom/ui.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails_admin/rails_admin.js?body=1" for 127.0.0.1 at 2013-04-06 12:31:58 -0400
+Served asset /rails_admin/rails_admin.js - 304 Not Modified (7ms)
