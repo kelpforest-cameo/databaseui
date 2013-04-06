@@ -21,9 +21,9 @@ worker_processes 1
 # If running the master process as root and the workers as an unprivileged
 # user, do this to switch euid/egid in the workers (also chowns logs):
 # user "unprivileged_user", "unprivileged_group"
-user 'apps' , 'apps'
+##user 'apps' , 'apps'
 
-rails_env = ENV['RAILS_ENV'] || 'production'
+##rails_env = ENV['RAILS_ENV'] || 'production'
 
 # Help ensure your application will always spawn in the symlinked
 # "current" directory that Capistrano sets up.

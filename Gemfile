@@ -36,7 +36,7 @@ gem 'unicorn'
 
 # Deploy with Capistrano
 gem 'capistrano'
-gem 'capistrano-unicorn', :require => false
+#gem 'capistrano-unicorn', :require => false
 
 # For csv
 gem 'fastercsv'
