@@ -37,7 +37,7 @@ task :production do
   role :db,  "127.0.0.0.1", :primary => true 	# This is where Rails migrations will run 
   set :deploy_to, "/var/rails/fwb" #specify where on the server our application resides 
   set :deploy_via, :remote_cache # only copy the most recent, not the entire repository
-  set :branch, 'umass_branch' #branch to checkout during deployment
+  set :branch, 'staging' #branch to checkout during deployment
 end
 
 task :staging do
@@ -46,7 +46,7 @@ task :staging do
   role :db,  "127.0.0.0.1", :primary => true 	# This is where Rails migrations will run 
   set :deploy_to, "/var/rails/fwb"
   set :deploy_via, :remote_cache # only copy the most recent, not the entire repository
-  set : branch, 'staging' #branch to checkout during deployment
+  set :branch, 'staging' #branch to checkout during deployment
 end
 
 # =============================================================================
