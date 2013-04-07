@@ -19,7 +19,7 @@ set :scm_password, Proc.new { Capistrano::CLI.password_prompt "SCM Password: "}
 #Define stage and productipn environments
 set :stages, ["staging", "production"]
 set :default_stage, "staging"
-
+require "/config/capistrano_database.rb"
 after "deploy:restart", "deploy:cleanup" #clean up old releases on each deploy uncomment this
 
 # =============================================================================
