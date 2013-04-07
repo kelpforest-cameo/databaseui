@@ -8,8 +8,9 @@ default_run_options[:pty] = true  # Must be set for the password prompt from #gi
 set :repository, "git@github.com:jjliang/databaseui.git"  # Your clone URL
 set :scm, 'git'
 
+
 set :deploy_via, :remote_cache  #If omitted each deploy will do a full repository clone 
-set :git_shallow_clone, 1  # only copy the most recent, not the entire repository (default:1)  
+#set :git_shallow_clone, 1  # only copy the most recent, not the entire repository (default:1)  
 
 # set :deploy_to, "/var/www" #specify where on the server our application resides 
 set :user, 'fwb' #The servers user for deploys
