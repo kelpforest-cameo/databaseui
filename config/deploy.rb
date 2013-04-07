@@ -1,6 +1,6 @@
 require "bundler/capistrano"
 require "rvm/capistrano"
-$LOAD_PATH.unshift File.join(File.dirname(__FILE__), 'deploy')
+#$LOAD_PATH.unshift File.join(File.dirname(__FILE__), 'deploy')
 require "capistrano_database.rb"
 set :application, "FoodWebBuilder"
 
