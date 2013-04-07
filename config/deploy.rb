@@ -1,4 +1,4 @@
-require "config/capistrano_database.rb"
+require "/config/capistrano_database.rb"
 require "bundler/capistrano"
 require "rvm/capistrano"
 
