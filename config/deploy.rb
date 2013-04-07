@@ -42,6 +42,7 @@ task :production do
 end
 
 task :staging do
+	server "vm77.cs.umb.edu"
   role :web, "fwb.cs.umb.edu"   # Your HTTP server, Apache/etc (where your web server software runs)
   role :app, "fwb.cs.umb.edu"   # This may be the same as your `Web` server
   role :db,  "127.0.0.0.1", :primary => true 	# This is where Rails migrations will run 
