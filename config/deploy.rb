@@ -13,7 +13,7 @@ set :deploy_via, :remote_cache  #If omitted each deploy will do a full repositor
 #set :git_shallow_clone, 1  # only copy the most recent, not the entire repository (default:1)  
 
 # set :deploy_to, "/var/www" #specify where on the server our application resides 
-set :user, 'fwb' #The servers user for deploys
+set :user, 'fwb@vm77.cs.umb.edu' #The servers user for deploys
 set :user_sudo, false
 set :scm_password, Proc.new { Capistrano::CLI.password_prompt "SCM Password: "}
 
@@ -42,7 +42,6 @@ task :production do
 end
 
 task :staging do
-	server "vm77.cs.umb.edu"
   role :web, "fwb.cs.umb.edu"   # Your HTTP server, Apache/etc (where your web server software runs)
   role :app, "fwb.cs.umb.edu"   # This may be the same as your `Web` server
   role :db,  "127.0.0.0.1", :primary => true 	# This is where Rails migrations will run 
