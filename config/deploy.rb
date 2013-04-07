@@ -10,10 +10,10 @@ set :scm, 'git'
 
 
 set :deploy_via, :remote_cache  #If omitted each deploy will do a full repository clone 
-#set :git_shallow_clone, 1  # only copy the most recent, not the entire repository (default:1)  
+set :git_shallow_clone, 1  # only copy the most recent, not the entire repository (default:1)  
 
 # set :deploy_to, "/var/www" #specify where on the server our application resides 
-set :user, 'fwb@vm77.cs.umb.edu' #The servers user for deploys
+set :user, 'fwb' #The servers user for deploys
 set :user_sudo, false
 set :scm_password, Proc.new { Capistrano::CLI.password_prompt "SCM Password: "}
 
