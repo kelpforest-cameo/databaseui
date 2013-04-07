@@ -5,7 +5,7 @@ require "capistrano_database.rb"
 set :application, "FoodWebBuilder"
 
 default_run_options[:pty] = true  # Must be set for the password prompt from #git to work    
-set :repository, "git@github.com:jjliang/databaseui.git"  # Your clone URL
+set :repository, "https://github.com/jjliang/databaseui.git"  # Your clone URL
 set :scm, 'git'
 
 
