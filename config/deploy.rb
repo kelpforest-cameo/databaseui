@@ -5,7 +5,7 @@ require "capistrano_database.rb"
 set :application, "FoodWebBuilder"
 
 default_run_options[:pty] = true  # Must be set for the password prompt from #git to work    
-set :repository, "https://github.com/jjliang/databaseui.git"  # Your clone URL
+set :repository, "http://github.com/jjliang/databaseui.git"  # Your clone URL
 set :scm, 'git'
 
 
@@ -44,7 +44,7 @@ end
 task :staging do
   role :web, "fwb.cs.umb.edu"   # Your HTTP server, Apache/etc (where your web server software runs)
   role :app, "fwb.cs.umb.edu"   # This may be the same as your `Web` server
-  role :db,  "127.0.0.0.1", :primary => true 	# This is where Rails migrations will run 
+  role :db,  "localhost", :primary => true 	# This is where Rails migrations will run 
   set :deploy_to, "/var/rails/fwb"
   set :deploy_via, :remote_cache # only copy the most recent, not the entire repository
   set :branch, 'staging' #branch to checkout during deployment
