@@ -1,27 +1,26 @@
-# -*- coding: iso-8859-1 -*-
-require 'capistrano/ext/multistage'
+require "config/capistrano_database_yml"
 require "bundler/capistrano"
 require "rvm/capistrano"
-#require 'capistrano-unicorn'
+
 set :application, "FoodWebBuilder"
 
 default_run_options[:pty] = true  # Must be set for the password prompt from #git to work    
-set :repository, "https://github.com/jjliang/databaseui.git"  # Your clone URL
-set :scm, "git"
+set :repository, "git@github.com:jjliang/databaseui.git"  # Your clone URL
+set :scm, 'git'
 
 set :deploy_via, :remote_cache  #If omitted each deploy will do a full repository clone 
 set :git_shallow_clone, 1  # only copy the most recent, not the entire repository (default:1)  
 
 # set :deploy_to, "/var/www" #specify where on the server our application resides 
-set :user, "fwb" #The server's user for deploys
-set :use_sudo, false
+set :user, 'fwb' #The servers user for deploys
+set :user_sudo, false
 set :scm_password, Proc.new { Capistrano::CLI.password_prompt "SCM Password: "}
 
-# Define stage and productipn environments
-set :stages, %w(production staging)
+#Define stage and productipn environments
+set :stages, ["staging", "production"]
 set :default_stage, "staging"
 
-# after "deploy:restart", "deploy:cleanup" #clean up old releases on each deploy uncomment this
+after "deploy:restart", "deploy:cleanup" #clean up old releases on each deploy uncomment this
 
 # =============================================================================
 # TASKS 
@@ -38,24 +37,17 @@ task :production do
   role :db,  "127.0.0.0.1", :primary => true 	# This is where Rails migrations will run 
   set :deploy_to, "/var/rails/fwb" #specify where on the server our application resides 
   set :deploy_via, :remote_cache # only copy the most recent, not the entire repository
-  set :branch, "production" #branch to checkout during deployment
+  set :branch, 'umass_branch' #branch to checkout during deployment
 end
 
 task :staging do
-  
   role :web, "fwb.cs.umb.edu"   # Your HTTP server, Apache/etc (where your web server software runs)
   role :app, "fwb.cs.umb.edu"   # This may be the same as your `Web` server
-  role :db,  "fwb.cs.umb.edu", :primary => true 	# This is where Rails migrations will run
-  
-  set :rails_env, "production"
-  set :deploy_to, "/var/rails/fwb/current"
+  role :db,  "127.0.0.0.1", :primary => true 	# This is where Rails migrations will run 
+  set :deploy_to, "/var/rails/fwb"
   set :deploy_via, :remote_cache # only copy the most recent, not the entire repository
-  set :branch, "staging" #branch to checkout during deployment
+  set : branch, 'staging' #branch to checkout during deployment
 end
-
-# added two tasks hooks as required by capistrano-unicorn
-after 'deploy:restart', 'unicorn:reload'
-after 'deploy:restart', 'unicorn:restart'
 
 # =============================================================================
 # SSH OPTIONS
