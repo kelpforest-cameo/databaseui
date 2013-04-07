@@ -3,15 +3,15 @@ set :application, "FoodWebBuilder"
 
 default_run_options[:pty] = true  # Must be set for the password prompt from #git to work    
 set :repository, "https://github.com/jjliang/databaseui.git"  # Your clone URL
-set :  scm, “git”
+set :scm, git
 
-set : deploy_via, : remote_cache  #If omitted each deploy will do a full repository clone 
+set :deploy_via, :remote_cache  #If omitted each deploy will do a full repository clone 
 set :git_shallow_clone, 1  # only copy the most recent, not the entire repository (default:1)  
 
 set :deploy_to, "/var/www" #specify where on the server our application resides 
-set : user, “fwb” #The server’s user for deploys
-#set : scm_passphrase, “Afcoin0j2” # The deploy user’s password
- set :scm_password, Proc.new { Capistrano::CLI.password_prompt "SCM Password: "}
+set :user, fwb #The servers user for deploys
+
+set :scm_password, Proc.new { Capistrano::CLI.password_prompt "SCM Password: "}
 
 #Define stage and productipn environments
 set :stages, ["staging", "production"]
@@ -34,7 +34,7 @@ task :production do
   role :db,  "127.0.0.0.1", :primary => true 	# This is where Rails migrations will run 
   set :deploy_to, "/var/rails/fwb" #specify where on the server our application resides 
   set :deploy_via, :remote_cache # only copy the most recent, not the entire repository
-  set : branch, “umass_branch” #branch to checkout during deployment
+  set : branch, umass_branch #branch to checkout during deployment
 end
 
 task :staging do
@@ -43,7 +43,7 @@ task :staging do
   role :db,  "127.0.0.0.1", :primary => true 	# This is where Rails migrations will run 
   set :deploy_to, "/var/rails/fwb"
   set :deploy_via, :remote_cache # only copy the most recent, not the entire repository
-  set : branch, “umass_branch” #branch to checkout during deployment
+  set : branch, umass_branch #branch to checkout during deployment
 end
 
 # =============================================================================
