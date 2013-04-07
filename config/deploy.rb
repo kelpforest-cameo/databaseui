@@ -1,7 +1,7 @@
-require "/config/capistrano_database.rb"
 require "bundler/capistrano"
 require "rvm/capistrano"
-
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), 'deploy')
+require "capistrano_database.rb"
 set :application, "FoodWebBuilder"
 
 default_run_options[:pty] = true  # Must be set for the password prompt from #git to work    
