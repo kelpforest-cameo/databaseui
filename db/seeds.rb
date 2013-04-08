@@ -12,7 +12,7 @@ User.create(:firstname => 'Moderator', :lastname => 'Tester', :username => 'mod'
 
 User.create(:firstname => 'User', :lastname => 'Tester', :username => 'user', :email => 'user@foodwebbuilder.com', :password => '12345678', :role => 'user', :approved => 1, :project_id =>1)
 
-User.create(:firstname => 'Project', :lastname => 'Lead', :username => 'lead', :email => 'lead@foodwebbuilder.com', :password => '12345678', :role => 'user', :approved => 1, :project_id =>1)
+User.create(:firstname => 'Project', :lastname => 'Lead', :username => 'lead', :email => 'lead@foodwebbuilder.com', :password => '12345678', :role => 'lead', :approved => 1, :project_id =>1)
 
 
 LocationData.create(latitude: 42.31276,longitude: -71.03645,location_id: 1,name: "UMASS BOSTON", :user_id =>1, :project_id => 1)

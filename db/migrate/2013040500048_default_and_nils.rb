@@ -75,7 +75,10 @@ class DefaultAndNils < ActiveRecord::Migration
   	
   	# functional group table
   	change_column :functional_groups, :name, :string, :null => false
-  	
+  	change_column :functional_groups, :project_id, :integer, :null => false
+  	change_column :functional_groups, :user_id, :integer, :null => false
+  	change_column :functional_groups, :mod, :boolean, :default => true, :null => false
+  	change_column :functional_groups, :approved, :boolean, :default => false, :null => false
   	# locations table
   	change_column :locations, :name, :string, :null => false
   	change_column :locations, :left, :integer, :null => false
