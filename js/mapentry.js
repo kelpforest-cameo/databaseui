@@ -540,7 +540,7 @@ MapEntry.prototype.reset = function()
 MapEntry.prototype.drawFinished = function()
 {
 	var that = this;
-	if (this.mode = MapEntry.MODE_LOCATION) {
+	if (this.mode == MapEntry.MODE_LOCATION) {
 		this.select.unselectAll();
 	}
 	$.each(that.selected_nodes,function(i,n) {
