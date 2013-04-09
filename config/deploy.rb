@@ -12,7 +12,7 @@ set :git_shallow_clone, 1  # only copy the most recent, not the entire repositor
 
 # set :deploy_to, "/var/www" #specify where on the server our application resides 
 set :user, 'fwb' #The servers user for deploys
-set :user_sudo, false
+set :use_sudo, false
 set :scm_password, Proc.new { Capistrano::CLI.password_prompt "SCM Password: "}
 
 #Define stage and productipn environments
