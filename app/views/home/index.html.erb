@@ -32,7 +32,10 @@ Gmaps.map.callback = function()
     ({
         content: 'you clicked me!'
     });
-
+if (Gmaps.map.polygons[0].serviceObject == null)
+alert("null");
+else
+console.log(Gmaps.map.polygons[0].serviceObject)
 google.maps.event.addListener(Gmaps.map.polygons[0].serviceObject, "click", function(event) 
     {
         alert("test");
