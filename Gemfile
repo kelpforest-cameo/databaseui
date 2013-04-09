@@ -34,9 +34,12 @@ gem 'jbuilder'
 # Use unicorn as the app server
 gem 'unicorn'
 
+# Using capistrano with rvm
+gem 'rvm-capistrano'
+
 # Deploy with Capistrano
 gem 'capistrano'
-# gem 'capistrano-unicorn', :require => false
+gem 'capistrano-unicorn', :require => false
 
 # For csv
 gem 'fastercsv'
@@ -62,4 +65,4 @@ gem 'lazy_high_charts'
 
 # For autocompletion in forms
 gem 'rails3-jquery-autocomplete'
-gem 'rvm-capistrano'
+
