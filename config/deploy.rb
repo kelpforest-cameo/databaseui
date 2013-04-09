@@ -83,4 +83,3 @@ namespace :deploy do
 #to use agent forwarding with this command. Agent forwarding can make key management
 #much simpler as it uses your local keys instead of keys installed on the server
 # set :ssh_options, { :forward_agent => true, :paranoid => false }
- 
