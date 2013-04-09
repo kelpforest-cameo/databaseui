@@ -21,8 +21,8 @@ set :use_sudo, false
 set :scm_password, Proc.new { Capistrano::CLI.password_prompt "SCM Password: "}
 
 role :web, "fwb.cs.umb.edu"
-#role :app, "fwb.cs.umb.edu"
-role :db, "vm77.cs.umb.edu"
+role :app, "fwb.cs.umb.edu"
+role :db, "127.0.0.1"
 
 set :rails_env, :production
 set :unicorn_binary, "/var/rails/fwb/.rvm/bin/bootup_unicorn"
