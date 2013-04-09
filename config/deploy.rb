@@ -33,8 +33,8 @@ set :default_stage, "staging"
 #  cap production deploy - to deploy to prod. / deploy to stage => cap deploy
 #  cap production deploy:restart
 task :production do
-  role :web, "fwb.cs.umb.edu"   # Your HTTP server, Apache/etc (where your web server software runs)
-  role :app, "fwb.cs.umb.edu"   # This may be the same as your `Web` server
+  role :web, "vm77.cs.umb.edu"   # Your HTTP server, Apache/etc (where your web server software runs)
+  role :app, "vm77.cs.umb.edu"   # This may be the same as your `Web` server
   role :db,  "127.0.0.0.1", :primary => true 	# This is where Rails migrations will run 
   set :deploy_to, "/var/rails/fwb" #specify where on the server our application resides 
   set :deploy_via, :remote_cache # only copy the most recent, not the entire repository
@@ -42,8 +42,8 @@ task :production do
 end
 
 task :staging do
-  role :web, "fwb.cs.umb.edu"   # Your HTTP server, Apache/etc (where your web server software runs)
-  role :app, "fwb.cs.umb.edu"   # This may be the same as your `Web` server
+  role :web, "vm77.cs.umb.edu"   # Your HTTP server, Apache/etc (where your web server software runs)
+  role :app, "vm77.cs.umb.edu"   # This may be the same as your `Web` server
   role :db,  "localhost", :primary => true 	# This is where Rails migrations will run 
   set :deploy_to, "/var/rails/fwb"
   set :deploy_via, :remote_cache # only copy the most recent, not the entire repository
