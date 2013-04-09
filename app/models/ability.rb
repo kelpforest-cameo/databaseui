@@ -216,7 +216,7 @@ class Ability
 			
 			# functional_groups 
 			can :create, FunctionalGroup
-			#can[:edit, :update, :destroy], FunctionalGroup, :project_id => user.project_id, :mod => true
+			can [:edit, :update, :destroy], FunctionalGroup, :project_id => user.project_id, :mod => true
 			
 			# Location
 			can [:create, :read], Location
@@ -358,7 +358,7 @@ class Ability
 			can [:edit, :update, :destroy], TrophicInteractionObservation, :project_id => user.project_id, :mod => true
 			
 			#Mod can approve users
-			#can[:edit,:update], User, :project_id => user.project_id
+			can [:edit,:update], User, :project_id => user.project_id
 			
 			can :access, :rails_admin
 			can :dashboard
@@ -366,6 +366,7 @@ class Ability
 		end
 		
 		if user.role == "lead"
+			can :create, :all
 			# Author model
 			can :manage, Author, :project_id => user.project_id
 			
@@ -389,7 +390,7 @@ class Ability
 			
 			# functional_groups 
 			can :create, FunctionalGroup
-			#can[:manage], FunctionalGroup, :project_id => user.project_id
+			can [:manage], FunctionalGroup, :project_id => user.project_id
 			
 			# Location
 			can :manage, Location, :project_id => user.project_id
@@ -499,7 +500,7 @@ class Ability
 			can :manage, TrophicInteractionObservation, :project_id => user.project_id
 			
 			# Lead can approve users
-			#can[:edit,:update], User, :project_id => user.project_id
+			can [:edit,:update], User, :project_id => user.project_id
 			
 			can :access, :rails_admin
 			can :dashboard
