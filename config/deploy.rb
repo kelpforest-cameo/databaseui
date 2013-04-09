@@ -3,8 +3,6 @@ require "rvm/capistrano"
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), 'deploy')
 require "capistrano_database.rb"
 set :application, "FoodWebBuilder"
-before "deploy:setup", "db:configure"
-after "deploy:update_code", "db:symlink"
 default_run_options[:pty] = true  # Must be set for the password prompt from #git to work    
 set :repository, "http://github.com/jjliang/databaseui.git"  # Your clone URL
 set :scm, 'git'
