@@ -25,7 +25,7 @@ worker_processes 1
 
 user "fwb" ,"rvm"
 
-##rails_env = ENV['RAILS_ENV'] || 'production'
+rails_env = ENV['RAILS_ENV'] || 'staging'
 
 # Help ensure your application will always spawn in the symlinked
 # "current" directory that Capistrano sets up.
