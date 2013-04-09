@@ -23,7 +23,7 @@ worker_processes 1
 # user "unprivileged_user", "unprivileged_group"
 ##user 'apps' , 'apps'
 
-user "fwb" , "cs410-2"
+user "fwb" , "cs410-1"
 
 ##rails_env = ENV['RAILS_ENV'] || 'production'
 
