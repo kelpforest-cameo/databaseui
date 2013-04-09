@@ -20,7 +20,7 @@
         <li>
             <a href="#inters" data-toggle="tab">Interactions</a>
         </li>
-        <% if current_user.role == 'admin' %>
+        <% if current_user.role == 'lead' %>
         	<li>
             <a href="#users" data-toggle="tab">Users</a>
         	</li>
