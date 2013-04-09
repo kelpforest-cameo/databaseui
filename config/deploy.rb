@@ -54,7 +54,6 @@ namespace :deploy do
     run "cd #{current_path}; rake db:seed RAILS_ENV=#{rails_env}"
   end
 end
-	
-end
+
 
 
