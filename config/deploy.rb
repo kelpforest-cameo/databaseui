@@ -15,9 +15,7 @@ set :git_shallow_clone, 1  # only copy the most recent, not the entire repositor
 set :user, 'fwb' #The servers user for deploys
 set :use_sudo, false
 set :scm_password, Proc.new { Capistrano::CLI.password_prompt "SCM Password: "}
-set :deploy_to, "/var/rails/fwb"
 
-require "capistrano_database.rb"
 
 #Define stage and productipn environments
 set :stages, ["staging", "production"]
@@ -50,6 +48,7 @@ task :staging do
   set :deploy_to, "/var/rails/fwb"
   set :deploy_via, :remote_cache # only copy the most recent, not the entire repository
   set :branch, 'staging' #branch to checkout during deployment
+  require "capistrano_database.rb"
 end
 
 # =============================================================================
