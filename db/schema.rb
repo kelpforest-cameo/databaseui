@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130926042526) do
+ActiveRecord::Schema.define(:version => 20130926042527) do
 
   create_table "author_cites", :force => true do |t|
     t.integer  "author_id"
@@ -89,18 +89,19 @@ ActiveRecord::Schema.define(:version => 20130926042526) do
   end
 
   create_table "functional_groups", :force => true do |t|
-    t.string   "name",       :default => "", :null => false
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.string   "name",        :default => "", :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.text     "latitude"
+    t.text     "longitude"
+    t.integer  "location_id"
   end
 
   create_table "location_data", :force => true do |t|
-    t.float    "latitude",    :null => false
-    t.float    "longitude",   :null => false
-    t.integer  "location_id"
-    t.string   "name"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.text    "latitude"
+    t.text    "longitude"
+    t.integer "location_id"
+    t.string  "name"
   end
 
   create_table "locations", :force => true do |t|
