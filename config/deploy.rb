@@ -1,8 +1,8 @@
 require "bundler/capistrano"
 require "rvm/capistrano"
-set :deploy_to, "/var/rails/fwb"
+
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), 'deploy')
-require "capistrano_database.rb"
+
 set :application, "FoodWebBuilder"
 default_run_options[:pty] = true  # Must be set for the password prompt from #git to work    
 set :repository, "http://github.com/jjliang/databaseui.git"  # Your clone URL
@@ -15,6 +15,9 @@ set :git_shallow_clone, 1  # only copy the most recent, not the entire repositor
 set :user, 'fwb' #The servers user for deploys
 set :use_sudo, false
 set :scm_password, Proc.new { Capistrano::CLI.password_prompt "SCM Password: "}
+set :deploy_to, "/var/rails/fwb"
+
+require "capistrano_database.rb"
 
 #Define stage and productipn environments
 set :stages, ["staging", "production"]
