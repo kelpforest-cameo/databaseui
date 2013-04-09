@@ -26,10 +26,10 @@ class @Gmaps4Rails
     #empty slots
     @geolocationSuccess = -> false  #triggered when geolocation succeeds. Can be customized.
     @geolocationFailure = -> false  #triggered when geolocation fails. If customized, must be like= function(navigator_handles_geolocation){} where 'navigator_handles_geolocation' is a boolean
-    @callback           = -> false  #to let user set a custom callback function
+    @callback           = -> true  #to let user set a custom callback function
     @customClusterer    = -> false  #to let user set custom clusterer pictures
-    @infobox            = -> false  #to let user use custom infoboxes
-    @jsTemplate         = false     #to let user create infowindows client side
+    @infobox            = -> true  #to let user use custom infoboxes
+    @jsTemplate         = true     #to let user create infowindows client side
 
     @default_map_options =
       id: 'map'
