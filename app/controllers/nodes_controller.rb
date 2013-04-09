@@ -1,7 +1,7 @@
 class NodesController < ApplicationController
   # GET /nodes
   # GET /nodes.json
-  autocomplete :working_name
+  #autocomplete :working_name
   def index
     @nodes = Node.all
 

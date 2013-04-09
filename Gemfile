@@ -39,7 +39,6 @@ gem 'rvm-capistrano'
 
 # Deploy with Capistrano
 gem 'capistrano'
-gem 'capistrano-unicorn', :require => false
 
 # For csv
 gem 'fastercsv'
