@@ -21,7 +21,7 @@ set :use_sudo, false
 set :scm_password, Proc.new { Capistrano::CLI.password_prompt "SCM Password: "}
 
 role :web, "fwb.cs.umb.edu"
-role :app, "fwb.cs.umb.edu"
+#role :app, "fwb.cs.umb.edu"
 role :db, "vm77.cs.umb.edu"
 
 set :rails_env, :production
