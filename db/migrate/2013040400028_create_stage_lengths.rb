@@ -3,7 +3,7 @@ class CreateStageLengths < ActiveRecord::Migration
     create_table :stage_lengths do |t|
       t.integer :citation_id
       t.integer :stage_id
-      t.float :length
+      t.decimal :length
       t.text :comment
       t.string :datum
       t.integer :user_id

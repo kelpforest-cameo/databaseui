@@ -32,10 +32,11 @@ gem 'jquery-rails'
 gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 gem 'capistrano'
+# gem 'capistrano-unicorn', :require => false
 
 # For csv
 gem 'fastercsv'
@@ -44,7 +45,7 @@ gem 'fastercsv'
 gem 'formtastic'
 
 # For admin back end
-gem 'rails_admin'
+ gem 'rails_admin'
 
 # For maps
 gem 'gmaps4rails'
@@ -58,3 +59,7 @@ gem 'rolify'
 
 # For charts
 gem 'lazy_high_charts'
+
+# For autocompletion in forms
+gem 'rails3-jquery-autocomplete'
+gem 'rvm-capistrano'

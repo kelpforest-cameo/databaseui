@@ -3,7 +3,7 @@ class CreateStageConsumBiomassRatios < ActiveRecord::Migration
     create_table :stage_consum_biomass_ratios do |t|
       t.integer :citation_id
       t.integer :stage_id
-      t.decimal :consume_biomass_ratio
+      t.decimal :consum_biomass_ratio
       t.text :comment
       t.string :datum
       t.integer :user_id

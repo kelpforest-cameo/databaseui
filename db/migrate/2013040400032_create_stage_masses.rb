@@ -3,7 +3,7 @@ class CreateStageMasses < ActiveRecord::Migration
     create_table :stage_masses do |t|
       t.integer :citation_id
       t.integer :stage_id
-      t.float :mass
+      t.decimal :mass
       t.text :comment
       t.string :datum
       t.integer :user_id

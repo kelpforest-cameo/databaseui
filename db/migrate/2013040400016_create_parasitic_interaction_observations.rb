@@ -6,8 +6,8 @@ class CreateParasiticInteractionObservations < ActiveRecord::Migration
     	t.integer  :location_id
     	t.string   :endo_ecto
     	t.string   :lethality
-    	t.float    :prevalence
-    	t.float    :intensity
+    	t.decimal    :prevalence
+    	t.decimal    :intensity
     	t.string   :parasite_type
     	t.string   :observation_type
     	t.text     :comment

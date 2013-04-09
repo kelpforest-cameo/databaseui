@@ -1,5 +1,5 @@
 class Stage < ActiveRecord::Base
-  attr_accessible :node_id, :user_id , :project_id, :mod , :approved
+  attr_accessible :node_id, :user_id , :project_id, :mod , :approved, :name
   belongs_to :node
   belongs_to :user
   belongs_to :project

@@ -1,11 +1,8 @@
 class User < ActiveRecord::Base
   rolify
   # admin = super user, moderator = scientist user = data entry
-  ROLES = %w[user moderator admin]
-  def role?(base_role)
-    ROLES.index(base_role.to_s) <=ROLES.index(role)
-  end
-  
+  ROLES = %w[user moderator lead admin]
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -27,7 +24,7 @@ class User < ActiveRecord::Base
   has_many :facilitation_interactions
   has_many :facilitation_interaction_observations
   has_many :nodes
-  has_many :nod_max_ages
+  has_many :node_max_ages
   has_many :node_ranges
   has_many :non_itis
   has_many :parasitic_interactions
