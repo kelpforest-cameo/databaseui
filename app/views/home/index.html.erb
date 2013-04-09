@@ -15,7 +15,40 @@
 
 	<div class="span8 offset2 ">
 		 <!--<img src="assets/worldmap.jpg" alt="World Map Place Holder" title="World Map" /> -->
-      <%= gmaps4rails(@json) %>
+
+
+
+      <%= gmaps({
+       "polygons"    => { "data" => @polygons    , "options" => { "fillColor" => "#000" } }
+     })
+ %>
+<% content_for :scripts do %>
+<script type="text/javascript" charset="utf-8">
+
+Gmaps.map.callback = function() 
+{
+    console.log("sup");
+    Gmaps.map.polygons[0].infowindow = new google.maps.InfoWindow
+    ({
+        content: 'you clicked me!'
+    });
+
+google.maps.event.addListener(Gmaps.map.polygons[0].serviceObject, "click", function(event) 
+    {
+        alert("test");
+        console.log("the click event fired");
+        infowindow = Gmaps.map.polygons[0].infowindow;
+        infowindow.setPosition(event.latLng);
+        infowindow.open(Gmaps.map.map);
+    });
+google.maps.event.addListener(Gmaps.map.serviceObject, "click", function(event) {
+    alert(event.latLng);
+  });
+}
+
+</script>
+<% end %>
+
 	</div>
 
 

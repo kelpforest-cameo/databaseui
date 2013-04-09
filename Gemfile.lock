@@ -152,6 +152,8 @@ GEM
       json (~> 1.4)
     remotipart (1.0.5)
     rolify (3.2.0)
+    rvm-capistrano (1.2.7)
+      capistrano (>= 2.0.0)
     safe_yaml (0.9.0)
     sass (3.2.7)
     sass-rails (3.2.6)
@@ -196,5 +198,6 @@ DEPENDENCIES
   rails3-jquery-autocomplete
   rails_admin
   rolify
+  rvm-capistrano
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)

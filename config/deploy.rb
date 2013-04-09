@@ -1,16 +1,21 @@
-
+require "bundler/capistrano"
+require "rvm/capistrano"
+#$LOAD_PATH.unshift File.join(File.dirname(__FILE__), 'deploy')
+require "capistrano_database.rb"
 set :application, "FoodWebBuilder"
-
+before "deploy:setup", "db:configure"
+after "deploy:update_code", "db:symlink"
 default_run_options[:pty] = true  # Must be set for the password prompt from #git to work    
-set :repository, "https://github.com/jjliang/databaseui.git"  # Your clone URL
-set :scm, git
+set :repository, "http://github.com/jjliang/databaseui.git"  # Your clone URL
+set :scm, 'git'
+
 
 set :deploy_via, :remote_cache  #If omitted each deploy will do a full repository clone 
 set :git_shallow_clone, 1  # only copy the most recent, not the entire repository (default:1)  
 
-set :deploy_to, "/var/www" #specify where on the server our application resides 
-set :user, fwb #The servers user for deploys
-
+# set :deploy_to, "/var/www" #specify where on the server our application resides 
+set :user, 'fwb' #The servers user for deploys
+set :user_sudo, false
 set :scm_password, Proc.new { Capistrano::CLI.password_prompt "SCM Password: "}
 
 #Define stage and productipn environments
@@ -34,16 +39,16 @@ task :production do
   role :db,  "127.0.0.0.1", :primary => true 	# This is where Rails migrations will run 
   set :deploy_to, "/var/rails/fwb" #specify where on the server our application resides 
   set :deploy_via, :remote_cache # only copy the most recent, not the entire repository
-  set : branch, umass_branch #branch to checkout during deployment
+  set :branch, 'staging' #branch to checkout during deployment
 end
 
 task :staging do
   role :web, "fwb.cs.umb.edu"   # Your HTTP server, Apache/etc (where your web server software runs)
   role :app, "fwb.cs.umb.edu"   # This may be the same as your `Web` server
-  role :db,  "127.0.0.0.1", :primary => true 	# This is where Rails migrations will run 
+  role :db,  "localhost", :primary => true 	# This is where Rails migrations will run 
   set :deploy_to, "/var/rails/fwb"
   set :deploy_via, :remote_cache # only copy the most recent, not the entire repository
-  set : branch, umass_branch #branch to checkout during deployment
+  set :branch, 'staging' #branch to checkout during deployment
 end
 
 # =============================================================================
