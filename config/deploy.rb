@@ -25,7 +25,7 @@ role :app, "fwb.cs.umb.edu"
 role :db, "fwb.cs.umb.edu"
 
 set :rails_env, :production
-set :unicorn_binary, "/var/rails/fwb/bin/bootup_unicorn"
+set :unicorn_binary, "/var/rails/fwb/.rvm/bin/bootup_unicorn"
 set :unicorn_config, "#{current_path}/config/unicorn.rb"
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
