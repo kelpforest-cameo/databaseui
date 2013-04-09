@@ -34,7 +34,7 @@ namespace :deploy do
 		run "cd #{current_path} && #{try_sudo} #{unicorn_binary} -c #{unicorn_config} -E #{rails_env} -D"
 	end 
 	task :stop, :roles => :app, :except => { :no_release => true} do
-		run "{try_sudo} kill 'cat #{unicorn_pid}'"
+		run "#{try_sudo} kill 'cat #{unicorn_pid}'"
 	end
 	task :graceful_stop, :roles => :app, :except => { :no_release => true} do
 		run "#{try_sudo} kill -s QUIT 'cat #{unicorn_pid}'"
