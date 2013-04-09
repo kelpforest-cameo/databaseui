@@ -7,9 +7,10 @@
 	set :rvm_type, :user
 
 set :application, "FoodWebBuilder"
-#default_run_options[:pty] = true  # Must be set for the password prompt from #git to work    
+#default_run_options[:pty] = true  # Must be set for the password prompt from #git to work
+set :default_stage, "staging" 
 set :repository, "http://github.com/jjliang/databaseui.git"  # Your clone URL
-#set :scm, 'git'
+set :scm, 'git'
 set :branch, "staging"
 #set :deploy_via, :remote_cache  #If omitted each deploy will do a full repository clone 
 #set :git_shallow_clone, 1  # only copy the most recent, not the entire repository (default:1)  
