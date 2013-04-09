@@ -16,7 +16,7 @@ set :scm_password, Proc.new { Capistrano::CLI.password_prompt "SCM Password: "}
 set :stages, ["staging", "production"]
 set :default_stage, "staging"
 
-after "deploy:restart", "deploy:cleanup" #clean up old releases on each deploy uncomment this
+#after "deploy:restart", "deploy:cleanup" #clean up old releases on each deploy uncomment this
 
 # =============================================================================
 # TASKS 
