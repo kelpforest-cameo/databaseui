@@ -1,5 +1,5 @@
-#  $LOAD_PATH.unshift File.join(File.dirname(__FILE__), 'deploy')
-#  require "capistrano_database.rb"
+  $LOAD_PATH.unshift File.join(File.dirname(__FILE__), 'deploy')
+  require "capistrano_database.rb"
   require "bundler/capistrano"
 	require "rvm/capistrano"
 
@@ -15,7 +15,7 @@ set :git_shallow_clone, 1  # only copy the most recent, not the entire repositor
 set :user, 'fwb' #The servers user for deploys
 set :use_sudo, false
 set :scm_password, Proc.new { Capistrano::CLI.password_prompt "SCM Password: "}
-
+set :deploy_to, "/var/rails/fwb"
 
 #Define stage and productipn environments
 set :stages, ["staging", "production"]
