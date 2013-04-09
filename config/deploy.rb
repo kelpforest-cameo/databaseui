@@ -1,8 +1,3 @@
-require "bundler/capistrano"
-require "rvm/capistrano"
-
-$LOAD_PATH.unshift File.join(File.dirname(__FILE__), 'deploy')
-
 set :application, "FoodWebBuilder"
 default_run_options[:pty] = true  # Must be set for the password prompt from #git to work    
 set :repository, "http://github.com/jjliang/databaseui.git"  # Your clone URL
@@ -48,7 +43,11 @@ task :staging do
   set :deploy_to, "/var/rails/fwb"
   set :deploy_via, :remote_cache # only copy the most recent, not the entire repository
   set :branch, 'staging' #branch to checkout during deployment
+  $LOAD_PATH.unshift File.join(File.dirname(__FILE__), 'deploy')
   require "capistrano_database.rb"
+  require "bundler/capistrano"
+	require "rvm/capistrano"
+
 end
 
 # =============================================================================
