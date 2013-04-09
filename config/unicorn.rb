@@ -99,8 +99,8 @@ after_fork do |server, worker|
   # server.listen(addr, :tries => -1, :delay => 5, :tcp_nopush => true)
 
   # the following is *required* for Rails + "preload_app true",
- # defined?(ActiveRecord::Base) and
-  #  ActiveRecord::Base.establish_connection
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.establish_connection
 
   # if preload_app is true, then you may also want to check and
   # restart any other shared sockets/descriptors such as Memcached,
