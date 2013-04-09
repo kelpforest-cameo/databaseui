@@ -153,11 +153,5 @@ Capistrano::Configuration.instance.load do
     after "deploy:setup",           "deploy:db:setup"   unless fetch(:skip_db_setup, false)
     after "deploy:finalize_update", "deploy:db:symlink"
   end
-   set :rails_env, :staging
-
-    after "deploy:update_code", :precompile_assets
-    desc "precompile the assets"
-    task :precompile_assets, :roles => :app do
-    run "cd #{release_path} && RAILS_ENV=#{rails_env} bundle exec      rake assets:precompile"
   end
 end
