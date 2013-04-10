@@ -1,16 +1,19 @@
-<div class="row">
-    <div class="span10 offset1">
-        <h1 class="text-center">Welcome to Food Web Builder</h1>
-    </div>
-</div>
-
 <!-- <div class="row">
-    <div class='span8 offset2 well'>
-        <img src="assets/worldmap.jpg" alt="World Map" title="Place Holder Map">
+    <div class="span8 offset1">
+        <h1 class="text-center">Welcome to Food Web Builder</h1>
     </div>
 </div> -->
 
 
+<!-- This is the project icon -->
+<div class="row">
+    <div class='span6 offset3'>
+        <img src="assets/logo.jpg">
+    </div>
+</div>
+
+
+<!-- This is for the google map -->
 	<div class="span8 offset2 ">
 		 <!--<img src="assets/worldmap.jpg" alt="World Map Place Holder" title="World Map" /> -->
 
@@ -20,6 +23,8 @@
        "polygons"    => { "data" => @polygons    , "options" => { "fillColor" => "#000" } }
      })
  %>
+ 
+<!-- Some java script for the google map being clickable -->
 <% content_for :scripts do %>
 <script type="text/javascript" charset="utf-8">
 
