@@ -69,6 +69,7 @@ namespace :deploy do
 	task :seed_db, :roles => :app do
 		  raise RuntimeError.new('db:seed aborted!') unless Capistrano::CLI.ui.ask("About to `rake db:seed`. Are you sure to seed data into the database (anything other than 'yes' aborts):") == 'yes'
 	  run "cd #{current_path}; bundle exec rake db:seed"
+	end
 	
 
 end
