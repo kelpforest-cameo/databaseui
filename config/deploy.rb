@@ -56,7 +56,7 @@ namespace :deploy do
 	task :cold do
 	  transaction do
 	    update
-	    setup_db  #replacing migrate in original
+	    after "deploy:update_code", :setup_db
 	    start
 	  end
 	end
