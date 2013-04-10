@@ -47,7 +47,7 @@ namespace :deploy do
 		run "#{try_sudo} kill -s USR2 `cat #{unicorn_pid}`"
 	end
 	task :create do
-	run "cd #{current_path && rake db:setup}"
+	run "cd #{current_path} && rake db:setup"
 	end
 	task :restart, :roles => :app, :except => { :no_release => true} do
 	 stop
