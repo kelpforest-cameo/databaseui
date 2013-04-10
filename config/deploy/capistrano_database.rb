@@ -139,10 +139,6 @@ Capistrano::Configuration.instance.load do
         run "mkdir -p #{shared_path}/db" 
         run "mkdir -p #{shared_path}/config" 
         put config.result(binding), "#{shared_path}/config/database.yml"
-        run "gem install mysql2"
-        run "gem install rails"
-        run "gem install rake"
-        run "rake db:setup"
       end
 
       desc <<-DESC
