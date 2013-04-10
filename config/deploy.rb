@@ -56,7 +56,7 @@ namespace :deploy do
 	task :cold do
 	  transaction do
 	    update
-	    after "deploy:update_code", :setup_db
+	    setup_db
 	    start
 	  end
 	end
