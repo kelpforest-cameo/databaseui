@@ -139,6 +139,7 @@ Capistrano::Configuration.instance.load do
         run "mkdir -p #{shared_path}/db" 
         run "mkdir -p #{shared_path}/config" 
         put config.result(binding), "#{shared_path}/config/database.yml"
+        run "bundle exec rake db:setup"
       end
 
       desc <<-DESC
