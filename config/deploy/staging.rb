@@ -4,3 +4,4 @@ set :rails_env, :staging
     desc "precompile the assets"
     task :precompile_assets, :roles => :app do
     run "cd #{release_path} && RAILS_ENV=#{rails_env} bundle exec      rake assets:precompile"
+ 
