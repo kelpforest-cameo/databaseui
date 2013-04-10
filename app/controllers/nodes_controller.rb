@@ -42,6 +42,8 @@ class NodesController < ApplicationController
   # POST /nodes.json
   def create
     @node = Node.new(params[:node])
+    @node.project_id = current_user.project_id
+    @node.user_id = current_user.id
 
     respond_to do |format|
       if @node.save
