@@ -13,7 +13,7 @@
 </div>
 
 
-<!-- This is for the google map -->
+<!-- google map -->
 	<div class="span8 offset2 ">
 		 <!--<img src="assets/worldmap.jpg" alt="World Map Place Holder" title="World Map" /> -->
 
@@ -23,7 +23,6 @@
        "polygons"    => { "data" => @polygons    , "options" => { "fillColor" => "#000" } }
      })
  %>
- 
 <!-- Some java script for the google map being clickable -->
 <% content_for :scripts do %>
 <script type="text/javascript" charset="utf-8">
@@ -50,6 +49,7 @@ google.maps.event.addListener(Gmaps.map.serviceObject, "click", function(event) 
 }
 
 </script>
+<!-- end javascript -->
 <% end %>
-
+<!-- end google map -->
 	</div>
