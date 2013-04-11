@@ -1,0 +1,2 @@
+module StageMassesHelper
+end

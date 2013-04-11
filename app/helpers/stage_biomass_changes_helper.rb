@@ -1,0 +1,2 @@
+module StageBiomassChangesHelper
+end

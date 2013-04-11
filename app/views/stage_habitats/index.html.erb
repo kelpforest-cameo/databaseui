@@ -1,0 +1,33 @@
+<h1>Listing stage_habitats</h1>
+
+<table>
+  <tr>
+    <th>Cite</th>
+    <th>Stage</th>
+    <th>Habitat</th>
+    <th>Comment</th>
+    <th>Datum</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_habitats.each do |stage_habitat| %>
+  <tr>
+    <td><%= stage_habitat.cite_id %></td>
+    <td><%= stage_habitat.stage_id %></td>
+    <td><%= stage_habitat.habitat %></td>
+    <td><%= stage_habitat.comment %></td>
+    <td><%= stage_habitat.datum %></td>
+    <td><%= stage_habitat.user_id %></td>
+    <td><%= link_to 'Show', stage_habitat %></td>
+    <td><%= link_to 'Edit', edit_stage_habitat_path(stage_habitat) %></td>
+    <td><%= link_to 'Destroy', stage_habitat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage habitat', new_stage_habitat_path %>

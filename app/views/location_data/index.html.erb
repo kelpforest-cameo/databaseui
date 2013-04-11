@@ -1,0 +1,21 @@
+<h1>Listing location_data</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @location_data.each do |location_datum| %>
+  <tr>
+    <td><%= link_to 'Show', location_datum %></td>
+    <td><%= link_to 'Edit', edit_location_datum_path(location_datum) %></td>
+    <td><%= link_to 'Destroy', location_datum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Location datum', new_location_datum_path %>

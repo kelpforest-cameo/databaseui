@@ -1,0 +1,37 @@
+<h1>Listing stage_length_fecundities</h1>
+
+<table>
+  <tr>
+    <th>Cite</th>
+    <th>Stage</th>
+    <th>Length fecundity</th>
+    <th>A</th>
+    <th>B</th>
+    <th>Comment</th>
+    <th>Datum</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_length_fecundities.each do |stage_length_fecundity| %>
+  <tr>
+    <td><%= stage_length_fecundity.cite_id %></td>
+    <td><%= stage_length_fecundity.stage_id %></td>
+    <td><%= stage_length_fecundity.length_fecundity %></td>
+    <td><%= stage_length_fecundity.a %></td>
+    <td><%= stage_length_fecundity.b %></td>
+    <td><%= stage_length_fecundity.comment %></td>
+    <td><%= stage_length_fecundity.datum %></td>
+    <td><%= stage_length_fecundity.user_id %></td>
+    <td><%= link_to 'Show', stage_length_fecundity %></td>
+    <td><%= link_to 'Edit', edit_stage_length_fecundity_path(stage_length_fecundity) %></td>
+    <td><%= link_to 'Destroy', stage_length_fecundity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage length fecundity', new_stage_length_fecundity_path %>

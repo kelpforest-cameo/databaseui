@@ -1,0 +1,2 @@
+module CompetitionInteractionsHelper
+end

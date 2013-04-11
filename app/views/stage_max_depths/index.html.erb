@@ -1,0 +1,21 @@
+<h1>Listing stage_max_depths</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_max_depths.each do |stage_max_depth| %>
+  <tr>
+    <td><%= link_to 'Show', stage_max_depth %></td>
+    <td><%= link_to 'Edit', edit_stage_max_depth_path(stage_max_depth) %></td>
+    <td><%= link_to 'Destroy', stage_max_depth, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage max depth', new_stage_max_depth_path %>

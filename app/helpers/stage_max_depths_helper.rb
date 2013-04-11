@@ -1,0 +1,2 @@
+module StageMaxDepthsHelper
+end

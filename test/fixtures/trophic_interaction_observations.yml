@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  cite_id: 1
+  trophic_interaction_id: 1
+  location_id: 1
+  lethality: MyString
+  structures_consumed: MyString
+  percentage_consumed: 9.99
+  percentage_diet: 9.99
+  percentage_diet_by: MyString
+  prefernce: MyString
+  observation_type: MyString
+  comment: MyText
+  datum: MyString
+  user_id: 1
+
+two:
+  cite_id: 1
+  trophic_interaction_id: 1
+  location_id: 1
+  lethality: MyString
+  structures_consumed: MyString
+  percentage_consumed: 9.99
+  percentage_diet: 9.99
+  percentage_diet_by: MyString
+  prefernce: MyString
+  observation_type: MyString
+  comment: MyText
+  datum: MyString
+  user_id: 1

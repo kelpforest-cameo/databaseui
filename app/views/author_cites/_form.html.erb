@@ -1,0 +1,29 @@
+<%= form_for(@author_cite) do |f| %>
+  <% if @author_cite.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@author_cite.errors.count, "error") %> prohibited this author_cite from being saved:</h2>
+
+      <ul>
+      <% @author_cite.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :author_id %><br />
+    <%= f.number_field :author_id %>
+  </div>
+  <div class="field">
+    <%= f.label :cite_id %><br />
+    <%= f.number_field :cite_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,33 @@
+<h1>Listing stage_lifestyles</h1>
+
+<table>
+  <tr>
+    <th>Cite</th>
+    <th>Stage</th>
+    <th>Lifestyle</th>
+    <th>Comment</th>
+    <th>Datum</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_lifestyles.each do |stage_lifestyle| %>
+  <tr>
+    <td><%= stage_lifestyle.cite_id %></td>
+    <td><%= stage_lifestyle.stage_id %></td>
+    <td><%= stage_lifestyle.lifestyle %></td>
+    <td><%= stage_lifestyle.comment %></td>
+    <td><%= stage_lifestyle.datum %></td>
+    <td><%= stage_lifestyle.user_id %></td>
+    <td><%= link_to 'Show', stage_lifestyle %></td>
+    <td><%= link_to 'Edit', edit_stage_lifestyle_path(stage_lifestyle) %></td>
+    <td><%= link_to 'Destroy', stage_lifestyle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage lifestyle', new_stage_lifestyle_path %>

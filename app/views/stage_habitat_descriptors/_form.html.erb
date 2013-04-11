@@ -1,0 +1,21 @@
+<%= form_for(@stage_habitat_descriptor) do |f| %>
+  <% if @stage_habitat_descriptor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stage_habitat_descriptor.errors.count, "error") %> prohibited this stage_habitat_descriptor from being saved:</h2>
+
+      <ul>
+      <% @stage_habitat_descriptor.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :descriptor %><br />
+    <%= f.text_field :descriptor %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

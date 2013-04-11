@@ -1,0 +1,101 @@
+<div class="row">
+    <div class="span10 offset1">
+        <h1 class="text-center">Welcome to your Dashboard <br \>
+        <%= current_user.firstname %> 
+        <%= current_user.lastname %></h1>
+
+    </div>
+</div>
+<div class="tabbable tabs-left span8 offset1">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#navhome" data-toggle="tab">Home</a>
+        </li>
+        <li>
+            <a href="#nodes" data-toggle="tab">Nodes</a>
+        </li>
+        <li>
+            <a href="#cits" data-toggle="tab">Citations</a>
+        </li>
+        <li>
+            <a href="#inters" data-toggle="tab">Interactions</a>
+        </li>
+        <% if current_user.role == 'admin' ||'lead' || 'moderator' %>
+        	<li>
+            <a href="#users" data-toggle="tab">Users</a>
+        	</li>
+        <% end %>
+        <% if can? :access, :rails_admin %>
+        	<li>
+            <a href="admin">Database</a>
+        	</li>
+        <% end %>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="navhome">
+                <%= gmaps({
+       "polygons"    => { "data" => @polygons    , "options" => { "fillColor" => "#000"} }
+     })
+ %>
+<!-- Some java script for the google map being clickable -->
+<% content_for :scripts do %>
+<script type="text/javascript" charset="utf-8">
+
+Gmaps.map.callback = function() 
+{
+    console.log(Gmaps.map)
+    console.log(Gmaps.map.polygons);
+    Gmaps.map.polygons[0].infowindow = new google.maps.InfoWindow
+    ({
+        content: 'you clicked me!'
+    });
+
+google.maps.event.addListener(Gmaps.map.polygons[0].serviceObject, "click", function(event) 
+    {
+        alert("test2");
+        console.log("the click event fired");
+        infowindow = Gmaps.map.polygons[0].infowindow;
+        infowindow.setPosition(event.latLng);
+        infowindow.open(Gmaps.map.map);
+    });
+
+google.maps.event.addListener(Gmaps.map.polygons[1].serviceObject, "click", function(event) 
+    {
+        alert("test1");
+        console.log("the click event fired");
+        infowindow = Gmaps.map.polygons[1].infowindow;
+        infowindow.setPosition(event.latLng);
+        infowindow.open(Gmaps.map.map);
+    });
+
+google.maps.event.addListener(Gmaps.map.serviceObject, "click", function(event) {
+    alert(event.latLng);
+  });
+}
+
+</script>
+<!-- end javascript -->
+<% end %>
+
+        </div>
+        <div class="tab-pane" id="nodes">
+         
+        </div>
+        <div class="tab-pane" id="cits">
+            
+        </div>
+        <div class="tab-pane" id="inters">
+            
+        </div>
+        
+        <div class="tab-pane" id="users">
+        	<div class="tab-pane" id="all">
+        		<div class="well">
+        			<%= render :partial => 'users' %>
+        		</div>
+        	</div>
+        </div>
+    </div>
+</div>
+
+

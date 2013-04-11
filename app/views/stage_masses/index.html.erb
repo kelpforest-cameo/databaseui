@@ -1,0 +1,21 @@
+<h1>Listing stage_masses</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_masses.each do |stage_mass| %>
+  <tr>
+    <td><%= link_to 'Show', stage_mass %></td>
+    <td><%= link_to 'Edit', edit_stage_mass_path(stage_mass) %></td>
+    <td><%= link_to 'Destroy', stage_mass, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage mass', new_stage_mass_path %>

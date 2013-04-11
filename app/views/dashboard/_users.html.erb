@@ -1,0 +1,26 @@
+<ul class="nav nav-pills">
+	<li class="active">
+		<a href="#home" data-toggle="tab">Home</a>
+	</li>
+	<li>
+		<a href="#all" data-toggle="tab">All Users</a>
+	</li>
+	<li>
+		<a href="#waiting" data-toggle="tab">Awaiting Approval</a>
+	</li>
+</ul>
+<div class="tab-content">
+	<div class="tab-pane active" id="home">
+		<p> Here you can list all users and see users waiting approval </p>
+	</div>
+	<div class="tab-pane" id="all">
+		<div class="well">
+			<fieldset>
+				<%= render :partial => 'listusers', :user => @userlist %>
+			</fieldset>
+		</div>
+	</div>
+	<div class="tab-pane" id="waiting">
+		<%= render :partial => 'listusers', :user => @userlist %>
+	</div>
+</div>

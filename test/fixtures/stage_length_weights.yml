@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  cite_id: 1
+  stage_id: 1
+  length_weight: MyString
+  a: 9.99
+  b: 9.99
+  comment: MyText
+  datum: MyString
+  user_id: 1
+
+two:
+  cite_id: 1
+  stage_id: 1
+  length_weight: MyString
+  a: 9.99
+  b: 9.99
+  comment: MyText
+  datum: MyString
+  user_id: 1
