@@ -19,27 +19,18 @@ if ( !empty( $_GET['term']) ) {
 	exit();
 }
 
-$sql = "SELECT authors.last_name, authors.first_name, citations.year, citations.title, citations.id as cite_id from author_cite ";
+$wk = "%{$srchKey}%";
+$catstr = "CONCAT(authors.last_name,', ',authors.first_name,': \\'',citations.title,'\\', ',citations.year)";
+$sql = "SELECT citations.id AS `id`, {$catstr} AS `label`, {$catstr} AS `value`";
+$sql .= " FROM author_cite";
 $sql .= " INNER JOIN authors ON authors.id =author_cite.author_id ";
 $sql .= " INNER JOIN citations on citations.id = author_cite.cite_id ";
-$sql .= " WHERE authors.last_name LIKE " . $db->quote( '%' .  $srchKey . '%') ;
-$sql .= " OR authors.first_name LIKE " . $db->quote( '%'  . $srchKey . '%') ;
-$sql .= " OR citations.title LIKE " . $db->quote( '%'  . $srchKey . '%') ;
+$sql .= " WHERE authors.last_name LIKE ?";
+$sql .= " OR authors.first_name LIKE ?";
+$sql .= " OR citations.title LIKE ?";
 $sql .= " ORDER BY authors.last_name"; 
-$results = $db->getAll($sql);
+$results = $db->getAll($sql,array($wk,$wk,$wk));
 if(DB::IsError($results)) { error($results->getMessage(  )); }
-$first=true;
-echo "[ ";
-foreach( $results as $k => $v ) {
-	$label = $v['last_name'] . ", " . $v['first_name'] . ": '" . $v['title'] . "', " . $v['year'];
-	//$label = $v['last_name'] ;
-	if (!$first) {
-		echo ",";
-	} else {
-		$first = false;
-	}
-	echo "{\"id\": \"". $v['cite_id']. "\", \"value\": \"" . $label ."\", \"label\": \"". $label ."\"}";
-}
-echo " ]";
+echo json_encode($results);
 
 ?>

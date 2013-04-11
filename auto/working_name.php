@@ -19,22 +19,17 @@ if ( !empty( $_GET['term']) ) {
 	exit();
 }
 
-$sql = "SELECT * FROM nodes WHERE working_name LIKE " . $db->quote( '%'. $srchKey . '%') . " ORDER BY working_name"; 
-$results = $db->getAll($sql);
+//get valid ITIS entries
+$sql = "SELECT id, working_name AS `value`, CONCAT(`working_name`,' itis_id:',`itis_id`) AS `label` FROM nodes WHERE working_name LIKE ? AND itis_id <> -1 ORDER BY working_name ASC";
+$r1 = $db->getAll($sql,array('%'.$srchKey.'%'));
+
+//get non-ITIS entries
+$sql = "SELECT id, working_name AS `value`, CONCAT(`working_name`,' non_itis_id:',`non_itis_id`) AS `label` FROM nodes WHERE working_name LIKE ? AND itis_id = -1 ORDER BY working_name ASC";
+$r2 = $db->getAll($sql,array('%'.$srchKey.'%'));
+
 if(DB::IsError($results)) { error($results->getMessage(  )); }
-$first=true;
-echo "[ ";
-foreach( $results as $k => $v ) {
-	if (!$first) {
-		echo ",";
-	} else {
-		$first = false;
-	}
-	if ( $v['itis_id'] == -1) 
-		echo "{\"id\": \"". $v['id']. "\", \"value\": \"" . $v['working_name'] ."\", \"label\": \"". $v['working_name'] . " non_itis_id:" . $v['non_itis_id'] ."\"}";
-	else
-		echo "{\"id\": \"". $v['id']. "\", \"value\": \"" . $v['working_name'] ."\", \"label\": \"". $v['working_name'] . " itis_id:" . $v['itis_id'] ."\"}";
-}
-echo " ]";
+
+//result is ITIS/non-ITIS merged
+echo json_encode(array_merge($r1,$r2));
 
 ?>

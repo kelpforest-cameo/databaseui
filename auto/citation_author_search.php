@@ -19,23 +19,12 @@ if ( !empty( $_GET['term']) ) {
 	exit();
 }
 
-$sql = "SELECT * from authors ";
-$sql .= " WHERE authors.last_name LIKE " . $db->quote( '%' .  $srchKey . '%') ;
-$sql .= " OR authors.first_name LIKE " . $db->quote( '%'  . $srchKey . '%') ;
-$sql .= " ORDER BY authors.last_name"; 
-$results = $db->getAll($sql);
+$wk = "%{$srchKey}%";
+$sql = "SELECT id, CONCAT(last_name,', ',first_name) AS `value`, CONCAT(last_name,', ',first_name) AS `label` "
+	."FROM authors "
+	."WHERE last_name LIKE ? OR first_name LIKE ? "
+	."ORDER BY last_name ASC";
+$results = $db->getAll($sql,array($wk,$wk));
 if(DB::IsError($results)) { error($results->getMessage(  )); }
-$first=true;
-echo "[ ";
-foreach( $results as $k => $v ) {
-	$label = $v['last_name'] . ", " . $v['first_name'] ;
-	if (!$first) {
-		echo ",";
-	} else {
-		$first = false;
-	}
-	echo "{\"id\": \"". $v['id']. "\", \"value\": \"" . $label ."\", \"label\": \"". $label ."\"}";
-}
-echo " ]";
-
+echo json_encode($results);
 ?>
