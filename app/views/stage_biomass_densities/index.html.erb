@@ -1,0 +1,21 @@
+<h1>Listing stage_biomass_densities</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_biomass_densities.each do |stage_biomass_density| %>
+  <tr>
+    <td><%= link_to 'Show', stage_biomass_density %></td>
+    <td><%= link_to 'Edit', edit_stage_biomass_density_path(stage_biomass_density) %></td>
+    <td><%= link_to 'Destroy', stage_biomass_density, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage biomass density', new_stage_biomass_density_path %>

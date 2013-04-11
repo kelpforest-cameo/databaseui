@@ -1,0 +1,21 @@
+<h1>Listing stage_drymasses</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_drymasses.each do |stage_drymass| %>
+  <tr>
+    <td><%= link_to 'Show', stage_drymass %></td>
+    <td><%= link_to 'Edit', edit_stage_drymass_path(stage_drymass) %></td>
+    <td><%= link_to 'Destroy', stage_drymass, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage drymass', new_stage_drymass_path %>

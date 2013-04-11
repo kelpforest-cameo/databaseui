@@ -1,0 +1,75 @@
+<ul class="nav nav-pills">
+    <li>
+        <a href="#interhome" data-toggle="tab">Home</a>
+    </li>
+    <li class="active">
+        <a href="#intered" data-toggle="tab">Interactions Home</a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane" id="interhome">
+        <p>
+            You are in the Interactions Home sub-pane
+        </p>
+    </div>
+    <!-- Begin Interactions Pane -->
+    <div class="tab-pane active" id="intered">
+        <div class="well">
+            <h3>Instructions
+            <button type="button" data-toggle="collapse" data-target="#interactionsinfo" class="btn btn-info btn-mini">
+                Collapse/Expand
+            </button></h3>
+            <div id="interactionsinfo" class="collapse">
+                <p>
+                    Edit or add interactions between species. 
+                </p>
+             </div>
+        </div>
+        <form>
+            <fieldset>
+                <legend>
+                    Interactions Editor
+                </legend>
+                <div class="row">
+                    <div class="span4 offset1">
+					    <h4>Node/Stage 1</h4>
+                        <label>Working Name: </label>
+                        <input type="text">
+                        <label>Latin Name: </label>
+                        <input type="text">
+                    </div>
+					<div class="span4 offset1">
+					    <h4>Node/Stage 2</h4>
+                        <label>Working Name: </label>
+                        <input type="text">
+                        <label>Latin Name: </label>
+                        <input type="number">
+                    </div>
+			    </div>
+				<div class="row">
+						<div class="span offset1">
+							<h4>Select interaction</h4>
+							<select id = "interactions-list">
+								<option value="trophic" name="trophic">trophic (1 eats 2)</option>
+								<option value="competition" name="competition">competition (1 outcompetes 2)</option>
+								<option value="facilitation" name="facilitation">facilitation (1 facilitates 2)</option>
+								<option value="parasitic" name="parasitic">parasitic (1 is parasite of 2)</option>
+							</select> 
+						</div>
+					</div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-primary">
+						Add Observation
+					</button>
+					<button type="button" class="btn btn-primary">
+						Add Interaction
+					</button>
+                    <button type="reset" class="btn">
+                        Reset
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <!-- End Interactions Pane -->
+</div>

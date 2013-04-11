@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Cite:</b>
+  <%= @stage_length_weight.cite_id %>
+</p>
+
+<p>
+  <b>Stage:</b>
+  <%= @stage_length_weight.stage_id %>
+</p>
+
+<p>
+  <b>Length weight:</b>
+  <%= @stage_length_weight.length_weight %>
+</p>
+
+<p>
+  <b>A:</b>
+  <%= @stage_length_weight.a %>
+</p>
+
+<p>
+  <b>B:</b>
+  <%= @stage_length_weight.b %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @stage_length_weight.comment %>
+</p>
+
+<p>
+  <b>Datum:</b>
+  <%= @stage_length_weight.datum %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @stage_length_weight.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_stage_length_weight_path(@stage_length_weight) %> |
+<%= link_to 'Back', stage_length_weights_path %>

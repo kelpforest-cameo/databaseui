@@ -1,0 +1,33 @@
+<h1>Listing stage_residencies</h1>
+
+<table>
+  <tr>
+    <th>Cite</th>
+    <th>Stage</th>
+    <th>Residency</th>
+    <th>Comment</th>
+    <th>Datum</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_residencies.each do |stage_residency| %>
+  <tr>
+    <td><%= stage_residency.cite_id %></td>
+    <td><%= stage_residency.stage_id %></td>
+    <td><%= stage_residency.residency %></td>
+    <td><%= stage_residency.comment %></td>
+    <td><%= stage_residency.datum %></td>
+    <td><%= stage_residency.user_id %></td>
+    <td><%= link_to 'Show', stage_residency %></td>
+    <td><%= link_to 'Edit', edit_stage_residency_path(stage_residency) %></td>
+    <td><%= link_to 'Destroy', stage_residency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage residency', new_stage_residency_path %>

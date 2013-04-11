@@ -1,0 +1,47 @@
+<h1>Listing trophic_interaction_observations</h1>
+
+<table>
+  <tr>
+    <th>Cite</th>
+    <th>Trophic interaction</th>
+    <th>Location</th>
+    <th>Lethality</th>
+    <th>Structures consumed</th>
+    <th>Percentage consumed</th>
+    <th>Percentage diet</th>
+    <th>Percentage diet by</th>
+    <th>Prefernce</th>
+    <th>Observation type</th>
+    <th>Comment</th>
+    <th>Datum</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @trophic_interaction_observations.each do |trophic_interaction_observation| %>
+  <tr>
+    <td><%= trophic_interaction_observation.cite_id %></td>
+    <td><%= trophic_interaction_observation.trophic_interaction_id %></td>
+    <td><%= trophic_interaction_observation.location_id %></td>
+    <td><%= trophic_interaction_observation.lethality %></td>
+    <td><%= trophic_interaction_observation.structures_consumed %></td>
+    <td><%= trophic_interaction_observation.percentage_consumed %></td>
+    <td><%= trophic_interaction_observation.percentage_diet %></td>
+    <td><%= trophic_interaction_observation.percentage_diet_by %></td>
+    <td><%= trophic_interaction_observation.prefernce %></td>
+    <td><%= trophic_interaction_observation.observation_type %></td>
+    <td><%= trophic_interaction_observation.comment %></td>
+    <td><%= trophic_interaction_observation.datum %></td>
+    <td><%= trophic_interaction_observation.user_id %></td>
+    <td><%= link_to 'Show', trophic_interaction_observation %></td>
+    <td><%= link_to 'Edit', edit_trophic_interaction_observation_path(trophic_interaction_observation) %></td>
+    <td><%= link_to 'Destroy', trophic_interaction_observation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Trophic interaction observation', new_trophic_interaction_observation_path %>

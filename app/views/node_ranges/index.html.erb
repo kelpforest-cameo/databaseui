@@ -1,0 +1,21 @@
+<h1>Listing node_ranges</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @node_ranges.each do |node_range| %>
+  <tr>
+    <td><%= link_to 'Show', node_range %></td>
+    <td><%= link_to 'Edit', edit_node_range_path(node_range) %></td>
+    <td><%= link_to 'Destroy', node_range, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Node range', new_node_range_path %>

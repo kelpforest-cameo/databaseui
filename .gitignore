@@ -1,0 +1,33 @@
+# Using wildcard to ignore auto generated backups
+*~
+
+# ignoring certain binary files
+
+tmp/**/*
+
+# ignore the development log
+
+log/*
+
+# ignoring from a template
+/.idea
+*.rbc
+*.sassc
+.sass-cache
+capybara-*.html
+.rspec
+.rvmrc
+/.bundle
+/vendor/bundle
+/log/*
+/tmp/*
+/db/*.sqlite3
+/public/system/*
+/coverage/
+/spec/tmp/*
+**.orig
+rerun.txt
+pickle-email-*.html
+.project
+/config/database.yml
+

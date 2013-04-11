@@ -1,0 +1,2 @@
+module CompetitionInteractionObservationsHelper
+end

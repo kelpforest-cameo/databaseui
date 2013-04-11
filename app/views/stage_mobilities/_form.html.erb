@@ -1,0 +1,41 @@
+<%= form_for(@stage_mobility) do |f| %>
+  <% if @stage_mobility.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stage_mobility.errors.count, "error") %> prohibited this stage_mobility from being saved:</h2>
+
+      <ul>
+      <% @stage_mobility.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cite_id %><br />
+    <%= f.number_field :cite_id %>
+  </div>
+  <div class="field">
+    <%= f.label :stage_id %><br />
+    <%= f.number_field :stage_id %>
+  </div>
+  <div class="field">
+    <%= f.label :mobility %><br />
+    <%= f.text_field :mobility %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </div>
+  <div class="field">
+    <%= f.label :datum %><br />
+    <%= f.text_field :datum %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

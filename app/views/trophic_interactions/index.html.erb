@@ -1,0 +1,21 @@
+<h1>Listing trophic_interactions</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @trophic_interactions.each do |trophic_interaction| %>
+  <tr>
+    <td><%= link_to 'Show', trophic_interaction %></td>
+    <td><%= link_to 'Edit', edit_trophic_interaction_path(trophic_interaction) %></td>
+    <td><%= link_to 'Destroy', trophic_interaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Trophic interaction', new_trophic_interaction_path %>
