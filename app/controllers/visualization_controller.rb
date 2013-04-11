@@ -19,7 +19,9 @@ else
     f.options[:xAxis][:categories] = ['Citations']
     f.options[:yAxis][:allowDecimals] = false
 Project.find_each do |project|
+
 if project.approved == true
+
 f.series(:type=> 'column',:name=> project.name,:data=> [Citation.where(:project_id => project.id ).count ])
 end
 
