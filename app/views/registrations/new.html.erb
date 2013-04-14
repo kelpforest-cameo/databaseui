@@ -73,7 +73,7 @@
 						<br />
 						<%= f.label :project_id %>
 						<%= options_from_collection_for_select(Project.all, :id, :name) %>
-						<%= collection_select(:project, :project_id, Project.all, :id, :name) %>
+						<%= collection_select(:user, :project_id, Project.all, :id, :name, :prompt => "Please select project") %>
 					</div>
 				</div>
 
