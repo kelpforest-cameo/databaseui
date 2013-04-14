@@ -110,7 +110,6 @@ ActiveRecord::Schema.define(:version => 20130926042527) do
   end
 
   create_table "functional_groups", :force => true do |t|
-
     t.string   "name",       :default => "",    :null => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
@@ -125,6 +124,10 @@ ActiveRecord::Schema.define(:version => 20130926042527) do
     t.text    "longitude"
     t.integer "location_id"
     t.string  "name"
+    t.integer "user_id"
+    t.integer "project_id"
+    t.boolean "mod"
+    t.boolean "approved"
   end
 
   create_table "locations", :force => true do |t|
