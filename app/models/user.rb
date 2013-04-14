@@ -20,6 +20,9 @@ class User < ActiveRecord::Base
   validates :project_id, :presence => true
    attr_accessible :email, :password, :password_confirmation, :remember_me , :role , :approved , :username, :firstname, :lastname, :project_id, :comment
   # attr_accessible :title, :body
+
+ 
+
   has_many :authors
   has_many :author_cites
   has_many :citations
@@ -34,6 +37,7 @@ class User < ActiveRecord::Base
   has_many :non_itis
   has_many :parasitic_interactions
   has_many :parasitic_interaction_observations
+  has_many :projects
   has_many :stages
   has_many :stage_biomass_changes
   has_many :stage_biomass_densities
