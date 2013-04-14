@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   rolify
   # admin = super user, moderator = scientist user = data entry
   ROLES = %w[user moderator lead admin]
+  LEAD = %w[user moderator]
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

@@ -78,5 +78,6 @@ FoodWebBuilder::Application.routes.draw do
   match 'help' => 'home#help'
   match 'visualization' => 'visualization#index'
   match 'dataentry' => 'dashboard#dataentry'
+	match 'edit_user_path' => 'users_registrations#edit'
 	
 end

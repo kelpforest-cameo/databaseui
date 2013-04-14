@@ -20,12 +20,15 @@
         <li>
             <a href="#inters" data-toggle="tab">Interactions</a>
         </li>
-        <% if current_user.role == 'admin' ||'lead' || 'moderator' %>
+        
+        	
+        
+        <% if can? :access, :rails_admin %>
+        
         	<li>
             <a href="#users" data-toggle="tab">Users</a>
         	</li>
-        <% end %>
-        <% if can? :access, :rails_admin %>
+        	
         	<li>
             <a href="admin">Database</a>
         	</li>
