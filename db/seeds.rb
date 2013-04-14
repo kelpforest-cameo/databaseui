@@ -17,8 +17,10 @@ User.create(:firstname => 'Project', :lastname => 'Lead', :username => 'lead', :
 User.create(:firstname => 'Kevin', :lastname => "O'Brien", :username => 'KB', :email => 'kb@foodwebbuilder.com', :password => '12345678', :role => 'admin', :approved => 0, :project_id =>1)
 
 
-
+Project.create(:name => 'New Project', :public => 1, :owner => 1, :user_id => 1, :approved => 1)
 Project.create(:name => 'Testing', :public => 1, :owner => 1, :user_id => 1, :approved => 1)
+
+
 
 User.create(:firstname => 'Kevin', :lastname => "O'Brien", :username => 'KB', :email => 'kb@foodwebbuilder.com', :password => '12345678', :role => 'admin', :approved => 0, :project_id =>1)
 

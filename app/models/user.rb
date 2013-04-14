@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   
 
  
-   attr_accessible :email, :password, :password_confirmation, :remember_me , :role , :approved , :username, :firstname, :lastname, :project_id
+   attr_accessible :email, :password, :password_confirmation, :remember_me , :role , :approved , :username, :firstname, :lastname, :project_id, :comment
   # attr_accessible :title, :body
   has_many :authors
   has_many :author_cites

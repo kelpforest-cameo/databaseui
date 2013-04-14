@@ -55,8 +55,11 @@ FoodWebBuilder::Application.routes.draw do
 	resources :trophic_interactions
 	resources :trophic_interaction_observations
 	
-
+	# Mount rails admin
 	mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+	
+	# Overriding the devise registrations controllrt
+	devise_for :users, :controllers => {:registrations => "registrations"}
 	
 	# Configure routes for authenticated User to dashboard
   authenticated :user do
