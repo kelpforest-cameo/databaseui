@@ -124,10 +124,12 @@ ActiveRecord::Schema.define(:version => 201309260500048) do
     t.text    "longitude"
     t.integer "location_id"
     t.string  "name"
+
     t.integer "user_id",                        :null => false
     t.integer "project_id",                     :null => false
     t.boolean "mod",         :default => true
     t.boolean "approved",    :default => false
+
   end
 
   create_table "locations", :force => true do |t|

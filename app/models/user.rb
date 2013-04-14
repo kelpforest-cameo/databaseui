@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
  
+
   has_many :authors
   has_many :author_cites
   has_many :citations
