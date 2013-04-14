@@ -13,9 +13,6 @@ class User < ActiveRecord::Base
   
   # This is for login with username or e-mail
   attr_accessor :login
-  
-	validates_uniqueness_of :email, :message=>"Account exists with that e-mail already"
- 
    attr_accessible :email, :password, :password_confirmation, :remember_me , :role , :approved , :username, :firstname, :lastname, :project_id, :comment
   # attr_accessible :title, :body
   has_many :authors
@@ -58,7 +55,7 @@ class User < ActiveRecord::Base
   has_many :stage_unassimilated_consum_ratios
   has_many :trophic_interactions
   has_many :trophic_interaction_observations
-
+	belongs_to :projects
   # This is for admin approval of user accounts
   def active_for_authentication? 
   	super && approved?
