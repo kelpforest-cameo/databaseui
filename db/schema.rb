@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130926042529) do
+ActiveRecord::Schema.define(:version => 20130926042531) do
 
   create_table "author_cites", :force => true do |t|
     t.integer  "author_id",                      :null => false
@@ -235,12 +235,12 @@ ActiveRecord::Schema.define(:version => 20130926042529) do
 
   create_table "projects", :force => true do |t|
     t.string   "name",       :default => "",    :null => false
-    t.integer  "owner",                         :null => false
     t.integer  "user_id",                       :null => false
     t.boolean  "public",     :default => false
     t.boolean  "approved",   :default => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.string   "creator"
   end
 
   create_table "roles", :force => true do |t|
