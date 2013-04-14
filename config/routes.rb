@@ -59,7 +59,7 @@ FoodWebBuilder::Application.routes.draw do
 	mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 	
 	# Overriding the devise registrations controllrt
-	devise_for :users, :controllers => {:registrations => "registrations"}
+	
 	
 	# Configure routes for authenticated User to dashboard
   authenticated :user do
@@ -68,7 +68,7 @@ FoodWebBuilder::Application.routes.draw do
   	resources :users
   end
   
-
+	devise_for :users, :controllers => {:registrations => "registrations"}
   # Default root to home/index.html.erb
   root :to =>"home#index"
   devise_for :users
