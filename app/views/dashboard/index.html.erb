@@ -27,10 +27,11 @@
             <a href="#regions" data-toggle="tab">Regions</a>
         	</li>
         	
-        	<li>
-        		<a href="#projects" data-toggle="tab">Projects</a>
-        	</li>
-        	
+        	<% if current_user.role == 'admin' %>
+        		<li>
+        			<a href="#projects" data-toggle="tab">Projects</a>
+        		</li>
+        	<% end %>
         	<li>
             <a href="#users" data-toggle="tab">Users</a>
         	</li>
