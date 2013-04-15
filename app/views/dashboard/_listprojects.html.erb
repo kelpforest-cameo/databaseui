@@ -16,7 +16,7 @@
   <tr>
     <td><%= project.name %></td>
     <td><%= project.creator %></td>
-    <td><%= project.user_id %></td>
+    <td><%= owner_user(project.user_id).username %></td>
     <td><%= project.public %></td>
     <td><%= project.approved %></td>
     <td><%= link_to 'Show', project %></td>
@@ -27,5 +27,6 @@
 </table>
 
 <br />
-
+<button type="button" class="btn btn-primary">
 <%= link_to 'New Project', new_project_path %>
+</button>

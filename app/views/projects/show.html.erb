@@ -3,7 +3,9 @@
 <br 
 <div class="span12">
 	<div class="row-fluid">
-		<div class="span4 offset5">
+		
+		<div class="span2 offset5">
+			<div class="well">
 			<p>
 				<b>Name:</b>
 				<%= @project.name %>
@@ -29,13 +31,14 @@
 				<%= @project.approved %>
 			</p>
 			
-			<button type="button" class="btn btn-primary">
+			<button type="button">
 				<%= link_to 'Edit', edit_project_path(@project) %>
 			</button>
 			
-			<button type="button" class="btn btn-primary">
+			<button type="button">
 				<%= link_to 'Back', projects_path %>
 			</button>
 		</div>
+	</div>
 	</div>
 </div>

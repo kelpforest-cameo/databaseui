@@ -12,46 +12,39 @@
 		</div>
 	<% end %>
 
-	<div class="container">
-		<div class=span12">
 			<div class="row-fluid">
-				<div class="span4 offset2">
+				<div class="span3">
 					<div>
 						<br />
 						<%= f.label :first_name %>
 						<%= f.text_field :firstname, :autofocus => true %>
 					</div>
 				</div>
-					
-				<div class="span4">
-					<div>
-						<br />
-						<%= f.label :last_name %>
-						<%= f.text_field :lastname %>
-					</div>
-				</div> <!-- end span -->
+				
+				<div>
+					<br />
+					<%= f.label :last_name %>
+					<%= f.text_field :lastname %>
+				</div>
 			</div> <!-- end row -->
-		
 			
 			<div class="row-fluid">
-				<div class="span4 offset2">
+				<div class="span3">
 					<div>
 						<%= f.label :username %>
 						<%= f.text_field :username %>
 					</div>
 				</div>
 					
-				<div class="span4">
-					<div>
-						<%= f.label :email %>
-						<%= f.email_field :email %>
-					</div>
+				<div>
+					<%= f.label :email %>
+					<%= f.email_field :email %>
 				</div>
 			</div> <!-- end row -->
 			
 			<% if @user.id == current_user.id %>
 				<div class="row-fluid">
-					<div class="span4 offset2">
+					<div class="span3">
 						<div> 
 							<br />
 							<%= f.label :password %>
@@ -59,18 +52,16 @@
 						</div>
 					</div>
 					
-					<div class="span4">
-						<div>
-							<br />
-							<%= f.label :password_confirmation %>
-							<%= f.password_field :password_confirmation %>
-						</div>
+					<div>
+						<br />
+						<%= f.label :password_confirmation %>
+						<%= f.password_field :password_confirmation %>
 					</div>
-				</div>
+				</div> <!-- end row -->
 			<% end %>
 			
 			<div class="row-fluid">
-				<div class="span4 offset2">
+				<div class="span3">
 					<div>
 						<%= f.label :project_id %>
 						<% if current_user.role == 'admin' %>
@@ -95,16 +86,15 @@
 					</div>
 				</div>
 				
-				<div class="span4">
 					<div>
 						<%= f.label :comment %>
 						<%= f.text_area :comment, :size => "15x5" %><br />
 					</div>
-				</div>
+			
 			</div> <!-- end row -->
 			
 			<div class="row-fluid">
-				<div class="span4 offset2">
+				<div class="span3">
 					<%= f.label :approved %>
 					<% if can? :access, :rails_admin %>
 						<%= check_box 'user', 'approved', {}, 'true', 'false' %>
@@ -113,14 +103,13 @@
 					<% end %>
 				</div>
 				
-				<div class="span4">
+				
 				
 					<div class="actions">
 						<%= f.submit %>
 					</div>
 					
-				</div>
+			
 			</div> <!-- end row -->
-		</div> <!-- end span12 -->
-	</div> <!-- end container -->
+
 <% end %>
