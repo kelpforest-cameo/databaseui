@@ -69,7 +69,6 @@ FoodWebBuilder::Application.routes.draw do
   root :to =>"home#index"
   	# Overriding the devise registrations controllrt
 	devise_for :users, :controllers => {:registrations => "registrations"}
-	end
   resources :users
   
   # add some matching to make coding easier
