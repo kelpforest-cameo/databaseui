@@ -3,7 +3,7 @@
 		<a href="#home" data-toggle="tab">Home</a>
 	</li>
 	<li>
-		<a href="#listall" data-toggle="tab">All Users</a>
+		<a href="#listusers" data-toggle="tab">All Users</a>
 	</li>
 	<li>
 		<a href="#waiting" data-toggle="tab">Awaiting Approval</a>
@@ -14,8 +14,8 @@
 		<p> Here you can list all users and see users waiting approval </p>
 	</div>
 	
-	<div class="tab-pane" id="listall">
-		<%= render :partial => 'listusers', :user => @users %>
+	<div class="tab-pane" id="listusers">
+		<%= render :partial => 'listusers', :user => @users%>
 	</div>
 	
 	<div class="tab-pane" id="waiting">

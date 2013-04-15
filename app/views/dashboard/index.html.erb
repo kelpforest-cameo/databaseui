@@ -33,7 +33,7 @@
         		</li>
         	<% end %>
         	<li>
-            <a href="#users" data-toggle="tab">Users</a>
+            <a href="#userstab" data-toggle="tab">Users</a>
         	</li>
         	
         	<li>
@@ -96,12 +96,8 @@ Gmaps.map.callback = function()
             
         </div>
         
-        <div class="tab-pane" id="users">
-        	<div class="tab-pane" id="all">
-        	
-        			<%= render :partial => 'users' %>
-        
-        	</div>
+        <div class="tab-pane" id="userstab">
+        	<%= render :partial => 'users' %>
         </div>
         
 				<div class ="tab-pane" id="regions">

@@ -18,7 +18,7 @@
   
   <div class="field">
     <%= f.label :creator %>
-    <%= f.select "creator", User.find(:all).collect{|p| [p.username, p.id]} %>
+    <%= f.select "creator", User.find(:all).collect{|p| [p.username, p.username]} %>
   </div>
   <div class="field">
     <%= f.label :user_id %>
