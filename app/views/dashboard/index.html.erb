@@ -28,6 +28,10 @@
         	</li>
         	
         	<li>
+        		<a href="#projects" data-toggle="tab">Projects</a>
+        	</li>
+        	
+        	<li>
             <a href="#users" data-toggle="tab">Users</a>
         	</li>
         	
@@ -93,17 +97,23 @@ Gmaps.map.callback = function()
         
         <div class="tab-pane" id="users">
         	<div class="tab-pane" id="all">
-        		<div class="well">
+        	
         			<%= render :partial => 'users' %>
-        		</div>
+        
         	</div>
         </div>
-		<div class ="tab-pane" id="regions">
-			<div class="well">
+        
+				<div class ="tab-pane" id="regions">
+					
         		<%= render :partial => 'region' %>
-        	</div>
-		</div>
-			
+       		
+				</div>
+				
+				<div class="tab-pane" id="projects">
+				
+						<%= render :partial => 'projects' %>
+					
+				</div>
     </div>
 </div>
 

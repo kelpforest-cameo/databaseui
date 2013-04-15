@@ -16,12 +16,14 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :owner %><br />
-    <%= f.number_field :owner %>
+    <%= f.label :creator %><br />
+    <%= options_from_collection_for_select(User.all, :id, :username) %>
+		<%= collection_select(:project, :creator, User.all, :id, :username, :prompt => "Please select user") %>
   </div>
   <div class="field">
     <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
+    <%= options_from_collection_for_select(User.all, :id, :username) %>
+		<%= collection_select(:project, :user_id, User.all, :id, :username, :prompt => "Please select user") %>
   </div>
   <div class="field">
     <%= f.label :public %><br />
