@@ -49,7 +49,7 @@ FoodWebBuilder::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile << '*.js'
   config.assets.precompile << '*.css'
-
+	config.assets.precompile += %w( 'jquery-1.9.1.js', 'jquery-ui-1.10.2.custom.min.js', 'autocomplete-rails.js' )
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
