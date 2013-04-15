@@ -55,7 +55,7 @@ FoodWebBuilder::Application.routes.draw do
 	resources :trophic_interactions
 	resources :trophic_interaction_observations
 	
-
+	# Mount rails admin
 	mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 	
 	# Configure routes for authenticated User to dashboard
@@ -65,10 +65,10 @@ FoodWebBuilder::Application.routes.draw do
   	resources :users
   end
   
-
   # Default root to home/index.html.erb
   root :to =>"home#index"
-  devise_for :users
+  # Overriding the devise registrations controller
+	devise_for :users, :controllers => {:registrations => "registrations"}
   resources :users
   
   # add some matching to make coding easier
@@ -76,5 +76,6 @@ FoodWebBuilder::Application.routes.draw do
   match 'help' => 'home#help'
   match 'visualization' => 'visualization#index'
   match 'dataentry' => 'dashboard#dataentry'
+	match 'edit_user_path' => 'users_registrations#edit'
 	
 end

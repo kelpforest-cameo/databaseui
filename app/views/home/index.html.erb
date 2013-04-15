@@ -1,28 +1,26 @@
 <div class="row">
-	<div class='span6 offset4'>
+	<div class='span 6 offset4'>
 		<img src="assets/logo.jpg" style="height: 150px;">
 	</div>
 </div>
 
-	<!-- google map -->
-	<div class="span 4 offset1">
-      <%= gmaps({
-       "polygons"    => { "data" => @polygons    , "options" => { "fillColor" => "#000" } }
-     })
- %>
+<!-- google map -->
+	<div class="row-fluid">
+		<div class="span 1 offset3">
+				<%= gmaps({ "polygons"    => { "data" => @polygons    , "options" => { "fillColor" => "#000" } } }) %>
 
-<!-- Some java script for the google map being clickable -->
-<% content_for :scripts do %>
-<script type="text/javascript" charset="utf-8">
+				<!-- Some java script for the google map being clickable -->
+				<% content_for :scripts do %>
+					<script type="text/javascript" charset="utf-8">
 
-Gmaps.map.callback = function() 
-{
-    console.log("sup");
-    for (var i=0;i<Gmaps.map.polygons.length;i++){
-    Gmaps.map.polygons[i].infowindow = new google.maps.InfoWindow
-    ({
-        content: 'you clicked on region ' + i
-    });
+						Gmaps.map.callback = function() 
+							{
+							console.log("sup");
+							for (var i=0;i<Gmaps.map.polygons.length;i++){
+							Gmaps.map.polygons[i].infowindow = new google.maps.InfoWindow
+							({
+								content: 'you clicked on region ' + i
+							});
 
 
 function infowindow(num)
@@ -49,3 +47,4 @@ google.maps.event.addListener(Gmaps.map.serviceObject, "click", function(event) 
 <% end %>
 <!-- end google map -->
 	</div>
+</div>

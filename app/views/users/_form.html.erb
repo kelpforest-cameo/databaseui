@@ -1,17 +1,126 @@
 <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+	<% if @user.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:
+			</h2>
+			
+			<ul>
+				<% @user.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+	<div class="container">
+		<div class=span12">
+			<div class="row-fluid">
+				<div class="span4 offset2">
+					<div>
+						<br />
+						<%= f.label :first_name %>
+						<%= f.text_field :firstname, :autofocus => true %>
+					</div>
+				</div>
+					
+				<div class="span4">
+					<div>
+						<br />
+						<%= f.label :last_name %>
+						<%= f.text_field :lastname %>
+					</div>
+				</div> <!-- end span -->
+			</div> <!-- end row -->
+		
+			
+			<div class="row-fluid">
+				<div class="span4 offset2">
+					<div>
+						<%= f.label :username %>
+						<%= f.text_field :username %>
+					</div>
+				</div>
+					
+				<div class="span4">
+					<div>
+						<%= f.label :email %>
+						<%= f.email_field :email %>
+					</div>
+				</div>
+			</div> <!-- end row -->
+			
+			<% if @user.id == current_user.id %>
+				<div class="row-fluid">
+					<div class="span4 offset2">
+						<div> 
+							<br />
+							<%= f.label :password %>
+							<%= f.password_field :password %>
+						</div>
+					</div>
+					
+					<div class="span4">
+						<div>
+							<br />
+							<%= f.label :password_confirmation %>
+							<%= f.password_field :password_confirmation %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+			
+			<div class="row-fluid">
+				<div class="span4 offset2">
+					<div>
+						<%= f.label :project_id %>
+						<% if current_user.role == 'admin' %>
+							<%= options_from_collection_for_select(Project.all, :id, :name) %>
+							<%= collection_select(:user, :project_id, Project.all, :id, :name, :prompt => "Please select project") %>
+						
+						<% else %>
+							<input type="text" value=<%= current_project(@user.project_id).name %> readonly>
+						<% end %>
+					</div>
+						
+					<div>
+						<%= f.label :role %>
+						<% if current_user.role == 'admin' %>
+							<%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+						
+						<% elsif current_user.role =='lead' %>
+							<%= f.collection_select :role, User::LEAD, :to_s, :humanize %>
+						<% else %>
+							<input type="text" value=<%= @user.role %> readonly>
+						<% end %>
+					</div>
+				</div>
+				
+				<div class="span4">
+					<div>
+						<%= f.label :comment %>
+						<%= f.text_area :comment, :size => "15x5" %><br />
+					</div>
+				</div>
+			</div> <!-- end row -->
+			
+			<div class="row-fluid">
+				<div class="span4 offset2">
+					<%= f.label :approved %>
+					<% if can? :access, :rails_admin %>
+						<%= check_box 'user', 'approved', {}, 'true', 'false' %>
+					<% else %>
+						<input type="text" value=<%= @user.approved.to_s %> readonly>
+					<% end %>
+				</div>
+				
+				<div class="span4">
+				
+					<div class="actions">
+						<%= f.submit %>
+					</div>
+					
+				</div>
+			</div> <!-- end row -->
+		</div> <!-- end span12 -->
+	</div> <!-- end container -->
 <% end %>
