@@ -1,11 +1,10 @@
-<h1 style="text-align: center">Editing user</h1>
-	<div class="span5 offset3">
-		<h2 style="text-align: center">
-			<button type="button" data-toggle="collapse" data-target="#inst" class="btn btn-info btn-mini">
+<h1>Editing user</h1>
+	<button type="button" data-toggle="collapse" data-target="#inst" class="btn btn-info btn-mini">
 					Instructions
 			</button>
-		</h2>
+		
 		<div id="inst" style="text-align: center" class="collapse">
+			<div class="span10">
 			<div class="well">
 				<b>
 					Please fill out the information you would like to change below.
@@ -14,20 +13,5 @@
 		</div>
 	</div>
 </div>
-<div class="span5 offset3">
-	<div class="well">
-		<div class="container">
-		<%= render 'form' %>
-		<div class="row-fluid">
-			<div class="span4 ">
-				<button type="button" class="btn">
-					<%= link_to 'Show', @user %>
-				</button>
-		
-				<button type="button" class="btn">
-					<%= link_to 'Back', users_path %>
-				</button>
-			</div>
-		</div>
-	</div>
+<%= render 'edit_form' %>
 </div>
