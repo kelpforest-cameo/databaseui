@@ -12,88 +12,88 @@
 		</div>
 	<% end %>
 
-			<div class="row-fluid">
+			<div class="row">
 				<div class="span3">
 					<div>
 						<br />
 						<%= f.label :first_name %>
-						<%= f.text_field :firstname, :autofocus => true %>
+						<%= f.text_field :firstname, :autofocus => true, :class =>"span2" %>
 					</div>
 				</div>
 				
 				<div>
 					<br />
 					<%= f.label :last_name %>
-					<%= f.text_field :lastname %>
+					<%= f.text_field :lastname ,:class =>"span2" %>
 				</div>
 			</div> <!-- end row -->
 			
-			<div class="row-fluid">
+			<div class="row">
 				<div class="span3">
 					<div>
 						<%= f.label :username %>
-						<%= f.text_field :username %>
+						<%= f.text_field :username ,:class =>"span2" %>
 					</div>
 				</div>
 					
 				<div>
 					<%= f.label :email %>
-					<%= f.email_field :email %>
+					<%= f.email_field :email ,:class =>"span2" %>
 				</div>
 			</div> <!-- end row -->
 			
 			<% if @user.id == current_user.id %>
-				<div class="row-fluid">
+				<div class="row">
 					<div class="span3">
 						<div> 
 							<br />
 							<%= f.label :password %>
-							<%= f.password_field :password %>
+							<%= f.password_field :password, :class =>"span2" %>
 						</div>
 					</div>
 					
 					<div>
 						<br />
 						<%= f.label :password_confirmation %>
-						<%= f.password_field :password_confirmation %>
+						<%= f.password_field :password_confirmation, :class =>"span2" %>
 					</div>
 				</div> <!-- end row -->
 			<% end %>
 			
-			<div class="row-fluid">
+			<div class="row">
 				<div class="span3">
 					<div>
 						<%= f.label :project_id %>
 						<% if current_user.role == 'admin' %>
 							<%= options_from_collection_for_select(Project.all, :id, :name) %>
-							<%= collection_select(:user, :project_id, Project.all, :id, :name, :prompt => "Please select project") %>
+							<%= collection_select(:user, :project_id, Project.all, :id, :name, {:prompt => "Please select project"}, {:class =>"span2"}) %>
 						
 						<% else %>
-							<input type="text" value=<%= current_project(@user.project_id).name %> readonly>
+							<input type="text" class ="span2" value=<%= current_project(@user.project_id).name %> readonly>
 						<% end %>
 					</div>
 						
 					<div>
 						<%= f.label :role %>
 						<% if current_user.role == 'admin' %>
-							<%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+							<%= f.collection_select :role, User::ROLES, :to_s, :humanize,{:prompt => "Please Select Role"}, {:class =>"span2"} %>
 						
 						<% elsif current_user.role =='lead' %>
-							<%= f.collection_select :role, User::LEAD, :to_s, :humanize %>
+							<%= f.collection_select :role, User::LEAD, :to_s, :humanize,{:prompt => "Please select Role"},{ :class =>"span2"} %>
 						<% else %>
-							<input type="text" value=<%= @user.role %> readonly>
+							<input type="text" class="span2" value=<%= @user.role %> readonly>
 						<% end %>
 					</div>
 				</div>
 				
 					<div>
 						<%= f.label :comment %>
-						<%= f.text_area :comment, :size => "15x5" %><br />
+						<%= f.text_area :comment, :class => "span2", :rows => "5" %><br />
 					</div>
 			
 			</div> <!-- end row -->
 			
-			<div class="row-fluid">
+			<div class="row">
 				<div class="span3">
 					<%= f.label :approved %>
 					<% if can? :access, :rails_admin %>
