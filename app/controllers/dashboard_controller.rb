@@ -1,26 +1,29 @@
 class DashboardController < ApplicationController
  
  def index
+   @location_datum = LocationDatum.new
+ 
+ 
+ 
     ##For non approved user list
    @userlist = User.where(["project_id = ?",current_user.project_id] && ["approved = false"]).all
-   counter = 0
 
    ##For google maps
     #Code for generating polygons
 	counter = 0
 	#User can only see regions belonging to their project
-	if current_user.role == 'user'	
-		@polygons = Array.new(LocationData.where(["project_id = ?",current_user.project_id]).count) { Array.new }
-		LocationData.where(["project_id = ?",current_user.project_id]).find_each do |location|
-		location.latitude.each_index do |index|
-		@polygons[counter] << { :lat => location.latitude[index], :lng =>location.longitude[index]}
-			
-		end
+	if current_user.role == 'user' || 'lead'	
+		@polygons = Array.new(LocationDatum.where(["project_id = ?",current_user.project_id]).count) { Array.new }
+		LocationDatum.where(["project_id = ?",current_user.project_id]).find_each do |location|
+			location.latitude.each_index do |index|
+			@polygons[counter] << { :lat => location.latitude[index], :lng =>location.longitude[index]}
+				
+			end
 		counter += 1
 		end  
 	else
-		@polygons = Array.new(LocationData.count) { Array.new }
-		LocationData.find_each do |location|
+		@polygons = Array.new(LocationDatum.count) { Array.new }
+		LocationDatum.find_each do |location|
 			location.latitude.each_index do |index|
 			@polygons[counter] << { :lat => location.latitude[index], :lng =>location.longitude[index]}
 				

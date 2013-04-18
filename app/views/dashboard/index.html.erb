@@ -24,10 +24,12 @@
         	<li>
             <a href="#users" data-toggle="tab">Users</a>
         	</li>
+        <% end %>
+		<% if current_user.role == 'lead' %>
 			<li>
             <a href="#regions" data-toggle="tab">Regions</a>
-        	</li>
-        <% end %>
+			</li>
+		<% end %>
         <% if can? :access, :rails_admin %>
         	<li>
             <a href="admin">Database</a>
@@ -70,8 +72,8 @@ Gmaps.map.callback = function()
 		google.maps.event.addListener(Gmaps.map.polygons[i].serviceObject, "click", infowindow(i));
 	}
 		google.maps.event.addListener(Gmaps.map.serviceObject, "click", function(event) {
-		alert(event.latLng);
-		});
+		//alert(event.latLng);
+		}); 
 }
 
 </script>

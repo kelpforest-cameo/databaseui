@@ -8,5 +8,3 @@
 //= require_tree.
 
 $('.carousel').carousel()
-
-
