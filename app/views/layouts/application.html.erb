@@ -15,11 +15,10 @@
 
 	<body>
 		<div id="wrap">
-			<header class="navbar navbar-fixed-top">
+			<header class="navbar navbar-inverse navbar-fixed-top">
 				<nav class="navbar-inner">
-					<div class="container-fluid">
-						<ul class="nav pull-left">
-							<%= render 'layouts/navigation' %>
+					<div class="container">
+						<%= render 'layouts/navigation' %>
 						</ul>
 					</div>
 				</nav>
@@ -44,11 +43,13 @@
 		<%= yield :scripts %>
 	</body>
 	<!-- start footer -->
+	<div class="navbar navbar-fixed-bottom">
 	<div id="footer">
 		<div class="container">
 			<p class="text-info credit text-center">
 				This website is under development. We would greatly appreciate any feedback. Please post any issues on our Forum page: <u><%= link_to 'Forum', forums_path, :target => "_blank" %></u>
 			</p>
 		</div>
+	</div>
 	</div>
 </html>
