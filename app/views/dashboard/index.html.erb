@@ -45,10 +45,10 @@
 	<div class="tab-content">
         <div class="tab-pane active" id="navhome">
 		<!-- google map -->
-		<div class="span 4 offset1">
+		
 			<%= gmaps({
 			"polygons"    => { :data => @polygons}   , :map_options => {:libraries => ["drawing"], :fillColor => "#000" }, :last_map => false})%>
-    </div>
+    
 <!-- Some java script for the google map being clickable -->
 <% content_for :scripts do %>
 <script type="text/javascript" charset="utf-8">
