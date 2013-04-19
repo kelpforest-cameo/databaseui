@@ -1,5 +1,8 @@
 FoodWebBuilder::Application.routes.draw do
   
+  resources :forums
+
+
 	#For Auto Complete
   	resources :nodes do
   	get :autocomplete_node_working_name, :on => :collection
@@ -67,10 +70,8 @@ FoodWebBuilder::Application.routes.draw do
   
   # Default root to home/index.html.erb
   root :to =>"home#index"
-  	# Overriding the devise registrations controllrt
-	devise_for :users, :controllers => {:registrations => "registrations"} do
-		get "user/sign_up" => "registrations#new" , :as => :user_signup
-	end
+  # Overriding the devise registrations controller
+	devise_for :users, :controllers => {:registrations => "registrations"}
   resources :users
   
   # add some matching to make coding easier
@@ -78,5 +79,8 @@ FoodWebBuilder::Application.routes.draw do
   match 'help' => 'home#help'
   match 'visualization' => 'visualization#index'
   match 'dataentry' => 'dashboard#dataentry'
+	match 'edit_user_path' => 'users_registrations#edit'
+	match 'home' => 'home#index'
+	match 'dashboard' => 'dashboard#index'
 	
 end

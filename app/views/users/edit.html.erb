@@ -1,6 +1,17 @@
 <h1>Editing user</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+	<button type="button" data-toggle="collapse" data-target="#inst" class="btn btn-info btn-mini">
+					Instructions
+			</button>
+		
+		<div id="inst" style="text-align: center" class="collapse">
+			<div class="span10">
+			<div class="well">
+				<b>
+					Please fill out the information you would like to change below.
+				</b>
+			</div>
+		</div>
+	</div>
+</div>
+<%= render 'edit_form' %>
+</div>

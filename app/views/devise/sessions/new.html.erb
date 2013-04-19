@@ -12,36 +12,9 @@
 			<% if devise_mapping.rememberable? -%>
 				<div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
 			<% end -%>
-			<div><%= f.submit "Sign in" %></div>
+				<button type="submit" class="btn btn-inverse">Sign in</button>
 		<% end %>
 		<%= render "devise/shared/links" %>
-		<h5> The default account information for testing different roles </h5>
-			<table class="table table-striped">
-				<tr>
-  				<th>Username</th>
-  				<th>E-Mail</th>
-  				<th>Password</th>
-  			</tr>
-  			<tr>
-  				<td>admin</td>
-  				<td>admin@foodwebbuilder.com</td>
-  				<td>12345678</td>
-  			</tr>
-  			<tr>
-  				<td>lead</td>
-  				<td>lead@foodwebbuilder.com</td>
-  				<td>12345678</td>
-  			</tr>
-  			<tr>
-  				<td>moderator</td>
-  				<td>mod@foodwebbuilder.com</td>
-  				<td>12345678</td>
-  			</tr>
-  			<tr>
-  				<td>user</td>
-  				<td>user@foodwebbuilder.com</td>
-  				<td>12345678</td>
-  			</tr>
-  		</table>
+		
 	</div>
 </div>

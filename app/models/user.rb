@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   rolify
   # admin = super user, moderator = scientist user = data entry
   ROLES = %w[user moderator lead admin]
+  LEAD = %w[user moderator]
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -15,7 +16,8 @@ class User < ActiveRecord::Base
   attr_accessor :login
   
   #validating uniqueness of username
-  validates :username, :uniqueness => true
+  validates :username, :uniqueness => true,
+  										 :presence => true
   validates :project_id, :presence => true
    attr_accessible :email, :password, :password_confirmation, :remember_me , :role , :approved , :username, :firstname, :lastname, :project_id, :comment
   # attr_accessible :title, :body

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 201309260500048) do
+ActiveRecord::Schema.define(:version => 201309260500053) do
 
   create_table "author_cites", :force => true do |t|
     t.integer  "author_id",                      :null => false
@@ -109,6 +109,14 @@ ActiveRecord::Schema.define(:version => 201309260500048) do
     t.datetime "updated_at",                    :null => false
   end
 
+  create_table "forums", :force => true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.text     "comment"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "functional_groups", :force => true do |t|
     t.string   "name",       :default => "",    :null => false
     t.datetime "created_at",                    :null => false
@@ -124,12 +132,10 @@ ActiveRecord::Schema.define(:version => 201309260500048) do
     t.text    "longitude"
     t.integer "location_id"
     t.string  "name"
-
     t.integer "user_id",                        :null => false
     t.integer "project_id",                     :null => false
     t.boolean "mod",         :default => true
     t.boolean "approved",    :default => false
-
   end
 
   create_table "locations", :force => true do |t|

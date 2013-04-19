@@ -6,22 +6,20 @@
 		<title><%= content_for?(:title) ? yield(:title) : "Food Web Builder" %></title>
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<%= javascript_include_tag 'jquery-1.9.1.js', 'jquery-ui-1.10.2.custom.min.js', 'autocomplete-rails.js'  %>
-        <%= stylesheet_link_tag 'jquery-ui-1.10.2.custom.css' %>
 		<%= stylesheet_link_tag "application", :media => "all" %>
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
 		<%= yield(:head) %>
-		
+
+
 	</head>
 
 	<body>
 		<div id="wrap">
-			<header class="navbar navbar-fixed-top">
+			<header class="navbar navbar-inverse navbar-fixed-top">
 				<nav class="navbar-inner">
-					<div class="container-fluid">
-						<ul class="nav pull-left">
-							<%= render 'layouts/navigation' %>
+					<div class="container">
+						<%= render 'layouts/navigation' %>
 						</ul>
 					</div>
 				</nav>
@@ -29,9 +27,9 @@
 
 			<!-- Main container -->
 			<div id="main" role="main">
-				<div class="container-fluid" style="margin-top:40px">
+				<div class="container" style="margin-top:40px">
 					<div class="content">
-						<div class="row-fluid">
+						<div class="row">
 							<div class="span12">
 								<%= render 'layouts/messages' %>
 								<%= yield %>
@@ -46,11 +44,13 @@
 		<%= yield :scripts %>
 	</body>
 	<!-- start footer -->
+	<div class="navbar navbar-fixed-bottom">
 	<div id="footer">
-		<div class="container-fluid">
+		<div class="container">
 			<p class="text-info credit text-center">
-				Some footer place holder text here...
+				This website is under development. We would greatly appreciate any feedback. Please post any issues on our Forum page: <u><%= link_to 'Forum', forums_path, :target => "_blank" %></u>
 			</p>
 		</div>
+	</div>
 	</div>
 </html>

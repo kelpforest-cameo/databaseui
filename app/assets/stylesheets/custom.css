@@ -40,7 +40,7 @@
 
 .navbar .brand:hover {
     text-decoration: none;
-    text-shadow: 0px 0px 3px #27CBE6;
+    text-shadow: 0px 0px 8px #27CBE6;
 }
 
 body {
@@ -94,3 +94,11 @@ li > ol {
 .spacer{
 	padding-left: 10px;
 }
+
+.form-actions div {
+	display:inline;
+}
+.edit-account-title{
+	margin-left: 30px;
+}
+

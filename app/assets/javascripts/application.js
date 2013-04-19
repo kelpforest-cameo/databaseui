@@ -111,12 +111,24 @@ $(document).ready(function(){
 		Gmaps.second_map.callback();
 	});
 	
+
 	$(".modal").css({
 		'width' : 300,
 		'height' : 'auto',
 		'overflow' : 'auto'
 		
 		});
+
+		$('#myCarousel').bind('slide', function () {
+	    console.log("test1");
+		Gmaps.map.initialize();
+		Gmaps.map.create_polygons();
+		Gmaps.map.adjustMapToBounds();
+		google.maps.event.trigger(Gmaps.map, 'resize');
+		Gmaps.map.callback();
+	 });
 	
 });
+
+
 
