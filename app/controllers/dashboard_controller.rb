@@ -3,10 +3,18 @@ class DashboardController < ApplicationController
  def index
  		## For all users
 		@users = User.all
- 
     ##For non approved user list
    @userlist = User.where(["project_id = ?",current_user.project_id] && ["approved = false"]).all
    counter = 0
+		
+		  @author = Author.new
+  @authorlist = Author.all
+  @citation = Citation.new
+  @citationlist = Citation.all
+  @node = Node.new
+  @non_iti = NonIti.new
+  @nodelist = Node.all
+		
 		
 		#Projects
 		@project = Project.new

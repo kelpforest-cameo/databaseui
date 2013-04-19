@@ -9,12 +9,11 @@
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
       
-      	<!-- commented this out for now not displaying correctly
         <div class="item">
           		<%= gmaps({ "polygons" => { "data" => @polygons, "options" => { "fillColor" => "#000" } } }) %> 
         </div>
         
-        -->
+   
         
          <div class="item active">
           <img src="assets/otter.jpg" style="height: 400px; width:770px" alt="">
@@ -41,8 +40,8 @@
         </div>
       </div>
 
-      <a class="left carousel-control" href="http://twitter.github.com/bootstrap/examples/carousel.html#myCarousel" data-slide="prev">‹</a>
-      <a class="right carousel-control" href="http://twitter.github.com/bootstrap/examples/carousel.html#myCarousel" data-slide="next">›</a>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
 </div>
 <!-- /.carousel -->
 		

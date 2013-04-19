@@ -10,14 +10,16 @@
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span2">
-
+		<div class="tabbale">
     <ul class="nav nav-pills nav-stacked">
         <li class="active">
-            <a href="#navhome" data-toggle="tab">Home</a>
+            <a href="#navmap" data-toggle="tab">Map</a>
         </li>
+        
         <li>
             <a href="#nodes" data-toggle="tab">Nodes</a>
         </li>
+        
         <li>
             <a href="#cits" data-toggle="tab">Citations</a>
         </li>
@@ -46,45 +48,31 @@
         <% end %>
     </ul>
    </div>
+  </div>
 	<div class="span10">
-	<div class="tab-content">
-        <div class="tab-pane active" id="navhome">
-		<!-- google map -->
-		
-			<%= gmaps({
-			"polygons"    => { :data => @polygons}   , :map_options => {:libraries => ["drawing"], :fillColor => "#000" }, :last_map => false})%>
+		<div class="tab-content">
+			<div class="tab-pane active" id="navmap">
+				<!-- google map -->
+					<%= gmaps({"polygons"    => { :data => @polygons} , :map_options => {:libraries => ["drawing"], :fillColor => "#000" }, :last_map => false})%>
     
-<!-- Some java script for the google map being clickable -->
-<% content_for :scripts do %>
-<script type="text/javascript" charset="utf-8">
+				<!-- Some java script for the google map being clickable -->
+					<% content_for :scripts do %>
+						<script type="text/javascript" charset="utf-8">
+							Gmaps.map.callback = function() {
+								for (var i=0;i<Gmaps.map.polygons.length;i++){
+								Gmaps.map.polygons[i].infowindow = new google.maps.InfoWindow
+								({ content: 'you clicked on region ' + i });
 
-Gmaps.map.callback = function() 
-{
-    for (var i=0;i<Gmaps.map.polygons.length;i++){
-    Gmaps.map.polygons[i].infowindow = new google.maps.InfoWindow
-    ({
-        content: 'you clicked on region ' + i
-    });
-
-
-	function infowindow(num)
-	{
-		 return function (event) 
-		{
-				
-				console.log("the click event fired");
-				infowindow =  Gmaps.map.polygons[num].infowindow 
-				infowindow.setPosition(event.latLng);
-				infowindow.open(Gmaps.map.map);
-
-		};
-	}(i);
-		google.maps.event.addListener(Gmaps.map.polygons[i].serviceObject, "click", infowindow(i));
-	}
-		google.maps.event.addListener(Gmaps.map.serviceObject, "click", function(event) {
-		alert(event.latLng);
-		});
-}
+							function infowindow(num){
+								return function (event){
+									console.log("the click event fired");
+									infowindow =  Gmaps.map.polygons[num].infowindow 
+									infowindow.setPosition(event.latLng);
+									infowindow.open(Gmaps.map.map);} ; }(i);
+			
+				google.maps.event.addListener(Gmaps.map.polygons[i].serviceObject, "click", infowindow(i)); }
+				google.maps.event.addListener(Gmaps.map.serviceObject, "click", function(event) {
+					alert(event.latLng); }); }
 
 </script>
 <!-- end javascript -->
@@ -92,13 +80,13 @@ Gmaps.map.callback = function()
 
         </div>
         <div class="tab-pane" id="nodes">
-         
+          <%= render 'dashboard/denode' %>
         </div>
         <div class="tab-pane" id="cits">
-            
+           <%= render 'dashboard/decitations' %>
         </div>
         <div class="tab-pane" id="inters">
-            
+           <%= render 'dashboard/deinteractions' %>
         </div>
         
         <div class="tab-pane" id="userstab">
@@ -106,16 +94,13 @@ Gmaps.map.callback = function()
         </div>
         
 				<div class ="tab-pane" id="regions">
-					
-        		<%= render :partial => 'region' %>
-       		
+      		<%= render :partial => 'region' %>
 				</div>
 				
 				<div class="tab-pane" id="projects">
-				
-						<%= render :partial => 'projects' %>
-					
+					<%= render :partial => 'projects' %>
 				</div>
+				
     </div>
 </div>
 
