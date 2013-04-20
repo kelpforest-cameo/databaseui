@@ -82,8 +82,23 @@
         	</li>
         	<% end%>
         	<% if current_user.role == 'admin' %>
-        		<li>
-        			<a href="#projects" data-toggle="tab">Projects</a>
+        		<li class="dropdown">
+							<a class="dropdown-toggle"
+								data-toggle="dropdown"
+								href="dashboard"><b>
+								Projects</b>
+								<b class="caret"></b>
+							</a>
+							
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#newproject" data-toggle="tab"> New Project </a>
+								</li>
+								
+								<li>
+									<a href="#listprojects" data-toggle="tab"> List Projects </a>
+								</li>
+							</ul>
         		</li>
         	<% end %>
         	<li>
@@ -144,7 +159,15 @@
 				<div class ="tab-pane" id="regions">
       		<%= render :partial => 'region' %>
 				</div>
-
+				
+				<div class="tab-pane" id="newproject">
+					<%= render "dashboard/newproject", :project => @project%>
+				</div>
+				
+				<div class="tab-pane" id="listprojects">
+					<%= render "/dashboard/listprojects", :project =>@projectlist %>
+				</div>
+				
 				<div class="tab-pane" id="projects">
 					<%= render :partial => 'projects' %>
 				</div>

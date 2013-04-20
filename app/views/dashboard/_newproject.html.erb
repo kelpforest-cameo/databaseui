@@ -1,3 +1,28 @@
+<legend>
+	<h3>
+		New Project
+	</h3>
+</legend>
+
+<div class="well">
+	<h3>Instructions
+		<button type="button" data-toggle="collapse" 
+			data-target="#projectinfo" class="btn btn-info btn-mini">
+			Collapse/Expand
+		</button>
+	</h3>
+		
+	<div id="projectinfo" class="collapse">
+		<p>
+			Here we can create new projects for Project Leader
+		</p>
+
+		<p>
+			We use the project name stating in the comments of user sign up
+		</p>
+	</div>
+</div>
+
 <%= form_for(@project) do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
