@@ -1,0 +1,54 @@
+<legend>
+	<h2>Add New Author</h2>
+</legend>
+
+<div class="well">
+	<h3>Instructions
+		<button type="button" data-toggle="collapse" data-target="#newauthorinfo" class="btn btn-info btn-mini">
+			Collapse/Expand
+		</button>
+	</h3>
+
+	<div id="newauthorinfo" class="collapse">
+		<p>
+			Enter a new author, first name and last, into the database.
+			Once entered authors can be searched and cited on the
+			<em>New Citation</em> page.
+		</p>
+	</div> <!-- end newauthorinfo -->
+</div> <!-- end well -->
+
+<fieldset>
+	<%= form_for(@author) do |f| %>
+		<% if @author.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@author.errors.count, "error") %> prohibited this author from being saved:</h2>
+
+				<ul>
+					<% @author.errors.full_messages.each do |msg| %>
+						<li>
+							<%= msg %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %> <!-- end errors -->
+
+		<!-- Start form fields -->
+		<div>
+			<%= f.label :first_name %>
+			<%= f.text_field :first_name %>
+		</div>
+
+		<div>
+			<%= f.label :last_name %>
+			<%= f.text_field :last_name %>
+		</div>
+
+		<div>
+			<%= f.submit  :class => "btn btn-inverse"%>
+		</div>
+		
+	<% end %> <!-- End Form -->
+</fieldset>
+
