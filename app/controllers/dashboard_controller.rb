@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
  		## For all users
 		@users = User.all
     ##For non approved user list
-   @userlist = User.where(["project_id = ?",current_user.project_id] && ["approved = false"]).all
+  @userlist = User.where(["project_id = ?",current_user.project_id] && ["approved = false"]).all
  
   @location_datum = LocationDatum.new
   @author = Author.new

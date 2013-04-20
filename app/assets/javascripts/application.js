@@ -119,7 +119,7 @@ $(document).ready(function(){
 		
 		});
 
-		$('#myCarousel').bind('slide', function () {
+	$('#myCarousel').bind('slid', function () {
 	    console.log("test1");
 		Gmaps.map.initialize();
 		Gmaps.map.create_polygons();
@@ -154,7 +154,7 @@ $(document).ready(function(){
 		
     });
 	
-	//for searching by itis id (TSN)
+	//for searching by itis id or TSN
 	$('#node_working_name').typeahead(
 	{
 		source: function(query,process) 
