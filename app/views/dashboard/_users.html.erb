@@ -15,10 +15,11 @@
 	</div>
 	
 	<div class="tab-pane" id="listusers">
-		<%= render :partial => 'listusers', :user => @users%>
+		<%= render 'listusers', :locals => {:users => @users}%>
 	</div>
 	
 	<div class="tab-pane" id="waiting">
-		<%= render :partial => 'listusers', :user => @userlist %>
+		<% @users= User.where(["project_id = ?",current_user.project_id] && ["approved = false"]).all %>
+		<%= render 'listusers', :locals => {:users => @users} %>
 	</div>
 </div>

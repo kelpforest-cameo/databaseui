@@ -1,16 +1,15 @@
 class DashboardController < ApplicationController
  
- def index
- 		## For all users
+	def index
+		## For all users
 		@users = User.all
     ##For non approved user list
-   @userlist = User.where(["project_id = ?",current_user.project_id] && ["approved = false"]).all
- 
+		@userlist = User.where(["project_id = ?",current_user.project_id] && ["approved = false"]).all
+
   @location_datum = LocationDatum.new
   @author = Author.new
   @authorlist = Author.all
   @citation = Citation.new
-  @citationlist = Citation.all
   @node = Node.new
   @non_iti = NonIti.new
   @nodelist = Node.all
@@ -18,7 +17,6 @@ class DashboardController < ApplicationController
 
 		#Projects
 		@project = Project.new
-		@projectlist = Project.all
    ##For google maps
     #Code for generating polygons
 	counter = 0
