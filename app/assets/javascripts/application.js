@@ -180,7 +180,17 @@ $(document).ready(function(){
 		}
 		
     });
-});
+    
+    // For generating form based on selection for citations
+    $("format_selector select").change(function(){
+    	if($formats_select).val() == "Website"){
+    		$("#website_label").show();
+    	}
+    	else
+    		$("#website_label").hide();
+    		});
+});		
+				
 
 
 

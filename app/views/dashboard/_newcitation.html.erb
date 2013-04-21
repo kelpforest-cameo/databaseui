@@ -37,7 +37,7 @@
       </ul>
     </div>
   <% end %>
-
+<fieldset>
   <div class="span8">   
     <%= f.label :abstract %>
       <%= f.text_area :abstract, :class=>"span8" , :rows => "5" %>
@@ -54,33 +54,36 @@
       </div>
       
       <div class="span4 offset1">
-      	<%=f.label :format %>
+        <%= f.label :year %>
+        <%= f.number_field :year %>
+      </div>
+      
+
+    	  <div class="span4">
+    	  	<div class="field" id="format_selector">
+    	  	<%=f.label :format %>
       		<%= f.collection_select :format, 
-      		Citation::FORMATS, :to_s, :humanize,{:prompt => "Select Format"}%>
+      			Citation::FORMATS, :to_s, :humanize,{:prompt => "Select Format"} ,
+      			:id => "formats_select" %>
+  	    </div>
+				</div>
+      <div class="span4 offset1">
+      	<div class="field" id="website_label">
+      		<%= f.label :website %>
+      	</div>
+      	<%= f.label :format_title %>
+        <%= f.text_field :format_title %>
       </div>
       
-      <div class="span4">
-      	<% if :format == "website" %>
-      		<%= f.label :web_site %>
-      	<% else %>
-      		<%= f.label :format_title %>
-      	<%end%>
-          
-          <%= f.text_field :format_title %>
-      </div>
-      
-        <div class="span4 offset1">
+        <div class="span4">
         <%= f.label :publisher %>
         <%= f.text_field :publisher %>
       </div>      
-      <div class="span4">
+      <div class="span4 offset1">
         <%= f.label :volume %>
         <%= f.number_field :volume %>
       </div>
-      <div class="span4 offset1">
-        <%= f.label :year %>
-        <%= f.number_field :year %>
-      </div>      
+  
       <div class="span4">
         <%= f.label :pages %>
         <%= f.text_field :pages %>
@@ -99,5 +102,6 @@
       Reset
     </button>
   </div> 
+  </fieldset>
   <% end %>
 
