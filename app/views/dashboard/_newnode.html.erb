@@ -4,6 +4,7 @@
 	</h3>
 </legend>
 
+<div class="span9">
 <div class="well">
 	<h3>Instructions
 		<button type="button" data-toggle="collapse" data-target="#newnodeinfo" class="btn btn-info btn-mini">
@@ -19,6 +20,7 @@
 			information.
 		</p>
 	</div>
+</div>
 </div>
 
 <%= form_for(@node) do |f| %>
@@ -70,10 +72,10 @@
 		<%= f.check_box :is_assemblage %>
 	</div>
 	
-	<div class="span10">
+	<div class="span9">
 		<div class="well">
 			<div class="actions">
-				<%= f.submit :class=>"btn btn-inverse" %>
+				<%= f.submit :class=>"btn btn-inverse offset2" %>
 				<button type="reset" class="btn btn-inverse">Reset</button>
 			</div>
 		</div>

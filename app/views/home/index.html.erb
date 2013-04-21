@@ -1,8 +1,16 @@
 
 <!-- google map -->
+<div class = "span12">
+<h1 style="text-align: center"><b>A place to gather your information </b> </h1>
+</div>
 <div class="container">
-<div class="span8 offset2">
-			<h1 style="text-align: center"><b>A Place to gather your information </b> </h1>
+<!-- Sites Stats ========================================== -->
+<div class="span2">
+	<div style="border: 3px groove #666">
+	<%= render 'projectstat'%>
+	</div>
+</div>
+<div class="span8">
 		
 		 <!-- Carousel ================================================== -->
 
@@ -10,33 +18,116 @@
       <div class="carousel-inner">
       
         <div class="item">
-          		<%= gmaps({ "polygons" => { "data" => @polygons, "options" => { "fillColor" => "#000" } } }) %> 
+          <%= gmaps(
+          	{ "polygons" => 
+          	{ "data" => @polygons, 
+          	"options" => { "fillColor" => "#000" } } }) %> 
+           <div class="container">
+          	<div class="carousel-caption" align="center">
+          		<h4> See the regions with on-going projects </h4>
+          	</div>
+          </div>
         </div>
-        
-   
         
          <div class="item active">
           <img src="assets/otter.jpg" style="height: 400px; width:770px" alt="">
+          <div class="container">
+          	<div class="carousel-caption" align="center">
+          		<h4> Welcome to Food Web Builder </h4>
+          	</div>
+          </div>
         </div>
         
         <div class="item">
           <img src="assets/bird_fish.jpg" style="height: 400px; width:770px" alt="">
+          <div class="container">
+          	<div class="carousel-caption" align="center">
+          		<h4> This is a useful application for scientist to document
+          			parasitic and trophic interactions involved in food webs </h4>
+          	</div>
+          </div>
         </div>
         
          <div class="item">
           <img src="assets/beautiful_birds.jpg" style="height: 400px; width:770px" alt="">
+          <div class="container">
+          	<div class="carousel-caption" align="center">
+          		<h4> Our database uses the ITIS database for taxonomy information </h4>
+          	</div>
+          </div>
         </div>
         
          <div class="item">
           <img src="assets/starfish.jpg" style="height: 400px; width:770px" alt="">
+          <div class="container">
+          	<div class="carousel-caption" align="center">
+          		<h4> Scientist can export their data to a csv file for ease of use
+          			with other applications </h4>
+          	</div>
+          </div>
+          
         </div>
         
          <div class="item">
           <img src="assets/turtle_butterfly.jpg" style="height: 400px; width:770px" alt="">
+          <div class="container">
+          	<div class="carousel-caption" align="center">
+          		<h4> The data is stored in using a MySQL database </h4>
+          	</div>
+          </div>
         </div>
         
          <div class="item">
           <img src="assets/catipiller_snail.jpg" style="height: 400px; width:770px" alt="">
+          <div class="container">
+          	<div class="carousel-caption" align="center">
+          		<h4> Thanks to this application scientist can now easily gather data
+          		 and generate food web diagrams for visualization of the food chain </h4>
+          	</div>
+          </div>
+        </div>
+        
+        <div class="item">
+          <img src="assets/butterflies.jpg" style="height: 400px; width:770px" alt="">
+          <div class="container">
+          	<div class="carousel-caption" align="center">
+          		<h4> All information in our database is validated by scientist
+          		observations or citations from publications </h4>
+          	</div>
+          </div>
+        </div>
+        
+        <div class="item">
+          <img src="assets/clown_fish.jpg" style="height: 400px; width:770px" alt="">
+                   <div class="container">
+          	<div class="carousel-caption" align="center">
+          		<h4> If you have any other questions please refer to our help found
+          		 in the navigation bar above contact the development group</h4>
+          	</div>
+          </div>
+        </div>
+        
+        <div class="item">
+          <img src="assets/otter1.jpg" style="height: 400px; width:770px" alt="">
+                   <div class="container">
+          	<div class="carousel-caption" align="center">
+          		<h4> This is an open source Ruby on Rails application find the
+          			find the source code on github here  </h4>
+          		<a class="btn btn-small btn-info" 
+          		href="https://github.com/jjliang/databaseui" target="_blank">Source Code </a>
+          	</div>
+          </div>
+        </div>
+        
+        <div class="item">
+          <img src="assets/panda.jpg" style="height: 400px; width:770px" alt="">
+                   <div class="container">
+          	<div class="carousel-caption" align="center">
+          		<h4> Developed by: <br \> 
+          		Luke Inglis, Yu-Jer Lin, John Moschella, Kevin O'Brien, 
+          		Silviya Petorva, Daisuke Tanaka and John Liang  </h4>
+          	</div>
+          </div>
         </div>
       </div>
 
@@ -44,8 +135,29 @@
       <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
 </div>
 <!-- /.carousel -->
-		
 
+	<div class="row">
+		<div class="span4">
+			<h4 style="text-align: center"> ITIS Database </h4>
+			<a href="http://www.itis.gov/" target="_blank"> 
+				<img class="img-circle offset1" data-src="holder.js/140x140" 
+				alt="140x140" style="width: 140px; height: 140px;" src="assets/ITIS.gif">
+			</a>
+			<p style="text-align: center"> 
+			A US Goverment supported database of taxonomical information </p>
+		</div>
+
+		<div class="span4">
+			<h4 style="text-align: center"> Source Control GitHub </h4>
+			<a href="https://github.com/jjliang/databaseui" target="_blank"> 
+				<img class="img-circle offset1" data-src="holder.js/140x140" 
+				alt="140x140" style="width: 140px; height: 140px;" src="assets/github.png">
+			</a>
+			<p style="text-align: center"> 
+			The source code can be found on github </p>
+		</div>
+	</div>
+	
 			<!-- Some java script for the google map being clickable -->
 			<% content_for :scripts do %>
 				<script type="text/javascript" charset="utf-8">
