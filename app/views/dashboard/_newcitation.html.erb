@@ -52,6 +52,23 @@
         <%= f.label :document %>
         <%= f.text_field :document %>
       </div>
+      
+      <div class="span4 offset1">
+      	<%=f.label :format %>
+      		<%= f.collection_select :format, 
+      		Citation::FORMATS, :to_s, :humanize,{:prompt => "Select Format"}%>
+      </div>
+      
+      <div class="span4">
+      	<% if :format == "website" %>
+      		<%= f.label :web_site %>
+      	<% else %>
+      		<%= f.label :format_title %>
+      	<%end%>
+          
+          <%= f.text_field :format_title %>
+      </div>
+      
         <div class="span4 offset1">
         <%= f.label :publisher %>
         <%= f.text_field :publisher %>
@@ -69,11 +86,8 @@
         <%= f.text_field :pages %>
       </div>
 
-      <div class="span4 offset1">
-          <%= f.label :format_title %>
-          <%= f.text_field :format_title %>
-      </div>
-    <div class="span4">
+      
+    <div class="span4 offset1">
         <%= f.label :number %>
         <%= f.number_field :number %>
     </div>

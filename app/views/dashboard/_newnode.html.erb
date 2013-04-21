@@ -48,7 +48,8 @@
 
 	<div class="span4">
 		<%= f.label :functional_group_id %>
-		<%= f.number_field :functional_group_id %>
+		<%= collection_select(:node, :functional_group_id,
+			FunctionalGroup.all, :id, :name, :prompt => "Select Functional Group") %>
 	</div>
 	
 	<div class="span4">
