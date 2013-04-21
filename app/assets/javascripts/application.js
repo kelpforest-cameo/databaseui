@@ -174,7 +174,7 @@ $(document).ready(function(){
     
     // For generating form based on selection for citations
     $("format_selector select").change(function(){
-    	if($formats_select).val() == "Website"){
+    	if($(this).val() == "Website"){
     		$("#website_label").show();
     	}
     	else

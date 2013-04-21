@@ -63,8 +63,7 @@
     	  	<div class="field" id="format_selector">
     	  	<%=f.label :format %>
       		<%= f.collection_select :format, 
-      			Citation::FORMATS, :to_s, :humanize,{:prompt => "Select Format"} ,
-      			:id => "formats_select" %>
+      			Citation::FORMATS, :to_s, :humanize,{:prompt => "Select Format"}%>
   	    </div>
 				</div>
       <div class="span4 offset1">
