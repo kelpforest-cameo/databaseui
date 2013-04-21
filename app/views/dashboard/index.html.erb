@@ -10,19 +10,67 @@
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span2">
-		<div class="tabbale">
-    <ul class="nav nav-pills nav-stacked">
-        <li class="active">
-            <a href="#navmap" data-toggle="tab">Map</a>
-        </li>
-        
-        <li>
-            <a href="#nodes" data-toggle="tab">Nodes</a>
-        </li>
-        
-        <li>
-            <a href="#cits" data-toggle="tab">Citations</a>
-        </li>
+			<div class="tabbale">
+				<ul class="nav nav-pills nav-stacked">
+					
+					<li class="active">
+						<a href="#navmap" data-toggle="tab"><b>Map</B></a>
+					</li>
+					
+					<li class="dropdown">
+						<a class="dropdown-toggle"
+							data-toggle="dropdown"
+							href="dashboard"><b>
+							Nodes</b>
+							<b class="caret"></b>
+						</a>
+						
+						<ul class="dropdown-menu">
+						
+							<li>
+								<a href="#newnode" data-toggle="tab">New Node</a>
+							</li>
+							
+							<li>
+								<a href="#nonitis" data-toggle="tab">New non-Itis Node</a>
+							</li>
+							
+							<li>
+								<a href="#searchnode" data-toggle="tab">Search Nodes</a>
+							</li>
+							
+							<li>
+								<a href="#nodelist" data-toggle="tab">List Nodes</a>
+							</li>
+						</ul>
+						
+						<li class="dropdown">
+							<a class="dropdown-toggle"
+								data-toggle="dropdown"
+								href="dashboard"><b>
+								Citations</b>
+								<b class="caret"></b>
+							</a>
+							
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#newaut" data-toggle="tab">New Author</a>
+								</li>
+								
+								<li>
+									<a href="#authorlist" data-toggle="tab"> List Authors</a>
+								</li>
+								
+								<li>
+									<a href="#newcite" data-toggle="tab">New Citation</a>
+								</li>
+
+								<li>
+									<a href="#citelist" data-toggle="tab">List Citations</a>
+								</li>
+							</ul>
+						</li>
+
         <li>
             <a href="#inters" data-toggle="tab">Interactions</a>
         </li>
@@ -34,8 +82,23 @@
         	</li>
         	<% end%>
         	<% if current_user.role == 'admin' %>
-        		<li>
-        			<a href="#projects" data-toggle="tab">Projects</a>
+        		<li class="dropdown">
+							<a class="dropdown-toggle"
+								data-toggle="dropdown"
+								href="dashboard"><b>
+								Projects</b>
+								<b class="caret"></b>
+							</a>
+							
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#newproject" data-toggle="tab"> New Project </a>
+								</li>
+								
+								<li>
+									<a href="#listprojects" data-toggle="tab"> List Projects </a>
+								</li>
+							</ul>
         		</li>
         	<% end %>
         	<li>
@@ -51,7 +114,62 @@
   </div>
 	<div class="span10">
 		<div class="tab-content">
-			<div class="tab-pane active" id="navmap">
+			
+			<div class="tab-pane" id="newnode">
+				<%= render 'dashboard/newnode', :node => @node %>
+			</div>
+			
+			<div class="tab-pane" id="nonitis">
+				<%= render 'dashboard/newnonitis', :non_iti =>@non_iti %>
+			</div>
+			
+			<div class="tab-pane" id="searchnode">
+				<%= render 'dashboard/searchnodes' %>
+			</div>
+			
+			<div class="tab-pane" id="nodelist">
+				<%= render 'dashboard/listnodes' %>
+			</div>
+			
+        
+        <div class="tab-pane" id="newaut">
+        	<%= render 'dashboard/newauthor', :author => @author %>
+        </div>
+        
+        <div class="tab-pane" id="authorlist">
+        	<%= render 'dashboard/listauthor', :authors => @authorlist %>
+        </div>
+        
+        <div class="tab-pane" id="newcite">
+        	<%= render 'dashboard/newcitation', :citation => @citation %>
+        </div>
+        
+        <div class="tab-pane" id="citelist">
+        	<%= render 'dashboard/listcitation.html.erb', :citations => @citationlists %>
+        </div>
+        
+        <div class="tab-pane" id="inters">
+           <%= render 'dashboard/newinteraction' %>
+        </div>
+        
+        <div class="tab-pane" id="userstab">
+        	<%= render :partial => 'users' %>
+        </div>
+        
+				<div class ="tab-pane" id="regions">
+      		<%= render :partial => 'region' %>
+				</div>
+				
+				<div class="tab-pane" id="newproject">
+					<%= render "dashboard/newproject", :project => @project%>
+				</div>
+				
+				<div class="tab-pane" id="listprojects">
+					<%= render "/dashboard/listprojects", :project =>@projectlist %>
+				</div>
+
+				
+				<div class="tab-pane active" id="navmap">
 				<!-- google map -->
 					<%= gmaps({"polygons"    => { :data => @polygons} , :map_options => {:libraries => ["drawing"], :fillColor => "#000" }, :last_map => false})%>
     
@@ -79,27 +197,5 @@
 <% end %>
 
         </div>
-        <div class="tab-pane" id="nodes">
-          <%= render 'dashboard/denode' %>
-        </div>
-        <div class="tab-pane" id="cits">
-           <%= render 'dashboard/decitations' %>
-        </div>
-        <div class="tab-pane" id="inters">
-           <%= render 'dashboard/deinteractions' %>
-        </div>
-        
-        <div class="tab-pane" id="userstab">
-        	<%= render :partial => 'users' %>
-        </div>
-        
-				<div class ="tab-pane" id="regions">
-      		<%= render :partial => 'region' %>
-				</div>
-
-				<div class="tab-pane" id="projects">
-					<%= render :partial => 'projects' %>
-				</div>
-
     </div>
 </div>

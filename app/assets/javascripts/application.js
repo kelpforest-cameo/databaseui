@@ -119,7 +119,8 @@ $(document).ready(function(){
 		
 		});
 
-	$('#myCarousel').bind('slid', function () {
+
+		$('#myCarousel').bind('slid', function () {
 	    console.log("test1");
 		Gmaps.map.initialize();
 		Gmaps.map.create_polygons();

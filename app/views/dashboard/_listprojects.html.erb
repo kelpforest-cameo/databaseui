@@ -1,4 +1,20 @@
-<h1>Listing projects</h1>
+<legend>
+	<h3>Listing projects</h3>
+</legend>
+
+<div class="well">
+	<h3>Instructions
+		<button type="button" data-toggle="collapse" 
+			data-target="#listinfo" class="btn btn-info btn-mini">
+			Collapse/Expand
+		</button>
+	</h3>
+	<div id="listinfo" class="collapse">
+		<p>
+			Below is a list of the current projects on the server
+		</p>
+	</div>
+</div>
 
 <table class="table table-striped">
   <tr>
@@ -25,8 +41,3 @@
   </tr>
 <% end %>
 </table>
-
-<br />
-<button type="button" class="btn btn-primary">
-<%= link_to 'New Project', new_project_path %>
-</button>

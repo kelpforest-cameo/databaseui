@@ -27,9 +27,16 @@
         <%= link_to('Sign up', new_user_registration_path)  %>
     </li>
     <% end %>
+    <%if user_signed_in? %>
     <li>
-        <%= link_to('Visualization', visualization_path)%>
+        <%= link_to('User Stats', visualization_path) %>
     </li>
+    <% else %>
+    <li>
+    	<%= link_to('Project Stats', visualization_path) %>
+    </li>
+    <% end %>
+    
     <li>
         <%= link_to('Forum', forums_path) %>
     </li>
