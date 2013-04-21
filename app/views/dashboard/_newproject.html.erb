@@ -43,13 +43,13 @@
   
   <div class="span4">
     <%= f.label :creator %>
-    <%= f.select "creator", User.find(:all).collect{|p| [p.username, p.username]} %>
+    <%= f.select "creator", User.find(:all).collect{|p| [p.username, p.username]} ,:prompt => "Please Select Creator" %>
   </div>
   
   <div class="span4">
     <%= f.label :user_id %>
     <%= options_from_collection_for_select(User.all, :id, :username) %>
-		<%= collection_select(:project, :user_id, User.all, :id, :username, :prompt => "Please select user") %>
+		<%= collection_select(:project, :user_id, User.all, :id, :username, :prompt => "Please Select User") %>
   </div>
   
   
