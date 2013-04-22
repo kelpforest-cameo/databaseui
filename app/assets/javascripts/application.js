@@ -173,13 +173,215 @@ $(document).ready(function(){
     });
     
     // For generating form based on selection for citations
-    $("format_selector select").change(function(){
-    	if($(this).val() == "Website"){
-    		$("#website_label").show();
+    $("#citation_format").change(function(){
+    	if($('#citation_format').val() == "Journal"){
+    		$("#journal_title").show();
+    		$("#doc").show();
+    		$("#vol").show();
+    		$("#pages").show();
+    		$("#num").show();
+    		$("#abstract").show();
+    	
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#address").hide();
+    		$("#phonenum").hide();
+    		$("#comment").hide();
     	}
-    	else
-    		$("#website_label").hide();
-    		});
+    	else if ($('#citation_format').val() == "Book"){
+    		$("#book_title").show();
+    		$("#doc").show();
+    		$("#pub").show();
+    		$("#pages").show();
+    		$("#abstract").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#comment").hide();
+    	}
+    	else if($('#citation_format').val() == "Book_Section"){
+    		$("#book_select_title").show();
+    		$("#doc").show();
+    		$("#pages").show();
+    		$("#abstract").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#comment").hide();
+    	}
+    	else if($('#citation_format').val() == "Report"){
+    		$("#report_title").show();
+    		$("#doc").show();
+    		$("#pages").show();
+    		$("#abstract").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#comment").hide();
+    	}
+    	else if($('#citation_format').val() == "Thesis"){
+    		$("#thesis_title").show();
+    		$("#doc").show();
+    		$("#pages").show();
+    		$("#abstract").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#comment").hide();
+    	}
+    	else if($('#citation_format').val() == "Website"){
+    		$("#website_title").show();
+    		$("#doc").show();
+    		$("#abstract").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#pages").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#comment").hide();
+    	}
+    	else if($('#citation_format').val() == "Other"){
+    		$("#other_title").show();
+    		$("#doc").show();
+    		$("#abstract").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#pages").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#comment").hide();
+    	}
+    	else if($('#citation_format').val() == "Personal_Observation"){
+    		$("#personal_title").show();
+    		$("#inst_doc").show();
+    		$("#email").show();
+    		$("#address").show();
+    		$("#phonenum").show();
+    		$("#comment").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#doc").hide();
+    		$("#pub").hide();
+    		$("#vol").hide();
+    		$("#pages").hide();
+    		$("#num").hide();
+    		$("#abstract").hide();
+
+    	}
+    	else if($('#citation_format').val() == "Unpublished_Data"){
+    		$("#unpublished_title").show();
+    		$("#inst_doc").show();
+    		$("#email").show();
+    		$("#address").show();
+    		$("#phonenum").show();
+    		$("#comment").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#doc").hide();
+    		$("#pub").hide();
+    		$("#vol").hide();
+    		$("#pages").hide();
+    		$("#num").hide();
+    		$("#abstract").hide();
+    	}
+    });
 });		
 				
 
