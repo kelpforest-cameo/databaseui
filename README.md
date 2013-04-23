@@ -1,6 +1,6 @@
 Food Web Builder
 ==========
-![](https://github.com/jjliang/databaseui/app/assets/img/logo.jpg)
+![](https://github.com/jjliang/databaseui/app/assets/images/logo.jpg)
 
 A Species interactions database interface
 
