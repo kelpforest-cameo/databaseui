@@ -33,7 +33,7 @@
 							</li>
 							
 							<li>
-								<a href="#nonitis" data-toggle="tab">New non-Itis Node</a>
+								<a href="#nonitis" data-toggle="tab">New Non-ITIS Node</a>
 							</li>
 						
 							<li>
@@ -225,8 +225,8 @@
 							<% @users = User.all %>
 							<p> Below is a list of all users </p>
 						<% else %>
-							<% @users = User.where
-								("project_id == current_user.project_id").all %>
+							<% @users = User.where(
+								"project_id = ?", current_user.project_id ).all %>
 							<p> Below is a list of all users in your project</p>
 						<% end %>
 					</div>
