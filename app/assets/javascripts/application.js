@@ -562,6 +562,7 @@ $(document).ready(function(){
     	$("#vol_area").hide()
     	$("#website_title").hide();
     	$("#format_area").hide();
+    	$("#ab").show();
 	});
 	//hide fields
 	$('#reset_new_node').on('click', function (e) {
