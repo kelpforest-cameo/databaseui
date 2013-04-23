@@ -536,6 +536,33 @@ $(document).ready(function(){
     		$("#vol_area").hide()
     	}
     });
+    
+    //hide fields for citations
+  	$('#reset_new_cite').on('click', function (e) {
+			$("#journal_title").hide();
+    	$("#book_title").hide();
+    	$("#book_select_title").hide();
+    	$("#report_title").hide();
+    	$("#thesis_title").hide();
+    	$("#other_title").hide();
+    	$("#personal_title").hide();
+    	$("#unpublished_title").hide();
+    	$("#inst_doc").hide();
+    	$("#pub").hide();
+    	$("#email").hide();
+    	$("#vol").hide();
+    	$("#address").hide();
+    	$("#pages").hide();
+    	$("#num").hide();
+    	$("#phonenum").hide();
+    	$("#com").hide();
+    	$("#pages_area").hide()
+    	$("#pub_area").hide()
+    	$("#num_area").hide()
+    	$("#vol_area").hide()
+    	$("#website_title").hide();
+    	$("#format_area").hide();
+	});
 	//hide fields
 	$('#reset_new_node').on('click', function (e) {
 		$("#node_working_name_field").hide();
