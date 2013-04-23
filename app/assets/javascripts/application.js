@@ -292,7 +292,7 @@ $(document).ready(function(){
     		$("#ab").show();
     		$("#format_area").show()
     		$("#pages_area").show()
-    		$("#pub_area").show()
+    		$("#vol_area").show()
     		$("#num_area").show()
     	
     		$("#book_title").hide();
@@ -309,6 +309,7 @@ $(document).ready(function(){
     		$("#address").hide();
     		$("#phonenum").hide();
     		$("#com").hide();
+    		$("#pub_area").hide()
     	}
     	else if ($('#citation_format').val() == "Book"){
     		$("#book_title").show();
@@ -336,6 +337,7 @@ $(document).ready(function(){
     		$("#phonenum").hide();
     		$("#com").hide();
     		$("#num_area").hide()
+    		$("#vol_area").hide()
     	}
     	else if($('#citation_format').val() == "Book_Section"){
     		$("#book_select_title").show();
@@ -363,6 +365,7 @@ $(document).ready(function(){
     		$("#com").hide();
     		$("#pub_area").hide()
     		$("#num_area").hide()
+    		$("#vol_area").hide()
     	}
     	else if($('#citation_format').val() == "Report"){
     		$("#report_title").show();
@@ -390,6 +393,7 @@ $(document).ready(function(){
     		$("#com").hide();
     		$("#pub_area").hide()
     		$("#num_area").hide()
+    		$("#vol_area").hide()
     	}
     	else if($('#citation_format').val() == "Thesis"){
     		$("#thesis_title").show();
@@ -417,6 +421,7 @@ $(document).ready(function(){
     		$("#com").hide();
     		$("#pub_area").hide()
     		$("#num_area").hide()
+    		$("#vol_area").hide()
     	}
     	else if($('#citation_format').val() == "Website"){
     		$("#website_title").show();
@@ -444,6 +449,7 @@ $(document).ready(function(){
     		$("#pages_area").hide()
     		$("#pub_area").hide()
     		$("#num_area").hide()
+    		$("#vol_area").hide()
     	}
     	else if($('#citation_format').val() == "Other"){
     		$("#other_title").show();
@@ -471,6 +477,7 @@ $(document).ready(function(){
     		$("#pages_area").hide()
     		$("#pub_area").hide()
     		$("#num_area").hide()
+    		$("#vol_area").hide()
     	}
     	else if($('#citation_format').val() == "Personal_Observation"){
     		$("#personal_title").show();
@@ -498,6 +505,7 @@ $(document).ready(function(){
     		$("#pages").hide();
     		$("#num").hide();
     		$("#ab").hide();
+    		$("#vol_area").hide()
 
     	}
     	else if($('#citation_format').val() == "Unpublished_Data"){
@@ -525,6 +533,7 @@ $(document).ready(function(){
     		$("#pages").hide();
     		$("#num").hide();
     		$("#ab").hide();
+    		$("#vol_area").hide()
     	}
     });
 	//hide fields
