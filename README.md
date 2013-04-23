@@ -1,4 +1,6 @@
-databaseui
+Food Web Builder
 ==========
 
-Kelp forest species interactions database interface
+A Species interactions database interface
+Developed By:
+Luke D. Inglis, John Liang, Yu-Jer Lin, John Gerard Moschella, Kevin William O'Brien, Silviya Petrova, Daisuke Tanaka, Jose M. Vaca
