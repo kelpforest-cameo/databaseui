@@ -43,7 +43,7 @@ $(document).ready(function(){
 		Gmaps.second_map.adjustMapToBounds();
 		google.maps.event.trigger(Gmaps.second_map, 'resize');
 		Gmaps.second_map.callback();
-				google.maps.event.clearListeners(Gmaps.second_map.serviceObject, "click");
+		google.maps.event.clearListeners(Gmaps.second_map.serviceObject, "click");
 		var drawingManager = new google.maps.drawing.DrawingManager({
 		drawingMode: google.maps.drawing.OverlayType.MARKER,
 		drawingControl: true,
@@ -63,10 +63,39 @@ $(document).ready(function(){
       strokeWeight: 2,
       fillColor: "#000000",
       fillOpacity: 0.35,
-      clickable: true
+      clickable: true,
+	  draggable:true,
+	  editable: true
   }
 });
-drawingManager.setMap(Gmaps.second_map.map);
+	drawingManager.setMap(Gmaps.second_map.map);
+	//When polygon is drawn
+	google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
+	    console.log(event);
+		if (event.type == google.maps.drawing.OverlayType.POLYGON) {
+		$('#newpolygon').modal({
+		keyboard: false,
+		backdrop: 'static'
+		
+		});
+		}
+			var latitudeData = [], longitudeData = [];
+		    result = event.overlay.latLngs.b[0].b;
+			for (i = 0, len = result.length; i < len; i++) { 
+				latitudeData.push(result[i].Ya);
+				longitudeData.push(result[i].Za);	
+	}
+	document.getElementById('location_datum_latitude').value = latitudeData;
+	document.getElementById('location_datum_longitude').value = longitudeData;
+		
+	
+		});
+	
+	
+	});
+	
+	$('#newpolygon').on('hidden', function () {
+		
 	});
 	$('a[href="#navhome"]').on('shown', function (e) {
 		Gmaps.second_map.initialize();
@@ -82,7 +111,17 @@ drawingManager.setMap(Gmaps.second_map.map);
 		Gmaps.second_map.callback();
 	});
 	
-		$('#myCarousel').bind('slide', function () {
+
+	$(".modal").css({
+		'width' : 300,
+		'height' : 'auto',
+		'overflow' : 'auto'
+		
+		});
+
+
+
+		$('#myCarousel').bind('slid', function () {
 	    console.log("test1");
 		Gmaps.map.initialize();
 		Gmaps.map.create_polygons();
@@ -91,7 +130,261 @@ drawingManager.setMap(Gmaps.second_map.map);
 		Gmaps.map.callback();
 	 });
 	
-});
+	//for searching by common name
+	$('#node_working_name').typeahead(
+	{
+		source: function(query,process) 
+		{
+			if (query.length >= 3)
+			{
+				$.ajax({
+				url     : "http://www.itis.gov/ITISWebService/jsonservice/searchByCommonName",
+				data    : { "tsn" : query },
+				dataType: "jsonp",
+				jsonp   : "jsonp",
+				success : function(data) 
+							{ 
+								console.log("end Query");
+								$('#loading-indicator').hide();
+								result = [];
+								console.log(data);
+								for (var i = 0; i < data.commonNames.length; i++)
+								{
+									result[i] = data.commonNames[i].commonName;
+								}
+								console.log(result);
+								process(result);
+							} ,
+				beforeSend : function() {
+							console.log("Start Query");
+							$('#loading-indicator').show();
+							}
+				});
+			}
+		}
+	});	
+
+	
+	
+	$("#loading-indicator").css({
+		height: 25,
+		width: 25
+
+    });
+    
+    // For generating form based on selection for citations
+    $("#citation_format").change(function(){
+    	if($('#citation_format').val() == "Journal"){
+    		$("#journal_title").show();
+    		$("#doc").show();
+    		$("#vol").show();
+    		$("#pages").show();
+    		$("#num").show();
+    		$("#abstract").show();
+    	
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#address").hide();
+    		$("#phonenum").hide();
+    		$("#comment").hide();
+    	}
+    	else if ($('#citation_format').val() == "Book"){
+    		$("#book_title").show();
+    		$("#doc").show();
+    		$("#pub").show();
+    		$("#pages").show();
+    		$("#abstract").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#comment").hide();
+    	}
+    	else if($('#citation_format').val() == "Book_Section"){
+    		$("#book_select_title").show();
+    		$("#doc").show();
+    		$("#pages").show();
+    		$("#abstract").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#comment").hide();
+    	}
+    	else if($('#citation_format').val() == "Report"){
+    		$("#report_title").show();
+    		$("#doc").show();
+    		$("#pages").show();
+    		$("#abstract").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#comment").hide();
+    	}
+    	else if($('#citation_format').val() == "Thesis"){
+    		$("#thesis_title").show();
+    		$("#doc").show();
+    		$("#pages").show();
+    		$("#abstract").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#comment").hide();
+    	}
+    	else if($('#citation_format').val() == "Website"){
+    		$("#website_title").show();
+    		$("#doc").show();
+    		$("#abstract").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#pages").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#comment").hide();
+    	}
+    	else if($('#citation_format').val() == "Other"){
+    		$("#other_title").show();
+    		$("#doc").show();
+    		$("#abstract").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#pages").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#comment").hide();
+    	}
+    	else if($('#citation_format').val() == "Personal_Observation"){
+    		$("#personal_title").show();
+    		$("#inst_doc").show();
+    		$("#email").show();
+    		$("#address").show();
+    		$("#phonenum").show();
+    		$("#comment").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#doc").hide();
+    		$("#pub").hide();
+    		$("#vol").hide();
+    		$("#pages").hide();
+    		$("#num").hide();
+    		$("#abstract").hide();
+
+    	}
+    	else if($('#citation_format').val() == "Unpublished_Data"){
+    		$("#unpublished_title").show();
+    		$("#inst_doc").show();
+    		$("#email").show();
+    		$("#address").show();
+    		$("#phonenum").show();
+    		$("#comment").show();
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#doc").hide();
+    		$("#pub").hide();
+    		$("#vol").hide();
+    		$("#pages").hide();
+    		$("#num").hide();
+    		$("#abstract").hide();
+    	}
+    });
+});		
+				
+
 
 
 

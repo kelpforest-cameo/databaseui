@@ -1,4 +1,7 @@
 class Citation < ActiveRecord::Base
+
+	FORMATS = %w[Journal Book Book_Section Report Thesis Website Personal_Observation 
+								Unpublished_Data Other]
   attr_accessible :abstract, :closed, :document, :format, :format_title, :number, :pages, :publisher, :title, :user_id, :volume, :year, :mod, :project_id, :approved
   belongs_to :user
   belongs_to :project
@@ -34,4 +37,8 @@ class Citation < ActiveRecord::Base
   has_many :stage_residency_times
   has_many :stage_unassimilated_consum_ratios
   has_many :trophic_interaction_observations
+  
+  validates :title, :presence => true
+  validates :year, :presence => true
+  validates :format, :presence => true
 end

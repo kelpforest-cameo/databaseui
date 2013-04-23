@@ -1,0 +1,185 @@
+<legend>
+	<h3>Add New Citation</h3>
+</legend>
+
+<div class="well">
+	<h3>Instructions
+		<button type="button" data-toggle="collapse" data-target="#newciteinfo" class="btn btn-info btn-mini">
+			Collapse/Expand
+		</button>
+	</h3>
+
+	<div id="newciteinfo" class="collapse">
+		<p>
+			Enter a new citation. Please enter all necessary
+			information. If the author you are citing is not listed
+			please enter them into the database.
+		</p>
+
+		<p>
+			Acceptable formats of publications are; Journal, Books,
+			Book Sections, Reports, Thesis, Websites, Personal
+			Observations, and Unpublished Data. There is also an
+			<em>other</em> option for sources not listed.
+		</p>
+	</div>
+</div>
+
+<%= form_for(@citation) do |f| %>
+  <% if @citation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@citation.errors.count, "error") %> prohibited this citation from being saved:</h2>
+
+      <ul>
+      <% @citation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<fieldset>
+  <div class="span4 offset1">
+  	<div class="field" :id="abstract">
+  	  <%= f.label :abstract %>
+    	<%= f.text_area :abstract, :class=>"span3" , :rows => "5" %>
+      <br \>
+     </div>
+     
+     <div class="field" :id="comment" hidden=true>
+  	  <%= f.label :comment %>
+    	<%= f.text_area :abstract, :class=>"span3" , :rows => "5" %>
+      <br \>
+     </div>
+
+  </div>
+
+    <div class="span4">      
+        <%= f.label :title %>
+        <%= f.text_field :title ,:class =>"span3" %>
+      </div>
+      <div class="span4">
+      
+      	<div class="field" id="doc">
+        	<%= f.label :document %>
+        	<%= f.text_field :document ,:class =>"span3"%>
+      	</div>
+      	
+      	<div class="field" id="inst_doc" hidden=true>
+        	<%= f.label :Institution %>
+        	<%= f.text_field :document ,:class =>"span3"%>
+      	</div>
+      </div>
+      <div class="span4 offset1">
+        <%= f.label :year %>
+        <%= f.number_field :year ,:class =>"span3"%>
+      </div>
+      
+
+    	  <div class="span4">
+    	  	<div class="field" id="format_selector">
+    	  	<%=f.label :format %>
+      		<%= f.collection_select :format, 
+      			Citation::FORMATS, :to_s, :humanize,{:prompt => "Select Format"} ,:class =>"span3"%>
+  	    </div>
+				</div>
+      <div class="span4 offset1">
+      	
+      	<div class="field" id="journal_title" hidden=true >
+      		<%= f.label :journal_title %>
+      		<%= f.text_field :format_title ,:class =>"span3"%>
+      	</div>
+      	
+      	<div class="field" id="book_title" hidden=true >
+      		<%= f.label :book_title %>
+      		<%= f.text_field :format_title ,:class =>"span3"%>
+      	</div>
+      	
+      	<div class="field" id="book_select_title" hidden=true >
+      		<%= f.label :Book_Section_Title %>
+      		<%= f.text_field :format_title ,:class =>"span3"%>
+      	</div>
+      	
+      	<div class="field" id="report_title" hidden=true >
+      		<%= f.label :report_title %>
+      		<%= f.text_field :format_title ,:class =>"span3"%>
+      	</div>
+      	
+      	<div class="field" id="thesis_title" hidden=true >
+      		<%= f.label :thesis_title %>
+      		<%= f.text_field :format_title ,:class =>"span3"%>
+      	</div>
+      	
+      	<div class="field" id="website_title" hidden=true>
+      		<%= f.label :website %>
+      		<%= f.text_field :format_title ,:class =>"span3"%>
+      	</div>
+      	
+      	<div class="field" id="other_title" hidden=true >
+      		<%= f.label :other_title %>
+      		<%= f.text_field :format_title ,:class =>"span3"%>
+      	</div>
+      	
+      	<div class="field" id="personal_title" hidden=true >
+      		<label> URL </label>
+      		<%= f.text_field :format_title ,:class =>"span3"%>
+      	</div>
+      	
+      	<div class="field" id="unpublished_title" hidden=true >
+      		<label> URL </label>
+      		<%= f.text_field :format_title ,:class =>"span3"%>
+      	</div>
+
+        
+      </div>
+      
+      <div class="span4">
+      	<div class="field" id="pages" hidden=true>
+      		<%= f.label :pages %>
+        	<%= f.text_field :pages ,:class =>"span3"%>
+        </div>
+        
+        <div class="field" id="address" hidden=true>
+      		<%= f.label :address %>
+        	<%= f.text_field :pages ,:class =>"span3"%>
+        </div>
+       </div>
+        <div class="span4 offset1">
+        	<div class="field" id="pub" hidden=true>
+       		 <%= f.label :publisher %>
+        		<%= f.text_field :publisher ,:class =>"span3"%>
+        	</div>
+        	
+        	<div class="field" id="email" hidden=true>
+        		<%= f.label :Email %>
+        		<%= f.text_field :publisher ,:class =>"span3"%>
+        	</div>
+        	
+        	<div class="field" id="vol" hidden=true>
+        	 <%= f.label :volume %>
+       		 <%= f.number_field :volume ,:class =>"span3"%>
+      		</div>
+ 		     </div>      
+
+      
+    <div class="span4">
+    	<div class="field" id="num" hidden=true>
+        <%= f.label :number %>
+        <%= f.number_field :number ,:class =>"span3"%>
+    	</div>
+    	
+    	<div class="field" id="phonenum" hidden=true>
+    		<%= f.label :phone_number %>
+    		<%= f.number_field :number ,:class =>"span3"%>
+    	</div>
+    </div>
+
+
+  <div class="span9 form-actions">
+    <%= f.submit :class => 'btn btn-inverse offset3'%>
+    <button type="reset" class="btn btn-inverse">
+      Reset
+    </button>
+  </div> 
+  </fieldset>
+  <% end %>
+

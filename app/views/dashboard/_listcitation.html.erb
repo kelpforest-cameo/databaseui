@@ -1,4 +1,20 @@
+<legend>
+	<h3> Listing Citations </h3>
+</legend>
 
+<div class="well">
+	<h3>Instructions
+		<button type="button" data-toggle="collapse" data-target="#citelistinfo" class="btn btn-info btn-mini">
+			Collapse/Expand
+		</button>
+	</h3>
+	<div id="citelistinfo" class="collapse"
+		<p> 
+			Below is a list of the current citations
+			in your project
+		</p>
+	</div>
+</div>
 
 <table class="table table-striped">
   <tr>
@@ -18,7 +34,7 @@
     <th></th>
   </tr>
 
-<% @citationlist.each do |citation| %>
+<% @citation.each do |citation| %>
   <tr>
     <td><%= citation.abstract %></td>
     <td><%= citation.closed %></td>
@@ -38,6 +54,3 @@
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Citation', new_citation_path %>

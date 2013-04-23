@@ -35,6 +35,7 @@ load_and_authorize_resource :only => [:index, :edit]
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @userlist = User.all
   end
 
   # POST /users

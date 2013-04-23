@@ -5,8 +5,12 @@ class Author < ActiveRecord::Base
   has_many :author_cites
   has_many :citations, :through => :author_cites, :dependent => :destroy
 
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
+
   def full_name
  	 self.first_name + " " + self.last_name
-  end
+  end  
+  
 end
 

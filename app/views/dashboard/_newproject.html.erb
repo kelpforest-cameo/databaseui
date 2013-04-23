@@ -1,0 +1,73 @@
+<legend>
+	<h3>
+		New Project
+	</h3>
+</legend>
+
+<div class="well">
+	<h3>Instructions
+		<button type="button" data-toggle="collapse" 
+			data-target="#projectinfo" class="btn btn-info btn-mini">
+			Collapse/Expand
+		</button>
+	</h3>
+		
+	<div id="projectinfo" class="collapse">
+		<p>
+			Here we can create new projects for Project Leader
+		</p>
+
+		<p>
+			We use the project name stating in the comments of user sign up
+		</p>
+	</div>
+</div>
+
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="span4">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="span4">
+    <%= f.label :creator %>
+    <%= f.select "creator", User.find(:all).collect{|p| [p.username, p.username]} ,:prompt => "Please Select Creator" %>
+  </div>
+  
+  <div class="span4">
+    <%= f.label :user_id %>
+    <%= options_from_collection_for_select(User.all, :id, :username) %>
+		<%= collection_select(:project, :user_id, User.all, :id, :username, :prompt => "Please Select User") %>
+  </div>
+  
+  
+  <div class="span4">
+    <%= f.label :public %>
+    <%= f.check_box :public %>
+  </div>
+ 
+  <div class="span4">
+    <%= f.label :approved %>
+    <%= f.check_box :approved %>
+  </div>
+  <div class="row">
+  <div class="form-actions span9">
+    <%= f.submit :class=>"btn btn-inverse offset3"%>
+    		<button type="reset" class="btn btn-inverse">
+			Reset
+		</button>
+  </div>
+  </div>
+<% end %>

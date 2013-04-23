@@ -1,3 +1,22 @@
+<legend>
+	<h2>Listing Authors</h2>
+</legend>
+
+<div class="well">
+	<h3>Instructions
+		<button type="button" data-toggle="collapse" data-target="#authorlistinfo" class="btn btn-info btn-mini">
+			Collapse/Expand
+		</button>
+	</h3>
+
+	<div id="authorlistinfo" class="collapse">
+		<p>
+			Below is a list of all the authors
+			currently in the database. 
+		</p>
+	</div>
+</div>
+
 <table class="table table-striped">
   <tr>
     <th>First name</th>
@@ -8,11 +27,11 @@
     <th></th>
   </tr>
 
-<% @authorlist.each do |author| %>
+<% @author.each do |author| %>
   <tr>
     <td><%= author.first_name %></td>
     <td><%= author.last_name %></td>
-    <td><%= author.user_id %></td>
+    <td><%= owner_user(author.user_id).username %></td>
     <td><%= link_to 'Show', author %></td>
     <td><%= link_to 'Edit', edit_author_path(author) %></td>
     <td><%= link_to 'Destroy', author, method: :delete, data: { confirm: 'Are you sure?' } %></td>

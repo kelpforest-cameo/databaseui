@@ -1,0 +1,133 @@
+<legend>
+	<h3> New Non-Itis Node </h3>
+</legend>
+
+<div class="well">
+	<h3>Instructions
+		<button type="button" data-toggle="collapse" data-target="#nonitisinfo" class="btn btn-info btn-mini">
+			Collapse/Expand
+		</button>
+	</h3>
+	
+	<div id="nonitisinfo" class="collapse">
+		<p>
+			Each node (i.e. species) that is not already in the ITIS 
+			database receives a Non-ITIS id with which is identified 
+			in our local database. Each Non-ITIS id must point to a 
+			valid ITIS id at some higher (parent) taxonomic level. 
+			If your new node's parent is already in ITIS, this will 
+			be a simple three-step process: 
+		</p>
+		
+		<ol>
+			<li>
+				Use the "Parent Search" field to search the ITIS 
+				database for the scientific name of the most 
+				specific taxonomic name you can identify your new 
+				node to.
+			</li>
+			
+			<li>
+				Manually enter the taxonomic level and the Latin 
+				name of your new node. Then Specify 
+			
+				<ol>
+					<li>
+						a representative "working name" for the nod 
+					</li>
+	
+					<li>
+						select its functional group 
+					</li>
+					
+					<li>
+						check "is assemblage" if the entry does not 
+						represent a node that is identified to the 
+						species-specific level.
+					</li>
+				</ol>
+			</li>
+		</ol>
+	
+		<p>
+			If you have multiple taxonomic levels that are not
+			already in ITIS, you will need to repeat the above steps
+			several times, starting with the level of the parent
+			that is already in ITIS. From there, work your way down
+			by using the "Parent Search" field to search for the
+			either an ITIS node or Non-ITIS node that represents
+			the next parent.
+		</p>
+	</div>
+</div>
+
+<%= form_for(@non_iti) do |f| %>
+	<% if @non_iti.errors.any? %>
+		<div id="error_explanation">
+			<h2>
+			<%= pluralize(@non_iti.errors.count, "error") %> 
+				prohibited this non_iti from being saved:
+			</h2>
+
+			<ul>
+				<% @non_iti.errors.full_messages.each do |msg| %>
+				<li>
+					<%= msg %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<!-- Begin: Add New Node form -->
+<div class="row">
+
+	<!-- begin: first column -->
+	<div class="span4 offset1">  
+		<div class="field">
+			<%= f.label :parent_id %>
+			<%= f.number_field :parent_id %>
+		</div>
+		
+		<div class="field">
+			<%= f.label :latin_name %>
+			<%= f.text_field :latin_name %>
+		</div>
+		
+		<div class="field">
+			<%= f.label :taxonomy_level %>
+			<%= f.text_field :taxonomy_level %>
+		</div>
+		
+		<div class="field">
+			<%= f.check_box :parent_id_is_itis , :class => 'pull-left'%>
+			<%= f.label :parent_id_is_itis , :class => 'pull-left spacer' %><br />
+		</div>
+	</div>
+	<!-- end: first column -->
+
+	<!-- begin: second column -->
+	<div class="span4"> 
+		<div class="field">
+			<%= f.label :info %>
+			<%= f.text_area :info ,:class=>"span4", :rows => 9%>
+		</div>
+	</div>
+	<!-- end: second column -->
+</div>
+
+	<!-- begin: buttons -->
+	<div class="form-actions">
+		<%= f.submit :class => 'btn btn-inverse offset3'%>
+		<button type="reset" class="btn btn-inverse">
+			Reset
+		</button>
+	</div>
+	<!-- end: buttons -->
+  
+  <!-- End: Add New Node form -->
+  
+<% end %>
+
+
+

@@ -41,10 +41,16 @@ class LocationDataController < ApplicationController
   # POST /location_data.json
   def create
     @location_datum = LocationDatum.new(params[:location_datum])
-
+	@location_datum.user_id = current_user.id
+    @location_datum.project_id = current_user.project_id
+	
+	
+	@location_datum.latitude = @location_datum.latitude.split(",")
+	@location_datum.longitude = @location_datum.longitude.split(",")
+	
     respond_to do |format|
       if @location_datum.save
-        format.html { redirect_to @location_datum, notice: 'Location datum was successfully created.' }
+        format.html { redirect_to :back, notice: 'Location datum was successfully created.' }
         format.json { render json: @location_datum, status: :created, location: @location_datum }
       else
         format.html { render action: "new" }
