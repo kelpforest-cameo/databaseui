@@ -3,7 +3,7 @@ class Stage < ActiveRecord::Base
   belongs_to :node
   belongs_to :user
   belongs_to :project
-  
+  belongs_to :citation
   has_one :stage_biomass_change, :dependent => :destroy
   has_one :stage_biomass_density, :dependent => :destroy
   has_one :stage_consum_biomass_ratio, :dependent => :destroy
