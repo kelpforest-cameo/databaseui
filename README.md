@@ -1,6 +1,6 @@
 Food Web Builder
 ==========
-
+[[img/logo.jpg]]
 A Species interactions database interface
 
 Developed By:
