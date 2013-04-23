@@ -289,7 +289,11 @@ $(document).ready(function(){
     		$("#vol").show();
     		$("#pages").show();
     		$("#num").show();
-    		$("#abstract").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
+    		$("#pub_area").show()
+    		$("#num_area").show()
     	
     		$("#book_title").hide();
     		$("#book_select_title").hide();
@@ -304,14 +308,17 @@ $(document).ready(function(){
     		$("#email").hide();
     		$("#address").hide();
     		$("#phonenum").hide();
-    		$("#comment").hide();
+    		$("#com").hide();
     	}
     	else if ($('#citation_format').val() == "Book"){
     		$("#book_title").show();
     		$("#doc").show();
     		$("#pub").show();
     		$("#pages").show();
-    		$("#abstract").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
+    		$("#pub_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_select_title").hide();
@@ -327,13 +334,16 @@ $(document).ready(function(){
     		$("#address").hide();
     		$("#num").hide();
     		$("#phonenum").hide();
-    		$("#comment").hide();
+    		$("#com").hide();
+    		$("#num_area").hide()
     	}
     	else if($('#citation_format').val() == "Book_Section"){
     		$("#book_select_title").show();
     		$("#doc").show();
     		$("#pages").show();
-    		$("#abstract").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_title").hide();
@@ -350,13 +360,17 @@ $(document).ready(function(){
     		$("#address").hide();
     		$("#num").hide();
     		$("#phonenum").hide();
-    		$("#comment").hide();
+    		$("#com").hide();
+    		$("#pub_area").hide()
+    		$("#num_area").hide()
     	}
     	else if($('#citation_format').val() == "Report"){
     		$("#report_title").show();
     		$("#doc").show();
     		$("#pages").show();
-    		$("#abstract").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_title").hide();
@@ -373,13 +387,17 @@ $(document).ready(function(){
     		$("#address").hide();
     		$("#num").hide();
     		$("#phonenum").hide();
-    		$("#comment").hide();
+    		$("#com").hide();
+    		$("#pub_area").hide()
+    		$("#num_area").hide()
     	}
     	else if($('#citation_format').val() == "Thesis"){
     		$("#thesis_title").show();
     		$("#doc").show();
     		$("#pages").show();
-    		$("#abstract").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_title").hide();
@@ -396,12 +414,15 @@ $(document).ready(function(){
     		$("#address").hide();
     		$("#num").hide();
     		$("#phonenum").hide();
-    		$("#comment").hide();
+    		$("#com").hide();
+    		$("#pub_area").hide()
+    		$("#num_area").hide()
     	}
     	else if($('#citation_format').val() == "Website"){
     		$("#website_title").show();
     		$("#doc").show();
-    		$("#abstract").show();
+    		$("#ab").show();
+    		$("#format_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_title").hide();
@@ -419,12 +440,16 @@ $(document).ready(function(){
     		$("#pages").hide();
     		$("#num").hide();
     		$("#phonenum").hide();
-    		$("#comment").hide();
+    		$("#com").hide();
+    		$("#pages_area").hide()
+    		$("#pub_area").hide()
+    		$("#num_area").hide()
     	}
     	else if($('#citation_format').val() == "Other"){
     		$("#other_title").show();
     		$("#doc").show();
-    		$("#abstract").show();
+    		$("#ab").show();
+    		$("#format_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_title").hide();
@@ -442,7 +467,10 @@ $(document).ready(function(){
     		$("#pages").hide();
     		$("#num").hide();
     		$("#phonenum").hide();
-    		$("#comment").hide();
+    		$("#com").hide();
+    		$("#pages_area").hide()
+    		$("#pub_area").hide()
+    		$("#num_area").hide()
     	}
     	else if($('#citation_format').val() == "Personal_Observation"){
     		$("#personal_title").show();
@@ -450,7 +478,11 @@ $(document).ready(function(){
     		$("#email").show();
     		$("#address").show();
     		$("#phonenum").show();
-    		$("#comment").show();
+    		$("#com").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
+    		$("#pub_area").show()
+    		$("#num_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_title").hide();
@@ -465,7 +497,7 @@ $(document).ready(function(){
     		$("#vol").hide();
     		$("#pages").hide();
     		$("#num").hide();
-    		$("#abstract").hide();
+    		$("#ab").hide();
 
     	}
     	else if($('#citation_format').val() == "Unpublished_Data"){
@@ -474,7 +506,11 @@ $(document).ready(function(){
     		$("#email").show();
     		$("#address").show();
     		$("#phonenum").show();
-    		$("#comment").show();
+    		$("#com").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
+    		$("#pub_area").show()
+    		$("#num_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_title").hide();
@@ -488,7 +524,7 @@ $(document).ready(function(){
     		$("#vol").hide();
     		$("#pages").hide();
     		$("#num").hide();
-    		$("#abstract").hide();
+    		$("#ab").hide();
     	}
     });
 	//hide fields

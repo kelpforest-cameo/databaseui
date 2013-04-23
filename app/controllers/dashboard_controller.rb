@@ -16,6 +16,7 @@ class DashboardController < ApplicationController
   @node = Node.new
   @non_iti = NonIti.new
   @nodelist = Node.all
+  @author_array = Array.new(){Array.new}
 
 
 		#Projects

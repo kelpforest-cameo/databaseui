@@ -45,7 +45,8 @@ class CitationsController < ApplicationController
     @citation.project_id = current_user.project_id
     respond_to do |format|
       if @citation.save
-        format.html { redirect_to :back, notice: 'Citation was successfully created.' }
+        format.html { redirect_to root_path(tab:"newcite") }
+        flash[:notice] = ("Citation " + @citation.title + " has been added")
         format.json { render json: @citation, status: :created, location: @citation }
       else
         format.html { render action: "new" }
@@ -74,10 +75,12 @@ class CitationsController < ApplicationController
   # DELETE /citations/1.json
   def destroy
     @citation = Citation.find(params[:id])
+    citTitle = @citation.title
     @citation.destroy
 
     respond_to do |format|
-      format.html { redirect_to citations_url }
+      format.html { redirect_to root_path(tab:"citelist") }
+        flash[:notice] = ("Citation " + citTitle + " has been deleted")
       format.json { head :no_content }
     end
   end
