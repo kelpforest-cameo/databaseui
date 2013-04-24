@@ -21,6 +21,7 @@
     <th>Abstract</th>
     <th>Closed</th>
     <th>Document</th>
+    <th>Format</th>
     <th>Format title</th>
     <th>Number</th>
     <th>Pages</th>
@@ -39,12 +40,13 @@
     <td><%= citation.abstract %></td>
     <td><%= citation.closed %></td>
     <td><%= citation.document %></td>
+    <td><%= citation.format %></td>
     <td><%= citation.format_title %></td>
     <td><%= citation.number %></td>
     <td><%= citation.pages %></td>
     <td><%= citation.publisher %></td>
     <td><%= citation.title %></td>
-    <td><%= citation.user_id %></td>
+    <td><%= owner_user(citation.user_id).username %></td>
     <td><%= citation.volume %></td>
     <td><%= citation.year %></td>
     <td><%= link_to 'Show', citation %></td>

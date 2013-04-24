@@ -131,12 +131,10 @@ $(document).ready(function(){
 	 });
 	
 	//for searching by common name
-	$('#node_working_name').typeahead(
+	$('#Common_name').typeahead(
 	{
 		source: function(query,process) 
 		{
-			if (query.length >= 3)
-			{
 				$.ajax({
 				url     : "http://www.itis.gov/ITISWebService/jsonservice/searchByCommonName",
 				data    : { "tsn" : query },
@@ -144,34 +142,159 @@ $(document).ready(function(){
 				jsonp   : "jsonp",
 				success : function(data) 
 							{ 
-								console.log("end Query");
-								$('#loading-indicator').hide();
+								$('#common-name-loading-indicator').hide();
 								result = [];
-								console.log(data);
 								for (var i = 0; i < data.commonNames.length; i++)
 								{
 									result[i] = data.commonNames[i].commonName;
 								}
-								console.log(result);
 								process(result);
 							} ,
 				beforeSend : function() {
-							console.log("Start Query");
-							$('#loading-indicator').show();
+							$('#common-name-loading-indicator').show();
 							}
 				});
-			}
+		},
+		minLength : 3,
+		updater: function(item)
+		{
+			$.ajax({
+				url     : "http://www.itis.gov/ITISWebService/jsonservice/searchByCommonName",
+				data    : { "tsn" : item },
+				dataType: "jsonp",
+				jsonp   : "jsonp",
+				success : function(data) 
+							{ 
+								$('#itis-name-loading-indicator').hide();
+								result = data.commonNames[0].tsn;
+								$('#node_itis_id').val(result);
+								$.ajax({
+								url     : "http://www.itis.gov/ITISWebService/jsonservice/getScientificNameFromTSN",
+								data    : { "tsn" : result },
+								dataType: "jsonp",
+								jsonp   : "jsonp",
+								success : function(data) 
+								{ 
+									$('#latin-name-loading-indicator').hide();
+									$('#Latin_name').val(data.combinedName);
+								} ,
+								beforeSend : function() {
+											$('#latin-name-loading-indicator').show();
+											}
+								});
+							} ,
+				beforeSend : function() {
+							$('#itis-name-loading-indicator').show();
+							}
+				});
+			//show fields
+			$("#node_working_name_field").show();
+			$("#node_functional_group_id_field").show();
+			$("#node_non_itis_id_field").show();
+			$("#node_native_status_field").show();
+			$("#node_is_assemblage_field").show();
+			return item;
 		}
+		
+		
 	});	
-
+	//For searching by Latin/Scientific name
+	$('#Latin_name').typeahead(
+	{
+		source: function(query,process) 
+		{
+				$.ajax({
+				url     : "http://www.itis.gov/ITISWebService/jsonservice/searchByScientificName",
+				data    : { "tsn" : query },
+				dataType: "jsonp",
+				jsonp   : "jsonp",
+				success : function(data) 
+							{ 
+								$('#latin-name-loading-indicator').hide();
+								result = [];
+								for (var i = 0; i < data.scientificNames.length; i++)
+								{
+									result[i] = data.scientificNames[i].combinedName;
+								}
+								process(result);
+							} ,
+				beforeSend : function() {
+							$('#latin-name-loading-indicator').show();
+							}
+				});
+		},
+		minLength : 3,
+		updater : function(item)
+		{
+			$.ajax({
+				url     : "http://www.itis.gov/ITISWebService/jsonservice/searchByScientificName",
+				data    : { "tsn" : item },
+				dataType: "jsonp",
+				jsonp   : "jsonp",
+				success : function(data) 
+							{ 
+								$('#latin-name-loading-indicator').hide();
+								result = data.scientificNames[0].tsn;
+								$('#node_itis_id').val(result);
+								$.ajax({
+								url     : "http://www.itis.gov/ITISWebService/jsonservice/getCommonNamesFromTSN",
+								data    : { "tsn" : result },
+								dataType: "jsonp",
+								jsonp   : "jsonp",
+								success : function(data) 
+								{			
+									$('#common-name-loading-indicator').hide();
+									if (data.commonNames[0] != null){
+										name = data.commonNames[0].commonName;
+										$('#common-name-loading-indicator').hide();
+										for (var i = 1; i < data.commonNames.length - 1; i++)
+										{	
+											name += ", " + data.commonNames[i].commonName;
+										}
+										$('#Common_name').val(name);
+									}	
+									else {
+										$('#Common_name').val("undefined");
+									}
+								
+								}	 ,
+				beforeSend : function() {
+							$('#common-name-loading-indicator').show();
+							}
+				});
+				
+						$('#itis-name-loading-indicator').hide();
+							} ,
+				beforeSend : function() {
+							$('#itis-name-loading-indicator').show();
+							}
+				});
+				
+			//show fields
+			$("#node_working_name_field").show();
+			$("#node_functional_group_id_field").show();
+			$("#node_non_itis_id_field").show();
+			$("#node_native_status_field").show();
+			$("#node_is_assemblage_field").show();
+			return item;
+		}	
+	});	
 	
-	
-	$("#loading-indicator").css({
+	$("#common-name-loading-indicator").css({
 		height: 25,
 		width: 25
 
     });
-    
+    $("#latin-name-loading-indicator").css({
+		height: 25,
+		width: 25
+
+    });
+	$("#itis-name-loading-indicator").css({
+		height: 25,
+		width: 25
+
+    });
     // For generating form based on selection for citations
     $("#citation_format").change(function(){
     	if($('#citation_format').val() == "Journal"){
@@ -180,7 +303,11 @@ $(document).ready(function(){
     		$("#vol").show();
     		$("#pages").show();
     		$("#num").show();
-    		$("#abstract").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
+    		$("#vol_area").show()
+    		$("#num_area").show()
     	
     		$("#book_title").hide();
     		$("#book_select_title").hide();
@@ -195,14 +322,18 @@ $(document).ready(function(){
     		$("#email").hide();
     		$("#address").hide();
     		$("#phonenum").hide();
-    		$("#comment").hide();
+    		$("#com").hide();
+    		$("#pub_area").hide()
     	}
     	else if ($('#citation_format').val() == "Book"){
     		$("#book_title").show();
     		$("#doc").show();
     		$("#pub").show();
     		$("#pages").show();
-    		$("#abstract").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
+    		$("#pub_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_select_title").hide();
@@ -218,13 +349,17 @@ $(document).ready(function(){
     		$("#address").hide();
     		$("#num").hide();
     		$("#phonenum").hide();
-    		$("#comment").hide();
+    		$("#com").hide();
+    		$("#num_area").hide()
+    		$("#vol_area").hide()
     	}
     	else if($('#citation_format').val() == "Book_Section"){
     		$("#book_select_title").show();
     		$("#doc").show();
     		$("#pages").show();
-    		$("#abstract").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_title").hide();
@@ -241,13 +376,18 @@ $(document).ready(function(){
     		$("#address").hide();
     		$("#num").hide();
     		$("#phonenum").hide();
-    		$("#comment").hide();
+    		$("#com").hide();
+    		$("#pub_area").hide()
+    		$("#num_area").hide()
+    		$("#vol_area").hide()
     	}
     	else if($('#citation_format').val() == "Report"){
     		$("#report_title").show();
     		$("#doc").show();
     		$("#pages").show();
-    		$("#abstract").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_title").hide();
@@ -264,13 +404,18 @@ $(document).ready(function(){
     		$("#address").hide();
     		$("#num").hide();
     		$("#phonenum").hide();
-    		$("#comment").hide();
+    		$("#com").hide();
+    		$("#pub_area").hide()
+    		$("#num_area").hide()
+    		$("#vol_area").hide()
     	}
     	else if($('#citation_format').val() == "Thesis"){
     		$("#thesis_title").show();
     		$("#doc").show();
     		$("#pages").show();
-    		$("#abstract").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_title").hide();
@@ -287,12 +432,16 @@ $(document).ready(function(){
     		$("#address").hide();
     		$("#num").hide();
     		$("#phonenum").hide();
-    		$("#comment").hide();
+    		$("#com").hide();
+    		$("#pub_area").hide()
+    		$("#num_area").hide()
+    		$("#vol_area").hide()
     	}
     	else if($('#citation_format').val() == "Website"){
     		$("#website_title").show();
     		$("#doc").show();
-    		$("#abstract").show();
+    		$("#ab").show();
+    		$("#format_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_title").hide();
@@ -310,12 +459,17 @@ $(document).ready(function(){
     		$("#pages").hide();
     		$("#num").hide();
     		$("#phonenum").hide();
-    		$("#comment").hide();
+    		$("#com").hide();
+    		$("#pages_area").hide()
+    		$("#pub_area").hide()
+    		$("#num_area").hide()
+    		$("#vol_area").hide()
     	}
     	else if($('#citation_format').val() == "Other"){
     		$("#other_title").show();
     		$("#doc").show();
-    		$("#abstract").show();
+    		$("#ab").show();
+    		$("#format_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_title").hide();
@@ -333,7 +487,11 @@ $(document).ready(function(){
     		$("#pages").hide();
     		$("#num").hide();
     		$("#phonenum").hide();
-    		$("#comment").hide();
+    		$("#com").hide();
+    		$("#pages_area").hide()
+    		$("#pub_area").hide()
+    		$("#num_area").hide()
+    		$("#vol_area").hide()
     	}
     	else if($('#citation_format').val() == "Personal_Observation"){
     		$("#personal_title").show();
@@ -341,7 +499,11 @@ $(document).ready(function(){
     		$("#email").show();
     		$("#address").show();
     		$("#phonenum").show();
-    		$("#comment").show();
+    		$("#com").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
+    		$("#pub_area").show()
+    		$("#num_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_title").hide();
@@ -356,7 +518,8 @@ $(document).ready(function(){
     		$("#vol").hide();
     		$("#pages").hide();
     		$("#num").hide();
-    		$("#abstract").hide();
+    		$("#ab").hide();
+    		$("#vol_area").hide()
 
     	}
     	else if($('#citation_format').val() == "Unpublished_Data"){
@@ -365,7 +528,11 @@ $(document).ready(function(){
     		$("#email").show();
     		$("#address").show();
     		$("#phonenum").show();
-    		$("#comment").show();
+    		$("#com").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
+    		$("#pub_area").show()
+    		$("#num_area").show()
     		
     		$("#journal_title").hide();
     		$("#book_title").hide();
@@ -379,9 +546,46 @@ $(document).ready(function(){
     		$("#vol").hide();
     		$("#pages").hide();
     		$("#num").hide();
-    		$("#abstract").hide();
+    		$("#ab").hide();
+    		$("#vol_area").hide()
     	}
     });
+    
+    //hide fields for citations
+  	$('#reset_new_cite').on('click', function (e) {
+			$("#journal_title").hide();
+    	$("#book_title").hide();
+    	$("#book_select_title").hide();
+    	$("#report_title").hide();
+    	$("#thesis_title").hide();
+    	$("#other_title").hide();
+    	$("#personal_title").hide();
+    	$("#unpublished_title").hide();
+    	$("#inst_doc").hide();
+    	$("#pub").hide();
+    	$("#email").hide();
+    	$("#vol").hide();
+    	$("#address").hide();
+    	$("#pages").hide();
+    	$("#num").hide();
+    	$("#phonenum").hide();
+    	$("#com").hide();
+    	$("#pages_area").hide()
+    	$("#pub_area").hide()
+    	$("#num_area").hide()
+    	$("#vol_area").hide()
+    	$("#website_title").hide();
+    	$("#format_area").hide();
+    	$("#ab").show();
+	});
+	//hide fields
+	$('#reset_new_node').on('click', function (e) {
+		$("#node_working_name_field").hide();
+		$("#node_functional_group_id_field").hide();
+		$("#node_non_itis_id_field").hide();
+		$("#node_native_status_field").hide();
+		$("#node_is_assemblage_field").hide()
+	});
 });		
 				
 
