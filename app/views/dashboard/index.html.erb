@@ -13,12 +13,15 @@
 			<div class="tabbale">
 				<ul class="nav nav-pills nav-stacked">
 					
-					<li class="active">
+					<li class="<%= 'active' if params[:tab] == 'navmap' || !params[:tab] %>">
 						<a href="#navmap" data-toggle="tab"><b>Map</B></a>
 					</li>
 					
 					<!-- Drop down for Nodes -->
-					<li class="dropdown">
+					<li class="dropdown<%= 'active' if params[:tab] == 'newnode' %>
+					<%= 'active' if params[:tab] == 'nonitis' %>
+					<%= 'active' if params[:tab] == 'searchnode' %>
+					<%= 'active' if params[:tab] == 'nodelist' %>">
 						<a class="dropdown-toggle"
 							data-toggle="dropdown"
 							href="dashboard"><b>
@@ -48,7 +51,10 @@
 					<!-- End Dropdown for Nodes -->
 							
 					<!-- Start Dropdown for Citations -->
-					<li class="dropdown">
+					<li class="dropdown <%= 'active' if params[:tab] == 'newaut' %>
+					<%= 'active' if params[:tab] == 'authorlist' %>
+					<%= 'active' if params[:tab] == 'newcite' %>
+					<%= 'active' if params[:tab] == 'citelist' %>">
 						<a class="dropdown-toggle"
 							data-toggle="dropdown"
 							href="dashboard"><b>
@@ -57,26 +63,26 @@
 						</a>
 						
 						<ul class="dropdown-menu">
-							<li>
+							<li class="<%= 'active' if params[:tab] == 'newaut' %>">
 								<a href="#newaut" data-toggle="tab">New Author</a>
 							</li>
 							
-							<li>
+							<li class="<%= 'active' if params[:tab] == 'authorlist' %>">
 								<a href="#authorlist" data-toggle="tab"> List Authors</a>
 							</li>
 							
-							<li>
+							<li class="<%= 'active' if params[:tab] == 'newcite' %>">
 								<a href="#newcite" data-toggle="tab">New Citation</a>
 							</li>
 
-							<li>
+							<li class="<%= 'active' if params[:tab] == 'citelist' %>">
 								<a href="#citelist" data-toggle="tab">List Citations</a>
 							</li>
 						</ul>
 					</li>
 					<!-- End Dropdown for citations -->
 					
-					<li>
+					<li class= "<%= 'active' if params[:tab] =='inters'%>">
 						<a href="#inters" data-toggle="tab">Interactions</a>
 					</li>
 					
@@ -86,7 +92,8 @@
 					<!-- Start Regions -->
 					<% if (current_user.role == 'lead') ||
 						(current_user.role =='admin') %>
-						<li class="dropdown">
+						<li class="dropdown<%= 'active' if params[:tab] == 'newregion' %>
+					<%= 'active' if params[:tab] == 'editregion' %>">
 							<a class="dropdown-toggle"
 								data-toggle="dropdown"
 								href="dashboard"><b>
@@ -109,7 +116,8 @@
 					
 					<!-- Start Projects -->
 					<% if current_user.role == 'admin' %>
-						<li class="dropdown">
+						<li class="dropdown<%= 'active' if params[:tab] == 'newproject' %>
+					<%= 'active' if params[:tab] == 'listprojects' %>">
 							<a class="dropdown-toggle"
 								data-toggle="dropdown"
 								href="dashboard"><b>
@@ -131,7 +139,8 @@
 						<!-- End Projects -->
 						
 						<!-- Start users lists -->
-							<li class="dropdown">
+							<li class="dropdown<%= 'active' if params[:tab] == 'allusers' %>
+					<%= 'active' if params[:tab] == 'waitingusers' %>">
 								<a class="dropdown-toggle"
 									data-toggle="dropdown"
 									href="dashboard"><b>
@@ -163,51 +172,51 @@
 			<div class="tab-content">
 			
 			<!-- Tab panes for nodes -->
-			<div class="tab-pane" id="newnode">
+			<div class="<%= if params[:tab] == 'newnode' then 'tab-pane active'  else 'tab-pane' end%>" id="newnode">
 				<%= render 'dashboard/newnode', :node => @node %>
 			</div>
 			
-			<div class="tab-pane" id="nonitis">
+			<div class="<%= if params[:tab] == 'non_iti' then 'tab-pane active'  else 'tab-pane' end%>" id="nonitis">
 				<%= render 'dashboard/newnonitis', :non_iti =>@non_iti %>
 			</div>
 			
-			<div class="tab-pane" id="searchnode">
+			<div class="<%= if params[:tab] == 'searchnode' then 'tab-pane active'  else 'tab-pane' end%>" id="searchnode">
 				<%= render 'dashboard/searchnodes' %>
 			</div>
 			
-			<div class="tab-pane" id="nodelist">
+			<div class="<%= if params[:tab] == 'nodelist' then 'tab-pane active'  else 'tab-pane' end%>" id="nodelist">
 				<%= render 'dashboard/listnodes' %>
 			</div>
 			<!-- End Tab panes for nodes -->
 			
 			<!-- Tab panes for citations -->
-			<div class="tab-pane" id="newaut">
+			<div class= "<%= if params[:tab] == 'newaut' then 'tab-pane active'  else 'tab-pane' end%>" id="newaut">
 				<%= render 'dashboard/newauthor', :author => @author %>
 			</div>
 			
-			<div class="tab-pane" id="authorlist">
+			<div class="<%= if params[:tab] == 'authorlist' then 'tab-pane active'  else 'tab-pane' end%>" id="authorlist">
 				<% @author = Author.all %>
 				<%= render 'dashboard/listauthor', :authors => @author %>
 			</div>
 			
-			<div class="tab-pane" id="newcite">
+			<div class="<%= if params[:tab] == 'newcite' then 'tab-pane active'  else 'tab-pane' end%>" id="newcite">
 				<%= render 'dashboard/newcitation', :citation => @citation %>
 			</div>
 			
-			<div class="tab-pane" id="citelist">
+			<div class="<%= if params[:tab] == 'citelist' then 'tab-pane active'  else 'tab-pane' end%>" id="citelist">
 				<% @citation = Citation.all %>
 				<%= render 'dashboard/listcitation.html.erb', :citation => @citation %>
 			</div>
 			<!-- End Citations tab panes -->
 			
 			<!-- Start Interactions tab panes -->
-			<div class="tab-pane" id="inters">
+			<div class="<%= if params[:tab] == 'inters' then 'tab-pane active'  else 'tab-pane' end%>" id="inters">
 				<%= render 'dashboard/newinteraction' %>
 			</div>
 			<!-- End Interactions tab panes -->
 			
 			<!-- Start user tab panes -->
-			<div class="tab-pane" id="allusers">
+			<div class="<%= if params[:tab] == 'allusers' then 'tab-pane active'  else 'tab-pane' end%>" id="allusers">
 				<legend>
 					<h3> Listing all users </h3>
 				</legend>
@@ -225,8 +234,7 @@
 							<% @users = User.all %>
 							<p> Below is a list of all users </p>
 						<% else %>
-							<% @users = User.where(
-								"project_id = ?", current_user.project_id ).all %>
+							<% @users = User.where(:project_id == current_user.project_id).all %>
 							<p> Below is a list of all users in your project</p>
 						<% end %>
 					</div>
@@ -234,7 +242,7 @@
 				<%= render 'listusers', :users => @users %>
 			</div>
 
-			<div class="tab-pane" id="waitingusers">
+			<div class="<%= if params[:tab] == 'waitingusers' then 'tab-pane active'  else 'tab-pane' end%>" id="waitingusers">
 				<legend>
 					<h3> Unapproved Users </h3>
 				</legend>
@@ -262,27 +270,27 @@
 			<!-- End Users tab panes -->
 			
 			<!-- Start Regions tab-panes -->
-			<div class ="tab-pane" id="newregion">
+			<div class ="<%= if params[:tab] == 'newregion' then 'tab-pane active'  else 'tab-pane' end%>" id="newregion">
 				<%= render 'newregion' %>
 			</div>
 			
-			<div class="tab-pane" id="editregion">
+			<div class="<%= if params[:tab] == 'editregion' then 'tab-pane active'  else 'tab-pane' end%>" id="editregion">
 				<%= render 'editregion' %>
 			</div>
 			<!-- End Region tab panes -->
 			
 			<!-- Start Project tab panes -->
-			<div class="tab-pane" id="newproject">
+			<div class="<%= if params[:tab] == 'newproject' then 'tab-pane active'  else 'tab-pane' end%>" id="newproject">
 				<%= render "dashboard/newproject", :project => @project%>
 			</div>
 			
-			<div class="tab-pane" id="listprojects">
+			<div class="<%= if params[:tab] == 'listprojects' then 'tab-pane active'  else 'tab-pane' end%>" id="listprojects">
 				<% @project = Project.all %>
 				<%= render "/dashboard/listprojects", :project =>@project %>
 			</div>
 			<!-- End Project tab -panes -->
 				
-				<div class="tab-pane active" id="navmap">
+				<div class="<%= if (params[:tab] == 'navmap' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end%>" id="navmap">
 				<!-- google map -->
 					<%= gmaps({"polygons"    => { :data => @polygons} , :map_options => {:libraries => ["drawing"], :fillColor => "#000" }, :last_map => false})%>
     

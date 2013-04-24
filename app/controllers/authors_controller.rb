@@ -43,7 +43,9 @@ class AuthorsController < ApplicationController
 
     respond_to do |format|
       if @author.save
-        format.html { redirect_to @author, notice: 'Author was successfully created.' }
+      	
+        format.html { redirect_to root_path(tab:"newaut") }
+        flash[:notice] = ("Author " + @author.first_name + " " + @author.last_name + " has been added")
         format.json { render json: @author, status: :created, location: @author }
       else
         format.html { render action: "new" }
@@ -71,9 +73,11 @@ class AuthorsController < ApplicationController
   # DELETE /authors/1.json
   def destroy
     @author = Author.find(params[:id])
+    myAuthor = @author.first_name + @author.last_name
     @author.destroy
     respond_to do |format|
-      format.html { redirect_to authors_url }
+    	flash[:notice] = ("Author " + myAuthor + " has been deleted")
+      format.html { redirect_to root_path(tab:"authorlist") }
       format.json { head :no_content }
     end
   end
