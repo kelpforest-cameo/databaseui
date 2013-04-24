@@ -186,7 +186,12 @@
 			</div>
 			
 			<div class="<%= if params[:tab] == 'nodelist' then 'tab-pane active'  else 'tab-pane' end%>" id="nodelist">
-				<%= render 'dashboard/listnodes' %>
+				<% if (current_user.role =='admin') %>
+					<% @node = Node.all %>
+				<% else %>
+					<% @node = @nodelist %>
+				<% end %>
+				<%= render 'dashboard/listnodes', :node => @node %>
 			</div>
 			<!-- End Tab panes for nodes -->
 			
