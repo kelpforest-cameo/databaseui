@@ -185,7 +185,7 @@ $(document).ready(function(){
 									$('#Latin_name').val(data.combinedName);
 								} ,
 								beforeSend : function() {
-											$('#itis-name-loading-indicator').show();
+											$('#latin-name-loading-indicator').show();
 											}
 								});
 							} ,
@@ -216,6 +216,12 @@ $(document).ready(function(){
 								{
 									result[i] = data.scientificNames[i].combinedName;
 								}
+								//show fields
+								$("#node_working_name_field").show();
+								$("#node_functional_group_id_field").show();
+								$("#node_non_itis_id_field").show();
+								$("#node_native_status_field").show();
+								$("#node_is_assemblage_field").show();
 								process(result);
 							} ,
 				beforeSend : function() {
@@ -256,15 +262,17 @@ $(document).ready(function(){
 									else {
 										$('#Common_name').val("undefined");
 									}
+								
 								}	 ,
 				beforeSend : function() {
 							$('#common-name-loading-indicator').show();
 							}
 				});
 				
+						$('#itis-name-loading-indicator').hide();
 							} ,
 				beforeSend : function() {
-							$('#latin-name-loading-indicator').show();
+							$('#itis-name-loading-indicator').show();
 							}
 				});
 			return item;
@@ -277,6 +285,11 @@ $(document).ready(function(){
 
     });
     $("#latin-name-loading-indicator").css({
+		height: 25,
+		width: 25
+
+    });
+	$("#itis-name-loading-indicator").css({
 		height: 25,
 		width: 25
 
