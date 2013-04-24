@@ -148,12 +148,6 @@ $(document).ready(function(){
 								{
 									result[i] = data.commonNames[i].commonName;
 								}
-								//show fields
-								$("#node_working_name_field").show();
-								$("#node_functional_group_id_field").show();
-								$("#node_non_itis_id_field").show();
-								$("#node_native_status_field").show();
-								$("#node_is_assemblage_field").show();
 								process(result);
 							} ,
 				beforeSend : function() {
@@ -193,6 +187,12 @@ $(document).ready(function(){
 							$('#itis-name-loading-indicator').show();
 							}
 				});
+			//show fields
+			$("#node_working_name_field").show();
+			$("#node_functional_group_id_field").show();
+			$("#node_non_itis_id_field").show();
+			$("#node_native_status_field").show();
+			$("#node_is_assemblage_field").show();
 			return item;
 		}
 		
@@ -216,12 +216,6 @@ $(document).ready(function(){
 								{
 									result[i] = data.scientificNames[i].combinedName;
 								}
-								//show fields
-								$("#node_working_name_field").show();
-								$("#node_functional_group_id_field").show();
-								$("#node_non_itis_id_field").show();
-								$("#node_native_status_field").show();
-								$("#node_is_assemblage_field").show();
 								process(result);
 							} ,
 				beforeSend : function() {
@@ -275,6 +269,13 @@ $(document).ready(function(){
 							$('#itis-name-loading-indicator').show();
 							}
 				});
+				
+			//show fields
+			$("#node_working_name_field").show();
+			$("#node_functional_group_id_field").show();
+			$("#node_non_itis_id_field").show();
+			$("#node_native_status_field").show();
+			$("#node_is_assemblage_field").show();
 			return item;
 		}	
 	});	
