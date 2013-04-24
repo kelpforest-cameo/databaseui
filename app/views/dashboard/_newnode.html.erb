@@ -73,7 +73,8 @@
 	</div>	
 	<div class="span4" hidden="true" id="node_native_status_field">
 		<%= f.label :native_status%>
-		<%= f.text_field :native_status %>
+		<%= f.collection_select :native_status, 
+      	Node::STATUS, :to_s, :humanize,{:prompt => "Select Native Status"} %>
 	</div>
 
 	<div class="span4" hidden= "true" id="node_is_assemblage_field">

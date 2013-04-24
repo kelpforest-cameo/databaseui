@@ -1,6 +1,8 @@
 class DashboardController < ApplicationController
  
 	def index
+	
+		@current_year = Time.now.year
 		## For all users
 		@users = User.all
     ##For non approved user list
@@ -11,11 +13,12 @@ class DashboardController < ApplicationController
 
   @location_datum = LocationDatum.new
   @author = Author.new
-  @authorlist = Author.all
+  @authorlist = Author.where(["project_id = ?",current_user.project_id]).all
   @citation = Citation.new
+  @citationlist = Citation.where(["project_id = ?",current_user.project_id]).all
   @node = Node.new
   @non_iti = NonIti.new
-  @nodelist = Node.all
+  @nodelist = Node.where(["project_id = ?",current_user.project_id]).all
   @author_array = Array.new(){Array.new}
 
 

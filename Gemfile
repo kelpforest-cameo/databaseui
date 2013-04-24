@@ -6,7 +6,7 @@ gem 'rails', '3.2.12'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -30,9 +30,6 @@ gem 'jquery-rails'
 # gem 'bootstrap-sass'
 # To use Jbuilder templates for JSON
 gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
 
 # Using capistrano with rvm
 gem 'rvm-capistrano'

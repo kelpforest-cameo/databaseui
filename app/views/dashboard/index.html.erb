@@ -18,7 +18,8 @@
 					</li>
 					
 					<!-- Drop down for Nodes -->
-					<li class="dropdown<%= 'active' if params[:tab] == 'newnode' %>
+					<li class="dropdown 
+					<%= 'active' if params[:tab] == 'newnode' %>
 					<%= 'active' if params[:tab] == 'nonitis' %>
 					<%= 'active' if params[:tab] == 'searchnode' %>
 					<%= 'active' if params[:tab] == 'nodelist' %>">
@@ -185,7 +186,12 @@
 			</div>
 			
 			<div class="<%= if params[:tab] == 'nodelist' then 'tab-pane active'  else 'tab-pane' end%>" id="nodelist">
-				<%= render 'dashboard/listnodes' %>
+				<% if (current_user.role =='admin') %>
+					<% @node = Node.all %>
+				<% else %>
+					<% @node = @nodelist %>
+				<% end %>
+				<%= render 'dashboard/listnodes', :node => @node %>
 			</div>
 			<!-- End Tab panes for nodes -->
 			

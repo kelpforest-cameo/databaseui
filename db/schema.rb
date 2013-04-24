@@ -187,7 +187,7 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
 
   create_table "nodes", :force => true do |t|
     t.integer  "itis_id",                                :null => false
-    t.integer  "non_itis_id",                            :null => false
+    t.integer  "non_itis_id",         :default => -1
     t.string   "working_name",        :default => "",    :null => false
     t.integer  "functional_group_id",                    :null => false
     t.string   "native_status"
@@ -267,6 +267,7 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "stage_biomass_changes", :force => true do |t|
+    t.integer  "citation_id",                                                       :null => false
     t.integer  "stage_id",                                                          :null => false
     t.decimal  "biomass_change", :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
@@ -277,10 +278,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",                                       :default => false
     t.datetime "created_at",                                                        :null => false
     t.datetime "updated_at",                                                        :null => false
-    t.integer  "citation_id",                                                       :null => false
   end
 
   create_table "stage_biomass_densities", :force => true do |t|
+    t.integer  "citation_id",                                                        :null => false
     t.integer  "stage_id",                                                           :null => false
     t.decimal  "biomass_density", :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
@@ -291,10 +292,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",                                        :default => false
     t.datetime "created_at",                                                         :null => false
     t.datetime "updated_at",                                                         :null => false
-    t.integer  "citation_id",                                                        :null => false
   end
 
   create_table "stage_consum_biomass_ratios", :force => true do |t|
+    t.integer  "citation_id",                                                             :null => false
     t.integer  "stage_id",                                                                :null => false
     t.decimal  "consum_biomass_ratio", :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
@@ -305,10 +306,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",                                             :default => false
     t.datetime "created_at",                                                              :null => false
     t.datetime "updated_at",                                                              :null => false
-    t.integer  "citation_id",                                                             :null => false
   end
 
   create_table "stage_consumer_strategies", :force => true do |t|
+    t.integer  "citation_id",                                :null => false
     t.integer  "stage_id",                                   :null => false
     t.string   "consumer_strategy", :default => "autotroph", :null => false
     t.text     "comment"
@@ -319,10 +320,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",          :default => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
-    t.integer  "citation_id",                                :null => false
   end
 
   create_table "stage_drymasses", :force => true do |t|
+    t.integer  "citation_id",                                                    :null => false
     t.integer  "stage_id",                                                       :null => false
     t.decimal  "drymass",     :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
@@ -333,10 +334,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",                                    :default => false
     t.datetime "created_at",                                                     :null => false
     t.datetime "updated_at",                                                     :null => false
-    t.integer  "citation_id",                                                    :null => false
   end
 
   create_table "stage_durations", :force => true do |t|
+    t.integer  "citation_id",                                                    :null => false
     t.integer  "stage_id",                                                       :null => false
     t.decimal  "duration",    :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
@@ -347,10 +348,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",                                    :default => false
     t.datetime "created_at",                                                     :null => false
     t.datetime "updated_at",                                                     :null => false
-    t.integer  "citation_id",                                                    :null => false
   end
 
   create_table "stage_fecundities", :force => true do |t|
+    t.integer  "citation_id",                    :null => false
     t.integer  "stage_id",                       :null => false
     t.string   "fecundity",   :default => "",    :null => false
     t.text     "comment"
@@ -361,21 +362,20 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",    :default => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-    t.integer  "citation_id",                    :null => false
   end
 
   create_table "stage_habitat_descriptors", :force => true do |t|
-    t.string   "descriptor",  :default => "",    :null => false
-    t.integer  "user_id",                        :null => false
-    t.integer  "project_id",                     :null => false
-    t.boolean  "mod",         :default => true
-    t.boolean  "approved",    :default => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "citation_id",                    :null => false
+    t.string   "descriptor", :default => "",    :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "project_id",                    :null => false
+    t.boolean  "mod",        :default => true
+    t.boolean  "approved",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "stage_habitats", :force => true do |t|
+    t.integer  "citation_id",                    :null => false
     t.integer  "stage_id",                       :null => false
     t.string   "habitat",     :default => "",    :null => false
     t.text     "comment"
@@ -386,10 +386,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",    :default => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-    t.integer  "citation_id",                    :null => false
   end
 
   create_table "stage_length_fecundities", :force => true do |t|
+    t.integer  "citation_id",                                                                                      :null => false
     t.integer  "stage_id",                                                                                         :null => false
     t.string   "length_fecundity",                                 :default => "none exists - constant fecundity", :null => false
     t.decimal  "a",                :precision => 64, :scale => 12, :default => 0.0,                                :null => false
@@ -402,10 +402,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",                                         :default => false
     t.datetime "created_at",                                                                                       :null => false
     t.datetime "updated_at",                                                                                       :null => false
-    t.integer  "citation_id",                                                                                      :null => false
   end
 
   create_table "stage_length_weights", :force => true do |t|
+    t.integer  "citation_id",                                                                                :null => false
     t.integer  "stage_id",                                                                                   :null => false
     t.string   "length_weight",                                 :default => "none exists - constant weight", :null => false
     t.decimal  "a",             :precision => 64, :scale => 12, :default => 0.0,                             :null => false
@@ -418,10 +418,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",                                      :default => false
     t.datetime "created_at",                                                                                 :null => false
     t.datetime "updated_at",                                                                                 :null => false
-    t.integer  "citation_id",                                                                                :null => false
   end
 
   create_table "stage_lengths", :force => true do |t|
+    t.integer  "citation_id",                                                    :null => false
     t.integer  "stage_id",                                                       :null => false
     t.decimal  "length",      :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
@@ -432,10 +432,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",                                    :default => false
     t.datetime "created_at",                                                     :null => false
     t.datetime "updated_at",                                                     :null => false
-    t.integer  "citation_id",                                                    :null => false
   end
 
   create_table "stage_lifestyles", :force => true do |t|
+    t.integer  "citation_id",                           :null => false
     t.integer  "stage_id",                              :null => false
     t.string   "lifestyle",   :default => "non-living", :null => false
     t.text     "comment"
@@ -446,10 +446,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",    :default => false
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
-    t.integer  "citation_id",                           :null => false
   end
 
   create_table "stage_masses", :force => true do |t|
+    t.integer  "citation_id",                                                    :null => false
     t.integer  "stage_id",                                                       :null => false
     t.decimal  "mass",        :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
@@ -460,10 +460,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",                                    :default => false
     t.datetime "created_at",                                                     :null => false
     t.datetime "updated_at",                                                     :null => false
-    t.integer  "citation_id",                                                    :null => false
   end
 
   create_table "stage_max_depths", :force => true do |t|
+    t.integer  "citation_id",                                                    :null => false
     t.integer  "stage_id",                                                       :null => false
     t.decimal  "max_depth",   :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
@@ -474,10 +474,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",                                    :default => false
     t.datetime "created_at",                                                     :null => false
     t.datetime "updated_at",                                                     :null => false
-    t.integer  "citation_id",                                                    :null => false
   end
 
   create_table "stage_mobilities", :force => true do |t|
+    t.integer  "citation_id",                    :null => false
     t.integer  "stage_id",                       :null => false
     t.string   "mobility",    :default => "",    :null => false
     t.text     "comment"
@@ -488,10 +488,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",    :default => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-    t.integer  "citation_id",                    :null => false
   end
 
   create_table "stage_populations", :force => true do |t|
+    t.integer  "citation_id",                                                    :null => false
     t.integer  "stage_id",                                                       :null => false
     t.decimal  "population",  :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
@@ -502,10 +502,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",                                    :default => false
     t.datetime "created_at",                                                     :null => false
     t.datetime "updated_at",                                                     :null => false
-    t.integer  "citation_id",                                                    :null => false
   end
 
   create_table "stage_prod_biomass_ratios", :force => true do |t|
+    t.integer  "citation_id",                                                           :null => false
     t.integer  "stage_id",                                                              :null => false
     t.decimal  "prod_biomass_ratio", :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
@@ -516,10 +516,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",                                           :default => false
     t.datetime "created_at",                                                            :null => false
     t.datetime "updated_at",                                                            :null => false
-    t.integer  "citation_id",                                                           :null => false
   end
 
   create_table "stage_prod_consum_ratios", :force => true do |t|
+    t.integer  "citation_id",                                                          :null => false
     t.integer  "stage_id",                                                             :null => false
     t.decimal  "prod_consum_ratio", :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
@@ -530,10 +530,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",                                          :default => false
     t.datetime "created_at",                                                           :null => false
     t.datetime "updated_at",                                                           :null => false
-    t.integer  "citation_id",                                                          :null => false
   end
 
   create_table "stage_reproductive_strategies", :force => true do |t|
+    t.integer  "citation_id",                              :null => false
     t.integer  "stage_id",                                 :null => false
     t.string   "reproductive_strategy", :default => "",    :null => false
     t.text     "comment"
@@ -544,10 +544,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",              :default => false
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
-    t.integer  "citation_id",                              :null => false
   end
 
   create_table "stage_residencies", :force => true do |t|
+    t.integer  "citation_id",                    :null => false
     t.integer  "stage_id"
     t.string   "residency",   :default => "",    :null => false
     t.text     "comment"
@@ -558,10 +558,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",    :default => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-    t.integer  "citation_id",                    :null => false
   end
 
   create_table "stage_residency_times", :force => true do |t|
+    t.integer  "citation_id",                                                       :null => false
     t.integer  "stage_id",                                                          :null => false
     t.decimal  "residency_time", :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
@@ -572,10 +572,10 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",                                       :default => false
     t.datetime "created_at",                                                        :null => false
     t.datetime "updated_at",                                                        :null => false
-    t.integer  "citation_id",                                                       :null => false
   end
 
   create_table "stage_unassimilated_consum_ratios", :force => true do |t|
+    t.integer  "citation_id",                                                                   :null => false
     t.integer  "stage_id",                                                                      :null => false
     t.decimal  "unassimilated_consum_ratio", :precision => 64, :scale => 12,                    :null => false
     t.text     "comment"
@@ -586,19 +586,17 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",                                                   :default => false
     t.datetime "created_at",                                                                    :null => false
     t.datetime "updated_at",                                                                    :null => false
-    t.integer  "citation_id",                                                                   :null => false
   end
 
   create_table "stages", :force => true do |t|
-    t.string   "name",        :default => "",    :null => false
-    t.integer  "node_id",                        :null => false
-    t.integer  "user_id",                        :null => false
-    t.integer  "project_id",                     :null => false
-    t.boolean  "mod",         :default => true
-    t.boolean  "approved",    :default => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "citation_id",                    :null => false
+    t.string   "name",       :default => "",    :null => false
+    t.integer  "node_id",                       :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "project_id",                    :null => false
+    t.boolean  "mod",        :default => true
+    t.boolean  "approved",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "trophic_interaction_observations", :force => true do |t|
@@ -666,3 +664,4 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
 
 end
+>>>>>>> upstream/umass_branch

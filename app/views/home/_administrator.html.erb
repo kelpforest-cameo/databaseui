@@ -1,23 +1,34 @@
-<ul class="nav nav-pills nav-stacked span3"> 
-        <li class="active">
-            <a href="#homea" data-toggle="tab">Home</a>            
-        </li>
-        <li>
-        	<a href="#approval" data-toggle="tab">Approval of an Account</a>
-        </li>       
+<!-- Begin: navigation -->
+<ul class="nav nav-pills" id="AdministratorTab">
+    <li class="active"><a href="#homea">Home</a></li>
+	<li><a href="#approval">Approval of an Account</a></li>
 </ul>
+<!-- End: navigation -->
+
+<!-- Begin: Content -->
 <div class="tab-content">
-	    <div class="tab-pane active offset1" id="homea">
+	    <div class="tab-pane active" id="homea">
 	        <p>
 	           	The administrator has all of the capabilities of a project leader and additionally
 	           	is able to approve new accounts.           	
 	        </p>  
 	    </div>
-	    <div class="tab-pane offset1" id="approval">
+	    <div class="tab-pane" id="approval">
 	    	<p>
-	    		In order to approve an account, first sign in as the administrator. When the new screen is rendered in the browser, click the "Users" tab on the left hand side of the screen. More options will appear. Choose the "Awaiting Approval" tab. If any exist, you will see a list of users awaiting approval with the "approved" field defaulted to false. Click the edit option found in the row associated with the user you want to approve. A new screen will render in the browser window. Here you will see a checkbox labeled "Approved" that is unchecked. Click the checkbox to indicate that you are approving the user. Then click the "update" button. The user is now approved.<br \><br \>
+	    		In order to approve an account, first sign in as the administrator. When browser renders the new screen, click the "Users" tab on the left hand side of the screen. More options will appear. Choose the "Awaiting Approval" tab. If any exist, you will see a list of users awaiting approval with the approved field defaulted to "false". Click the edit option in the row associated with the user you wish to approve. A new screen will render in the browser window. Here you will see an option for approval. Click the checkbox to indicate that you are approving the user. Then click the "update" button. The user is now approved.<br \><br \>
 
-	    		If you wish to not approve a user, navigate to the "Awaiting Approval" tab as explained above. Click the "destroy" option in the row associated with the user you are not approving. Confirm the dialog box that appears. The user will no longer appear in the "Awaiting Approval" tab.
+	    		If you wish to not approve a user, navigate to the "Awaiting Approval" tab as above. Click the "destroy" option in the row associated with the user you wish to not approve. Confirm the dialog box that appears. The user is now unapproved.
 	    	</p>
 	    </div>
 </div>
+<!-- End: Content -->
+
+<script>
+    $(function () {
+		$('#AdministratorTab a').click(function (e) {
+		e.preventDefault();
+		$(this).tab('show');
+		})
+    })
+</script>
+>>>>>>> upstream/umass_branch

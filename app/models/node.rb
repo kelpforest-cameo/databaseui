@@ -1,4 +1,5 @@
 class Node < ActiveRecord::Base
+ STATUS = %w[Native NOT_NATIVE UNDEFINED]
   attr_accessible :functional_group_id, :is_assemblage, :itis_id, :non_itis_id, :user_id, :working_name, :project_id, :mod, :approved, :native_status
   belongs_to :functional_group
   belongs_to :user

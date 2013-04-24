@@ -49,23 +49,26 @@
      </div>
      
      <div class="field" id="abstract_area">
-    	<%= f.text_area :abstract, :class=>"span3" , :rows => "5" %>
+    	<%= f.text_area :abstract, :class=>"span3" , :rows => "5", :placeholder => "Brief description of the citation" %>
     </div>
 
   </div>
 
     <div class="span4">      
         <%= f.label :title %>
-        <%= f.text_field :title ,:class =>"span3" %>
+        <%= f.text_field :title ,:class =>"span3", :placeholder => "Title of Citation" %>
+        
     </div>
     
     <div class="span4">
       
       	<div class="field" id="doc">
+      	<br \>
         	<%= f.label :document %>
       	</div>
       	
       	<div class="field" id="inst_doc" hidden=true>
+      	<br \>
         	<%= f.label :Institution %>
       	</div>
       	
@@ -76,7 +79,7 @@
       
       <div class="span4 offset1">         
         <%= f.label :year %>
-        <%= f.number_field :year , :min => 0, :class =>"span3"%>
+        <%= f.number_field :year , :min => 1800, :max => @current_year, :class =>"span3" , :placeholder => "Year of citation"%>
       </div>
       
 
