@@ -1,6 +1,8 @@
 class DashboardController < ApplicationController
  
 	def index
+	
+		@current_year = Time.now.year
 		## For all users
 		@users = User.all
     ##For non approved user list
