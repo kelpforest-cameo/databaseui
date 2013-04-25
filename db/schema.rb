@@ -187,7 +187,7 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
 
   create_table "nodes", :force => true do |t|
     t.integer  "itis_id",                                :null => false
-    t.integer  "non_itis_id",         :default => -1
+    t.integer  "non_itis_id",                            :null => false
     t.string   "working_name",        :default => "",    :null => false
     t.integer  "functional_group_id",                    :null => false
     t.string   "native_status"
@@ -589,14 +589,15 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
   end
 
   create_table "stages", :force => true do |t|
-    t.string   "name",       :default => "",    :null => false
-    t.integer  "node_id",                       :null => false
-    t.integer  "user_id",                       :null => false
-    t.integer  "project_id",                    :null => false
-    t.boolean  "mod",        :default => true
-    t.boolean  "approved",   :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.string   "name",        :default => "",    :null => false
+    t.integer  "node_id",                        :null => false
+    t.integer  "user_id",                        :null => false
+    t.integer  "project_id",                     :null => false
+    t.boolean  "mod",         :default => true
+    t.boolean  "approved",    :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "citation_id"
   end
 
   create_table "trophic_interaction_observations", :force => true do |t|
