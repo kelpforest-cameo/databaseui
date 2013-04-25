@@ -279,21 +279,89 @@ $(document).ready(function(){
 		}	
 	});	
 	
+	//CSS's for loading gif
 	$("#common-name-loading-indicator").css({
 		height: 25,
 		width: 25
-
     });
     $("#latin-name-loading-indicator").css({
 		height: 25,
 		width: 25
-
     });
 	$("#itis-name-loading-indicator").css({
 		height: 25,
 		width: 25
-
     });
+	$("#interaction-latin1-loading-indicator").css({
+		height: 25,
+		width: 25
+    });
+	$("#interaction-latin2-loading-indicator").css({
+		height: 25,
+		width: 25
+    });
+	//For searching by Latin/Scientific name in interactions for stage 1
+	$('#interaction_latin_name1').typeahead(
+	{
+		source: function(query,process) 
+		{
+				$.ajax({
+				url     : "http://www.itis.gov/ITISWebService/jsonservice/searchByScientificName",
+				data    : { "tsn" : query },
+				dataType: "jsonp",
+				jsonp   : "jsonp",
+				success : function(data) 
+							{ 
+								$('#interaction-latin1-loading-indicator').hide();
+								result = [];
+								for (var i = 0; i < data.scientificNames.length; i++)
+								{
+									result[i] = data.scientificNames[i].combinedName;
+								}
+								process(result);
+							} ,
+				beforeSend : function() {
+							$('#interaction-latin1-loading-indicator').show();
+							}
+				});
+		},
+		minLength : 3,	
+	});
+	//For searching by Latin/Scientific name in interactions for stage 2
+	$('#interaction_latin_name2').typeahead(
+	{
+		source: function(query,process) 
+		{
+				$.ajax({
+				url     : "http://www.itis.gov/ITISWebService/jsonservice/searchByScientificName",
+				data    : { "tsn" : query },
+				dataType: "jsonp",
+				jsonp   : "jsonp",
+				success : function(data) 
+							{ 
+								$('#interaction-latin2-loading-indicator').hide();
+								result = [];
+								for (var i = 0; i < data.scientificNames.length; i++)
+								{
+									result[i] = data.scientificNames[i].combinedName;
+								}
+								process(result);
+							} ,
+				beforeSend : function() {
+							$('#interaction-latin2-loading-indicator').show();
+							}
+				});
+		},
+		minLength : 3,	
+	});
+	
+	
+	
+	
+	
+	
+	
+	
     // For generating form based on selection for citations
     $("#citation_format").change(function(){
     	if($('#citation_format').val() == "Journal"){
@@ -585,7 +653,8 @@ $(document).ready(function(){
 		$("#node_is_assemblage_field").hide()
 	});
 	
-
+	
+	
 });		
 				
 
