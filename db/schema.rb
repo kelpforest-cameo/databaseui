@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 201309260500054) do
+ActiveRecord::Schema.define(:version => 201309260500055) do
 
   create_table "author_cites", :force => true do |t|
     t.integer  "author_id",                      :null => false
@@ -597,7 +597,7 @@ ActiveRecord::Schema.define(:version => 201309260500054) do
     t.boolean  "approved",    :default => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-    t.integer  "citation_id"
+    t.integer  "citation_id",                    :null => false
   end
 
   create_table "trophic_interaction_observations", :force => true do |t|
