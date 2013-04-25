@@ -191,7 +191,6 @@ $(document).ready(function(){
 			//show fields
 			$("#node_working_name_field").show();
 			$("#node_functional_group_id_field").show();
-			$("#node_non_itis_id_field").show();
 			$("#node_native_status_field").show();
 			$("#node_is_assemblage_field").show();
 			return item;
@@ -274,7 +273,6 @@ $(document).ready(function(){
 			//show fields
 			$("#node_working_name_field").show();
 			$("#node_functional_group_id_field").show();
-			$("#node_non_itis_id_field").show();
 			$("#node_native_status_field").show();
 			$("#node_is_assemblage_field").show();
 			return item;
@@ -583,10 +581,11 @@ $(document).ready(function(){
 	$('#reset_new_node').on('click', function (e) {
 		$("#node_working_name_field").hide();
 		$("#node_functional_group_id_field").hide();
-		$("#node_non_itis_id_field").hide();
 		$("#node_native_status_field").hide();
 		$("#node_is_assemblage_field").hide()
 	});
+	
+
 });		
 				
 
