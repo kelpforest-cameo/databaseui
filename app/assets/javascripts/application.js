@@ -357,10 +357,18 @@ $(document).ready(function(){
 		},
 		minLength : 3,	
 	});
-	
-	
-	
-	
+
+	// For author_cites creating new citations	
+	 addAuthor = function(){
+		var myString="";
+		myAuthors.push($('#author_cites'));
+		
+		jQuery.each(myAuthors, function(i) {
+			myString+= myAuthors[i] + "<br />";
+			});
+			$('#current').html(myString);
+			myString="";}
+		
 	
 	
 	
@@ -656,7 +664,7 @@ $(document).ready(function(){
 		$("#node_is_assemblage_field").hide()
 	});
 	
-	
+
 	
 });		
 				

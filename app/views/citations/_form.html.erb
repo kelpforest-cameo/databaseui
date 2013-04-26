@@ -56,8 +56,8 @@
     <div class="span4 offset1">
       <!--<%= @id = :id %>-->
       <%= f.label :author %>
-      <!--<%= options_from_collection_for_select(Author.all, :id, :full_name) %>-->
-      <%= collection_select(:project, :user_id, Author.all, :id, :full_name, :prompt => "Please select author") %>
+      <!--<%= options_from_collection_for_select(Author.all, :id, :listing_name) %>-->
+      <%= collection_select(:project, :user_id, Author.all, :id, :listing_name, :prompt => "Please select author") %>
       
     </div>
 

@@ -39,25 +39,28 @@
   <% end %>
 <fieldset>
 
-	<div id="authors" >
 		<%= f.fields_for :author_cites do |a| %>
 			<div class="field">
 				<div class="span4 offset1">
 					<%= a.label :Author %>
 					<%= collection_select :author_cites, :author_id, @authorlist, :id, :listing_name, {:prompt => "Last First"},{:class => "span3"} %>
 					<br \>
-					<button type="reset" class="btn btn-inverse" id="addauthor">Add Author
-				</button>
+					<script>
+						var myAuthors = new Array();
+					</script>
+					<%= button_tag "Add Author",:type => 'button',:class => "btn btn-inverse", :onclick => "addAuthor()" %>
 				
 				</div>
 			</div>
+			<% end %>
+			
 			<div class="field">
 				<div class="span4">
-					<%= a.label :current_authors %>
-					<p> Place Holder for author's array </p>
+					<%= f.label :current_authors %>
+					<div id="current">
+					</div>
 				</div>
-			</div>
-		<% end %>
+
 	</div>
   <div class="span4 offset1">
   	
