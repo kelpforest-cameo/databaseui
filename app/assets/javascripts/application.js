@@ -361,7 +361,7 @@ $(document).ready(function(){
 	// For author_cites creating new citations	
 	 addAuthor = function(){
 		var myString="";
-		myAuthors.push($('#author_cites'));
+		myAuthors.push($('#author_cites').val());
 		
 		jQuery.each(myAuthors, function(i) {
 			myString+= myAuthors[i] + "<br />";
@@ -655,6 +655,13 @@ $(document).ready(function(){
     	$("#website_title").hide();
     	$("#format_area").hide();
     	$("#ab").show();
+    	myAuthors = new Array();
+    	var myString="";
+    	jQuery.each(myAuthors, function(i) {
+			myString+= myAuthors[i] + "<br />";
+			});
+			$('#current').html(myString);
+			myString="";
 	});
 	//hide fields
 	$('#reset_new_node').on('click', function (e) {
