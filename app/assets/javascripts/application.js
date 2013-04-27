@@ -358,6 +358,70 @@ $(document).ready(function(){
 		minLength : 3,	
 	});
 	
+	//For interactions
+	$('#interaction_working_name1').bind('railsAutocomplete.select', function(event, data){
+		$('#interaction_stage1_field').show();
+		$('#interaction_itis_working_name1').text('Working Name: ' + data.item.label);
+		$('#interaction_itis_id1').text('ITIS ID: ' + data.item.itis_id);
+				$.ajax({
+				url     : "http://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN",
+				data    : { "tsn" : data.item.itis_id },
+				dataType: "jsonp",
+				jsonp   : "jsonp",
+				success : function(data) 
+							{ 
+								$('#interaction-latin1-loading-indicator').hide();
+								$('#interaction_itis_latin_name1').text('Latin Name: ' + data.scientificName.combinedName);
+								result = []
+								for (var i = 0; i < data.commonNameList.commonNames.length; i++)
+								{
+									result[i] = data.commonNameList.commonNames[i].commonName;
+								}
+								
+								$('#interaction_itis_common_name1').text('Common Name: ' + result.join());
+								
+							} ,
+				beforeSend : function() {
+							$('#interaction-latin1-loading-indicator').show();
+							}
+				});
+	});
+	$('#interaction_working_name2').bind('railsAutocomplete.select', function(event, data){
+		$('#interaction_stage2_field').show();
+		$('#interaction_itis_working_name2').text('Working Name: ' + data.item.label);
+		$('#interaction_itis_id2').text('ITIS ID: ' + data.item.itis_id);
+				$.ajax({
+				url     : "http://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN",
+				data    : { "tsn" : data.item.itis_id },
+				dataType: "jsonp",
+				jsonp   : "jsonp",
+				success : function(data) 
+							{ 
+								$('#interaction-latin1-loading-indicator').hide();
+								$('#interaction_itis_latin_name2').text('Latin Name: ' + data.scientificName.combinedName);
+								result = []
+								for (var i = 0; i < data.commonNameList.commonNames.length; i++)
+								{
+									result[i] = data.commonNameList.commonNames[i].commonName;
+								}
+								
+								$('#interaction_itis_common_name2').text('Common Name: ' + result.join());
+								
+							} ,
+				beforeSend : function() {
+							$('#interaction-latin1-loading-indicator').show();
+							}
+				});
+	});
+	
+	$('#interaction_reset_button').on('click', function (e) {
+		$('#interaction_stage1_field').hide();
+		$('#interaction_stage2_field').hide();
+	});
+	
+	
+	
+	
 	
 	
 	
