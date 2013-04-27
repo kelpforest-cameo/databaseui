@@ -359,19 +359,36 @@ $(document).ready(function(){
 	});
 
 	// For author_cites creating new citations	
+		
 	 addAuthor = function(){
 		var myString="";
-		myAuthors.push($('#author_cites').val());
-		
+		var names = new Array();
+		var flag = 0;
+		value = ($('#author_cites_author_id').val());
 		jQuery.each(myAuthors, function(i) {
+			if(myAuthors[i]==value){
+		  flag = 1;
+			}
+		});
+		
+		if(flag == 1){
+		alert("Author has already been added");
+		
+		}
+		else if(value ==""){
+			alert("Please select valid author to add");
+		}
+		
+		else if(value != ""){
+			myAuthors.push(value);
+			jQuery.each(myAuthors, function(i) {
+		
 			myString+= myAuthors[i] + "<br />";
 			});
 			$('#current').html(myString);
 			myString="";}
 		
-	
-	
-	
+}
 	
     // For generating form based on selection for citations
     $("#citation_format").change(function(){

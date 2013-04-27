@@ -42,8 +42,8 @@
 		<%= f.fields_for :author_cites do |a| %>
 			<div class="field">
 				<div class="span4 offset1">
-					<%= a.label :Author %>
-					<%= collection_select :author_cites, :author_id, @authorlist, :id, :listing_name, {:prompt => "Last First"},{:class => "span3"} %>
+					<%= a.label :author %>
+					<%= collection_select :author_cites, :author_id, @authorlist, :id, :listing_name.to_s, {:prompt => "Last First"},{:class => "span3"} %>
 					<br \>
 					<script>
 						var myAuthors = new Array();
