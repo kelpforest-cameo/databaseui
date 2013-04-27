@@ -255,6 +255,14 @@ ActiveRecord::Schema.define(:version => 201309260500053) do
     t.string   "creator"
   end
 
+  create_table "remarks", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "source_url"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.integer  "resource_id"
