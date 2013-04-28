@@ -32,10 +32,10 @@ gem 'jquery-rails'
 gem 'jbuilder'
 
 # Using capistrano with rvm
-gem 'rvm-capistrano'
+#gem 'rvm-capistrano'
 
 # Deploy with Capistrano
-gem 'capistrano'
+#gem 'capistrano'
 
 # For csv
 gem 'fastercsv'
