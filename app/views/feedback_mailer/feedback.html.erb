@@ -1,51 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-  </head>
-  <body>
-    <h1>Dear site administrator,</h1>
-    <p>
-      You're lucky today, you've got feedback from your users:<br/>
-    </p>
-    <p>
-    Subject: <%=h @feedback.subject %>< br />
-    </p>
-    
-     <p>
-    User's email: <%=h @feedback.email %>< br />
-    </p>
-    
-    <p>
-    Sent at: <%= Time.now %>< br />
-    </p>
-    
-    <p>
-    From Page: <%= @feedback.page %>< br />
-    </p>
-    <p>
-      Comment: <%=h @feedback.comment %>
-    </p>
-  </body>
-</html>
+Dear site administrator,
 
+You're lucky today, you've got feedback from your users:
 
+Subject: <%=h @feedback.subject %>
+User's email: <%=h @feedback.email %>
+Sent at: <%= Time.now %>
+From Page: <%= @feedback.page %>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Comment: 
+<%=h @feedback.comment %>
