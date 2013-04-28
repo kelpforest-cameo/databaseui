@@ -1,4 +1,10 @@
 class AuthorsController < ApplicationController
+
+	def full_name
+	@author = Author.find(params[:id])
+	render :json => [@author.last_name + " " + @author.first_name]
+	end
+	
   # GET /authors
   # GET /authors.json
   def index

@@ -492,6 +492,22 @@ $(document).ready(function(){
 		var names = new Array();
 		var flag = 0;
 		value = ($('#author_cites_author_id').val());
+		$.ajax({
+				type: "get",
+				url: "authors/full_name",
+				dataType: 'json',
+				data: {id: value},
+				success: function(data) 
+				{
+					console.log(data);
+					myString+= data + "<br />";
+					$('#current').html(myString);
+				},
+				error: function()
+				{
+					console.log("ajax:error");
+				}
+		});
 		jQuery.each(myAuthors, function(i) {
 			if(myAuthors[i]==value){
 		  flag = 1;
