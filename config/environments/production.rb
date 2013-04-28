@@ -59,6 +59,7 @@ FoodWebBuilder::Application.configure do
   :user_name  => ENV['GMAIL_SMTP_USER'],
   :password  =>  ENV['GMAIL_SMTP_PASSWORD'],
   :authentication  => :login
+  :enable_starttls_auto => true
 
 	}
   # Enable threaded mode
@@ -75,3 +76,4 @@ FoodWebBuilder::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 end
+ActionMailer::Base.smtp_settings[:enable_starttls_auto] = false
