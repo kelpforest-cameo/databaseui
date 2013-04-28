@@ -34,11 +34,5 @@ FoodWebBuilder::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-  
-  # For catching any sent mails with mailcatcher
-  ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
-    :address => "localhost",
-    :port => 1025
-  }
+
 end
