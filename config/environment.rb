@@ -7,8 +7,8 @@ FoodWebBuilder::Application.initialize!
 ActionMailer::Base.smtp_settings = {
   :address  => "smtp.gmail.com",
   :port  => 465,
-  :user_name  => GMAIL_SMTP_USER,
-  :password  => GMAIL_SMTP_PASSWORD,
+  :user_name  => ENV['GMAIL_SMTP_USER'],
+  :password  =>  ENV['GMAIL_SMTP_PASSWORD'],
   :authentication  => :login
 }
 
