@@ -41,7 +41,7 @@ FoodWebBuilder::Application.configure do
 	
 	ActionMailer::Base.smtp_settings = {
   :address  => "smtp.gmail.com",
-  :port  => 465,
+  :port  => 587,
   :user_name  => ENV['GMAIL_SMTP_USER'],
   :password  =>  ENV['GMAIL_SMTP_PASSWORD'],
   :authentication  => :login
@@ -49,3 +49,4 @@ FoodWebBuilder::Application.configure do
 }
 
 end
+ActionMailer::Base.smtp_settings[:enable_starttls_auto] = false
