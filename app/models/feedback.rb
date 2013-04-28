@@ -8,6 +8,11 @@ class Feedback
     self.page = params[:page]
   end
 
+	 def feedback(feedback)
+    @recipients = 'foodwebbuilder@googlegroups.com'
+    @from = 'admin@foodwebbuilder.com'
+    @subject = "[Feedback for YourSite.com] #{feedback.subject}"
+		end
   def valid?
     self.comment && !self.comment.strip.blank?
   end
