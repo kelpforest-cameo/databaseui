@@ -20,7 +20,10 @@
 //= require gmaps4rails/gmaps4rails.googlemaps
 //= require autocomplete-rails
 
-//For loading map in dashboard tabs
+
+
+
+//begin Jquery
 $(document).ready(function(){
 	$('a[href="#regions"]').on('shown', function (e) {
 	    console.log("test1");
@@ -358,6 +361,130 @@ $(document).ready(function(){
 		minLength : 3,	
 	});
 
+
+	//helper functions
+	
+	//generate select box based upon select id
+	function generate_select_box(id,hidden)
+	{
+		$(id).empty();
+		$.get('/search_stage',function(data)
+		{
+			for (var i = 0; i < data[1].length; i++)
+			{
+				$('<option>').val(data[1][i]).text(data[1][i]).appendTo(id);
+			}			
+				if (data[1][0] == 'general *')
+					new_stage('general',$(hidden).val(),id);
+		});
+	}
+	
+	
+	function new_stage(n,node,select)
+	{
+		if(confirm('stage ' + n + ' does not exist.  Would you like to create?'))
+		{
+			$.ajax({
+				type: "POST",
+				url: "create_stage",
+				data: {stage: {name : n,node_id : node}},
+				success: function(data) 
+				{
+					generate_select_box(select);
+				}
+			});
+		}		
+	}
+	
+	
+	//For interactions stage 1
+	$('#interaction_working_name1').bind('railsAutocomplete.select', function(event, data){
+		$('#interaction_stage1_field').show();
+		$('#interaction_itis_working_name1').text('Working Name: ' + data.item.label);
+		$('#interaction_itis_id1').text('ITIS ID: ' + data.item.itis_id);
+		$('#interaction_node_id1').val(data.item.id);
+				$.ajax({
+				url     : "http://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN",
+				data    : { "tsn" : data.item.itis_id },
+				dataType: "jsonp",
+				jsonp   : "jsonp",
+				success : function(data) 
+							{ 
+								$('#interaction-latin1-loading-indicator').hide();
+								$('#interaction_itis_latin_name1').text('Latin Name: ' + data.scientificName.combinedName);
+								result = []
+								for (var i = 0; i < data.commonNameList.commonNames.length; i++)
+								{
+									result[i] = data.commonNameList.commonNames[i].commonName;
+								}
+								
+								$('#interaction_itis_common_name1').text('Common Name: ' + result.join());
+								generate_select_box('#interaction_select1','#interaction_node_id1');
+								
+							} ,
+				beforeSend : function() {
+							$('#interaction-latin1-loading-indicator').show();
+							}
+				});
+	});
+	
+	
+	//For interactions stage 2
+	$('#interaction_working_name2').bind('railsAutocomplete.select', function(event, data){
+		$('#interaction_stage2_field').show();
+		$('#interaction_itis_working_name2').text('Working Name: ' + data.item.label);
+		$('#interaction_itis_id2').text('ITIS ID: ' + data.item.itis_id);
+		$('#interaction_node_id2').val(data.item.id);
+				$.ajax({
+				url     : "http://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN",
+				data    : { "tsn" : data.item.itis_id },
+				dataType: "jsonp",
+				jsonp   : "jsonp",
+				success : function(data) 
+							{ 
+								$('#interaction-latin2-loading-indicator').hide();
+								$('#interaction_itis_latin_name2').text('Latin Name: ' + data.scientificName.combinedName);
+								result = []
+								for (var i = 0; i < data.commonNameList.commonNames.length; i++)
+								{
+									result[i] = data.commonNameList.commonNames[i].commonName;
+								}
+								
+								$('#interaction_itis_common_name2').text('Common Name: ' + result.join());
+								generate_select_box('#interaction_select2','#interaction_node_id2');
+								
+							} ,
+				beforeSend : function() {
+							$('#interaction-latin2-loading-indicator').show();
+							}
+				});
+	});
+	
+	$('#interaction_reset_button').on('click', function (e) {
+		$('#interaction_stage1_field').hide();
+		$('#interaction_stage2_field').hide();
+	});
+	
+	
+	//For creating new stage if it does not exist
+	$("#interaction_select1").change(function(){
+		s = $("#interaction_select1").val();
+		if(s.charAt(s.length-1) == '*')
+		{
+			s = s.substring(0,s.length - 2)
+			new_stage(s,$('#interaction_node_id1').val(),'#interaction_select1');
+		}
+	});
+	$("#interaction_select2").change(function(){
+		s = $("#interaction_select2").val();
+		if(s.charAt(s.length-1) == '*')
+		{
+			s = s.substring(0,s.length - 2)
+			new_stage(s,$('#interaction_node_id2').val(),'#interaction_select2');
+		}
+	});
+
+
 	// For author_cites creating new citations	
 		
 	 addAuthor = function(){
@@ -365,6 +492,22 @@ $(document).ready(function(){
 		var names = new Array();
 		var flag = 0;
 		value = ($('#author_cites_author_id').val());
+		$.ajax({
+				type: "get",
+				url: "authors/full_name",
+				dataType: 'json',
+				data: {id: value},
+				success: function(data) 
+				{
+					console.log(data);
+					myString+= data + "<br />";
+					$('#current').html(myString);
+				},
+				error: function()
+				{
+					console.log("ajax:error");
+				}
+		});
 		jQuery.each(myAuthors, function(i) {
 			if(myAuthors[i]==value){
 		  flag = 1;
@@ -389,6 +532,7 @@ $(document).ready(function(){
 			myString="";}
 		
 }
+
 	
     // For generating form based on selection for citations
     $("#citation_format").change(function(){

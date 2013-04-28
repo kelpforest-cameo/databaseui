@@ -2,6 +2,9 @@ class DashboardController < ApplicationController
 
 	def index
 	
+	##For new stage in interactions
+	@new_stage = Stage.new
+	
 	## For Users Tab objects can be reused in other partials also
 		@users = User.all
 		@userlist = User.where(["project_id = ?",current_user.project_id] && ["approved = false"]).all

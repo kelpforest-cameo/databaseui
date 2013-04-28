@@ -20,9 +20,10 @@ FoodWebBuilder::Application.routes.draw do
 
 	#For Node Search
 	
-	match 'search/' => 'dashboard#search', :as => "search"
-	
-	
+	match 'search' => 'dashboard#search', :as => "search"
+	match 'search_stage' => 'stages#search_stage'
+	match 'create_stage' => 'stages#create_stage'
+	match 'authors/full_name' => 'authors#full_name'
 	resources :projects
  
 
