@@ -12,9 +12,4 @@ class Feedback
     self.comment && !self.comment.strip.blank?
   end
 
-	def feedback(feedback)
-    @recipients = 'you@yoursite.com'
-    @from = 'system@yoursite.com'
-    @subject = "[Feedback for YourSite.com] #{feedback.subject}"
-
 end
