@@ -21,6 +21,6 @@ module FeedbacksHelper
   end
 
   def feedback_link(text, options = {})
-    link_to text, '#', :class => "feedback_link"
+    link_to text, 'new_feedback', :class => "feedback_link"
   end
 end

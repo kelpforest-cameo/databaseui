@@ -1,4 +1,6 @@
 class FeedbacksController < ApplicationController
+	skip_load_and_authorize_resource
+	 skip_before_filter :authenticate_user!
   layout false
 
   def new
