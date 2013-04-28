@@ -34,5 +34,16 @@ FoodWebBuilder::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+   config.action_mailer.raise_delivery_errors = false
+	config.action_mailer.delivery_method = :smtp
+	
+	ActionMailer::Base.smtp_settings = {
+  :address  => "smtp.gmail.com",
+  :port  => 465,
+  :user_name  => ENV['GMAIL_SMTP_USER'],
+  :password  =>  ENV['GMAIL_SMTP_PASSWORD'],
+  :authentication  => :login
+}
 
 end
