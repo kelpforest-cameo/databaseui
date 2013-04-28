@@ -12,7 +12,7 @@
 
   <p>
     <%= f.label 'subject' %>
-    <%= f.select 'subject', ['Problem', 'Suggestion', 'Question', 'Other'] %>
+    <%= f.select 'subject', ['Problem', 'Suggestion', 'Question', 'Bug', 'Other'], {:prompt => "Please Select Subject"} %>
   </p>
   <p>
     <%= f.label 'email' %>
