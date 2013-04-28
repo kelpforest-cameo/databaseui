@@ -10,7 +10,7 @@ class Feedback
 
 	 def feedback(feedback)
     @recipients = 'foodwebbuilder@googlegroups.com'
-    @from = 'admin@foodwebbuilder.com'
+    @from = 'foodwebb@gmail.com'
     @subject = "[Feedback for YourSite.com] #{feedback.subject}"
 		end
   def valid?
