@@ -64,7 +64,7 @@ gem 'rails3-jquery-autocomplete'
 
 
 # For user feedback
-gem 'mail_form'
+#gem 'mail_form'
 
 # For enums
 gem 'enum_simulator'
