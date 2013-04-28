@@ -48,15 +48,7 @@
 						<label id="interaction_itis_latin_name1" visible="false">ITIS Latin Name: </label>
 						<label id="interaction_itis_id1" visible="false">ITIS ID: </label>
 						
-						<select>
-						<option value="general">general</option>
-						<option value="adult *">adult *</option>
-						<option value="juvenile *">juvenile *</option>
-						<option value="larval *">larval *</option>
-						<option value="egg *">egg *</option>
-						<option value="sporophyte *">sporophyte *</option>
-						<option value="gametophyte *">gametophyte *</option>
-						<option value="dead *">dead *</option>
+						<select id="interaction_select1">
 						</select>
 					</div>
 			</div>
@@ -77,6 +69,9 @@
 						<label id="interaction_itis_common_name2" visible="false">ITIS Common Name: </label>
 						<label id="interaction_itis_latin_name2" visible="false">ITIS Latin Name: </label>
 						<label id="interaction_itis_id2" visible="false">ITIS ID: </label>
+						
+						<select id="interaction_select2">
+						</select>
 					</div>			
 			</div>
 		
@@ -97,4 +92,20 @@
 	</fieldset>
 </form>
 
+<div id="new_stage" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" 
+			class="close" data-dismiss="modal" 
+			aria-hidden="true">&times;
+		</button>
+		<h3> New Stage </h3>
+	</div>
+	<div class="modal-body">
+		<%= render :partial => 'newstage', :stage => @new_stage%>
+	</div>
+	<div class="modal-footer">
+	</div>
+</div>
 
+<input type="hidden" id="interaction_node_id1">
+<input type="hidden" id="interaction_node_id2">

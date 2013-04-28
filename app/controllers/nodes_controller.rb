@@ -1,7 +1,7 @@
 class NodesController < ApplicationController
   # GET /nodes
   # GET /nodes.json
-  autocomplete :node, :working_name, :full => true, :extra_data => [:itis_id],:display_value => :display_node
+  autocomplete :node, :working_name, :full => true, :extra_data => [:itis_id,:id],:display_value => :display_node
 
 
   def index

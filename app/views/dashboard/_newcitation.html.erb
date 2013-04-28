@@ -38,9 +38,34 @@
     </div>
   <% end %>
 <fieldset>
+
+		<%= f.fields_for :author_cites do |a| %>
+			<div class="field">
+				<div class="span4 offset1">
+					<%= a.label :Author %>
+					<%= collection_select :author_cites, :author_id, @authorlist, :id, :listing_name, {:prompt => "Last First"},{:class => "span3"} %>
+					<br \>
+					<script>
+						var myAuthors = new Array();
+					</script>
+					<%= button_tag "Add Author",:type => 'button',:class => "btn btn-inverse", :onclick => "addAuthor()" %>
+				
+				</div>
+			</div>
+			<% end %>
+			
+			<div class="field">
+				<div class="span4">
+					<%= f.label :current_authors %>
+					<div id="current">
+					</div>
+				</div>
+
+	</div>
   <div class="span4 offset1">
   	
   	<div class="field" id="ab">
+  		<br \>
   	  <%= f.label :abstract %>
      </div>
      
@@ -54,7 +79,8 @@
 
   </div>
 
-    <div class="span4">      
+    <div class="span4">
+    	<br \>
         <%= f.label :title %>
         <%= f.text_field :title ,:class =>"span3", :placeholder => "Title of Citation" %>
         
