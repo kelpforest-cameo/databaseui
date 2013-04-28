@@ -10,7 +10,7 @@ a {
   &#feedback_link {
     position: fixed;
     z-index: 99999;
-    background-color: #CC0000;
+    background-color: #74C1F5;
     width: 26px;
     height: 96px;
     overflow: hidden;
@@ -18,7 +18,7 @@ a {
     _position: absolute;
     /*_background-image: url(/assets/feedback/feedback_tab.png);*/
     &:hover {
-      background-color: #999; }
+      background-color: #74C1F5; }
     &.left {
       left: 0;
       top: 25%;
