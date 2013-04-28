@@ -332,6 +332,64 @@ $(document).ready(function(){
 							}
 				});
 		},
+		updater: function(item)
+		{
+			$.ajax({
+				url     : "http://www.itis.gov/ITISWebService/jsonservice/searchByScientificName",
+				data    : { "tsn" : item },
+				dataType: "jsonp",
+				jsonp   : "jsonp",
+				success : function(data) 
+				{
+					result = data.scientificNames[0].tsn;
+					$.ajax({
+						type: "GET",
+						url: "search_by_tsn",
+						data: {tsn: result},
+						success: function(data) 
+						{
+							if (data[0] == false)
+								alert("This node does not exist in the database")
+							else
+							{
+								$('#interaction_stage1_field').show();
+								$('#interaction_working_name1').val(data[1].working_name);
+								$('#interaction_itis_working_name1').text('Working Name: ' + data[1].working_name);
+								$('#interaction_itis_id1').text('ITIS ID : ' + data[1].itis_id);
+								
+								$.ajax({
+									url     : "http://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN",
+									data    : { "tsn" : data[1].itis_id },
+									dataType: "jsonp",
+									jsonp   : "jsonp",
+									success : function(data)
+									{
+										result = [];
+										for (var i = 0; i < data.commonNameList.commonNames.length; i++)
+										{
+											result[i] = data.commonNameList.commonNames[i].commonName;
+										}
+										$('#interaction_itis_common_name1').text('Common Name: ' + result.join());				
+										$('#interaction_itis_latin_name1').text('Latin Name: ' + data.scientificName.combinedName);
+										generate_select_box('#interaction_select1','#interaction_node_id1');
+										if ($('#interaction_working_name2').val() !== "" || $('#interaction_latin_name2').val() =="")
+										{
+											$('#interaction_add_interaction').attr("disabled", false);
+											$('#interaction_add_observation').attr("disabled", false);
+										}
+									}
+									
+									});
+							}
+						}
+				});
+					
+				}
+			});
+			
+			
+			return item;
+		},
 		minLength : 3,	
 	});
 	//For searching by Latin/Scientific name in interactions for stage 2
@@ -358,6 +416,64 @@ $(document).ready(function(){
 							$('#interaction-latin2-loading-indicator').show();
 							}
 				});
+		},
+		updater: function(item)
+		{
+			$.ajax({
+				url     : "http://www.itis.gov/ITISWebService/jsonservice/searchByScientificName",
+				data    : { "tsn" : item },
+				dataType: "jsonp",
+				jsonp   : "jsonp",
+				success : function(data) 
+				{
+					result = data.scientificNames[0].tsn;
+					$.ajax({
+						type: "GET",
+						url: "search_by_tsn",
+						data: {tsn: result},
+						success: function(data) 
+						{
+							if (data[0] == false)
+								alert("This node does not exist in the database")
+							else
+							{
+								$('#interaction_stage2_field').show();
+								$('#interaction_working_name2').val(data[1].working_name);
+								$('#interaction_itis_working_name2').text('Working Name: ' + data[1].working_name);
+								$('#interaction_itis_id2').text('ITIS ID : ' + data[1].itis_id);
+								
+								$.ajax({
+									url     : "http://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN",
+									data    : { "tsn" : data[1].itis_id },
+									dataType: "jsonp",
+									jsonp   : "jsonp",
+									success : function(data)
+									{
+										result = [];
+										for (var i = 0; i < data.commonNameList.commonNames.length; i++)
+										{
+											result[i] = data.commonNameList.commonNames[i].commonName;
+										}
+										$('#interaction_itis_common_name2').text('Common Name: ' + result.join());				
+										$('#interaction_itis_latin_name2').text('Latin Name: ' + data.scientificName.combinedName);
+										generate_select_box('#interaction_select2','#interaction_node_id1');
+										if ($('#interaction_working_name1').val() !== "" || $('#interaction_latin_name1').val() =="")
+										{
+											$('#interaction_add_interaction').attr("disabled", false);
+											$('#interaction_add_observation').attr("disabled", false);
+										}
+									}
+									
+									});
+							}
+						}
+				});
+					
+				}
+			});
+			
+			
+			return item;
 		},
 		minLength : 3,	
 	});
@@ -421,7 +537,7 @@ $(document).ready(function(){
 								
 								$('#interaction_itis_common_name1').text('Common Name: ' + result.join());
 								generate_select_box('#interaction_select1','#interaction_node_id1');
-								if ($('#interaction_working_name2').val() !== "")
+								if ($('#interaction_working_name2').val() !== "" || $('#interaction_latin_name2').val() =="")
 								{
 									$('#interaction_add_interaction').attr("disabled", false);
 									$('#interaction_add_observation').attr("disabled", false);
@@ -457,7 +573,7 @@ $(document).ready(function(){
 								
 								$('#interaction_itis_common_name2').text('Common Name: ' + result.join());
 								generate_select_box('#interaction_select2','#interaction_node_id2');
-								if ($('#interaction_working_name1').val() !== "")
+								if ($('#interaction_working_name1').val() !== "" || $('#interaction_latin_name1').val() =="")
 								{
 									$('#interaction_add_interaction').attr("disabled", false);
 									$('#interaction_add_observation').attr("disabled", false);
