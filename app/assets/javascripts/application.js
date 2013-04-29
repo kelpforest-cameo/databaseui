@@ -352,6 +352,7 @@ $(document).ready(function(){
 								alert("This node does not exist in the database")
 							else
 							{
+								$('#interaction_node_id1').val(data[1].id);
 								$('#interaction_stage1_field').show();
 								$('#interaction_working_name1').val(data[1].working_name);
 								$('#interaction_itis_working_name1').text('Working Name: ' + data[1].working_name);
@@ -437,6 +438,7 @@ $(document).ready(function(){
 								alert("This node does not exist in the database")
 							else
 							{
+								$('#interaction_node_id2').val(data[1].id);
 								$('#interaction_stage2_field').show();
 								$('#interaction_working_name2').val(data[1].working_name);
 								$('#interaction_itis_working_name2').text('Working Name: ' + data[1].working_name);
