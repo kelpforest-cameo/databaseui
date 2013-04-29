@@ -69,7 +69,8 @@ class NodesController < ApplicationController
         format.html { redirect_to root_path(tab:"newnode"), notice: 'Node ' + @node.working_name + ' has been added'}
         format.json { render json: @node, status: :created, location: @node }
       else
-        format.html { render action: "new" }
+		flash[:error] = @node.errors
+        format.html { redirect_to root_path(tab:"newnode")}
         format.json { render json: @node.errors, status: :unprocessable_entity }
       end
     end
