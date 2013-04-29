@@ -30,4 +30,5 @@ rerun.txt
 pickle-email-*.html
 .project
 /config/database.yml
-/db/schema.rb
+/config/deploy.rb
+

@@ -3,9 +3,11 @@ class Citation < ActiveRecord::Base
 	FORMATS = %w[Journal Book Book_Section Report Thesis Website Personal_Observation 
 								Unpublished_Data Other]
   attr_accessible :abstract, :closed, :document, :format, :format_title, :number, :pages, :publisher, :title, :user_id, :volume, :year, :mod, :project_id, :approved
+
+  
   belongs_to :user
   belongs_to :project
-  has_many :author_cites
+  has_many :author_cites, :dependent => :destroy
   has_many :authors, :through => :author_cites
   has_many :competition_interaction_observations
   has_many :facilitation_interaction_observations
@@ -37,6 +39,8 @@ class Citation < ActiveRecord::Base
   has_many :stage_residency_times
   has_many :stage_unassimilated_consum_ratios
   has_many :trophic_interaction_observations
+  
+  accepts_nested_attributes_for :author_cites, :allow_destroy => true
   
   validates :title, :presence => true
   validates :year, :presence => true

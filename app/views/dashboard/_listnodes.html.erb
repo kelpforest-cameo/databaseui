@@ -18,3 +18,32 @@
 	</div>
 </div>
 
+<table class="table table-striped">
+  <tr>
+    <th>ITIS ID</th>
+    <th>Working Name</th>
+    <th>Latin Name</th>
+    <th>Functional Group</th>
+    <th>Non-ITIS ID</th>
+    <th>Native Status</th>
+    <th>Created By</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @node.each do |node| %>
+  <tr>
+    <td><%= node.itis_id %></td>
+    <td><%= node.working_name %></td>
+    <td><%= node.working_name %></td>
+    <td><%= functional_name(node.functional_group_id).name %></td>
+    <td><%= node.non_itis_id %></td>
+    <td><%= node.native_status %></td>
+    <td><%= owner_user(node.user_id).username %></td>
+    <td><%= link_to 'Show', node %></td>
+    <td><%= link_to 'Edit', edit_node_path(node) %></td>
+    <td><%= link_to 'Destroy', node, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

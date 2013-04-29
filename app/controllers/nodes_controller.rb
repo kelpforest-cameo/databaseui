@@ -1,7 +1,23 @@
 class NodesController < ApplicationController
   # GET /nodes
   # GET /nodes.json
-  autocomplete :node, :working_name, :full => true
+  autocomplete :node, :working_name, :full => true, :extra_data => [:itis_id,:id],:display_value => :display_node
+
+  
+  def search_by_tsn
+	@tsn = params[:tsn]
+	
+	workingname = Node.where(:itis_id =>@tsn).first
+	
+	if workingname == nil
+		success = false
+	else
+		success = true
+		workingname = workingname
+	end
+	
+	render :json =>[success,workingname]
+  end
 
   def index
     @nodes = Node.all
@@ -48,7 +64,8 @@ class NodesController < ApplicationController
 
     respond_to do |format|
       if @node.save
-        format.html { redirect_to @node, notice: 'Node was successfully created.' }
+        format.html { redirect_to root_path(tab:"newnode") }
+        flash[:notice] = ("Node " + @node.working_name + " has been added")
         format.json { render json: @node, status: :created, location: @node }
       else
         format.html { render action: "new" }
@@ -77,10 +94,12 @@ class NodesController < ApplicationController
   # DELETE /nodes/1.json
   def destroy
     @node = Node.find(params[:id])
+    myWorkingName = @node.working_name
     @node.destroy
 
     respond_to do |format|
-      format.html { redirect_to nodes_url }
+      flash[:notice] = ("Node " + myWorkingName + " has been deleted")
+      format.html { redirect_to root_path(tab:"nodelist") }
       format.json { head :no_content }
     end
   end

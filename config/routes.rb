@@ -1,10 +1,8 @@
 FoodWebBuilder::Application.routes.draw do
   
-
   match 'feedbacks' => 'feedbacks#create', :as => :feedback
 
   match 'feedbacks/new' => 'feedbacks#new', :as => :new_feedback
-
 
   resources :forums
 
@@ -17,9 +15,14 @@ FoodWebBuilder::Application.routes.draw do
 
 	#For Node Search
 	
-	match 'search/' => 'dashboard#search', :as => "search"
-	
-	
+	match 'search' => 'dashboard#search', :as => "search"
+	match 'search_by_tsn' => 'nodes#search_by_tsn'
+	# for interactions
+	match 'search_stage' => 'stages#search_stage'
+	match 'create_stage' => 'stages#create_stage'
+	match 'interactions' => 'dashboard#add_interactions'
+	#For Citations
+	match 'authors/full_name' => 'authors#full_name'
 	resources :projects
  
 
