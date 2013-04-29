@@ -62,17 +62,6 @@ gem 'lazy_high_charts'
 # For autocompletion in forms
 gem 'rails3-jquery-autocomplete'
 
-
-
-# For enums
-gem 'enum_simulator'
-# For user feedback
-gem 'mail_form'
-
-
-# For user feedback
-#gem 'mail_form'
-
 # For enums
 gem 'enum_simulator'
 

@@ -9,12 +9,12 @@ class Feedback
   end
   
   def feedback(feedback)
-    @recipients = 'foodwebbuilder@googlegroups.com'
+    @recipients = 'jjliang84@gmail.com'
     @from = 'foodwebb@gmail.com'
 
     @subject = "FoodWebBuilder feedback" + :subject
-  end
-
+	end
+	
   def valid?
     self.comment && !self.comment.strip.blank?
   end
