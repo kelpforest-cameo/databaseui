@@ -5,12 +5,8 @@ gem 'rails', '3.2.12'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-group :production do
-  gem 'pg'
-end
-group :development, :test do
-  gem 'mysql2'
-end
+gem 'mysql2'
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -35,14 +31,11 @@ gem 'jquery-rails'
 # To use Jbuilder templates for JSON
 gem 'jbuilder'
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
 # Using capistrano with rvm
-gem 'rvm-capistrano'
+#gem 'rvm-capistrano'
 
 # Deploy with Capistrano
-gem 'capistrano'
+#gem 'capistrano'
 
 # For csv
 gem 'fastercsv'
@@ -68,3 +61,17 @@ gem 'lazy_high_charts'
 
 # For autocompletion in forms
 gem 'rails3-jquery-autocomplete'
+
+
+
+# For enums
+gem 'enum_simulator'
+# For user feedback
+gem 'mail_form'
+
+
+# For user feedback
+#gem 'mail_form'
+
+# For enums
+gem 'enum_simulator'
