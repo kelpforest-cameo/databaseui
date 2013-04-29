@@ -588,8 +588,6 @@ $(document).ready(function(){
 	$('#interaction_reset_button').on('click', function (e) {
 		$('#interaction_working_name1').val("");
 		$('#interaction_working_name2').val("");
-		$('#interaction_node_id1').val("");
-		$('#interaction_node_id2').val("");
 		$('#interaction_stage1_field').hide();
 		$('#interaction_stage2_field').hide();
 		$('#interaction_add_interaction').attr("disabled", true);
