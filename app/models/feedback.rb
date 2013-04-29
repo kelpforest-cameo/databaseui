@@ -13,7 +13,6 @@ class Feedback
     @from = 'foodwebb@gmail.com'
     @subject = "FoodWebBuilder feedback" + :subject
 	end
-
   def valid?
     self.comment && !self.comment.strip.blank?
   end
