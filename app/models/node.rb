@@ -18,6 +18,4 @@ class Node < ActiveRecord::Base
   
   #validations
   validates :working_name, :presence => true
-  validates :format, :presence => true
-  validates :format, :presence => true
 end
