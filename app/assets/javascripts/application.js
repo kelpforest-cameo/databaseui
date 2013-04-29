@@ -19,12 +19,8 @@
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.googlemaps
 //= require autocomplete-rails
-//= require citations
 
-
-
-
-//begin Jquery
+//For loading map in dashboard tabs
 $(document).ready(function(){
 	$('a[href="#regions"]').on('shown', function (e) {
 	    console.log("test1");
@@ -42,9 +38,8 @@ $(document).ready(function(){
 		Gmaps.second_map.callback();
 	 });
 	 //New region requires a different map click event
-	$('a[href="#regioneditor"]').on('shown', function (e) {
+	$('a[href="#newregion"]').on('shown', function (e) {
 		Gmaps.second_map.initialize();
-		Gmaps.second_map.create_polygons();
 		Gmaps.second_map.adjustMapToBounds();
 		google.maps.event.trigger(Gmaps.second_map, 'resize');
 		Gmaps.second_map.callback();
@@ -153,6 +148,12 @@ $(document).ready(function(){
 								{
 									result[i] = data.commonNames[i].commonName;
 								}
+								//show fields
+								$("#node_working_name_field").show();
+								$("#node_functional_group_id_field").show();
+								$("#node_non_itis_id_field").show();
+								$("#node_native_status_field").show();
+								$("#node_is_assemblage_field").show();
 								process(result);
 							} ,
 				beforeSend : function() {
@@ -184,7 +185,7 @@ $(document).ready(function(){
 									$('#Latin_name').val(data.combinedName);
 								} ,
 								beforeSend : function() {
-											$('#latin-name-loading-indicator').show();
+											$('#itis-name-loading-indicator').show();
 											}
 								});
 							} ,
@@ -192,12 +193,6 @@ $(document).ready(function(){
 							$('#itis-name-loading-indicator').show();
 							}
 				});
-			//show fields
-			$("#node_working_name_field").show();
-			$("#node_functional_group_id_field").show();
-			$("#node_native_status_field").show();
-			$("#node_is_assemblage_field").show();
-			$('#node_working_name').val(item);
 			return item;
 		}
 		
@@ -257,410 +252,298 @@ $(document).ready(function(){
 											name += ", " + data.commonNames[i].commonName;
 										}
 										$('#Common_name').val(name);
-										$('#node_working_name').val(name);
 									}	
 									else {
 										$('#Common_name').val("undefined");
-										$('#node_working_name').val("undefined");
 									}
-								
 								}	 ,
 				beforeSend : function() {
 							$('#common-name-loading-indicator').show();
 							}
 				});
 				
-						$('#itis-name-loading-indicator').hide();
 							} ,
 				beforeSend : function() {
-							$('#itis-name-loading-indicator').show();
+							$('#latin-name-loading-indicator').show();
 							}
 				});
-				
-			//show fields
-			$("#node_working_name_field").show();
-			$("#node_functional_group_id_field").show();
-			$("#node_native_status_field").show();
-			$("#node_is_assemblage_field").show();
 			return item;
 		}	
 	});	
 	
-	//CSS's for loading gif
 	$("#common-name-loading-indicator").css({
 		height: 25,
 		width: 25
+
     });
     $("#latin-name-loading-indicator").css({
 		height: 25,
 		width: 25
-    });
-	$("#itis-name-loading-indicator").css({
-		height: 25,
-		width: 25
-    });
-	$("#interaction-latin1-loading-indicator").css({
-		height: 25,
-		width: 25
-    });
-	$("#interaction-latin2-loading-indicator").css({
-		height: 25,
-		width: 25
-    });
-	//For searching by Latin/Scientific name in interactions for stage 1
-	$('#interaction_latin_name1').typeahead(
-	{
-		source: function(query,process) 
-		{
-				$.ajax({
-				url     : "http://www.itis.gov/ITISWebService/jsonservice/searchByScientificName",
-				data    : { "tsn" : query },
-				dataType: "jsonp",
-				jsonp   : "jsonp",
-				success : function(data) 
-							{ 
-								$('#interaction-latin1-loading-indicator').hide();
-								result = [];
-								for (var i = 0; i < data.scientificNames.length; i++)
-								{
-									result[i] = data.scientificNames[i].combinedName;
-								}
-								process(result);
-							} ,
-				beforeSend : function() {
-							$('#interaction-latin1-loading-indicator').show();
-							}
-				});
-		},
-		updater: function(item)
-		{
-			$.ajax({
-				url     : "http://www.itis.gov/ITISWebService/jsonservice/searchByScientificName",
-				data    : { "tsn" : item },
-				dataType: "jsonp",
-				jsonp   : "jsonp",
-				success : function(data) 
-				{
-					result = data.scientificNames[0].tsn;
-					$.ajax({
-						type: "GET",
-						url: "search_by_tsn",
-						data: {tsn: result},
-						success: function(data) 
-						{
-							if (data[0] == false)
-								alert("This node does not exist in the database")
-							else
-							{
-								$('#interaction_stage1_field').show();
-								$('#interaction_working_name1').val(data[1].working_name);
-								$('#interaction_itis_working_name1').text('Working Name: ' + data[1].working_name);
-								$('#interaction_itis_id1').text('ITIS ID : ' + data[1].itis_id);
-								
-								$.ajax({
-									url     : "http://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN",
-									data    : { "tsn" : data[1].itis_id },
-									dataType: "jsonp",
-									jsonp   : "jsonp",
-									success : function(data)
-									{
-										result = [];
-										for (var i = 0; i < data.commonNameList.commonNames.length; i++)
-										{
-											result[i] = data.commonNameList.commonNames[i].commonName;
-										}
-										$('#interaction_itis_common_name1').text('Common Name: ' + result.join());				
-										$('#interaction_itis_latin_name1').text('Latin Name: ' + data.scientificName.combinedName);
-										generate_select_box('#interaction_select1','#interaction_node_id1');
-										if ($('#interaction_working_name2').val() !== "" || $('#interaction_latin_name2').val() =="")
-										{
-											$('#interaction_add_interaction').attr("disabled", false);
-											$('#interaction_add_observation').attr("disabled", false);
-										}
-									}
-									
-									});
-							}
-						}
-				});
-					
-				}
-			});
-			
-			
-			return item;
-		},
-		minLength : 3,	
-	});
-	//For searching by Latin/Scientific name in interactions for stage 2
-	$('#interaction_latin_name2').typeahead(
-	{
-		source: function(query,process) 
-		{
-				$.ajax({
-				url     : "http://www.itis.gov/ITISWebService/jsonservice/searchByScientificName",
-				data    : { "tsn" : query },
-				dataType: "jsonp",
-				jsonp   : "jsonp",
-				success : function(data) 
-							{ 
-								$('#interaction-latin2-loading-indicator').hide();
-								result = [];
-								for (var i = 0; i < data.scientificNames.length; i++)
-								{
-									result[i] = data.scientificNames[i].combinedName;
-								}
-								process(result);
-							} ,
-				beforeSend : function() {
-							$('#interaction-latin2-loading-indicator').show();
-							}
-				});
-		},
-		updater: function(item)
-		{
-			$.ajax({
-				url     : "http://www.itis.gov/ITISWebService/jsonservice/searchByScientificName",
-				data    : { "tsn" : item },
-				dataType: "jsonp",
-				jsonp   : "jsonp",
-				success : function(data) 
-				{
-					result = data.scientificNames[0].tsn;
-					$.ajax({
-						type: "GET",
-						url: "search_by_tsn",
-						data: {tsn: result},
-						success: function(data) 
-						{
-							if (data[0] == false)
-								alert("This node does not exist in the database")
-							else
-							{
-								$('#interaction_stage2_field').show();
-								$('#interaction_working_name2').val(data[1].working_name);
-								$('#interaction_itis_working_name2').text('Working Name: ' + data[1].working_name);
-								$('#interaction_itis_id2').text('ITIS ID : ' + data[1].itis_id);
-								
-								$.ajax({
-									url     : "http://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN",
-									data    : { "tsn" : data[1].itis_id },
-									dataType: "jsonp",
-									jsonp   : "jsonp",
-									success : function(data)
-									{
-										result = [];
-										for (var i = 0; i < data.commonNameList.commonNames.length; i++)
-										{
-											result[i] = data.commonNameList.commonNames[i].commonName;
-										}
-										$('#interaction_itis_common_name2').text('Common Name: ' + result.join());				
-										$('#interaction_itis_latin_name2').text('Latin Name: ' + data.scientificName.combinedName);
-										generate_select_box('#interaction_select2','#interaction_node_id1');
-										if ($('#interaction_working_name1').val() !== "" || $('#interaction_latin_name1').val() =="")
-										{
-											$('#interaction_add_interaction').attr("disabled", false);
-											$('#interaction_add_observation').attr("disabled", false);
-										}
-									}
-									
-									});
-							}
-						}
-				});
-					
-				}
-			});
-			
-			
-			return item;
-		},
-		minLength : 3,	
-	});
 
+    });
+    // For generating form based on selection for citations
+    $("#citation_format").change(function(){
+    	if($('#citation_format').val() == "Journal"){
+    		$("#journal_title").show();
+    		$("#doc").show();
+    		$("#vol").show();
+    		$("#pages").show();
+    		$("#num").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
+    		$("#vol_area").show()
+    		$("#num_area").show()
+    	
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#address").hide();
+    		$("#phonenum").hide();
+    		$("#com").hide();
+    		$("#pub_area").hide()
+    	}
+    	else if ($('#citation_format').val() == "Book"){
+    		$("#book_title").show();
+    		$("#doc").show();
+    		$("#pub").show();
+    		$("#pages").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
+    		$("#pub_area").show()
+    		
+    		$("#journal_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#com").hide();
+    		$("#num_area").hide()
+    		$("#vol_area").hide()
+    	}
+    	else if($('#citation_format').val() == "Book_Section"){
+    		$("#book_select_title").show();
+    		$("#doc").show();
+    		$("#pages").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#com").hide();
+    		$("#pub_area").hide()
+    		$("#num_area").hide()
+    		$("#vol_area").hide()
+    	}
+    	else if($('#citation_format').val() == "Report"){
+    		$("#report_title").show();
+    		$("#doc").show();
+    		$("#pages").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#com").hide();
+    		$("#pub_area").hide()
+    		$("#num_area").hide()
+    		$("#vol_area").hide()
+    	}
+    	else if($('#citation_format').val() == "Thesis"){
+    		$("#thesis_title").show();
+    		$("#doc").show();
+    		$("#pages").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#com").hide();
+    		$("#pub_area").hide()
+    		$("#num_area").hide()
+    		$("#vol_area").hide()
+    	}
+    	else if($('#citation_format').val() == "Website"){
+    		$("#website_title").show();
+    		$("#doc").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#pages").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#com").hide();
+    		$("#pages_area").hide()
+    		$("#pub_area").hide()
+    		$("#num_area").hide()
+    		$("#vol_area").hide()
+    	}
+    	else if($('#citation_format').val() == "Other"){
+    		$("#other_title").show();
+    		$("#doc").show();
+    		$("#ab").show();
+    		$("#format_area").show()
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#personal_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#inst_doc").hide();
+    		$("#pub").hide();
+    		$("#email").hide();
+    		$("#vol").hide();
+    		$("#address").hide();
+    		$("#pages").hide();
+    		$("#num").hide();
+    		$("#phonenum").hide();
+    		$("#com").hide();
+    		$("#pages_area").hide()
+    		$("#pub_area").hide()
+    		$("#num_area").hide()
+    		$("#vol_area").hide()
+    	}
+    	else if($('#citation_format').val() == "Personal_Observation"){
+    		$("#personal_title").show();
+    		$("#inst_doc").show();
+    		$("#email").show();
+    		$("#address").show();
+    		$("#phonenum").show();
+    		$("#com").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
+    		$("#pub_area").show()
+    		$("#num_area").show()
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#website_title").hide();
+    		$("#other_title").hide();
+    		$("#unpublished_title").hide();
+    		$("#doc").hide();
+    		$("#pub").hide();
+    		$("#vol").hide();
+    		$("#pages").hide();
+    		$("#num").hide();
+    		$("#ab").hide();
+    		$("#vol_area").hide()
 
-	//helper functions
-	
-	//generate select box based upon select id
-	function generate_select_box(id,hidden)
-	{
-		$(id).empty();
-		$.get('/search_stage',{node : $(hidden).val()} ,function(data)
-		{
-			for (var i = 0; i < data[1].length; i++)
-			{
-				$('<option>').val(data[1][i]).text(data[1][i]).appendTo(id);
-			}			
-				if (data[1][0] == 'general *')
-					new_stage('general',$(hidden).val(),id);
-		});
-	}
-	
-	
-	function new_stage(n,node,select)
-	{
-		if(confirm('stage ' + n + ' does not exist.  Would you like to create?'))
-		{
-			$.ajax({
-				type: "POST",
-				url: "create_stage",
-				data: {stage: {name : n,node_id : node}},
-				success: function(data) 
-				{
-					generate_select_box(select);
-				}
-			});
-		}		
-	}
-	
-	
-	//For interactions stage 1
-	$('#interaction_working_name1').bind('railsAutocomplete.select', function(event, data){
-		$('#interaction_stage1_field').show();
-		$('#interaction_itis_working_name1').text('Working Name: ' + data.item.label);
-		$('#interaction_itis_id1').text('ITIS ID: ' + data.item.itis_id);
-		$('#interaction_node_id1').val(data.item.id);
-				$.ajax({
-				url     : "http://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN",
-				data    : { "tsn" : data.item.itis_id },
-				dataType: "jsonp",
-				jsonp   : "jsonp",
-				success : function(data) 
-							{ 
-								$('#interaction-latin1-loading-indicator').hide();
-								$('#interaction_itis_latin_name1').text('Latin Name: ' + data.scientificName.combinedName);
-								result = []
-								for (var i = 0; i < data.commonNameList.commonNames.length; i++)
-								{
-									result[i] = data.commonNameList.commonNames[i].commonName;
-								}
-								
-								$('#interaction_itis_common_name1').text('Common Name: ' + result.join());
-								generate_select_box('#interaction_select1','#interaction_node_id1');
-								if ($('#interaction_working_name2').val() !== "" || $('#interaction_latin_name2').val() =="")
-								{
-									$('#interaction_add_interaction').attr("disabled", false);
-									$('#interaction_add_observation').attr("disabled", false);
-								}
-							} ,
-				beforeSend : function() {
-							$('#interaction-latin1-loading-indicator').show();
-							}
-				});
-	});
-	
-	
-	//For interactions stage 2
-	$('#interaction_working_name2').bind('railsAutocomplete.select', function(event, data){
-		$('#interaction_stage2_field').show();
-		$('#interaction_itis_working_name2').text('Working Name: ' + data.item.label);
-		$('#interaction_itis_id2').text('ITIS ID: ' + data.item.itis_id);
-		$('#interaction_node_id2').val(data.item.id);
-				$.ajax({
-				url     : "http://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN",
-				data    : { "tsn" : data.item.itis_id },
-				dataType: "jsonp",
-				jsonp   : "jsonp",
-				success : function(data) 
-							{ 
-								$('#interaction-latin2-loading-indicator').hide();
-								$('#interaction_itis_latin_name2').text('Latin Name: ' + data.scientificName.combinedName);
-								result = []
-								for (var i = 0; i < data.commonNameList.commonNames.length; i++)
-								{
-									result[i] = data.commonNameList.commonNames[i].commonName;
-								}
-								
-								$('#interaction_itis_common_name2').text('Common Name: ' + result.join());
-								generate_select_box('#interaction_select2','#interaction_node_id2');
-								if ($('#interaction_working_name1').val() !== "" || $('#interaction_latin_name1').val() =="")
-								{
-									$('#interaction_add_interaction').attr("disabled", false);
-									$('#interaction_add_observation').attr("disabled", false);
-								}
-							} ,
-				beforeSend : function() {
-							$('#interaction-latin2-loading-indicator').show();
-							}
-				});
-	});
-	
-	$('#interaction_reset_button').on('click', function (e) {
-		$('#interaction_working_name1').val("");
-		$('#interaction_working_name2').val("");
-		$('#interaction_node_id1').val("");
-		$('#interaction_node_id2').val("");
-		$('#interaction_stage1_field').hide();
-		$('#interaction_stage2_field').hide();
-		$('#interaction_add_interaction').attr("disabled", true);
-		$('#interaction_add_observation').attr("disabled", true);
-	});
-	
-	$('#alert_success_close').on('click', function (e) {
-		$('#interaction_alert_success').hide();
-	});
-
-	$('#alert_fail_close').on('click', function (e) {
-		$('#interaction_alert_fail').hide();
-	});
-	
-	$('#interaction_alert_fail').bind('closed', function () {
-		$('#interaction_alert_fail').hide();
-	})
-	
-	$('#interaction_alert_success').bind('closed', function () {
-		$('#interaction_alert_success').hide();
-	})
-	//add interaction
-	$('#interaction_add_interaction').on('click', function (e) {
-		$.ajax({
-			type: "POST",
-			url: "interactions",
-			data: {interaction: {interactionname : $("#interactions-list").val() , name1 : $('#interaction_select1').val(), name2 : $('#interaction_select2').val(),node_id1 : $('#interaction_node_id1').val(),node_id2 : $('#interaction_node_id2').val()}},
-			success: function(data) 
-			{
-				if (data[0] == false)
-					$("#interaction_alert_fail").show();
-				else
-					$("#interaction_alert_success").show();
-					
-				$('#interaction_reset_button').trigger('click');
-			}		
-			
-		});
-	});
-	
-	//For creating interactions if it does not exist
-		$("#interactions-list").change(function(){
-
-		
-		
-		});
-	//For creating new stage if it does not exist
-	$("#interaction_select1").change(function(){
-		s = $("#interaction_select1").val();
-		if(s.charAt(s.length-1) == '*')
-		{
-			s = s.substring(0,s.length - 2)
-			new_stage(s,$('#interaction_node_id1').val(),'#interaction_select1');
-		}
-	});
-	$("#interaction_select2").change(function(){
-		s = $("#interaction_select2").val();
-		if(s.charAt(s.length-1) == '*')
-		{
-			s = s.substring(0,s.length - 2)
-			new_stage(s,$('#interaction_node_id2').val(),'#interaction_select2');
-		}
-	});
+    	}
+    	else if($('#citation_format').val() == "Unpublished_Data"){
+    		$("#unpublished_title").show();
+    		$("#inst_doc").show();
+    		$("#email").show();
+    		$("#address").show();
+    		$("#phonenum").show();
+    		$("#com").show();
+    		$("#format_area").show()
+    		$("#pages_area").show()
+    		$("#pub_area").show()
+    		$("#num_area").show()
+    		
+    		$("#journal_title").hide();
+    		$("#book_title").hide();
+    		$("#book_select_title").hide();
+    		$("#report_title").hide();
+    		$("#thesis_title").hide();
+    		$("#other_title").hide();
+    		$("#personal_title").hide();
+    		$("#doc").hide();
+    		$("#pub").hide();
+    		$("#vol").hide();
+    		$("#pages").hide();
+    		$("#num").hide();
+    		$("#ab").hide();
+    		$("#vol_area").hide()
+    	}
+    });
 	//hide fields
 	$('#reset_new_node').on('click', function (e) {
 		$("#node_working_name_field").hide();
 		$("#node_functional_group_id_field").hide();
+		$("#node_non_itis_id_field").hide();
 		$("#node_native_status_field").hide();
 		$("#node_is_assemblage_field").hide()
 	});
-	
 });		
 				
 

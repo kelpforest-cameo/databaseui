@@ -1,10 +1,9 @@
 class Stage < ActiveRecord::Base
-  enum :name, [:general, :adult, :juvenile,:larval,:egg,:sporophyte,:gametophyte,:dead]
   attr_accessible :node_id, :user_id , :project_id, :mod , :approved, :name
   belongs_to :node
   belongs_to :user
   belongs_to :project
-  
+  belongs_to :citation
   has_one :stage_biomass_change, :dependent => :destroy
   has_one :stage_biomass_density, :dependent => :destroy
   has_one :stage_consum_biomass_ratio, :dependent => :destroy
