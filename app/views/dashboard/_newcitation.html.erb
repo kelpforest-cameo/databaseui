@@ -38,34 +38,9 @@
     </div>
   <% end %>
 <fieldset>
-
-		<%= f.fields_for :author_cites do |a| %>
-			<div class="field">
-				<div class="span4 offset1">
-					<%= a.label :author %>
-					<%= collection_select :author_cites, :author_id, @authorlist, :id, :listing_name.to_s, {:prompt => "Last First"},{:class => "span3"} %>
-					<br \>
-					<script>
-						var myAuthors = new Array();
-					</script>
-					<%= button_tag "Add Author",:type => 'button',:class => "btn btn-inverse", :onclick => "addAuthor()" %>
-				
-				</div>
-			</div>
-			<% end %>
-			
-			<div class="field">
-				<div class="span4">
-					<%= f.label :current_authors %>
-					<div id="current">
-					</div>
-				</div>
-
-	</div>
   <div class="span4 offset1">
   	
   	<div class="field" id="ab">
-  		<br \>
   	  <%= f.label :abstract %>
      </div>
      
@@ -74,27 +49,23 @@
      </div>
      
      <div class="field" id="abstract_area">
-    	<%= f.text_area :abstract, :class=>"span3" , :rows => "5", :placeholder => "Brief description of the citation" %>
+    	<%= f.text_area :abstract, :class=>"span3" , :rows => "5" %>
     </div>
 
   </div>
 
-    <div class="span4">
-    	<br \>
+    <div class="span4">      
         <%= f.label :title %>
-        <%= f.text_field :title ,:class =>"span3", :placeholder => "Title of Citation" %>
-        
+        <%= f.text_field :title ,:class =>"span3" %>
     </div>
     
     <div class="span4">
       
       	<div class="field" id="doc">
-      	<br \>
         	<%= f.label :document %>
       	</div>
       	
       	<div class="field" id="inst_doc" hidden=true>
-      	<br \>
         	<%= f.label :Institution %>
       	</div>
       	
@@ -103,9 +74,9 @@
       	</div>
       </div>
       
-      <div class="span4 offset1">         
+      <div class="span4 offset1">
         <%= f.label :year %>
-        <%= f.number_field :year , :min => 1800, :max => @current_year, :class =>"span3" , :placeholder => "Year of citation"%>
+        <%= f.number_field :year ,:class =>"span3"%>
       </div>
       
 
@@ -216,7 +187,7 @@
 
   <div class="span9 form-actions">
     <%= f.submit :class => 'btn btn-inverse offset3'%>
-    <button type="reset" class="btn btn-inverse" id="reset_new_cite">
+    <button type="reset" class="btn btn-inverse">
       Reset
     </button>
   </div> 

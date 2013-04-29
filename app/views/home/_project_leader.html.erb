@@ -1,31 +1,21 @@
-<!-- Begin: navigation -->
-<ul class="nav nav-pills" id="ProjectLeaderTab">
-    <li class="active"><a href="#homep">Home</a></li>
-	<li><a href="#newproj">Open a New Project</a></li>
+<ul class="nav nav-pills nav-stacked span3"> 
+        <li class="active">
+            <a href="#homep" data-toggle="tab">Home</a>            
+        </li>  
+        <li>
+        	<a href="#newproj" data-toggle="tab">Open a New Project</a>
+        </li>     
 </ul>
-<!-- End: navigation -->
-
-<!-- Begin: Content -->
 <div class="tab-content">
-    <div class="tab-pane active" id="homep">
+    <div class="tab-pane active offset1" id="homep">
         <p>
            	A project leader has all of the capabilities of a moderator and is additionally able to 
            	create new projects.
         </p>  
     </div>
-    <div class="tab-pane" id="newproj">
+    <div class="tab-pane offset1" id="newproj">
     	<p>
     		This capability is under construction.
     	</p>
     </div>
 </div>
-<!-- End: Content -->
-
-<script>
-    $(function () {
-		$('#ProjectLeaderTab a').click(function (e) {
-		e.preventDefault();
-		$(this).tab('show');
-		})
-    })
-</script>

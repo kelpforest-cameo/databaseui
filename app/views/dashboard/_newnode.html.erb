@@ -42,21 +42,19 @@
 	<% end %>
 	<div class="span4">
 		<%=label_tag 'Common_name' %>
-		<%=text_field_tag 'Common_name',nil, options = {:autocomplete => "off"}  %>
+		<%=text_field_tag 'Common_name' %>
 		<img src="assets/ajax-loader.gif" id="common-name-loading-indicator" style="display:none" />
 	</div>
 	<div class="span4">
 		<%=label_tag 'Latin_name' %>
-		<%=text_field_tag 'Latin_name' ,nil, options = {:autocomplete => "off"}%>
+		<%=text_field_tag 'Latin_name' %>
 		<img src="assets/ajax-loader.gif" id="latin-name-loading-indicator" style="display:none" />
 	</div>
-	
-	<div class="span4">
-		<%= f.label :itis_id, "ITIS" %>
+		<div class="span4">
+		<%= f.label :itis_id %>
 		<%= f.number_field :itis_id %>
-		<img src="assets/ajax-loader.gif" id="itis-name-loading-indicator" style="display:none" />
+		<img src="assets/ajax-loader.gif" id=itis-name-loading-indicator" style="display:none" />
 	</div>
-
 	<div class="span4" hidden ="true" id="node_working_name_field">
 		<%= f.label :working_name%>
 		<%= f.text_field :working_name %>
@@ -67,10 +65,13 @@
 		<%= collection_select(:node, :functional_group_id,
 			FunctionalGroup.all, :id, :name, :prompt => "Select Functional Group") %>
 	</div>
+	<div class="span4" hidden= "true" id="node_non_itis_id_field">
+		<%= f.label :non_itis_id%>
+		<%= f.number_field :non_itis_id %>
+	</div>	
 	<div class="span4" hidden="true" id="node_native_status_field">
 		<%= f.label :native_status%>
-		<%= f.collection_select :native_status, 
-      	Node::STATUS, :to_s, :humanize,{:prompt => "Select Native Status"} %>
+		<%= f.text_field :native_status %>
 	</div>
 
 	<div class="span4" hidden= "true" id="node_is_assemblage_field">
@@ -81,12 +82,10 @@
 	<div class="span9">
 		<div class="well">
 			<div class="actions">
-				<%= f.submit :class=>"btn btn-inverse offset2", :id=>"node_submit_button" %>
+				<%= f.submit :class=>"btn btn-inverse offset2" %>
 				<button type="reset" class="btn btn-inverse" id = "reset_new_node">Reset</button>
 			</div>
 		</div>
 	</div>
-	<%= f.hidden_field :non_itis_id ,:value => -1%>
-	
 <% end %>
 

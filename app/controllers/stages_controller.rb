@@ -1,46 +1,5 @@
 class StagesController < ApplicationController
-
-
-
-	#For creating stage in interactions
-	def create_stage
-		@stage = Stage.new(params[:stage])
-	    @stage.project_id = current_user.project_id
-		@stage.user_id = current_user.id
-		if current_user.role == 'admin' || current_user.role == 'moderator'
-			@stage.approved = true
-			@stage.mod = true
-		elsif current_user.role == 'lead'
-			@stage.approved = true
-			@stage.mod = false
-		else
-			@stage.approved = true
-			@stage.mod = false
-		end
-			
-		respond_to do |format|
-			 if @stage.save
-				format.html { redirect_to :back, notice: 'Stage was successfully created.' }
-				format.json { render json: @stage, status: :created, location: @stage }
-			 end
-		end
-	end
-
-  #For populating interaction select
-  def search_stage
-	@stage_array = ["general", "adult", "juvenile","larval","egg","sporophyte","gametophyte","dead"]
-	@result = []
-	@stage_array.each do |a|
-		if Stage.where(:name => a, :node_id => params[:node]).exists?
-			@result << (a)
-		else
-			@result << (a + " *")
-		end
-	end
-	
-	render :json => [@stage_array,@result]
-  end
-  # GET /stages11
+  # GET /stages
   # GET /stages.json
   def index
     @stages = Stage.all

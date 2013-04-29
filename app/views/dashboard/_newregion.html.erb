@@ -23,7 +23,7 @@
 	</div>
 </div>
 
-<%= gmaps({"polygons"=> { "data" => @polygons2,"options" => { "draggable" =>true,"editable" =>true }}, 
+<%= gmaps({"polygons"=> { "data" => @polygons2}, 
 					"map_options" => { "fillColor" => "#000",
 					"id" => "second_map","libraries" => ["drawing"] },
 					"scripts"  => :none})%>
@@ -64,3 +64,4 @@
 	<div class="modal-footer">
 	</div>
 </div>
+

@@ -26,7 +26,6 @@ class CitationsController < ApplicationController
   def new
     @citation = Citation.new
     @citation = current_user.id
-    authorcite = @citation.build_author_cites
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @citation }
