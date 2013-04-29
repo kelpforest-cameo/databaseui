@@ -3,6 +3,6 @@ class FeedbackMailer < ActionMailer::Base
 
   def feedback(feedback)
     @feedback = feedback
-    mail(:to => 'foodwebbuilder@googlegroups.com', :subject => 'Feedback for FoodWebBuilder')
+    mail(:to => 'foodwebb@gmail.com', :subject => 'Feedback for FoodWebBuilder')
   end
 end
