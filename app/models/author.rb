@@ -3,7 +3,7 @@ class Author < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
   has_many :author_cites
-  has_many :citations, :through => :author_cites, :dependent => :destroy
+ 
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true 
