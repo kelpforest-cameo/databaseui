@@ -7,12 +7,14 @@ class Feedback
     self.comment = params[:comment]
     self.page = params[:page]
   end
-
-	 def feedback(feedback)
+  
+  def feedback(feedback)
     @recipients = 'foodwebbuilder@googlegroups.com'
     @from = 'foodwebb@gmail.com'
-    @subject = 'FoodWebBuilder feedback'
-		end
+
+    @subject = "FoodWebBuilder feedback" + :subject
+  end
+
   def valid?
     self.comment && !self.comment.strip.blank?
   end
