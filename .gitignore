@@ -30,4 +30,9 @@ rerun.txt
 pickle-email-*.html
 .project
 /config/database.yml
+<<<<<<< HEAD
 /db/schema.rb
+=======
+/config/deploy.rb
+
+>>>>>>> umass_branch

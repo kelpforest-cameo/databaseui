@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
 	protect_from_forgery
 	before_filter :authenticate_user!
 	before_filter do |controller|
@@ -19,8 +20,15 @@ class ApplicationController < ActionController::Base
 		def owner_user(id)
 			@owner_user ||= User.find(id)
 		end
+  
+	# Helper method to disply functional groups
+	helper_method :functional_name
+		def functional_name(id)
+			@functional_name ||= FunctionalGroup.find(id)
+		end
 		
     rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
   end
+  
 end

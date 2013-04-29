@@ -4,5 +4,5 @@ class AuthorCite < ActiveRecord::Base
   belongs_to :author
   belongs_to :user
   belongs_to :project
-  belongs_to :citation
+  belongs_to :citations
 end
