@@ -1,0 +1,43 @@
+	<div class="span4">
+		<label>Observation Type</label>
+			<select id = "competition_observation_type_select">
+				<option value= "main" selected>Choose a type of observation</option>
+				<option value="field observation" name="field observation">field observation</option>
+				<option value="laboratory observation" name="laboratory observation">laboratory observation</option>
+				<option value="gut" name="gut">gut</option>
+				<option value="expert opinion" name="expert opinion">expert opinion</option>
+				<option value="fishery" name="fishery">fishery</option>
+				<option value="nest contents" name="nest contents">nest contents</option>
+				<option value="scat" name="scat">scat</option>
+				<option value="forensic" name="forensic">forensic</option>
+			</select> 
+	</div>
+	<div class="span4">
+		<label>Competition Type</label>
+			<select id = "competition_type_select">
+				<option value="main" selected>Choose a type of competition</option>
+				<option value="space" name="space">space</option>
+				<option value="interference" name="interference">interference</option>
+			</select> 
+	</div>
+	<div class="span4">
+		<label>Citation Title </label>
+			<%= form_tag do %>
+				<%= autocomplete_field_tag 'competition_citation', '',autocomplete_citation_title_citations_path,
+				:update_elements => {:id => '#citation_id'}%>
+			<% end %>
+	</div>
+	<div class="span4">
+		<label>Datum </label>
+		<input type="text" id="competition_interaction_observation_datum">
+	</div>
+	<div class="span4">
+		<textarea class="span3" cols="40" id="competition_interaction_observation_comment" placeholder="Comment here" rows="5"></textarea>
+	</div>
+	
+	<div class="actions span4 offset2">
+	<input type="submit" id="competition_submit" name="commit" class="btn btn-inverse" value="Add Competition Observation">
+	</div>
+	<input type="hidden" id="citation_id">
+	<input type="hidden" id="competitive_interaction_id">
+	

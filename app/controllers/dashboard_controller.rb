@@ -65,7 +65,34 @@ end
 		@nodesearch = Node.find(:all, :conditions => ['working_name LIKE ?', "#{q}%"])
 	end
 
-	#
+	
+	def search_interactions
+		@p = params[:interaction]
+		if @p[:interactionname] == "trophic"
+			@interaction = TrophicInteraction.new();
+			@interaction.stage_1_id = Stage.where(:node_id => @p[:node_id1], :name => @p[:name1]).first.id
+			@interaction.stage_2_id = Stage.where(:node_id => @p[:node_id2], :name => @p[:name2]).first.id
+			exist = TrophicInteraction.where(:stage_1_id => @interaction.stage_1_id,:stage_2_id => @interaction.stage_2_id ).exists?
+		elsif @p[:interactionname] == "competition"
+			@interaction = CompetitionInteraction.new();
+			@interaction.stage_1_id = Stage.where(:node_id => @p[:node_id1], :name => @p[:name1]).first.id
+			@interaction.stage_2_id = Stage.where(:node_id => @p[:node_id2], :name => @p[:name2]).first.id
+			exist = CompetitionInteraction.where(:stage_1_id => @interaction.stage_1_id,:stage_2_id => @interaction.stage_2_id ).exists?
+		elsif @p[:interactionname] == "facilitation"
+			@interaction = FacilitationInteraction.new();
+			@interaction.stage_1_id = Stage.where(:node_id => @p[:node_id1], :name => @p[:name1]).first.id
+			@interaction.stage_2_id = Stage.where(:node_id => @p[:node_id2], :name => @p[:name2]).first.id
+			exist = FacilitationInteraction.where(:stage_1_id => @interaction.stage_1_id,:stage_2_id => @interaction.stage_2_id ).exists?
+		elsif @p[:interactionname] == "parasitic"
+			@interaction = ParasiticInteraction.new();
+			@interaction.stage_1_id = Stage.where(:node_id => @p[:node_id1], :name => @p[:name1]).first.id
+			@interaction.stage_2_id = Stage.where(:node_id => @p[:node_id2], :name => @p[:name2]).first.id
+			exist = ParasiticInteraction.where(:stage_1_id => @interaction.stage_1_id,:stage_2_id => @interaction.stage_2_id ).exists?
+		end
+			render :json => [exist]
+	end	
+	
+	#For adding interactions given stage 1 stage 2
 	def add_interactions
 		@p = params[:interaction]
 		if @p[:interactionname] == "trophic"

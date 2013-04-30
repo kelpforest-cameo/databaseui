@@ -11,6 +11,10 @@ FoodWebBuilder::Application.routes.draw do
   	resources :nodes do
   	get :autocomplete_node_working_name, :on => :collection
 	end
+	#For Auto Complete
+  	resources :citations do
+  	get :autocomplete_citation_title, :on => :collection
+	end
 
 
 	#For Node Search
@@ -21,6 +25,8 @@ FoodWebBuilder::Application.routes.draw do
 	match 'search_stage' => 'stages#search_stage'
 	match 'create_stage' => 'stages#create_stage'
 	match 'interactions' => 'dashboard#add_interactions'
+	match 'search_interactions' => 'dashboard#search_interactions'
+	match 'add_competition' => 'competition_interaction_observations#add_competition'
 	#For Citations
 	match 'authors/full_name' => 'authors#full_name'
 	resources :projects
@@ -32,8 +38,8 @@ FoodWebBuilder::Application.routes.draw do
 	resources :author_cites
 	resources :citations
 	resources :competition_interations
-	resources :compeition_interaction_observations
-	resources :faciliation_interactions
+	resources :competition_interaction_observations
+	resources :facilitation_interactions
 	resources :facilitation_interaction_observations
 	resources :functional_groups
 	resources :locations
