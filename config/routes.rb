@@ -18,7 +18,6 @@ FoodWebBuilder::Application.routes.draw do
 
 
 	#For Node Search
-	
 	match 'search' => 'dashboard#search', :as => "search"
 	match 'search_by_tsn' => 'nodes#search_by_tsn'
 	# for interactions
@@ -103,6 +102,6 @@ FoodWebBuilder::Application.routes.draw do
   match 'dataentry' => 'dashboard#dataentry'
 	match 'edit_user_path' => 'users_registrations#edit'
 	match 'home' => 'home#index'
-	match 'dashboard' => 'dashboard#index'
+
 	
 end

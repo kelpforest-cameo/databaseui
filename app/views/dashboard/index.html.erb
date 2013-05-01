@@ -4,7 +4,6 @@
         <h1 class="text-center">Welcome to your Dashboard <br \>
         <%= current_user.firstname %> 
         <%= current_user.lastname %></h1>
-
     </div>
 </div>
 
@@ -194,6 +193,7 @@
 			
 			<!-- Tab panes for citations -->
 			<div class= "<%= if params[:tab] == 'newaut' then 'tab-pane active'  else 'tab-pane' end%>" id="newaut">
+				
 				<%= render 'dashboard/newauthor', :author => @author %>
 			</div>
 			
