@@ -27,6 +27,9 @@ FoodWebBuilder::Application.routes.draw do
 	match 'interactions' => 'dashboard#add_interactions'
 	match 'search_interactions' => 'dashboard#search_interactions'
 	match 'add_competition' => 'competition_interaction_observations#add_competition'
+	match 'add_facilitation' => 'facilitation_interaction_observations#add_facilitation'
+	match 'add_parasitic' => 'parasitic_interaction_observations#add_parasitic'
+	match 'add_trophic' => 'trophic_interaction_observations#add_trophic'
 	#For Citations
 	match 'authors/full_name' => 'authors#full_name'
 	resources :projects
@@ -37,7 +40,7 @@ FoodWebBuilder::Application.routes.draw do
 	resources :authors
 	resources :author_cites
 	resources :citations
-	resources :competition_interations
+	resources :competition_interactions
 	resources :competition_interaction_observations
 	resources :facilitation_interactions
 	resources :facilitation_interaction_observations
