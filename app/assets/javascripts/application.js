@@ -45,17 +45,18 @@ $(document).ready(function(){
 	$('a[href="#regioneditor"]').on('shown', function (e) {
 		Gmaps.second_map.initialize();
 		Gmaps.second_map.create_polygons();
+		
 		Gmaps.second_map.adjustMapToBounds();
 		google.maps.event.trigger(Gmaps.second_map, 'resize');
 		Gmaps.second_map.callback();
 		google.maps.event.clearListeners(Gmaps.second_map.serviceObject, "click");
 		var drawingManager = new google.maps.drawing.DrawingManager({
-		drawingMode: google.maps.drawing.OverlayType.MARKER,
+		//drawingMode: google.maps.drawing.OverlayType.POLYGON,
 		drawingControl: true,
 		drawingControlOptions: {
 		position: google.maps.ControlPosition.TOP_CENTER,
 		drawingModes: [
-      google.maps.drawing.OverlayType.MARKER,
+      //google.maps.drawing.OverlayType.MARKER,
       google.maps.drawing.OverlayType.POLYGON,
     ]
   },

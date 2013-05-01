@@ -17,6 +17,9 @@ FoodWebBuilder::Application.routes.draw do
 	end
 
 
+	#For Google Maps
+	match 'remove_polygon' => 'location_data#remove_polygon'
+	
 	#For Node Search
 	match 'search' => 'dashboard#search', :as => "search"
 	match 'search_by_tsn' => 'nodes#search_by_tsn'
