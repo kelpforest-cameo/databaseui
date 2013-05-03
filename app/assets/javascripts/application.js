@@ -45,17 +45,18 @@ $(document).ready(function(){
 	$('a[href="#regioneditor"]').on('shown', function (e) {
 		Gmaps.second_map.initialize();
 		Gmaps.second_map.create_polygons();
+		
 		Gmaps.second_map.adjustMapToBounds();
 		google.maps.event.trigger(Gmaps.second_map, 'resize');
 		Gmaps.second_map.callback();
 		google.maps.event.clearListeners(Gmaps.second_map.serviceObject, "click");
 		var drawingManager = new google.maps.drawing.DrawingManager({
-		drawingMode: google.maps.drawing.OverlayType.MARKER,
+		//drawingMode: google.maps.drawing.OverlayType.POLYGON,
 		drawingControl: true,
 		drawingControlOptions: {
 		position: google.maps.ControlPosition.TOP_CENTER,
 		drawingModes: [
-      google.maps.drawing.OverlayType.MARKER,
+      //google.maps.drawing.OverlayType.MARKER,
       google.maps.drawing.OverlayType.POLYGON,
     ]
   },
@@ -116,13 +117,17 @@ $(document).ready(function(){
 		Gmaps.second_map.callback();
 	});
 	
-
-	$(".modal").css({
+	//Modal css
+	$("#newpolygon").css({
 		'width' : 300,
 		'height' : 'auto',
 		'overflow' : 'auto'
-		
-		});
+	});
+	$("#new_competition_observation").css({
+		'width' : 'auto',
+		'height' : 'auto',
+		'overflow' : 'auto'	
+	});
 
 
 
@@ -514,8 +519,6 @@ $(document).ready(function(){
 			});
 		}		
 	}
-	
-	
 	//For interactions stage 1
 	$('#interaction_working_name1').bind('railsAutocomplete.select', function(event, data){
 		$('#interaction_stage1_field').show();
@@ -531,6 +534,7 @@ $(document).ready(function(){
 							{ 
 								$('#interaction-latin1-loading-indicator').hide();
 								$('#interaction_itis_latin_name1').text('Latin Name: ' + data.scientificName.combinedName);
+								$('#interaction_latin_name1').val(data.scientificName.combinedName);
 								result = []
 								for (var i = 0; i < data.commonNameList.commonNames.length; i++)
 								{
@@ -542,6 +546,7 @@ $(document).ready(function(){
 								if ($('#interaction_working_name2').val() !== "" || $('#interaction_latin_name2').val() =="")
 								{
 									$('#interaction_add_interaction').attr("disabled", false);
+									
 									$('#interaction_add_observation').attr("disabled", false);
 								}
 							} ,
@@ -567,6 +572,7 @@ $(document).ready(function(){
 							{ 
 								$('#interaction-latin2-loading-indicator').hide();
 								$('#interaction_itis_latin_name2').text('Latin Name: ' + data.scientificName.combinedName);
+								$('#interaction_latin_name2').val(data.scientificName.combinedName);
 								result = []
 								for (var i = 0; i < data.commonNameList.commonNames.length; i++)
 								{
@@ -578,6 +584,7 @@ $(document).ready(function(){
 								if ($('#interaction_working_name1').val() !== "" || $('#interaction_latin_name1').val() =="")
 								{
 									$('#interaction_add_interaction').attr("disabled", false);
+									
 									$('#interaction_add_observation').attr("disabled", false);
 								}
 							} ,
@@ -596,6 +603,10 @@ $(document).ready(function(){
 		$('#interaction_stage2_field').hide();
 		$('#interaction_add_interaction').attr("disabled", true);
 		$('#interaction_add_observation').attr("disabled", true);
+		$('#interaction_alert_success').hide();
+		$('#interaction_alert_fail').hide();
+		$('#observation_alert_success').hide();
+		$('#observation_alert_fail').hide();
 	});
 	
 	$('#alert_success_close').on('click', function (e) {
@@ -615,39 +626,234 @@ $(document).ready(function(){
 	})
 	//add interaction
 	$('#interaction_add_interaction').on('click', function (e) {
-	
-		if ($('#interactions-list').val() !== "main")
+		$("#interaction_alert_fail").hide();
+		$("#interaction_alert_success").hide();
+		if ($('#interactions-list').val() != "main")
 		{
 			$.ajax({
 				type: "POST",
 				url: "interactions",
-				data: {interaction: {interactionname : $("#interactions-list").val() , name1 : $('#interaction_select1').val(), name2 : $('#interaction_select2').val(),node_id1 : $('#interaction_node_id1').val(),node_id2 : $('#interaction_node_id2').val()}},
+				data: {interaction: {interactionname : $("#interactions-list").val() , 
+									name1 : $('#interaction_select1').val(), 
+									name2 : $('#interaction_select2').val(),
+									node_id1 : $('#interaction_node_id1').val(),
+									node_id2 : $('#interaction_node_id2').val()}},
 				success: function(data) 
 				{
 					if (data[0] == false)
 						$("#interaction_alert_fail").show();
 					else
 						$("#interaction_alert_success").show();
-						
-							$('#interaction_working_name1').val("");
-							$('#interaction_working_name2').val("");
-							$('#interaction_stage1_field').hide();
-							$('#interaction_stage2_field').hide();
-							$('#interaction_add_interaction').attr("disabled", true);
-							$('#interaction_add_observation').attr("disabled", true);
+
 				}		
 				
 			});
 		}
 		else
-			alert("Choose a type of interactin");
+			alert("Choose a type of interaction");
 	});
 	
+	//Add competition observation
+	$('#competition_submit').on('click', function (e) {
+
+			$.ajax({
+				type: "POST",
+				url: "add_competition",
+				data: {competition_interaction_observation : {citation_id : $("#citation_id").val(),
+				observation_type : $('#competition_observation_type_select').val(), 
+				competition_type : $('#competition_type_select').val(),
+				datum : $('#competition_interaction_observation_datum').val(),
+				comment : $('#competition_interaction_observation_comment').val(),
+				stage1 : $('#interaction_node_id1').val(),
+				stage2 : $('#interaction_node_id2').val()}},
+				success: function(data) 
+				{
+					if (data[0] == false)
+						$("#observation_alert_fail").show();
+					else
+						$("#observation_alert_success").show();
+				}		
+				
+			});	
+		$('#new_competition_observation').modal('hide');
+	});
+	
+	//Add facilitation observation
+	$('#facilitation_submit').on('click', function (e) {
+
+			$.ajax({
+				type: "POST",
+				url: "add_facilitation",
+				data: {facilitation_interaction_observation : {citation_id : $("#citation_id").val(),
+				observation_type : $('#facilitation_observation_type_select').val(), 
+				facilitation_type : $('#facilitation_type_select').val(),
+				datum : $('#facilitation_interaction_observation_datum').val(),
+				comment : $('#facilitation_interaction_observation_comment').val(),
+				stage1 : $('#interaction_node_id1').val(),
+				stage2 : $('#interaction_node_id2').val()}},
+				success: function(data) 
+				{
+					if (data[0] == false)
+						$("#observation_alert_fail").show();
+					else
+						$("#observation_alert_success").show();				
+				}		
+				
+			});	
+		$('#new_facilitation_observation').modal('hide');
+	});	
+	
+	//Add facilitation observation
+	$('#parasitic_submit').on('click', function (e) {
+
+			$.ajax({
+				type: "POST",
+				url: "add_parasitic",
+				data: {parasitic_interaction_observation : {citation_id : $("#citation_id").val(),
+				observation_type : $('#parasitic_observation_type_select').val(), 
+				parasite_type : $('#parasite_type_select').val(),
+				endo_ecto : $('#parasitic_interaction_observation_endo_ecto').val(),
+				lethality : $('#parasitic_interaction_observation_lethality').val(),
+				prevalence : $('#parasitic_interaction_observation_prevalence').val(),
+				intensity : $('#parasitic_interaction_observation_intensity').val(),
+				datum : $('#parasitic_interaction_observation_datum').val(),
+				comment : $('#parasitic_interaction_observation_comment').val(),
+				stage1 : $('#interaction_node_id1').val(),
+				stage2 : $('#interaction_node_id2').val()}},
+				success: function(data) 
+				{
+					if (data[0] == false)
+						$("#observation_alert_fail").show();
+					else
+						$("#observation_alert_success").show();				
+				}		
+				
+			});	
+		$('#new_parasitic_observation').modal('hide');
+	});	
+	
+	//Add facilitation observation
+	$('#trophic_submit').on('click', function (e) {
+
+			$.ajax({
+				type: "POST",
+				url: "add_trophic",
+				data: {trophic_interaction_observation : {
+				citation_id : $("#citation_id").val(),
+				observation_type : $('#trophic_observation_type_select').val(), 
+				lethality : $('#trophic_interaction_observation_lethality').val(),
+				structures_consumed : $('#trophic_interaction_observation_structures_consumed').val(),
+				percentage_consumed : $('#trophic_interaction_observation_percentage_consumed').val(),
+				percentage_diet : $('#trophic_interaction_observation_percentage_diet').val(),
+				percentage_diet_by : $('#trophic_interaction_observation_percentage_diet_by').val(),
+				preference : $('#trophic_interaction_observation_preference').val(),
+				datum : $('#trophic_interaction_observation_datum').val(),
+				comment : $('#trophic_interaction_observation_comment').val(),
+				stage1 : $('#interaction_node_id1').val(),
+				stage2 : $('#interaction_node_id2').val()}},
+				success: function(data) 
+				{
+					if (data[0] == false)
+						$("#observation_alert_fail").show();
+					else
+						$("#observation_alert_success").show();				
+				}		
+				
+			});	
+		$('#new_trophic_observation').modal('hide');
+	});	
+	
+	
+	
+	
+	$('#interaction_add_observation').on('click', function (e) {
+		$("#interaction_alert_fail").hide();
+		$("#interaction_alert_success").hide();
+		$("#observation_alert_fail").hide();
+		$("#observation_alert_success").hide();
+		if ($('#interaction_node_id1').val() !="" && $('#interaction_node_id2').val() !="" )
+		{
+			value = $("#interactions-list").val();
+			if (value == "competition") {
+				$('#new_competition_observation').modal({
+				keyboard: false,
+				backdrop: 'static'
+				});
+			}
+			if (value == "facilitation") {
+				$('#new_facilitation_observation').modal({
+				keyboard: false,
+				backdrop: 'static'
+				});
+			}
+			if (value == "parasitic") {
+				$('#new_parasitic_observation').modal({
+				keyboard: false,
+				backdrop: 'static'
+				});
+			}
+			if (value == "trophic") {
+				$('#new_trophic_observation').modal({
+				keyboard: false,
+				backdrop: 'static'
+				});
+			}
+			
+		}
+		else
+			alert("Stages must be selected");
+	
+	
+	});
 	//For creating interactions if it does not exist
 		$("#interactions-list").change(function(){
-
-		
-		
+			if ($("#interactions-list").val() != "main")
+			{
+				if ($('#interaction_node_id1').val() != "" || $('#interaction_node_id1').val() != "")
+				{
+					$.ajax({
+					type: "Get",
+					url: "search_interactions",
+					data:  {interaction : {interactionname: $("#interactions-list").val(), 
+					node_id1 : $('#interaction_node_id1').val(), 
+					node_id2 : $('#interaction_node_id2').val(),
+					name1 : $('#interaction_select1').val(), 
+					name2 : $('#interaction_select2').val()}},
+					success: function(data)  {
+						if (data[0] == false)
+						{
+							if (confirm("Interaction " + $("#interactions-list").val() + " does not exist.  Would you like to create?"))
+							{
+								$("#interaction_alert_fail").hide();
+								$("#interaction_alert_success").hide();
+								$.ajax({
+									type: "POST",
+									url: "interactions",
+									data:  {interaction : {interactionname: $("#interactions-list").val(), 
+									node_id1 : $('#interaction_node_id1').val(), 
+									node_id2 : $('#interaction_node_id2').val(),
+									name1 : $('#interaction_select1').val(), 
+									name2 : $('#interaction_select2').val()}},
+									success: function(data) 
+									{
+										if (data[0] == false)
+										$("#interaction_alert_fail").show();
+										else
+										$("#interaction_alert_success").show();
+									}				
+								});	
+							}
+						}
+					}
+					});
+				
+				}
+				else
+				{
+					$("#interactions-list").val("main");
+					alert("Stages must be chosen!");
+				}
+			}
 		});
 	//For creating new stage if it does not exist
 	$("#interaction_select1").change(function(){
@@ -673,6 +879,27 @@ $(document).ready(function(){
 		$("#node_native_status_field").hide();
 		$("#node_is_assemblage_field").hide()
 	});
+	
+		$('#new_competition_observation').on('hide', function () {
+		$("#interaction_alert_fail").hide();
+		$("#interaction_alert_success").hide();
+	});
+	
+		$('#new_facilitation_observation').on('hide', function () {
+		$("#interaction_alert_fail").hide();
+		$("#interaction_alert_success").hide();
+	});
+	
+		$('#new_parasitic_observation').on('hide', function () {
+		$("#interaction_alert_fail").hide();
+		$("#interaction_alert_success").hide();
+	});
+	
+		$('#new_trophic_observation').on('hide', function () {
+		$("#interaction_alert_fail").hide();
+		$("#interaction_alert_success").hide();
+	});
+	
 	
 });		
 				

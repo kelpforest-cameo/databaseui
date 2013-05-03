@@ -50,11 +50,11 @@ class AuthorsController < ApplicationController
     respond_to do |format|
       if @author.save
       	
-        format.html { redirect_to root_path(tab:"newaut") }
+        format.html { redirect_to root_path(tab:"newaut",:author => @author) }
         flash[:notice] = ("Author " + @author.first_name + " " + @author.last_name + " has been added")
         format.json { render json: @author, status: :created, location: @author }
       else
-        format.html { render action: "new" }
+        format.html { render  :partial => "dashboard/newauthor", :author => @author }
         format.json { render json: @author.errors, status: :unprocessable_entity }
       end
     end

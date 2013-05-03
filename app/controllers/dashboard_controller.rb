@@ -16,7 +16,7 @@ class DashboardController < ApplicationController
 		@citationlist = Citation.where(["project_id = ?",current_user.project_id]).all
 		@current_year = Time.now.year
 		@citation.author_cites.build
-
+		
 	## For Node tab objects can be reused by other partials also
 		@node = Node.new
 		@non_iti = NonIti.new
@@ -35,7 +35,7 @@ class DashboardController < ApplicationController
 				@polygons = Array.new(LocationDatum.where(["project_id = ?",current_user.project_id]).count) { Array.new }
 				LocationDatum.where(["project_id = ?",current_user.project_id]).find_each do |location|
 				location.latitude.each_index do |index|
-					@polygons[counter] << { :lat => location.latitude[index], :lng =>location.longitude[index]}
+					@polygons[counter] << { :lat => location.latitude[index], :lng =>location.longitude[index], :id=>location.id}
 				end
 			counter += 1
 			end
@@ -65,7 +65,34 @@ end
 		@nodesearch = Node.find(:all, :conditions => ['working_name LIKE ?', "#{q}%"])
 	end
 
-	#
+	
+	def search_interactions
+		@p = params[:interaction]
+		if @p[:interactionname] == "trophic"
+			@interaction = TrophicInteraction.new();
+			@interaction.stage_1_id = Stage.where(:node_id => @p[:node_id1], :name => @p[:name1]).first.id
+			@interaction.stage_2_id = Stage.where(:node_id => @p[:node_id2], :name => @p[:name2]).first.id
+			exist = TrophicInteraction.where(:stage_1_id => @interaction.stage_1_id,:stage_2_id => @interaction.stage_2_id ).exists?
+		elsif @p[:interactionname] == "competition"
+			@interaction = CompetitionInteraction.new();
+			@interaction.stage_1_id = Stage.where(:node_id => @p[:node_id1], :name => @p[:name1]).first.id
+			@interaction.stage_2_id = Stage.where(:node_id => @p[:node_id2], :name => @p[:name2]).first.id
+			exist = CompetitionInteraction.where(:stage_1_id => @interaction.stage_1_id,:stage_2_id => @interaction.stage_2_id ).exists?
+		elsif @p[:interactionname] == "facilitation"
+			@interaction = FacilitationInteraction.new();
+			@interaction.stage_1_id = Stage.where(:node_id => @p[:node_id1], :name => @p[:name1]).first.id
+			@interaction.stage_2_id = Stage.where(:node_id => @p[:node_id2], :name => @p[:name2]).first.id
+			exist = FacilitationInteraction.where(:stage_1_id => @interaction.stage_1_id,:stage_2_id => @interaction.stage_2_id ).exists?
+		elsif @p[:interactionname] == "parasitic"
+			@interaction = ParasiticInteraction.new();
+			@interaction.stage_1_id = Stage.where(:node_id => @p[:node_id1], :name => @p[:name1]).first.id
+			@interaction.stage_2_id = Stage.where(:node_id => @p[:node_id2], :name => @p[:name2]).first.id
+			exist = ParasiticInteraction.where(:stage_1_id => @interaction.stage_1_id,:stage_2_id => @interaction.stage_2_id ).exists?
+		end
+			render :json => [exist]
+	end	
+	
+	#For adding interactions given stage 1 stage 2
 	def add_interactions
 		@p = params[:interaction]
 		if @p[:interactionname] == "trophic"
@@ -105,5 +132,22 @@ end
 			render :json => [false]
 		end
 	end
-  
 end
+  def create_author
+  	@author = Author.new(params[:author])
+    @author.project_id = current_user.project_id
+    @author.user_id = current_user.id
+    
+    respond_to do |format|
+      if @author.save
+      	
+        format.html { redirect_to root_path(tab:"newaut",:author => @author) }
+        flash[:notice] = ("Author " + @author.first_name + " " + @author.last_name + " has been added")
+        format.json { render json: @author, status: :created, location: @author }
+      else
+        format.html { redirect_to root_path(tab:"newaut", :author => @author) }
+        format.json { render json: @author.errors, status: :unprocessable_entity }
+      end
+	end
+end
+
