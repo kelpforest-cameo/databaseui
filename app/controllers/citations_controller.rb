@@ -2,6 +2,7 @@ class CitationsController < ApplicationController
   # GET /citations
   # GET /citations.json
   autocomplete :citation, :title, :full => true, :extra_data => [:id]
+  
   def index
     @citations = Citation.all
 
