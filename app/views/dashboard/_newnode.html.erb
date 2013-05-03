@@ -45,7 +45,9 @@
 </div>
 	<div class="span4">
 		<%=label_tag 'Common_name' %>
-		<%=text_field_tag 'Common_name',nil, options = {:autocomplete => "off"}  %>
+		<%=text_field_tag 'Common_name',nil, options = {:autocomplete => "off", 
+														:title => "Enter the common name of the new node",
+														"data-placement" => "right"} %>
 		<img src="assets/ajax-loader.gif" id="common-name-loading-indicator" style="display:none" />
 	</div>
 	<div class="span4">
