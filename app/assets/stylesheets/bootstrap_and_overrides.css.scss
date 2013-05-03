@@ -15,35 +15,33 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#222222', GradientType=0);
 }
 
-.navbar .nav > li > a:focus, .navbar .nav > li > a:hover {
-    color: white;
-    text-decoration: none;
-    background-color: transparent;
-    text-shadow: 0px 0px 2px #27CBE6;
-}
-
-.navbar .nav > li > a {
+.navbar .nav > li { 
+  a {
     float: none;
     padding: 10px 15px;
     color: white;
     text-decoration: none;
     text-shadow: 0px 1px 0px #3068D9;
+    &:focus, &:hover {
+      color: white;
+      text-decoration: none;
+      text-shadow: 0px 0px 2px #27CBE6;
+    }
+  }
 }
 
 .navbar .brand {
-    display: block;
-    float: left;
-    padding: 10px 20px;
-    margin-left: 60px;
-    font-size: 20px;
-    font-weight: 200;
-    color: white;
-    text-shadow: 0px 1px 0px #3068D9;
-}
-
-.navbar .brand:hover {
+  display: block;
+  float: left;
+  padding: 10px 20px;
+  margin-left: 60px;
+  font-size: 25px;
+  font-weight: 200;
+  text-shadow: 0px 1px 0px #3068D9;
+  &:hover {
     text-decoration: none;
     text-shadow: 0px 0px 8px #27CBE6;
+  }
 }
 
 body {

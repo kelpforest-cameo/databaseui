@@ -1,0 +1,35 @@
+	<div class="span4">
+		<label>Observation Type</label>
+		<select id = "competition_observation_type_select">
+		<option value="main" selected>Choose a type of observation</option>
+		 <%= options_for_select(CompetitionInteractionObservation::OBSERVATIONS,"main") %>
+	    </select>
+	</div>
+	<div class="span4">
+		<label>Competition Type</label>
+			<select id = "competition_type_select">
+				<option value="main" selected>Choose a type of competition</option>
+				<%= options_for_select(CompetitionInteractionObservation::COMPETITIONS,"main") %>
+			</select> 
+	</div>
+	<div class="span4">
+		<label>Citation Title </label>
+			<%= form_tag do %>
+				<%= autocomplete_field_tag 'competition_citation', '',autocomplete_citation_title_citations_path,
+				:update_elements => {:id => '#citation_id'}%>
+			<% end %>
+	</div>
+	<div class="span4">
+		<label>Datum </label>
+		<input type="text" id="competition_interaction_observation_datum">
+	</div>
+	<div class="span4">
+		<textarea class="span3" cols="40" id="competition_interaction_observation_comment" placeholder="Comment here" rows="5"></textarea>
+	</div>
+	
+	<div class="actions span4 offset2">
+	<input type="submit" id="competition_submit" name="commit" class="btn btn-inverse" value="Add Competition Observation">
+	</div>
+	<input type="hidden" id="citation_id">
+	<input type="hidden" id="competitive_interaction_id">
+	
