@@ -98,9 +98,10 @@
 					<% if (current_user.role == 'lead') ||
 						(current_user.role =='admin') %>
 						<li class="dropdown<%= 'active' if params[:tab] == 'regioneditor' %>
-					<%= 'active' if params[:tab] == 'editregion' %>">
+							<%= 'active' if params[:tab] == 'editregion' %>">
 							<a class="dropdown-toggle"
 								data-toggle="dropdown"
+								title="Create or delete regions"
 								href="dashboard"><b>
 								Regions</b>
 								<b class="caret"></b>
@@ -121,6 +122,7 @@
 					<%= 'active' if params[:tab] == 'listprojects' %>">
 							<a class="dropdown-toggle"
 								data-toggle="dropdown"
+								title="Create a new project or list existing projects"
 								href="dashboard"><b>
 								Projects</b>
 								<b class="caret"></b>
@@ -144,6 +146,7 @@
 					<%= 'active' if params[:tab] == 'waitingusers' %>">
 								<a class="dropdown-toggle"
 									data-toggle="dropdown"
+									title="List all users or just those awaiting approval"
 									href="dashboard"><b>
 									Users</b>
 								<b class="caret"></b>
@@ -162,7 +165,7 @@
 						<!-- End users lists -->
 						
 						<li>
-							<a href="admin">Database</a>
+							<a href="admin" title="Manage the Database">Database</a>
 						</li>
 					<% end %>
 				</ul>

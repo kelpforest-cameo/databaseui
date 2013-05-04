@@ -2,10 +2,10 @@
 	<h3>Add New Citation</h3>
 </legend>
 
-<div class="well">
+<div class="well instructions">
 	<h3>Instructions
 		<button type="button" data-toggle="collapse" data-target="#newciteinfo" class="btn btn-info btn-mini">
-			Collapse/Expand
+			<span class="caret"></span> <!-- Collapse/Expand -->
 		</button>
 	</h3>
 
@@ -14,13 +14,6 @@
 			Enter a new citation. Please enter all necessary
 			information. If the author you are citing is not listed
 			please enter them into the database.
-		</p>
-
-		<p>
-			Acceptable formats of publications are; Journal, Books,
-			Book Sections, Reports, Thesis, Websites, Personal
-			Observations, and Unpublished Data. There is also an
-			<em>other</em> option for sources not listed.
 		</p>
 	</div>
 </div>
@@ -43,12 +36,14 @@
 			<div class="field">
 				<div class="span4 offset1">
 					<%= a.label :author %>
-					<%= collection_select :author_cites, :author_id, @authorlist, :id, :listing_name.to_s, {:prompt => "Last First"},{:class => "span3"} %>
-					<br \>
+					<%= collection_select :author_cites, :author_id, @authorlist, :id, :listing_name.to_s, 
+					{:prompt => "Last First"},
+					{:class => "span3", :title => "Choose an author from those in the database"} %>
 					<script>
 						var myAuthors = new Array();
 					</script>
-					<%= button_tag "Add Author",:type => 'button',:class => "btn btn-inverse", :onclick => "addAuthor()", :yield => authorcitations %>
+					<%= button_tag "Add Author",:type => 'button',:class => "btn btn-inverse", 
+						:onclick => "addAuthor()", :yield => "authorcitations", :title => "Add an author" %>
 				
 				</div>
 			</div>
