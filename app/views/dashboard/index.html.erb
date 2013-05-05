@@ -24,7 +24,7 @@
 					<%= 'active' if params[:tab] == 'searchnode' %>
 					<%= 'active' if params[:tab] == 'nodelist' %>">
 						<a class="dropdown-toggle"
-							data-toggle="dropdown""
+							data-toggle="dropdown"
 							title="Create, search, or list Nodes"
 							href="dashboard"><b>
 							Nodes</b>
@@ -85,7 +85,7 @@
 					</li>
 					<!-- End Dropdown for citations -->
 					
-					<li class= "<%= 'active' if params[:tab] =='inters'%>">
+					<li class= "<%= 'active' if params[:tab] =='inters'%> direct-menus">
 						<a href="#inters"
 						title="Create a new interaction" 
 						data-toggle="tab">Interactions</a>
@@ -164,7 +164,7 @@
 						</li>
 						<!-- End users lists -->
 						
-						<li>
+						<li class="direct-menus">
 							<a href="admin" title="Manage the Database">Database</a>
 						</li>
 					<% end %>
@@ -230,13 +230,13 @@
 				<legend>
 					<h3> Listing all users </h3>
 				</legend>
-				<div class="well">
+				<div class="well instructions">
 					<h3>Instructions
 						<button type="button" 
 							data-toggle="collapse" 
 							data-target="#userlistinfo" 
 							class="btn btn-info btn-mini">
-							Collapse/Expand
+							<!-- Collapse/Expand --><span class="caret"></span>
 						</button>
 					</h3>
 					<div id="userlistinfo" class="collapse"
@@ -256,13 +256,13 @@
 				<legend>
 					<h3> Unapproved Users </h3>
 				</legend>
-				<div class="well">
+				<div class="well instructions">
 					<h3>Instructions
 						<button type="button" 
 							data-toggle="collapse" 
 							data-target="#userlistinfo" 
 							class="btn btn-info btn-mini">
-							Collapse/Expand
+							<!-- Collapse/Expand --><span class="caret"></span>
 						</button>
 					</h3>
 					<div id="userlistinfo" class="collapse"

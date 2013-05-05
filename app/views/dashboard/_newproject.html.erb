@@ -55,13 +55,15 @@
   
   
   <div class="span4">
-    <%= f.label :public %>
-    <%= f.check_box :public, :title => "Indicates if the project will be publicly viewable" %>
+    <%= f.check_box :public, :title => "Indicates if the project will be publicly viewable",
+    	:class => "pull-left" %>
+    <%= f.label :public, :class => "pull-left spacer" %>
   </div>
  
   <div class="span4">
-    <%= f.label :approved %>
-    <%= f.check_box :approved, :title => "Indicates whether the project has been approved" %>
+    <%= f.check_box :approved, :title => "Indicates whether the project has been approved",
+    	:class => "pull-left" %>
+    <%= f.label :approved, :class => "pull-left spacer" %>
   </div>
   <div class="row">
   <div class="form-actions span9">
