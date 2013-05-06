@@ -46,7 +46,7 @@ class CitationsController < ApplicationController
     @citation = Citation.new(params[:citation])
     @citation.user_id = current_user.id
     @citation.project_id = current_user.project_id
-    @authors = params[:citation][:aut]
+    @authors = params[:citation][:aut].to_a
     
     @authors.each do |i|
     	@author_cites = AuthorCite.new(params[i, @citation_id, current_user])
