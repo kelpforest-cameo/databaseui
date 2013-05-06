@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	// For author_cites creating new citations	
+	
+	var myAuthors = new Array();
 		
 	 addAuthor = function(){
 		var myString="";
@@ -39,6 +41,7 @@ $(document).ready(function(){
 					}
 				});
 			});
+			document.getElementById('auts').value = myAuthors.join();
 		myString="";}
 		
 	}// End function addAuthor

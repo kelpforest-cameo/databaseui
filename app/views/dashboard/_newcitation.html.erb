@@ -45,10 +45,7 @@
 					<%= a.label :author %>
 					<%= collection_select :author_cites, :author_id, @authorlist, :id, :listing_name.to_s, {:prompt => "Last First"},{:class => "span3"} %>
 					<br \>
-					<script>
-						var myAuthors = new Array();
-					</script>
-					<%= button_tag "Add Author",:type => 'button',:class => "btn btn-inverse", :onclick => "addAuthor()", :yield => authorcitations %>
+					<%= button_tag "Add Author",:type => 'button',:class => "btn btn-inverse", :onclick => "addAuthor()" %>
 				
 				</div>
 			</div>
@@ -212,7 +209,8 @@
     		<%= f.number_field :number ,:class =>"span3"%>
     	</div>
     </div>
-
+		
+		<%= hidden_field_tag 'auts' , "", :onchange => "alert('Author added')" %>
 
   <div class="span9 form-actions">
     <%= f.submit :class => 'btn btn-inverse offset3'%>

@@ -27,7 +27,7 @@ class CitationsController < ApplicationController
   # GET /citations/new.json
   def new
     @citation = Citation.new
-    @citation = current_user.id
+    @citation.id = current_user.id
     authorcite = @citation.build_author_cites
     respond_to do |format|
       format.html # new.html.erb
@@ -46,8 +46,16 @@ class CitationsController < ApplicationController
     @citation = Citation.new(params[:citation])
     @citation.user_id = current_user.id
     @citation.project_id = current_user.project_id
+    @authors = params[:citation][:aut]
+    
+    @authors.each do |i|
+    	@author_cites = AuthorCite.new(params[i, @citation_id, current_user])
+    end
     respond_to do |format|
       if @citation.save
+      	
+      
+      
         format.html { redirect_to root_path(tab:"newcite") }
         flash[:notice] = ("Citation " + @citation.title + " has been added")
         format.json { render json: @citation, status: :created, location: @citation }

@@ -11,7 +11,6 @@ class DashboardController < ApplicationController
 	
 	## For Citations tab objects can be reused by other partials
 		@author = Author.new
-		@authorArray = Array.new
 		@citation = Citation.new
 		@authorlist = Author.where(["project_id = ?",current_user.project_id]).all
 		@citationlist = Citation.where(["project_id = ?",current_user.project_id]).all
