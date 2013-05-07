@@ -103,6 +103,7 @@ class CitationsController < ApplicationController
        @author_cite.user_id = current_user.id
        @author_cite.author_id = i.to_i
        @author_cite.citation = citation
+       @author_cite.save
      end
    end
 end
