@@ -20,8 +20,7 @@
 //= require gmaps4rails/gmaps4rails.googlemaps
 //= require autocomplete-rails
 //= require citations
-
-
+//= require d3
 
 
 //begin Jquery
@@ -308,6 +307,14 @@ $(document).ready(function(){
 		height: 25,
 		width: 25
     });
+	$("#search-latin-loading-indicator").css({
+		height: 25,
+		width: 25
+    });
+	$("#search-common-loading-indicator").css({
+		height: 25,
+		width: 25
+    });
 	$("#interaction-latin2-loading-indicator").css({
 		height: 25,
 		width: 25
@@ -488,6 +495,9 @@ $(document).ready(function(){
 
 	//helper functions
 	
+	//search ITIS database by TSN
+	
+	
 	//generate select box based upon select id
 	function generate_select_box(id,hidden)
 	{
@@ -502,6 +512,31 @@ $(document).ready(function(){
 					new_stage('general',hidden,id);
 		});
 	}
+
+	//for search node
+	function generate_select_box_node(id,hidden)
+	{
+		var allstage = true;
+		$(id).empty();
+		$.ajax({
+		utl :'/search_stage',
+		data : {node : $(hidden).val()} ,
+		success :function(data)
+		{
+			for (var i = 0; i < data[1].length; i++)
+			{
+				if (data[1][i].charAt(data[1][i].length - 1) == '*')
+				{
+					$('<option>').val(data[1][i]).text(data[0][i]).appendTo(id);
+					allstage = false;
+				}
+			}
+		},
+		asyn : false
+		
+		});
+		return allstage;
+	}
 	
 	
 	function new_stage(n,node,select)
@@ -511,7 +546,7 @@ $(document).ready(function(){
 			$.ajax({
 				type: "POST",
 				url: "create_stage",
-				data: {stage: {name : n,node_id : $(node).val()}},
+				data: {stage: {name : n,node_id : $(node).val(), citation_id : $('#search_node_citation_id').val()}},
 				success: function(data) 
 				{
 					generate_select_box(select,node);
@@ -519,6 +554,119 @@ $(document).ready(function(){
 			});
 		}		
 	}
+
+	function new_stage_node(n,node)
+	{
+		if(confirm('stage ' + n + ' does not exist.  Would you like to create?'))
+		{
+			$.ajax({
+				type: "POST",
+				url: "create_stage",
+				data: {stage: {name : n,node_id : $(node).val(), citation_id : $('#search_node_citation_id').val()}}
+			});
+		}		
+	}
+
+
+	
+	//For search node
+	$('#search_node_working_name').bind('railsAutocomplete.select', function(event, data){
+		$('#search-latin-loading-indicator').show();
+		$('#search-common-loading-indicator').show();
+		$('#search_node_native_status_field').show();
+		$('#search_node_is_assemblage_field').show();
+		$('#search_node_stage_tab_field').show();
+		$('#search_node_functional_group_field').show();
+		$('#search_node_common_name_field').show();
+		$.ajax({
+		url     : "http://www.itis.gov/ITISWebService/jsonservice/getFullRecordFromTSN",
+		data    : { "tsn" : $('#search_node_itis_id').val() },
+		dataType: "jsonp",
+		jsonp   : "jsonp",
+		success : function(data)
+		{
+			var result = [];
+			for (var i = 0; i < data.commonNameList.commonNames.length; i++)
+			{
+			result[i] = data.commonNameList.commonNames[i].commonName;
+			}
+			$('#search_node_latin_name').val(data.scientificName.combinedName);
+			$('#search_node_common_name').val(result.join());	
+			$('#search-latin-loading-indicator').hide();
+			$('#search-common-loading-indicator').hide();
+			$('#search_node_add_stage').attr("disabled", false);
+			generateStageTab('#search_node_id');
+		},
+		error : function()
+		{
+			alert("ITIS query failed");
+		}
+		});
+		
+		
+			
+	});
+	
+	//For search node new citation
+	$('#search_citation_title').bind('railsAutocomplete.select', function(event, data){
+		
+	
+	});
+
+
+
+
+	
+	//Generate tab based upon stages given node id
+	function generateStageTab (hidden) {
+	
+		$.get('/search_stage',{node : $(hidden).val()} ,function(data)
+		{
+			$.get('/stage_form',function(data1)
+			{
+				$('#search_node_stage_tab').empty();
+				$('#search_node_tabContent').empty();
+				$('#search_node_stage_tab')
+				.append($('<li class="active"><a href="#' + data[1][0] + '" data-toggle="tab">' + data[1][0] + '</a></li>'));
+				$('#search_node_tabContent')
+				.append($('<div class="tab-pane fade" id="' + data[1][0] + '">' + 
+				'</div>'));
+				$('#' + data[1][0] + '').tab('show'); 		
+				$('#' + data[1][0]).append(data1);
+				for (var i = 1; i < data[1].length; i++)
+				{
+					if (data[1][i].charAt(data[1][i].length-1) != '*' )
+					{
+						$('#search_node_stage_tab')
+						.append($('<li><a href="#' + data[1][i] + '" data-toggle="tab">' + data[1][i] + '</a></li>'));
+						$('#search_node_tabContent')
+						.append($('<div class="tab-pane fade" id="' + data[1][i] + '">' +
+						'</div>'));
+						$('#' + data[1][i] + '').tab('show'); 
+						$('#' + data[1][i]).append(data1);
+					}		
+				}	
+			});
+			
+		});
+
+    }
+	
+	//new stage modal submit
+	$('#new_stage_modal_submit').on('click', function (e) {
+		$('#search_node_add_new_stages').modal('hide');
+		new_stage_node($('#new_stage_select').val(),'#search_node_id');
+		generateStageTab('#search_node_id');
+	});
+
+	//saving entries
+	$('#search_node_save').on('click', function (e) {
+		
+	});	
+	
+	
+	
+	
 	//For interactions stage 1
 	$('#interaction_working_name1').bind('railsAutocomplete.select', function(event, data){
 		$('#interaction_stage1_field').show();
@@ -872,6 +1020,23 @@ $(document).ready(function(){
 			new_stage(s,'#interaction_node_id2','#interaction_select2');
 		}
 	});
+	
+	
+	//show new_stage modal
+	$('#search_node_add_stage').on('click', function (e) {
+		$('#search_node_add_new_stages').modal({
+			keyboard: false,
+			backdrop: 'static'
+		});	
+		
+		if (!generate_select_box_node('#new_stage_select','#search_node_id'))
+			alert("Cannot create any more new stages");
+		
+	
+	});
+	
+	
+	
 	//hide fields
 	$('#reset_new_node').on('click', function (e) {
 		$("#node_working_name_field").hide();
@@ -880,27 +1045,46 @@ $(document).ready(function(){
 		$("#node_is_assemblage_field").hide()
 	});
 	
-		$('#new_competition_observation').on('hide', function () {
+	$('#new_competition_observation').on('hide', function () {
 		$("#interaction_alert_fail").hide();
 		$("#interaction_alert_success").hide();
 	});
 	
-		$('#new_facilitation_observation').on('hide', function () {
+	$('#new_facilitation_observation').on('hide', function () {
 		$("#interaction_alert_fail").hide();
 		$("#interaction_alert_success").hide();
 	});
 	
-		$('#new_parasitic_observation').on('hide', function () {
+	$('#new_parasitic_observation').on('hide', function () {
 		$("#interaction_alert_fail").hide();
 		$("#interaction_alert_success").hide();
 	});
 	
-		$('#new_trophic_observation').on('hide', function () {
+	$('#new_trophic_observation').on('hide', function () {
 		$("#interaction_alert_fail").hide();
 		$("#interaction_alert_success").hide();
 	});
 	
+	$('#search_node_submit').on('click', function (e) {
+		$('#new_stage_modal').modal({
+		keyboard: false,
+		backdrop: 'static'
+		
+		});
+	});
+	$('#search_node_set_change').on('click', function (e) {
+	$('#attach_citation').modal({
+		keyboard: false,
+		backdrop: 'static'
+		
+		});
+	});
 	
+	$('#attach_citation_modal_submit').on('click', function (e) {
+		$('#attach_citation').modal('hide');
+	
+	});
+
 });		
 				
 

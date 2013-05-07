@@ -1,29 +1,82 @@
 class StagesController < ApplicationController
 
+	#For saving/creating stage values/tables
+	def stage_save 
+		@stage = Stage.where(:id => params[:stage][stage_id])
+		
+		if @stage.BioMassChange.exists?
+		@stage_biomass_change = StageBiomassChange.new(params[:stage])
+		
+		@stage_biomass_density = StageBiomassDensity.new(params[:stage])
+		@stage_consum_biomass_ratio = StageConsumBiomassRatio.new(params[:stage])
+		@stage_consumer_strategy = StageConsumerStrategy.new(params[:stage])
+		@stage_drymass = StageDrymass.new(params[:stage])
+		@stage_duration = StageDuration.new(params[:stage])
+		@stage_fecundity = StageFecundity.new(params[:stage])
+		@stage_habitat = StageHabitat.new(params[:stage])
+		@stage_length = StageLength.new(params[:stage])
+		@stage_length_fecundity = StageLengthFecundity.new(params[:stage])
+		@stage_length_weight = StageLengthWeight.new(params[:stage])
+		@stage_lifestyle = StageLifestyle.new(params[:stage])
+		@stage_mass = StageMass.new(params[:stage])
+		@stage_max_depth = StageMaxDepth.new(params[:stage])
+		@stage_mobility = StageMobility.new(params[:stage])
+		@stage_population = StagePopulation.new(params[:stage])
+		@stage_prod_biomass_ratio = StageProdBiomassRatio.new(params[:stage])
+		@stage_prod_consum_ratio = StageProdConsumRatio.new(params[:stage])
+		@stage_reproductive_strategy = StageReproductiveStrategy.new(params[:stage])
+		@stage_residency = StageResidency.new(params[:stage])
+		@stage_residency_time = StageResidencyTime.new(params[:stage])
+		@stage_unassimilated_consum_ratio = StageUnassimilatedConsumRatio.new(params[:stage])
+		
+		@stage_biomass_change.save
+		@stage_biomass_density.save
+		@stage_consum_biomass_ratio.save
+		@stage_consumer_strategy.save
+		@stage_drymass.save
+		@stage_duration.save
+		@stage_fecundity.save
+		@stage_habitat.save
+		@stage_length.save
+		@stage_length_fecundity.save
+		@stage_length_weight.save
+		@stage_lifestyle.save
+		@stage_mass.save
+		@stage_max_depth.save
+		@stage_mobility.save
+		@stage_population.save
+		@stage_prod_biomass_ratio.save
+		@stage_prod_consum_ratio.save
+		@stage_reproductive_strategy.save
+		@stage_residency.save
+		@stage_residency_time.save
+		@stage_unassimilated_consum_ratio.save
 
+	
+	
+	end
+
+
+	#returns html for a stage_form
+	def stage_form	
+		
+		render :partial => 'dashboard/stage_form'
+	end
 
 	#For creating stage in interactions
 	def create_stage
-		@stage = Stage.new(params[:stage])
-	    @stage.project_id = current_user.project_id
-		@stage.user_id = current_user.id
+		params[:stage] = params[:stage].merge(:project_id => current_user.project_id,:user_id => current_user.id)	
 		if current_user.role == 'admin' || current_user.role == 'moderator'
-			@stage.approved = true
-			@stage.mod = true
-		elsif current_user.role == 'lead'
-			@stage.approved = true
-			@stage.mod = false
+			params[:stage] = params[:stage].merge(:approved => true,:mod => true)
 		else
-			@stage.approved = true
-			@stage.mod = false
+			params[:stage] = params[:stage].merge(:approved => true,:mod => false)
 		end
-		
-		respond_to do |format|
-			 if @stage.save
-				format.html { redirect_to :back, notice: 'Stage was successfully created.' }
-				format.json { render json: @stage, status: :created, location: @stage }
-			 end
-		end
+		#Create new entries
+		@citation_id = params[:stage].fetch(:citation_id)
+		params[:stage].delete(:citation_id)
+		@stage = Stage.new(params[:stage])
+		@stage.save
+		render :nothing => true
 	end
 
   #For populating interaction select
@@ -38,7 +91,6 @@ class StagesController < ApplicationController
 			@result << (a + " *")
 		end
 	end
-	
 	render :json => [@stage_array,@result]
   end
   # GET /stages11

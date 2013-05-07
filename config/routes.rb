@@ -23,6 +23,8 @@ FoodWebBuilder::Application.routes.draw do
 	#For Node Search
 	match 'search' => 'dashboard#search', :as => "search"
 	match 'search_by_tsn' => 'nodes#search_by_tsn'
+	match 'stage_form' => 'stages#stage_form'
+	match 'stage_save' => 'stages#stage_save'
 	# for interactions
 	match 'search_stage' => 'stages#search_stage'
 	match 'create_stage' => 'stages#create_stage'
