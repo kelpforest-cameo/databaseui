@@ -1,7 +1,9 @@
 class CitationsController < ApplicationController
   # GET /citations
   # GET /citations.json
+  
   autocomplete :citation, :title, :full => true, :extra_data => [:id]
+  helper_method :create_author_cites
   
   def index
     @citations = Citation.all
@@ -27,7 +29,8 @@ class CitationsController < ApplicationController
   # GET /citations/new.json
   def new
     @citation = Citation.new
-    @citation.id = current_user.id
+    @citation.user_id = current_user.id
+    @citation.project_id = current_user.project_id
     authorcite = @citation.build_author_cites
     respond_to do |format|
       format.html # new.html.erb
@@ -48,14 +51,11 @@ class CitationsController < ApplicationController
     @citation.project_id = current_user.project_id
     @authors = params[:citation][:aut].to_a
     
-    @authors.each do |i|
-    	@author_cites = AuthorCite.new(params[i, @citation_id, current_user])
-    end
+   
+
     respond_to do |format|
       if @citation.save
-      	
-      
-      
+				create_author_cites(@authors, @citation)
         format.html { redirect_to root_path(tab:"newcite") }
         flash[:notice] = ("Citation " + @citation.title + " has been added")
         format.json { render json: @citation, status: :created, location: @citation }
@@ -95,4 +95,18 @@ class CitationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  	def create_author_cites(autArray, citation)
+		id = citation.attributes['id']
+      autArray.each do |i|
+    	@author_cite = AuthorCite.new()
+    	@author_cite.author_id = i
+    	@author_cite.citation_id = self.id
+    	if @author_cite.save
+    		render :nothing
+    	else
+    		render :nothing
+    	end
+		end
+	end
 end

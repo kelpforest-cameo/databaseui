@@ -16,6 +16,7 @@ class DashboardController < ApplicationController
 		@citationlist = Citation.where(["project_id = ?",current_user.project_id]).all
 		@current_year = Time.now.year
 		@citation.author_cites.build
+
 		
 	## For Node tab objects can be reused by other partials also
 		@node = Node.new
