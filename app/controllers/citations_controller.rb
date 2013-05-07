@@ -49,7 +49,7 @@ class CitationsController < ApplicationController
     @citation = Citation.new(params[:citation])
     @citation.user_id = current_user.id
     @citation.project_id = current_user.project_id
-    @authors = params[:citation][:aut].to_a
+    @authors = params[:auts].split(",")
     
    
 
@@ -96,17 +96,13 @@ class CitationsController < ApplicationController
     end
   end
   
-  	def create_author_cites(autArray, citation)
-		id = citation.attributes['id']
-      autArray.each do |i|
-    	@author_cite = AuthorCite.new()
-    	@author_cite.author_id = i
-    	@author_cite.citation_id = self.id
-    	if @author_cite.save
-    		render :nothing
-    	else
-    		render :nothing
-    	end
-		end
-	end
+  def create_author_cites(autArray, citation)
+    @authors.each do |i|
+    	 @author_cite = AuthorCite.new()
+       @author_cite.project_id = current_user.id
+       @author_cite.user_id = current_user.id
+       @author_cite.author_id = i.to_i
+       @author_cite.citation = citation
+     end
+   end
 end
