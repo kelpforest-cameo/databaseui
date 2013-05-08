@@ -41,7 +41,9 @@
 			{:prompt => "Last First"},
 			{:class => "span3", :title => "Choose an author from those in the database"} %>
 			<%= button_tag "Add Author",:type => 'button',:class => "btn btn-inverse",
-			:onclick => "addAuthor()", :yield => "authorcitations", :title => "Add an author" %>
+			:onclick => "addAuthor()", :title => "Add an author" %>
+			<%= button_tag "Create Author", :type => 'button', :class => 'btn btn-inverse', :onclick => %>
+
 
 		</div>
 	</div>
