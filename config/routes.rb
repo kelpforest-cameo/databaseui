@@ -34,6 +34,7 @@ FoodWebBuilder::Application.routes.draw do
 	match 'add_trophic' => 'trophic_interaction_observations#add_trophic'
 	#For Citations
 	match 'authors/full_name' => 'authors#full_name'
+  match 'auhtors/create_author' => 'authors#create_author'
 	resources :projects
  
 

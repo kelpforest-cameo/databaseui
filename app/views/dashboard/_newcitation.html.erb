@@ -41,7 +41,7 @@
 			{:prompt => "Last First"},
 			{:class => "span3", :title => "Choose an author from those in the database"} %>
 			<%= button_tag "Add Author",:type => 'button',:class => "btn btn-inverse",
-			:onclick => "addAuthor()", :title => "Add an author" %>
+			:onclick => "addAuthor()", :title => "Add an author to the citation" %>
 			<a data-toggle="modal" href="#newauthor" class="btn btn-inverse">Create Author</a>
 
 		</div>
@@ -217,16 +217,20 @@
 
 <div id="newauthor" class="modal hide fade"> 
 	<div class="modal-header"> <a class="close" data-dismiss="modal">×</a> 
-		<h3>This is a Modal Heading</h3> 
+		<h3>Creating a new author</h3> 
 	</div> 
 	<div class="modal-body">
-		<div class="well"> 
-			<h4>Text in a modal</h4> 
-			<p>You can add some text here.</p> 
+		<div class="span4 offset1">
+			<label> First Name </label>
+			<input type ="string" id = "author_first_name">
+			
+			<label> Last Name </label>
+			<input type="string" id="author_last_name">
 		</div>
 	</div> 
 	<div class="modal-footer"> 
-		<a href="#" class="btn btn-success">Call to action</a> 
+		
+		<input type="submit" id="create_author_button" name="commit" class="btn btn-inverse" value="Create Author">
 		<a href="#" class="btn" data-dismiss="modal">Close</a> 
 	</div> 
 </div> 
