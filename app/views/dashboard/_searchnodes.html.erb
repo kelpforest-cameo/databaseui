@@ -27,7 +27,7 @@
 		<label>Working Name: </label>
 		<%= form_tag do %>
 		<%= autocomplete_field_tag 'search_node_working_name', '',autocomplete_node_working_name_nodes_path,
-		:update_elements => {:itis_id => '#search_node_itis_id',:is_assemblage => '#search_node_is_assemblage',:native_status => '#search_node_native_status',:id => '#search_node_id'}%>
+		:update_elements => {:functional_group_id => '#search_node_functional_group',:itis_id => '#search_node_itis_id',:is_assemblage => '#search_node_is_assemblage',:native_status => '#search_node_native_status',:id => '#search_node_id'}%>
 		<% end %>
 	</div>
 		
@@ -82,11 +82,8 @@
 			<button type="reset" class="btn btn-inverse" id="search_node_reset_button">
 				Reset
 			</button>
-			<button class="btn btn-inverse" id="search_node_set_change">
+			<button class="btn btn-inverse"  disabled id="search_node_set_change">
 				Set General Values
-			</button>
-			<button class="btn btn-inverse" id="search_node_save">
-				Save
 			</button>
 		</div>
 	</div>

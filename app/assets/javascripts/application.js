@@ -26,7 +26,6 @@
 //begin Jquery
 $(document).ready(function(){
 	$('a[href="#regions"]').on('shown', function (e) {
-	    console.log("test1");
 		Gmaps.second_map.initialize();
 		Gmaps.second_map.create_polygons();
 		Gmaps.second_map.adjustMapToBounds();
@@ -76,7 +75,6 @@ $(document).ready(function(){
 	drawingManager.setMap(Gmaps.second_map.map);
 	//When polygon is drawn
 	google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
-	    console.log(event);
 		if (event.type == google.maps.drawing.OverlayType.POLYGON) {
 		$('#newpolygon').modal({
 		keyboard: false,
@@ -131,7 +129,6 @@ $(document).ready(function(){
 
 
 		$('#myCarousel').bind('slid', function () {
-	    console.log("test1");
 		Gmaps.map.initialize();
 		Gmaps.map.create_polygons();
 		Gmaps.map.adjustMapToBounds();
@@ -519,7 +516,7 @@ $(document).ready(function(){
 		var allstage = true;
 		$(id).empty();
 		$.ajax({
-		utl :'/search_stage',
+		url :'/search_stage',
 		data : {node : $(hidden).val()} ,
 		success :function(data)
 		{
@@ -527,7 +524,7 @@ $(document).ready(function(){
 			{
 				if (data[1][i].charAt(data[1][i].length - 1) == '*')
 				{
-					$('<option>').val(data[1][i]).text(data[0][i]).appendTo(id);
+					$('<option>').val(data[0][i]).text(data[0][i]).appendTo(id);
 					allstage = false;
 				}
 			}
@@ -546,7 +543,7 @@ $(document).ready(function(){
 			$.ajax({
 				type: "POST",
 				url: "create_stage",
-				data: {stage: {name : n,node_id : $(node).val(), citation_id : $('#search_node_citation_id').val()}},
+				data: {stage: {name : n,node_id : $(node).val()}},
 				success: function(data) 
 				{
 					generate_select_box(select,node);
@@ -557,14 +554,13 @@ $(document).ready(function(){
 
 	function new_stage_node(n,node)
 	{
-		if(confirm('stage ' + n + ' does not exist.  Would you like to create?'))
-		{
 			$.ajax({
 				type: "POST",
 				url: "create_stage",
-				data: {stage: {name : n,node_id : $(node).val(), citation_id : $('#search_node_citation_id').val()}}
-			});
-		}		
+				data: {stage: {name : n,
+							   node_id : $(node).val(),
+							   citation_id : $('#search_node_citation_id').val()}}
+			});		
 	}
 
 
@@ -595,6 +591,7 @@ $(document).ready(function(){
 			$('#search-latin-loading-indicator').hide();
 			$('#search-common-loading-indicator').hide();
 			$('#search_node_add_stage').attr("disabled", false);
+			$('#search_node_set_change').attr("disabled", false);
 			generateStageTab('#search_node_id');
 		},
 		error : function()
@@ -610,7 +607,6 @@ $(document).ready(function(){
 	//For search node new citation
 	$('#search_citation_title').bind('railsAutocomplete.select', function(event, data){
 		
-	
 	});
 
 
@@ -627,7 +623,7 @@ $(document).ready(function(){
 				$('#search_node_stage_tab').empty();
 				$('#search_node_tabContent').empty();
 				$('#search_node_stage_tab')
-				.append($('<li class="active"><a href="#' + data[1][0] + '" data-toggle="tab">' + data[1][0] + '</a></li>'));
+				.append($('<li class="active"><a href="#' + data[1][0] + '" data-toggle="tab" value = '+ data[1][0] + '>' + data[1][0] + '</a></li>'));
 				$('#search_node_tabContent')
 				.append($('<div class="tab-pane fade" id="' + data[1][0] + '">' + 
 				'</div>'));
@@ -638,7 +634,7 @@ $(document).ready(function(){
 					if (data[1][i].charAt(data[1][i].length-1) != '*' )
 					{
 						$('#search_node_stage_tab')
-						.append($('<li><a href="#' + data[1][i] + '" data-toggle="tab">' + data[1][i] + '</a></li>'));
+						.append($('<li><a href="#' + data[1][i] + '" data-toggle="tab" value = '+ data[1][i] + '>' + data[1][i] + '</a></li>'));
 						$('#search_node_tabContent')
 						.append($('<div class="tab-pane fade" id="' + data[1][i] + '">' +
 						'</div>'));
@@ -651,6 +647,11 @@ $(document).ready(function(){
 		});
 
     }
+	$('#search_node_stage_tab').click(function (e) {
+		$('#stage_form_name').val(e.target.text);
+	});
+
+	
 	
 	//new stage modal submit
 	$('#new_stage_modal_submit').on('click', function (e) {
@@ -659,10 +660,9 @@ $(document).ready(function(){
 		generateStageTab('#search_node_id');
 	});
 
-	//saving entries
-	$('#search_node_save').on('click', function (e) {
-		
-	});	
+
+
+
 	
 	
 	
@@ -1028,9 +1028,7 @@ $(document).ready(function(){
 			keyboard: false,
 			backdrop: 'static'
 		});	
-		
-		if (!generate_select_box_node('#new_stage_select','#search_node_id'))
-			alert("Cannot create any more new stages");
+		generate_select_box_node('#new_stage_select','#search_node_id');
 		
 	
 	});
@@ -1081,10 +1079,64 @@ $(document).ready(function(){
 	});
 	
 	$('#attach_citation_modal_submit').on('click', function (e) {
-		$('#attach_citation').modal('hide');
 	
-	});
-
+	/*	if ($('#stage_biomass_change_biomass_change').val() != ''
+		    && $('#stage_biomass_density_biomass_density').val() != ''
+			&& $('#stage_consumer_strategy').val() !=''
+			&& $('#stage_consum_biomass_ratio_consum_biomass_ratio').val() !=''
+			&& $('#stage_dry_mass').val() !=''
+			&& $('#stage_duration').val() !=''
+			&& $('#stage_fecundity').val() !=''
+			&& $('#stage_habitat_affiliation').val() !=''
+			&& $('#stage_body_length').val() =''
+			&& $('#stage_LF').val() =''
+			&& $('#stage_LF_A').val() =''
+			&& $('#stage_LF_B').val() =''
+			
+			
+			)
+			*/
+			$('#attach_citation').modal('hide');
+				$.ajax({	
+			type: "POST",
+			url: "stage_save",
+			data: {stage: {name : $("#stage_form_name").val(), 
+						   node_id : $('#search_node_id').val(),
+						   citation_id : $('#search_node_citation_id').val()},
+				   biomass_change : $('#stage_biomass_change_biomass_change').val(),
+				   biomass_density : $('#stage_biomass_density_biomass_density').val(),
+				   consumer_strategy : $('#stage_consumer_strategy').val(),
+				   consum_biomass_ratio : $('#stage_consum_biomass_ratio_consum_biomass_ratio').val(),
+				   drymass : $('#stage_dry_mass').val(),
+				   duration : $('#stage_duration').val(),
+				   fecundity : $('#stage_fecundity').val(),
+				   habitat : $('#stage_habitat_affiliation').val(),
+				   length : $('#stage_body_length').val(),
+				   stage_length_fecundity : {length_fecundity : $('#stage_LF').val(),
+									   a : $('#stage_LF_A').val(),
+									   b : $('#stage_LF_B').val()},
+				   stage_length_weight : {length_weight : $('#stage_LW').val(),
+										  A : $('#stage_LW_A').val(),
+										  B : $('#stage_LW_B').val()},
+				   lifestyle : $('#stage_lifestyle').val(),
+				   mass : $('#stage_body_mass').val(),
+				   max_depth : $('#stage_max_depth').val(),
+				   mobility : $('#stage_mobility').val(),
+				   population : $('#stage_population_population').val(),
+				   prod_biomass_ratio : $('#stage_prod_biomass_ratio_prod_biomass_ratio').val(),
+				   prod_consum_ratio : $('#stage_prod_consum_ratio_prod_consum_ratio').val(),
+				   reproductive_strategy : $('#stage_reproductive_strategy_reproductive_strategy').val(),
+				   residency : $('#stage_residency_residency').val(),
+				   residency_time : $('#stage_residency_time_residency_time').val(),
+				   unassimilated_consum_ratio : $('#stage_unassimilated_consum_ratio_unassimilated_consum_ratio').val()			   
+				   },
+			success: function(data) 
+			{
+			}
+			});
+		
+		});
+		
 });		
 				
 
