@@ -87,7 +87,23 @@ class AuthorsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def create_author
+    puts "Inside Author controller with create_author"
+    @a = params[:author]
+    @author = Author.new()
+    @author.first_name = @a[:first_name]
+    @author.last_name = @a[:last_name]
+    newauthor = !Author.where(:first_name => @author.first_name,:last_name => @author.last_name ).exists?
+    if newauthor= true
+      @author.save
+      flash[:notice] = ("Author " + @author.first_name + " " + @author.last_name + " has been added")
+    else
+      flash[:notice] = ("Author " + @author.first_name + " " + @author.last_name + " already exists")
+    end
+  end
     rescue_from CanCan::AccessDenied do |exception|
     redirect_to authors_url, :alert => exception.message
   end
+  
 end
