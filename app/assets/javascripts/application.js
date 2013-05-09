@@ -25,6 +25,9 @@
 
 //begin Jquery
 $(document).ready(function(){
+	$('a, input, select, button, textarea').tooltip({delay: { show: 350, hide: 200 }, placement: 'right', trigger: 'hover'});
+	// $('input').tooltip({delay: { show: 200, hide: 200 }, placement: 'top'});
+	// $('select').tooltip({delay: { show: 200, hide: 200 }, placement: 'top'});
 	$('a[href="#regions"]').on('shown', function (e) {
 		Gmaps.second_map.initialize();
 		Gmaps.second_map.create_polygons();
@@ -1143,3 +1146,14 @@ $(document).ready(function(){
 
 
 
+function multiview(topic, header)
+{
+	$("#" + topic).css("display", "block");
+	$("#" + header).css("display","none");
+}
+
+function back(topic, header)
+{
+    $("#" + topic).css("display", "none");
+    $("#" + header).css("display","block");
+}

@@ -2,11 +2,11 @@
 	<h3> Search Nodes </h3>
 </legend>
 
-<div class="well">
+<div class="well instructions">
 	<h3>Instructions
 		<button type="button" data-toggle="collapse" 
 			data-target="#searchinfo" class="btn btn-info btn-mini">
-			Collapse/Expand
+			<span class="caret"></span><!-- Collapse/Expand -->
 		</button>
 	</h3>
 	
@@ -33,13 +33,13 @@
 		
 	<div class="span4">
 		<label>ITIS Latin Name: </label>
-		<input type="text" id="search_node_latin_name">
+		<input type="text" title="Search for a node by latin/scientific name" id="search_node_latin_name">
 		<img src="assets/ajax-loader.gif" id="search-latin-loading-indicator" style="display:none"/>
 	</div>
 		
 	<div class="span4">
 		<label>ITIS ID: </label>
-		<input type="number" id="search_node_itis_id">
+		<input type="number" id="search_node_itis_id" title="Search for a node by its ITIS id number">
 	</div>
 	
 	<div class="span4" hidden="true" disabled="disabled" id="search_node_common_name_field">
@@ -74,12 +74,12 @@
 	
 	
 	<div class="span9">
-		<div class="form-actions">
-			    
+		<div class="form-actions">  
 			<button class="btn btn-inverse" disabled id="search_node_add_stage">
 			Add Stage
 			</button>
 			<button type="reset" class="btn btn-inverse" id="search_node_reset_button">
+
 				Reset
 			</button>
 			<button class="btn btn-inverse"  disabled id="search_node_set_change">
