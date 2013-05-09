@@ -1,0 +1,116 @@
+<div class="span3">
+	<label>Percentage of Population </label>
+	<input type="number" id="stage_population_population">
+</div>
+<div class="span3">
+	<label>Reproductive Strategy</label>
+	<select id = "stage_reproductive_strategy_reproductive_strategy">
+	<option value="main" selected>Choose a type of Reproductive Strategy</option>
+	<%= options_for_select(StageReproductiveStrategy::REPRODUCTIVE,"main") %>
+	</select>
+</div>
+<div class="span3">
+	<label>Individual Body Length </label>
+	<input type="number" id="stage_body_length">
+</div>
+<div class="span3">
+	<label>Individual Body Mass</label>
+	<input type="number" id="stage_body_mass">
+</div>
+<div class="span3">
+	<label>Individual Drymass</label>
+	<input type="number" id="stage_dry_mass">
+</div>
+<div class="span3">
+	<label>Length(L)-Weight(W)</label>
+	<input type="number" id="stage_LW">
+	<label>A(W)</label>
+	<input type="number" id="stage_LW_A">
+	<label>B</label>
+	<input type="number" id="stage_LW_B">
+</div>
+<div class="span3">
+	<label>Length(L)-Fecundity(F)</label>
+	<input type="number" id="stage_LF">
+	<label>A</label>
+	<input type="number" id="stage_LF_A">
+	<label>B</label>
+	<input type="number" id="stage_LF_B">
+</div>
+<div class="span3">
+	<label>Lifetyle</label>
+	<select id = "stage_lifestyle">
+	<option value="main" selected>Choose a type of Lifestyle</option>
+	<%= options_for_select(StageLifestyle::LIFESTYLE,"main") %>
+	</select>
+</div>
+<div class="span3">
+	<label>Duration</label>
+	<input type="number" id="stage_duration">
+</div>
+<div class="span3">
+	<label>Fecundity</label>
+	<input type="number" id="stage_fecundity">
+</div>
+<div class="span3">
+	<label>Consumer Strategy</label>
+	<select id = "stage_consumer_strategy">
+	<option value="main" selected>Choose a type of Consumer Strategy</option>
+	<%= options_for_select(StageConsumerStrategy::CONSUMERSTRATEGY,"main") %>
+	</select>
+</div>
+<div class="span3">
+	<label>Habitat Affiliation</label>
+	<select id = "stage_habitat_affiliation">
+	<option value="main" selected>Choose a type of Habitat Affiliation</option>
+	<%= options_for_select(StageConsumerStrategy::CONSUMERSTRATEGY,"main") %>
+	</select>
+</div>
+<div class="span3">
+	<label>Max Depth</label>
+	<input type="number" id="stage_max_depth">
+</div>
+<div class="span3">
+	<label>Mobility</label>
+	<select id = "stage_mobility">
+	<option value="main" selected>Choose a type of Mobility</option>
+	<%= options_for_select(StageMobility::MOBILITY,"main") %>
+	</select>
+</div>
+<div class="span3">
+	<label>Residency</label>
+	<select id = "stage_residency_residency">
+	<option value="main" selected>Choose a type of Residency</option>
+	<%= options_for_select(StageResidency::RESIDENCY,"main") %>
+	</select>
+</div>
+<div class="span3">
+	<label>Residency Time</label>
+	<input type="number" id="stage_residency_time_residency_time">
+</div>
+<div class="span3">
+	<label>Bio Mass Density</label>
+	<input type="number" id="stage_biomass_density_biomass_density">
+</div>
+<div class="span3">
+	<label>Prod/Biomass Ratio</label>
+	<input type="number" id="stage_prod_biomass_ratio_prod_biomass_ratio">
+</div>
+<div class="span3">
+	<label>Prod/Consumption Ratio</label>
+	<input type="number" id="stage_prod_consum_ratio_prod_consum_ratio">
+</div>
+<div class="span3">
+	<label>Consumption biomass ratio </label>
+	<input type="number" id="stage_consum_biomass_ratio_consum_biomass_ratio">
+</div>
+<div class="span3">
+	<label>Unassimilated consumption ratio</label>
+	<input type="number" id="stage_unassimilated_consum_ratio_unassimilated_consum_ratio">
+</div>
+<div class="span3">
+	<label>Biomass change </label>
+	<input type="number" id="stage_biomass_change_biomass_change">
+</div>
+
+<input type="hidden" id="stage_form_name" value="">

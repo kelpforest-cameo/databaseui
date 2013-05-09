@@ -1,0 +1,12 @@
+<div class="span4">
+	<label>Stages</label>
+	<select id = "new_stage_select">
+	</select>
+</div>
+<div class="span4">
+		<label>Search Citations </label>
+		<%= form_tag do %>
+		<%= autocomplete_field_tag 'search_citation_title', '',autocomplete_citation_title_citations_path,
+		:update_elements => {:id => '#search_node_citation_id'}%>
+		<% end %>
+</div>

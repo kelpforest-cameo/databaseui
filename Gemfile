@@ -68,3 +68,5 @@ gem 'rails3-jquery-autocomplete'
 # For enums
 gem 'enum_simulator'
 
+#For D3
+gem 'd3-rails'

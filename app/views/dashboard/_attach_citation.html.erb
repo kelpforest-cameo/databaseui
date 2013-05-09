@@ -1,0 +1,15 @@
+<div class="span4">
+		<label>Search Citations </label>
+		<%= form_tag do %>
+		<%= autocomplete_field_tag 'search_citation_title', '',autocomplete_citation_title_citations_path,
+		:update_elements => {:id => '#search_node_citation_id'}%>
+		<% end %>
+</div>
+<!--
+<div class="span4">
+		<h4>Citation:</h4>
+		<select id = "attach_citation_select">
+		<option value= "main" selected>Choose a citation</option>
+		</select> 
+</div>
+-->
