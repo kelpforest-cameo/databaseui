@@ -112,7 +112,7 @@ end
 			@interaction.stage_2_id = Stage.where(:node_id => @p[:node_id2], :name => @p[:name2]).first.id
 			newinteraction = !FacilitationInteraction.where(:stage_1_id => @interaction.stage_1_id,:stage_2_id => @interaction.stage_2_id ).exists?
 		elsif @p[:interactionname] == "parasitic"
-			@interaction = ParasiticInteraction.new();
+			@interaction = ParasiticInteraction.nesw();
 			@interaction.stage_1_id = Stage.where(:node_id => @p[:node_id1], :name => @p[:name1]).first.id
 			@interaction.stage_2_id = Stage.where(:node_id => @p[:node_id2], :name => @p[:name2]).first.id
 			newinteraction = !ParasiticInteraction.where(:stage_1_id => @interaction.stage_1_id,:stage_2_id => @interaction.stage_2_id ).exists?

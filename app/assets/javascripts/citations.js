@@ -46,7 +46,6 @@ $(document).ready(function(){
 		
 	}// End function addAuthor
 
-	
     // For generating form based on selection for citations
     $("#citation_format").change(function(){
     	if($('#citation_format').val() == "Journal"){
@@ -337,4 +336,6 @@ $(document).ready(function(){
 			$('#current').html(myString);
 			myString="";
 	});
+	
+
 });
