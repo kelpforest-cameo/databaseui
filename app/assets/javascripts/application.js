@@ -23,7 +23,6 @@
 //= require d3
 
 
-//begin Jquery
 $(document)
 	.ready(function() {
 	$('a, input, select, button, textarea')
