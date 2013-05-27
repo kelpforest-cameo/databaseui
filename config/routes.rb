@@ -83,7 +83,7 @@ FoodWebBuilder::Application.routes.draw do
 	resources :stage_residency_times
 	resources :stage_unassimilated_consum_ratios
 	resources :trophic_interactions
-	resources :trophic_interaction_observations
+	
 	
 	# Mount rails admin
 	mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'

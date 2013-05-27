@@ -220,18 +220,27 @@
 		<h3>Creating a new author</h3> 
 	</div> 
 	<div class="modal-body">
-		<div class="span4 offset1">
-			<label> First Name </label>
-			<input type ="string" id = "author_first_name">
-			
-			<label> Last Name </label>
-			<input type="string" id="author_last_name">
+		<%= form_for(Author.new, :remote => true ) do |f| %>
+		
+		
+		<!-- Start form fields -->
+		<div>
+			<%= f.label :first_name %>
+			<%= f.text_field :first_name, :title => "Enter the first name of the new author" %>
 		</div>
+
+		<div>
+			<%= f.label :last_name %>
+			<%= f.text_field :last_name, :title => "Enter the last name of the new author" %>
+		</div>
+
+		<div>
+			<%= f.submit  :class => "btn btn-inverse", :title => "Add the new author to the database" %>
+		</div>
+		
+	<% end %> <!-- End Form -->
 	</div> 
 	<div class="modal-footer"> 
-		
-		<input type="submit" id="create_author_button" name="commit" class="btn btn-inverse" value="Create Author">
-		<a href="#" class="btn" data-dismiss="modal">Close</a> 
 	</div> 
 </div> 
 
