@@ -1,0 +1,21 @@
+<h1>Listing stage_populations</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_populations.each do |stage_population| %>
+  <tr>
+    <td><%= link_to 'Show', stage_population %></td>
+    <td><%= link_to 'Edit', edit_stage_population_path(stage_population) %></td>
+    <td><%= link_to 'Destroy', stage_population, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage population', new_stage_population_path %>

@@ -1,0 +1,334 @@
+<%= feedback_tab(:position => 'right') %>
+<div class="row">
+    <div class="span10 offset1">
+        <h1 class="text-center">Welcome to your Dashboard <br \>
+        <%= current_user.firstname %> 
+        <%= current_user.lastname %></h1>
+    </div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="span2">
+			<div class="tabbale">
+				<ul class="nav nav-pills nav-stacked">
+					
+					<li class="<%= 'active' if params[:tab] == 'navmap' || !params[:tab] %>">
+						<a href="#navmap" data-toggle="tab" title="Interact with the Region map"><b>Map</B></a>
+					</li>
+					
+					<!-- Drop down for Nodes -->
+					<li class="dropdown 
+					<%= 'active' if params[:tab] == 'newnode' %>
+					<%= 'active' if params[:tab] == 'nonitis' %>
+					<%= 'active' if params[:tab] == 'searchnode' %>
+					<%= 'active' if params[:tab] == 'nodelist' %>">
+						<a class="dropdown-toggle"
+							data-toggle="dropdown"
+							title="Create, search, or list Nodes"
+							href="dashboard"><b>
+							Nodes</b>
+							<b class="caret"></b>
+						</a>
+						
+						<ul class="dropdown-menu">
+						
+							<li>
+								<a href="#newnode" data-toggle="tab">New Node</a>
+							</li>
+							
+							<li>
+								<a href="#nonitis" data-toggle="tab">New Non-ITIS Node</a>
+							</li>
+						
+							<li>
+								<a href="#searchnode" data-toggle="tab">Search Nodes</a>
+							</li>
+						
+							<li>
+								<a href="#nodelist" data-toggle="tab">List Nodes</a>
+							</li>
+						</ul>
+					</li>
+					<!-- End Dropdown for Nodes -->
+							
+					<!-- Start Dropdown for Citations -->
+					<li class="dropdown <%= 'active' if params[:tab] == 'newaut' %>
+					<%= 'active' if params[:tab] == 'authorlist' %>
+					<%= 'active' if params[:tab] == 'newcite' %>
+					<%= 'active' if params[:tab] == 'citelist' %>">
+						<a class="dropdown-toggle"
+							data-toggle="dropdown"
+							title="Add new authors or citations or list citations"
+							href="dashboard"><b>
+							Citations</b>
+							<b class="caret"></b>
+						</a>
+						
+						<ul class="dropdown-menu">
+							<li class="<%= 'active' if params[:tab] == 'newaut' %>">
+								<a href="#newaut" data-toggle="tab">New Author</a>
+							</li>
+							
+							<li class="<%= 'active' if params[:tab] == 'authorlist' %>">
+								<a href="#authorlist" data-toggle="tab"> List Authors</a>
+							</li>
+							
+							<li class="<%= 'active' if params[:tab] == 'newcite' %>">
+								<a href="#newcite" data-toggle="tab">New Citation</a>
+							</li>
+
+							<li class="<%= 'active' if params[:tab] == 'citelist' %>">
+								<a href="#citelist" data-toggle="tab">List Citations</a>
+							</li>
+						</ul>
+					</li>
+					<!-- End Dropdown for citations -->
+					
+					<li class= "<%= 'active' if params[:tab] =='inters'%> direct-menus">
+						<a href="#inters"
+						title="Create a new interaction" 
+						data-toggle="tab">Interactions</a>
+					</li>
+					
+					<!-- Tabs by user roles -->
+					<% if can? :access, :rails_admin %>
+					
+					<!-- Start Regions -->
+					<% if (current_user.role == 'lead') ||
+						(current_user.role =='admin') %>
+						<li class="dropdown<%= 'active' if params[:tab] == 'regioneditor' %>
+							<%= 'active' if params[:tab] == 'editregion' %>">
+							<a class="dropdown-toggle"
+								data-toggle="dropdown"
+								title="Create or delete regions"
+								href="dashboard"><b>
+								Regions</b>
+								<b class="caret"></b>
+							</a>
+							
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#regioneditor" data-toggle="tab">New Region</a>
+								</li>
+							</ul>
+						</li>
+					<% end%>
+					<!-- End Regions -->
+					
+					<!-- Start Projects -->
+					<% if current_user.role == 'admin' %>
+						<li class="dropdown<%= 'active' if params[:tab] == 'newproject' %>
+					<%= 'active' if params[:tab] == 'listprojects' %>">
+							<a class="dropdown-toggle"
+								data-toggle="dropdown"
+								title="Create a new project or list existing projects"
+								href="dashboard"><b>
+								Projects</b>
+								<b class="caret"></b>
+							</a>
+							
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#newproject" data-toggle="tab"> New Project </a>
+								</li>
+								
+								<li>
+									<a href="#listprojects" data-toggle="tab"> List Projects </a>
+								</li>
+							</ul>
+						</li>
+						<% end %>
+						<!-- End Projects -->
+						
+						<!-- Start users lists -->
+							<li class="dropdown<%= 'active' if params[:tab] == 'allusers' %>
+					<%= 'active' if params[:tab] == 'waitingusers' %>">
+								<a class="dropdown-toggle"
+									data-toggle="dropdown"
+									title="List all users or just those awaiting approval"
+									href="dashboard"><b>
+									Users</b>
+								<b class="caret"></b>
+							</a>
+							
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#allusers" data-toggle="tab"> All Users </a>
+								</li>
+								
+								<li>
+									<a href="#waitingusers" data-toggle="tab">Awaiting Approval</a>
+								</li>
+							</ul>
+						</li>
+						<!-- End users lists -->
+						
+						<li class="direct-menus">
+							<a href="admin" title="Manage the Database">Database</a>
+						</li>
+						
+						<% if (current_user.role == 'lead') %>
+							<li class="direct-menus">
+								<a href="export" title="Export Nodes in Food Web">Export</a>
+							</li>
+						<% end %>
+
+					<% end %>
+				</ul>
+			</div>
+		</div> <!-- End Span 2 -->
+		
+		<div class="span10">
+			<div class="tab-content">
+			
+			<!-- Tab panes for nodes -->
+			<div class="<%= if params[:tab] == 'newnode' then 'tab-pane active'  else 'tab-pane' end%>" id="newnode">
+				<%= render 'dashboard/newnode', :node => @node %>
+			</div>
+			
+			<div class="<%= if params[:tab] == 'non_iti' then 'tab-pane active'  else 'tab-pane' end%>" id="nonitis">
+				<%= render 'dashboard/newnonitis', :non_iti =>@non_iti %>
+			</div>
+			
+			<div class="<%= if params[:tab] == 'searchnode' then 'tab-pane active'  else 'tab-pane' end%>" id="searchnode">
+				<%= render 'dashboard/searchnodes' %>
+			</div>
+			
+			<div class="<%= if params[:tab] == 'nodelist' then 'tab-pane active'  else 'tab-pane' end%>" id="nodelist">
+				<% if (current_user.role =='admin') %>
+					<% @node = Node.all %>
+				<% else %>
+					<% @node = @nodelist %>
+				<% end %>
+				<%= render 'dashboard/listnodes', :node => @node %>
+			</div>
+			<!-- End Tab panes for nodes -->
+			
+			<!-- Tab panes for citations -->
+			<div class= "<%= if params[:tab] == 'newaut' then 'tab-pane active'  else 'tab-pane' end%>" id="newaut">
+				
+				<%= render 'dashboard/newauthor', :author => @author %>
+			</div>
+			
+			<div class="<%= if params[:tab] == 'authorlist' then 'tab-pane active'  else 'tab-pane' end%>" id="authorlist">
+				<% @author = Author.all %>
+				<%= render 'dashboard/listauthor', :authors => @author %>
+			</div>
+			
+			<div class="<%= if params[:tab] == 'newcite' then 'tab-pane active'  else 'tab-pane' end%>" id="newcite">
+				<%= render 'dashboard/newcitation', :citation => @citation %>
+			</div>
+			
+			<div class="<%= if params[:tab] == 'citelist' then 'tab-pane active'  else 'tab-pane' end%>" id="citelist">
+				<% @citation = Citation.all %>
+				<%= render 'dashboard/listcitation.html.erb', :citation => @citation %>
+			</div>
+			<!-- End Citations tab panes -->
+			
+			<!-- Start Interactions tab panes -->
+			<div class="<%= if params[:tab] == 'inters' then 'tab-pane active'  else 'tab-pane' end%>" id="inters">
+				<%= render 'dashboard/newinteraction' %>
+			</div>
+			<!-- End Interactions tab panes -->
+			
+			<!-- Start user tab panes -->
+			<div class="<%= if params[:tab] == 'allusers' then 'tab-pane active'  else 'tab-pane' end%>" id="allusers">
+				<legend>
+					<h3> Listing all users </h3>
+				</legend>
+				<div class="well instructions">
+					<h3>Instructions
+						<button type="button" 
+							data-toggle="collapse" 
+							data-target="#userlistinfo" 
+							class="btn btn-info btn-mini">
+							<!-- Collapse/Expand --><span class="caret"></span>
+						</button>
+					</h3>
+					<div id="userlistinfo" class="collapse"
+						<% if current_user.role == 'admin' %>
+							<% @users = User.all %>
+							<p> Below is a list of all users </p>
+						<% else %>
+							<% @users = User.where(:project_id == current_user.project_id).all %>
+							<p> Below is a list of all users in your project</p>
+						<% end %>
+					</div>
+				</div>
+				<%= render 'listusers', :users => @users %>
+			</div>
+
+			<div class="<%= if params[:tab] == 'waitingusers' then 'tab-pane active'  else 'tab-pane' end%>" id="waitingusers">
+				<legend>
+					<h3> Unapproved Users </h3>
+				</legend>
+				<div class="well instructions">
+					<h3>Instructions
+						<button type="button" 
+							data-toggle="collapse" 
+							data-target="#userlistinfo" 
+							class="btn btn-info btn-mini">
+							<!-- Collapse/Expand --><span class="caret"></span>
+						</button>
+					</h3>
+					<div id="userlistinfo" class="collapse"
+						<% if current_user.role == 'admin' %>
+							<% @users = User.where(:approved => :false).all %>
+							<p> Below is a list of all non-approved users </p>
+						<% else %>
+							<% @users = @userlist %> 
+							<p> Below is a list of all non-approved users in your project</p>
+						<% end %>
+					</div>
+				</div>
+				<%= render 'listusers', :users => @users %>
+			</div>
+			<!-- End Users tab panes -->
+			
+			<!-- Start Regions tab-panes -->
+			<div class ="<%= if params[:tab] == 'regioneditor' then 'tab-pane active'  else 'tab-pane' end%>" id="regioneditor">
+				<%= render 'regioneditor' %>
+			</div>
+			<!-- End Region tab panes -->
+			
+			<!-- Start Project tab panes -->
+			<div class="<%= if params[:tab] == 'newproject' then 'tab-pane active'  else 'tab-pane' end%>" id="newproject">
+				<%= render "dashboard/newproject", :project => @project%>
+			</div>
+			
+			<div class="<%= if params[:tab] == 'listprojects' then 'tab-pane active'  else 'tab-pane' end%>" id="listprojects">
+				<% @project = Project.all %>
+				<%= render "/dashboard/listprojects", :project =>@project %>
+			</div>
+			<!-- End Project tab -panes -->
+				
+				<div class="<%= if (params[:tab] == 'navmap' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end%>" id="navmap">
+				<!-- google map -->
+					<%= gmaps({"polygons"    => { :data => @polygons} , :map_options => {:libraries => ["drawing"], :fillColor => "#000", "type" => "HYBRID" }, :last_map => false})%>
+    
+				<!-- Some java script for the google map being clickable -->
+					<% content_for :scripts do %>
+						<script type="text/javascript" charset="utf-8">
+							Gmaps.map.callback = function() {
+								for (var i=0;i<Gmaps.map.polygons.length;i++){
+								Gmaps.map.polygons[i].infowindow = new google.maps.InfoWindow
+								({ content: 'you clicked on region ' + i });
+
+							function infowindow(num){
+								return function (event){
+									console.log("the click event fired");
+									infowindow =  Gmaps.map.polygons[num].infowindow 
+									infowindow.setPosition(event.latLng);
+									infowindow.open(Gmaps.map.map);} ; }(i);
+
+				google.maps.event.addListener(Gmaps.map.polygons[i].serviceObject, "click", infowindow(i)); }
+				}
+
+</script>
+<!-- end javascript -->
+<% end %>
+
+        </div>
+    </div>
+</div>

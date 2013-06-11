@@ -1,0 +1,48 @@
+<legend>
+	<h3>Listing Nodes </h3>
+</legend>
+
+<div class="well instructions">
+	<h3>Instructions
+		<button type="button" data-toggle="collapse" 
+			data-target="#nodelistinfo" class="btn btn-info btn-mini">
+			<span class="caret"></span><!-- Collapse/Expand -->
+		</button>
+	</h3>
+	<div id="nodelistinfo" class="collapse">
+		<p>
+			Below is a list of all the nodes currently in the database listed alphabetically. 
+			Individual nodes can be viewed by clicking the name of the species.
+		</p>
+	</div>
+</div>
+
+<table class="table table-striped">
+  <tr>
+    <th>ITIS ID</th>
+    <th>Working Name</th>
+    <th>Latin Name</th>
+    <th>Functional Group</th>
+    <th>Non-ITIS ID</th>
+    <th>Native Status</th>
+    <th>Created By</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @node.each do |node| %>
+  <tr>
+    <td><%= node.itis_id %></td>
+    <td><%= node.working_name %></td>
+    <td><%= node.working_name %></td>
+    <td><%= functional_name(node.functional_group_id).name %></td>
+    <td><%= node.non_itis_id %></td>
+    <td><%= node.native_status %></td>
+    <td><%= owner_user(node.user_id).username %></td>
+    <td><%= link_to 'Show', node %></td>
+    <td><%= link_to 'Edit', edit_node_path(node) %></td>
+    <td><%= link_to 'Destroy', node, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

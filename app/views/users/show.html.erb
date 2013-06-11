@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+	<div class="page-header span10 edit-account-title">
+		<h1> Showing User <br \> <%= @user.firstname %> <%= @user.lastname %>
+	</h1>
+	</div>
+		<br \>
+		<div class='span4 offset1'>
+			<div class="text">
+				<b>First Name:</b>
+			</div>
+			<input type="text" value= <%= @user.firstname %> readonly>
+			<br \>
+		
+			<div class="text">
+				<b>Username:</b>
+			</div>
+			<input type="text" value= <%= @user.username %> readonly >
+			<br \>
+		
+		
+			<div class="text">
+				<b> Project: </b>
+			</div>
+			<input type="text" value=<%= current_project(@user.project_id).name %> readonly>
+			<br \>
+			
+			<div class="text">
+				<b> Approved: </b>
+			</div>
+			<input type="text" value= <%= @user.approved.to_s %> readonly %>
+			<br \>
+		</div>
+		<div class="span4">
+			<div class="text">
+				<b>Last Name:</b>
+			</div>
+			<input type="text" value = <%= @user.lastname %> readonly>
+			<br \>
+			
+			<div class="text">
+				<b> E-mail:</b>
+			</div>
+			<input type="text" value= <%= @user.email %> readonly >
+			<br \>
+			
+			<div class="text">
+				<b> Role: </b>
+			</div>
+			<input type="text" value=<%= @user.role %> readonly>
+			<br \>
+
+			<div class="text">
+				<b> Comments: </b>
+			</div>
+			<input type="text-area" size="5x10" readonly value=<%= @user.comment %> >
+			<br \>
+			</div>
+			<div class="span10">
+				<div class="well">
+			<button type="button" class="btn btn-inverse">
+				<%= link_to 'Edit', edit_user_path(@user) %>
+			</button> 
+			<button type="button" class="btn btn-inverse">
+				<%= link_to 'Back', root_path %>
+			</button>
+		</div>
+	</div>
+</div>

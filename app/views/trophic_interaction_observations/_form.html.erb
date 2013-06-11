@@ -1,0 +1,69 @@
+<%= form_for(@trophic_interaction_observation) do |f| %>
+  <% if @trophic_interaction_observation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trophic_interaction_observation.errors.count, "error") %> prohibited this trophic_interaction_observation from being saved:</h2>
+
+      <ul>
+      <% @trophic_interaction_observation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cite_id %><br />
+    <%= f.number_field :cite_id %>
+  </div>
+  <div class="field">
+    <%= f.label :trophic_interaction_id %><br />
+    <%= f.number_field :trophic_interaction_id %>
+  </div>
+  <div class="field">
+    <%= f.label :location_id %><br />
+    <%= f.number_field :location_id %>
+  </div>
+  <div class="field">
+    <%= f.label :lethality %><br />
+    <%= f.text_field :lethality %>
+  </div>
+  <div class="field">
+    <%= f.label :structures_consumed %><br />
+    <%= f.text_field :structures_consumed %>
+  </div>
+  <div class="field">
+    <%= f.label :percentage_consumed %><br />
+    <%= f.text_field :percentage_consumed %>
+  </div>
+  <div class="field">
+    <%= f.label :percentage_diet %><br />
+    <%= f.text_field :percentage_diet %>
+  </div>
+  <div class="field">
+    <%= f.label :percentage_diet_by %><br />
+    <%= f.text_field :percentage_diet_by %>
+  </div>
+  <div class="field">
+    <%= f.label :prefernce %><br />
+    <%= f.text_field :prefernce %>
+  </div>
+  <div class="field">
+    <%= f.label :observation_type %><br />
+    <%= f.text_field :observation_type %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </div>
+  <div class="field">
+    <%= f.label :datum %><br />
+    <%= f.text_field :datum %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

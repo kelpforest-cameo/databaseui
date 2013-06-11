@@ -1,0 +1,21 @@
+<h1>Listing facilitation_interactions</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @facilitation_interactions.each do |facilitation_interaction| %>
+  <tr>
+    <td><%= link_to 'Show', facilitation_interaction %></td>
+    <td><%= link_to 'Edit', edit_facilitation_interaction_path(facilitation_interaction) %></td>
+    <td><%= link_to 'Destroy', facilitation_interaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Facilitation interaction', new_facilitation_interaction_path %>

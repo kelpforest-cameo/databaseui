@@ -1,0 +1,23 @@
+base: &base
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  host: localhost
+  timeout: 5000
+  username: <%=Capistrano::CLI.ui.ask("Enter MySQL database username: ")%>
+  password: <%=Capistrano::CLI.ui.ask("Enter MySQL database password: ")%>
+development:
+  database: foodwebdev
+  <<: *base
+test:
+  database: foodwebtest
+  <<: *base
+staging:
+  database: foodwebstage
+  <<: *base
+preproduction:
+  database: foodwebpreprod
+  <<: *base
+production:
+  database: foodwebprod
+  <<: *base

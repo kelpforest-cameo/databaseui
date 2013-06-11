@@ -1,0 +1,82 @@
+<div class="container">
+		<div class="page-header span10 create-account-title">
+			<h1>Register for an account <br />
+				<button type="button" data-toggle="collapse" data-target="#inst" class="btn btn-info btn-mini">
+				Instructions
+				</button>
+			</h1>
+			<div id="inst" style="text-align: center" class="collapse">
+				<div class="well">
+				<b>
+					Please fill out the information below.<br \> 
+					If your project is not listed please select New Project 
+					and write your project name in the comment area.
+				</b>
+			</div>
+		</div>
+	</div>
+	
+	
+	<%= form_for(resource, :as => resource_name, :html =>{:form => "form-horizontal"}, :url => registration_path(resource_name)) do |f| %>
+		<%= devise_error_messages! %>
+	
+			<div class="span4 offset1">
+				<br />
+				<%= f.label :first_name%>
+				<%= f.text_field :firstname, :autofocus => true, :class=>"span3" %>
+			</div>
+				
+			<div class="span4">
+				<br />
+				<%= f.label :lastname %>
+				<%= f.text_field :lastname , :class =>"span3"%>
+			</div>
+				
+			<div class="span4 offset1">
+				<br />
+				<%= f.label :username %>
+				<%= f.text_field :username , :class =>"span3"%>
+			</div>
+			
+			<div class="span4">
+				<br />
+				<%= f.label :email %>
+				<%= f.email_field :email, :class=>"span3" %>
+			</div>
+
+			<div class="span4 offset1">
+				<br />
+				<%= f.label :password %>
+				<%= f.password_field :password , :class=>"span3"%>
+			</div>
+					
+			<div class="span4">
+				<br />
+				<%= f.label :password_confirmation %>
+				<%= f.password_field :password_confirmation, :class=>"span3" %>
+			</div>
+				
+			<div class="span4 offset1">
+				<br />
+				<%= f.label :project_id %>
+				<%= collection_select(:user, :project_id, Project.all, :id, :name, {:prompt => "Please select project"},{:class => "span3"}) %>
+			</div>
+					
+			<div class="span4">
+				<br />
+				<%= f.label :comment %>
+				<%= f.text_area :comment, :class => "span3", :rows => "5" %><br />
+			</div>
+
+					
+						<div class="span10 well">
+							<div class="span6 offset3">
+							<%= f.submit "Register", :class=>"btn btn-inverse" %> 
+							<a href="/users/sign_in" class="btn btn-inverse">Sign in</a>
+						<a href="/users/password/new" class="btn btn-inverse">Forgot password?</a>
+
+				</div>
+			</div>
+	</div>
+<% end %>
+

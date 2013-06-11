@@ -1,0 +1,21 @@
+<h1>Listing parasitic_interactions</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @parasitic_interactions.each do |parasitic_interaction| %>
+  <tr>
+    <td><%= link_to 'Show', parasitic_interaction %></td>
+    <td><%= link_to 'Edit', edit_parasitic_interaction_path(parasitic_interaction) %></td>
+    <td><%= link_to 'Destroy', parasitic_interaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Parasitic interaction', new_parasitic_interaction_path %>

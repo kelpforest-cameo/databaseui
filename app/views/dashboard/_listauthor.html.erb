@@ -1,0 +1,44 @@
+<legend>
+	<h2>Listing Authors</h2>
+</legend>
+
+<div class="well instructions">
+	<h3>Instructions
+		<button type="button" data-toggle="collapse" data-target="#authorlistinfo" class="btn btn-info btn-mini">
+			<!-- Collapse/Expand --><span class="caret"></span>
+		</button>
+	</h3>
+
+	<div id="authorlistinfo" class="collapse">
+		<p>
+			Below is a list of all the authors currently in the database along with the user who 
+			entered them. To add an author please select <em>New Author</em> from 
+			the <em>Citations</em> menu.
+		</p>
+	</div>
+</div>
+
+<table class="table table-striped">
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @author.each do |author| %>
+  <tr>
+    <td><%= author.first_name %></td>
+    <td><%= author.last_name %></td>
+    <td><%= owner_user(author.user_id).username %></td>
+    <td><%= link_to 'Show', author %></td>
+    <td><%= link_to 'Edit', edit_author_path(author) %></td>
+    <td><%= link_to 'Destroy', author, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+
+

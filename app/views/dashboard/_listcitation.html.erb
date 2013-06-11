@@ -1,0 +1,58 @@
+<legend>
+	<h3> Listing Citations </h3>
+</legend>
+
+<div class="well instructions">
+	<h3>Instructions
+		<button type="button" data-toggle="collapse" data-target="#citelistinfo" class="btn btn-info btn-mini">
+			<!-- Collapse/Expand --><span class="caret"></span>
+		</button>
+	</h3>
+	<div id="citelistinfo" class="collapse"
+		<p> 
+			Below is a list of the current citations
+			in your project
+		</p>
+	</div>
+</div>
+
+<table class="table table-striped">
+  <tr>
+    <th>Abstract</th>
+    <th>Closed</th>
+    <th>Document</th>
+    <th>Format</th>
+    <th>Format title</th>
+    <th>Number</th>
+    <th>Pages</th>
+    <th>Publisher</th>
+    <th>Title</th>
+    <th>User</th>
+    <th>Volume</th>
+    <th>Year</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @citation.each do |citation| %>
+  <tr>
+    <td><%= citation.abstract %></td>
+    <td><%= citation.closed %></td>
+    <td><%= citation.document %></td>
+    <td><%= citation.format %></td>
+    <td><%= citation.format_title %></td>
+    <td><%= citation.number %></td>
+    <td><%= citation.pages %></td>
+    <td><%= citation.publisher %></td>
+    <td><%= citation.title %></td>
+    <td><%= owner_user(citation.user_id).username %></td>
+    <td><%= citation.volume %></td>
+    <td><%= citation.year %></td>
+    <td><%= link_to 'Show', citation %></td>
+    <td><%= link_to 'Edit', edit_citation_path(citation) %></td>
+    <td><%= link_to 'Destroy', citation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+

@@ -1,0 +1,33 @@
+<h1>Listing stage_reproductive_strategies</h1>
+
+<table>
+  <tr>
+    <th>Cite</th>
+    <th>Stage</th>
+    <th>Reproductive strategy</th>
+    <th>Comment</th>
+    <th>Datum</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_reproductive_strategies.each do |stage_reproductive_strategy| %>
+  <tr>
+    <td><%= stage_reproductive_strategy.cite_id %></td>
+    <td><%= stage_reproductive_strategy.stage_id %></td>
+    <td><%= stage_reproductive_strategy.reproductive_strategy %></td>
+    <td><%= stage_reproductive_strategy.comment %></td>
+    <td><%= stage_reproductive_strategy.datum %></td>
+    <td><%= stage_reproductive_strategy.user_id %></td>
+    <td><%= link_to 'Show', stage_reproductive_strategy %></td>
+    <td><%= link_to 'Edit', edit_stage_reproductive_strategy_path(stage_reproductive_strategy) %></td>
+    <td><%= link_to 'Destroy', stage_reproductive_strategy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage reproductive strategy', new_stage_reproductive_strategy_path %>

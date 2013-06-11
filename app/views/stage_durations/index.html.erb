@@ -1,0 +1,21 @@
+<h1>Listing stage_durations</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_durations.each do |stage_duration| %>
+  <tr>
+    <td><%= link_to 'Show', stage_duration %></td>
+    <td><%= link_to 'Edit', edit_stage_duration_path(stage_duration) %></td>
+    <td><%= link_to 'Destroy', stage_duration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage duration', new_stage_duration_path %>

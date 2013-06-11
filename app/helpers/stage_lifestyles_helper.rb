@@ -1,0 +1,2 @@
+module StageLifestylesHelper
+end

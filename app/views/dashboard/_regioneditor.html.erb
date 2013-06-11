@@ -1,0 +1,70 @@
+<legend>
+	<h3> Creating New Region </h3>
+</legend>
+
+<div class="well instructions">
+	<h3>Instructions
+		<button type="button" 
+			data-toggle="collapse" 
+			data-target="#newregioninfo" 
+			class="btn btn-info btn-mini">
+			<span class="caret"></span><!-- Collapse/Expand -->
+		</button>
+	</h3>
+
+	<div id="newregioninfo" class="collapse">
+		<p>
+			Create a new region
+		</p>
+		<ul>
+			<li>Select the polygon tool at the top of the map</li>
+			<li>Click the points on the map outlining the region</li>
+		</ul>
+	</div>
+</div>
+
+<%= gmaps({"polygons"=> { "data" => @polygons2,"options" => { "raw" => "{draggable : true,editable : true}" }}, 
+					"map_options" => { "fillColor" => "#000",
+					"id" => "second_map","libraries" => ["drawing"], "type" => "HYBRID"},
+					"scripts"  => :none})%>
+
+<% content_for :scripts do %>
+	<script type="text/javascript" charset="utf-8">
+	Gmaps.second_map.callback = function() {
+		for (var i=0;i<Gmaps.second_map.polygons.length;i++){
+			Gmaps.second_map.polygons[i].infowindow = new google.maps.InfoWindow
+			({ content: 'you clicked on region ' + i });
+		<!-- remove polygon -->
+		function removepolygon(num){
+			return function (event){
+				if(confirm("Delete Region?"))
+				{
+					$.ajax({
+					type: "POST",
+					url: "remove_polygon",
+					data: {id : Gmaps.second_map.polygons[num][0].id}
+					});
+					Gmaps.second_map.polygons[num].serviceObject.setMap(null);
+				}
+			};
+			};
+			google.maps.event.addListener
+			(Gmaps.second_map.polygons[i].serviceObject, "click", removepolygon(i));
+		}
+	}   
+</script>
+<% end %>
+<div id="newpolygon" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" 
+			class="close" data-dismiss="modal" 
+			aria-hidden="true">&times;
+		</button>
+		<h3> Region Editor </h3>
+	</div>
+	<div class="modal-body">
+		<%= render :partial => 'region_form', :location_data => @location_datum %>
+	</div>
+	<div class="modal-footer">
+	</div>
+</div>

@@ -1,0 +1,21 @@
+<h1>Listing stage_residency_times</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_residency_times.each do |stage_residency_time| %>
+  <tr>
+    <td><%= link_to 'Show', stage_residency_time %></td>
+    <td><%= link_to 'Edit', edit_stage_residency_time_path(stage_residency_time) %></td>
+    <td><%= link_to 'Destroy', stage_residency_time, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage residency time', new_stage_residency_time_path %>

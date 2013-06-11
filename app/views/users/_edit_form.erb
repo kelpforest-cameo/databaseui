@@ -1,0 +1,98 @@
+<%= form_for(@user) do |f| %>
+	<% if @user.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:
+			</h2>
+			
+			<ul>
+				<% @user.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	
+
+				<div class="span4 offset1">
+					<br />
+					<%= f.label :first_name %>
+					<%= f.text_field :firstname, :autofocus => true, :class =>"span2" %>
+				</div>
+				
+				<div class="span4">
+					<br />
+					<%= f.label :last_name %>
+					<%= f.text_field :lastname ,:class =>"span2" %>
+				</div>
+
+				<div class="span4 offset1">
+					<%= f.label :username %>
+					<%= f.text_field :username ,:class =>"span2" %>
+				</div>
+
+				<div class="span4">
+					<%= f.label :email %>
+					<%= f.email_field :email ,:class =>"span2" %>
+				</div>
+			
+			<% if current_user.id == @user.id %>
+					<div class="span4 offset1">
+						<%= f.label :password %>
+						<%= f.password_field :password,:autocomplete => "off", :class =>"span2", :placeholder=>"Reset User Password" %>
+					</div>
+					
+					<div class="span4">
+						<%= f.label :password_confirmation %>
+						<%= f.password_field :password_confirmation, :class =>"span2" , :placeholder=>"Confirm password" %>
+					</div>
+			<% end %>
+
+				<div class="span4 offset1">
+					<%= f.label :project_id %>
+					<% if current_user.role == 'admin' %>
+						<%= options_from_collection_for_select(Project.all, :id, :name) %>
+						<%= collection_select(:user, :project_id, Project.all, :id, :name, {:prompt => "Please select project"}, {:class =>"span2"}) %>
+						
+						<% else %>
+							<input type="text" class ="span2" value=<%= current_project(@user.project_id).name %> readonly>
+						<% end %>
+					
+						<%= f.label :role %>
+						<% if current_user.role == 'admin' %>
+							<%= f.collection_select :role, User::ROLES, :to_s, :humanize,{:prompt => "Please Select Role"}, {:class =>"span2"} %>
+						
+						<% elsif current_user.role =='lead' %>
+							<%= f.collection_select :role, User::LEAD, :to_s, :humanize,{:prompt => "Please select Role"},{ :class =>"span2"} %>
+						<% else %>
+							<input type="text" class="span2" value=<%= @user.role %> readonly>
+						<% end %>
+						<%= f.label :approved %>
+					<% if can? :access, :rails_admin %>
+						<%= check_box 'user', 'approved', {}, 'true', 'false' %>
+					<% else %>
+						<input type="text" value=<%= @user.approved.to_s %> readonly>
+					<% end %>
+					</div>
+			
+				
+					<div class="span4">
+						<%= f.label :comment %>
+						<%= f.text_area :comment, :class => "span2", :rows => "5" %><br />
+					</div>
+<div class="span10">
+	<div class="well">
+		<div class="span6 offset3">
+			<%= f.submit "Update", :class=>"btn btn-inverse" %>
+		
+		<button type="button" class="btn btn-inverse">
+					<%= link_to 'Show', @user %>
+				</button>
+		
+				<button type="button" class="btn btn-inverse">
+					<%= link_to 'Back', root_path %>
+				</button>
+			</div>
+		</div>
+	</div>
+
+<% end %>

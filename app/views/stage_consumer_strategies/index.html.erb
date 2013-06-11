@@ -1,0 +1,33 @@
+<h1>Listing stage_consumer_strategies</h1>
+
+<table>
+  <tr>
+    <th>Cite</th>
+    <th>Stage</th>
+    <th>Consumer strategy</th>
+    <th>Comment</th>
+    <th>Datum</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stage_consumer_strategies.each do |stage_consumer_strategy| %>
+  <tr>
+    <td><%= stage_consumer_strategy.cite_id %></td>
+    <td><%= stage_consumer_strategy.stage_id %></td>
+    <td><%= stage_consumer_strategy.consumer_strategy %></td>
+    <td><%= stage_consumer_strategy.comment %></td>
+    <td><%= stage_consumer_strategy.datum %></td>
+    <td><%= stage_consumer_strategy.user_id %></td>
+    <td><%= link_to 'Show', stage_consumer_strategy %></td>
+    <td><%= link_to 'Edit', edit_stage_consumer_strategy_path(stage_consumer_strategy) %></td>
+    <td><%= link_to 'Destroy', stage_consumer_strategy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stage consumer strategy', new_stage_consumer_strategy_path %>
