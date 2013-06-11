@@ -25,7 +25,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
       
       #For User Projects
       t.integer :project_id, :null => false
-
+      
+      # Comment section
+      t.text :comment, :null => true
+      
       ## Trackable
       t.integer  :sign_in_count, :default => 0
       t.datetime :current_sign_in_at

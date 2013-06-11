@@ -105,7 +105,7 @@ class DefaultAndNils < ActiveRecord::Migration
   	change_column :nodes, :working_name, :string, :null => false
   	change_column :nodes, :is_assemblage, :boolean, :null => false
   	change_column :nodes, :itis_id, :integer, :null => false
-  	change_column :nodes, :non_itis_id, :integer, :null => false
+  	change_column :nodes, :non_itis_id, :integer, :null => false, :default => -1
   	change_column :nodes, :functional_group_id, :integer, :null => false
   	change_column :nodes, :user_id, :integer, :null => false
   	change_column :nodes, :project_id, :integer, :null => false
