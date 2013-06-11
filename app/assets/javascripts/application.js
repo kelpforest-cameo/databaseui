@@ -719,9 +719,6 @@ $(document)
 	});
 
 
-
-
-
 	//Generate tab based upon stages given node id
 
 	function generateStageTab(hidden) {
@@ -766,8 +763,6 @@ $(document)
 			.val(e.target.text);
 	});
 
-
-
 	//new stage modal submit
 	$('#new_stage_modal_submit')
 		.on('click', function(e) {
@@ -777,13 +772,6 @@ $(document)
 			.val(), '#search_node_id');
 		generateStageTab('#search_node_id');
 	});
-
-
-
-
-
-
-
 
 	//For interactions stage 1
 	$('#interaction_working_name1')
@@ -1140,9 +1128,6 @@ $(document)
 		$('#new_trophic_observation')
 			.modal('hide');
 	});
-
-
-
 
 	$('#interaction_add_observation')
 		.on('click', function(e) {
