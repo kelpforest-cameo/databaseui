@@ -15,7 +15,7 @@ if ( !empty( $_GET['functionName']) && ( !empty( $_GET['term']) || !empty( $_GET
 	echo json_encode(array( 'error' => "No search terms or tsn."));
 	exit();
 }
-$wsdl = "http://www.itis.gov/ITISWebService.xml";
+$wsdl = "http://www.itis.gov/ITISWebService/services/ITISService?wsdl";
 //$wsdl = "ITISWebService.xml";
 $client = new SoapClient($wsdl);
 
