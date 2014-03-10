@@ -23,7 +23,9 @@ if ( !empty( $_GET['itis_id']) ) {
 
 $taxon=Array();
 
-$wsdl = "http://www.itis.gov/ITISWebService.xml";
+
+$wsdl = "http://www.itis.gov/ITISWebService/services/ITISService?wsdl";
+#$wsdl = "http://www.itis.gov/ITISWebService.xml";
 //$wsdl = "ITISWebService.xml";
 $client = new SoapClient($wsdl);
 $tax = $client->getTaxonomicRankNameFromTSN( array('tsn' =>  $itis_id ));
