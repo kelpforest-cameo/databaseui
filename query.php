@@ -449,7 +449,7 @@ if(!is_authenticated()  ) {
 			$result['stage_lifestyle'] = getEnumValues("stage_lifestyle", "lifestyle");
 			$result['stage_mobility'] = getEnumValues("stage_mobility", "mobility");
 			$result['stage_residency'] = getEnumValues("stage_residency", "residency");
-			$result['locations'] = getLocations();
+			#$result['locations'] = getLocations();
 			$result['trophic_interaction_observation_lethality'] = getEnumValues("trophic_interaction_observation", "lethality");
 			$result['trophic_interaction_observation_structures_consumed'] = getEnumValues("trophic_interaction_observation", "structures_consumed");
 			$result['trophic_interaction_observation_preference'] = getEnumValues("trophic_interaction_observation", "preference");
@@ -465,6 +465,13 @@ if(!is_authenticated()  ) {
 			$result['parasitic_interaction_observation_parasite_type'] = getEnumValues("parasitic_interaction_observation", "parasite_type");
 			//$result['parasitic_interaction_observation_prevalence'] = getEnumValues("parasitic_interaction_observation", "prevalence");
 			$result['citation_format'] = getEnumValues("citations", "format");
+                        print "<pre>";
+                        print_r($result);
+                        print "</pre>";
+                        $output_str = json_encode($result);
+                        if (!$output_str) {
+                          echo json_last_error_msg();
+                        }
 			echo  json_encode($result);
 			//echo jsonprint( json_encode($result));
 			break;
