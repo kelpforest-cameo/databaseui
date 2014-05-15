@@ -465,13 +465,6 @@ if(!is_authenticated()  ) {
 			$result['parasitic_interaction_observation_parasite_type'] = getEnumValues("parasitic_interaction_observation", "parasite_type");
 			//$result['parasitic_interaction_observation_prevalence'] = getEnumValues("parasitic_interaction_observation", "prevalence");
 			$result['citation_format'] = getEnumValues("citations", "format");
-                        print "<pre>";
-                        print_r($result);
-                        print "</pre>";
-                        $output_str = json_encode($result);
-                        if (!$output_str) {
-                          echo json_last_error_msg();
-                        }
 			echo  json_encode($result);
 			//echo jsonprint( json_encode($result));
 			break;
