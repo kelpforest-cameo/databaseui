@@ -36,7 +36,8 @@ foreach( $results as $k => $v ) {
 	array_push( $list, $val);
 }
 
-$wsdl = "http://www.itis.gov/ITISWebService.xml";
+$wsdl = "http://www.itis.gov/ITISWebService/services/ITISService?wsdl";
+#$wsdl = "http://www.itis.gov/ITISWebService.xml";
 //$wsdl = "ITISWebService.xml";
 $client = new SoapClient($wsdl);
 

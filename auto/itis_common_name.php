@@ -11,7 +11,8 @@ if ( !empty( $_GET['term']) ) {
 	echo json_encode( $response);
 	exit();
 }
-$wsdl = "http://www.itis.gov/ITISWebService.xml";
+$wsdl = "http://www.itis.gov/ITISWebService/services/ITISService?wsdl";
+#$wsdl = "http://www.itis.gov/ITISWebService.xml";
 //$wsdl = "ITISWebService.xml";
 $client = new SoapClient($wsdl);
 
