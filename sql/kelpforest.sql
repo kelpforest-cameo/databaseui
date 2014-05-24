@@ -1,20 +1,9 @@
--- phpMyAdmin SQL Dump
--- version 3.5.1
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Apr 04, 2013 at 12:49 AM
--- Server version: 5.5.25
--- PHP Version: 5.4.4
+-- Food-web interactions database dump (structure)
+-- Host: localhost:8889
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `kelpforest`
@@ -187,6 +176,7 @@ CREATE TABLE `location_data` (
   `sdata` geometry DEFAULT NULL,
   `datum` varchar(255) NOT NULL DEFAULT '',
   `comment` text,
+  `refcount` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `location_id` (`location_id`),
   KEY `location_id_2` (`location_id`)

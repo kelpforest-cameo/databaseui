@@ -324,11 +324,28 @@ function getAllInteractionsForNode ( $node_id , $stage_1_or_2) {
 function addLocationData($location_data)
 {
 	global $db;
+  $lid = null;
 	$coords = '';
-	if ($location_data['coordinates'] != null) {
+	if ($location_data['coordinates'] != 'null' && $location_data['coordinates'] != null) {
 		$coords = "POINT({$location_data[coordinates][lon]} {$location_data[coordinates][lat]})";
 	}
-	$r = $db->query("INSERT INTO location_data (location_id, sdata) VALUES (?,GeomFromText(?))",array($location_data['location_id'],$coords));
+
+  //Try to reuse existing location data entries
+  $sql = "SELECT id FROM location_data WHERE location_id = ?";
+  if ($coords != '') {
+    $sql .= " AND sdata = GeomFromText(?)";
+    $lid = $db->getOne($sql,array($location_data['location_id'],$coords));
+  } else {
+    $sql .= " AND sdata is null";
+    $lid = $db->getOne($sql,array($location_data['location_id']));
+  }
+  if ($lid != null) {
+    $db->query("UPDATE location_data SET refcount = refcount+1 WHERE id = ?",array($lid));
+    return $lid;
+  }
+
+  //Insert new location data entry
+	$r = $db->query("INSERT INTO location_data (location_id, sdata, refcount) VALUES (?,GeomFromText(?),?)",array($location_data['location_id'],$coords,1));
 	if (!DB::isError($r)) {
 		return $db->getOne("SELECT LAST_INSERT_ID() FROM location_data");
 	} else {
@@ -781,7 +798,10 @@ if(!is_authenticated()  ) {
 				error("No permissions to modify this entry, $table:$idname:$interaction_id");
 			}
 
-			$db->query("DELETE FROM location_data WHERE id = ?",array($_REQUEST['location_id']));
+      $db->query("DELETE FROM location_data WHERE id = ? AND refcount=1",array($_REQUEST['location_id']));
+      if ($db->affectedRows() == 0) {
+        $db->query("UPDATE location_data SET refcount = refcount-1 WHERE id = ?",array($_REQUEST['location_id']));
+      }
 
 			$sql = "DELETE from $table WHERE cite_id=" .  $db->quote($_REQUEST['cite_id']);
 			$sql .= " AND location_id=" . $db->quote( $_REQUEST['location_id'] ) ;
