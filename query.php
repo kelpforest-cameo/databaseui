@@ -337,8 +337,8 @@ function addLocationData($location_data)
     $lid = $db->getOne($sql,array($location_data['location_id'],$coords));
   } else {
     $sql .= " AND sdata is null";
-    $lid = $db->getOne($sql,array($location_data['location_id']));
   }
+  $lid = $db->getOne($sql,array($location_data['location_id']));
   if ($lid != null) {
     $db->query("UPDATE location_data SET refcount = refcount+1 WHERE id = ?",array($lid));
     return $lid;
